@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, todoListSelector } from "../../store/store";
-import ToDoList from "../ToDoList/ToDoList";
+import ToDoListComponent from "../ToDoList/ToDoList";
 
 const ToDo = () => {
   const todoList = useSelector(todoListSelector);
@@ -19,10 +19,7 @@ const ToDo = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleAddTodo();
-  };
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    handleAddTodo();
+
     inputRef.current?.focus();
   };
 
@@ -38,11 +35,9 @@ const ToDo = () => {
           onChange={handleCurrentTodoChange}
           placeholder="Milk"
         />
-        <button type="submit" onClick={handleClick}>
-          ➕ Add item
-        </button>
+        <button type="submit">➕ Add item</button>
       </form>
-      <ToDoList todoList={todoList} />
+      <ToDoListComponent todoList={todoList} />
     </>
   );
 };

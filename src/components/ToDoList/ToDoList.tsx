@@ -15,7 +15,7 @@ const ToDoList = ({ todoList }: ToDoListPropsType) => {
       <ul>
         {todoList.map((todo) => (
           <li key={todo.id}>
-            {todo.title}
+            <p>{todo.title}</p>
             <button onClick={() => handleRemoveTodo(todo.id)}>
               ❌ Remove item
             </button>

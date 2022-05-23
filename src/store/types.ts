@@ -4,4 +4,5 @@ export type ToDoType = {
 };
 export type StoreType = {
   todoList: ToDoType[];
+  heading: string;
 };
