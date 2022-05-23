@@ -8,7 +8,11 @@ const todoSlice = createSlice({
   reducers: {
     addTodo: (todoList, action: PayloadAction<string>) => {
       action.payload.length > 0 &&
-        todoList.push({ id: Date.now(), title: action.payload });
+        todoList.push({
+          id: Date.now(),
+          title: action.payload,
+          checked: false,
+        });
     },
     removeTodo: (todoList, action: PayloadAction<number>) => {
       action.payload > 0 &&
@@ -16,6 +20,14 @@ const todoSlice = createSlice({
           todoList.findIndex((todo) => todo.id === action.payload),
           1
         );
+    },
+    toggleTodo: (todoList, action: PayloadAction<number>) => {
+      action.payload > 0 &&
+        todoList.forEach((todo) => {
+          if (todo.id === action.payload) {
+            todo.checked = !todo.checked;
+          }
+        });
     },
   },
 });
@@ -39,7 +51,7 @@ const store = configureStore({
   },
 });
 
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodo } = todoSlice.actions;
 export const { setHeading } = headingSlice.actions;
 
 export const todoListSelector = (state: StoreType) => state.todoList;
