@@ -1,4 +1,4 @@
-import ShareList from "../ShareList/ShareList";
+import ShareList from "../ShareList";
 
 const Footer = () => (
   <footer>
