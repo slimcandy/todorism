@@ -1,0 +1,7 @@
+{
+  "todoList": [
+    { "id": 1653404490144, "title": "Вода", "checked": true },
+    { "id": 1653404491308, "title": "Еда", "checked": false }
+  ],
+  "heading": "Список покупок от Андрея"
+}

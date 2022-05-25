@@ -1,3 +1,4 @@
+import axios from "axios";
 import { StoreType } from "../store/types";
 
 export const loadState = async (
@@ -5,8 +6,10 @@ export const loadState = async (
   initialValue: StoreType
 ): Promise<StoreType> => {
   try {
-    const item = await window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
+    const response = await (
+      await axios.get(`http://localhost:3001/api/v1/get-${key}/`)
+    ).data;
+    return response || initialValue;
   } catch (error) {
     console.log(error);
     return initialValue;
@@ -18,7 +21,7 @@ export const saveState = async (
   value: StoreType
 ): Promise<void> => {
   try {
-    await window.localStorage.setItem(key, JSON.stringify(value));
+    await axios.post(`http://localhost:3001/api/v1/set-${key}/`, value);
   } catch (error) {
     console.log(error);
   }

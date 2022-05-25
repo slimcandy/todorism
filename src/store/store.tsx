@@ -1,9 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { saveState } from "../utils/localStorage";
-import { throttle } from "../utils/pure-helpers";
-import { getState } from "../utils/useStorage";
-import { initialStoreValue, storageName } from "./constants";
+import { initialStoreValue } from "./constants";
 import { StoreType } from "./types";
 
 const todoSlice = createSlice({
@@ -33,6 +30,12 @@ const todoSlice = createSlice({
           }
         });
     },
+    setToDos: (todoList, action: PayloadAction<StoreType["todoList"]>) => {
+      if (action.payload.length > 0) {
+        return action.payload;
+      }
+      return todoList;
+    },
   },
 });
 
@@ -48,29 +51,19 @@ const headingSlice = createSlice({
   },
 });
 
-// pull from some storage or use initial value
-const storageState = getState(storageName, initialStoreValue);
-
 const store = configureStore({
   reducer: {
     todoList: todoSlice.reducer,
     heading: headingSlice.reducer,
   },
-  preloadedState: storageState,
+  preloadedState: initialStoreValue,
 });
 
-export const { addTodo, removeTodo, toggleTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodo, setToDos } = todoSlice.actions;
 export const { setHeading } = headingSlice.actions;
 
 export const todoListSelector = (state: StoreType) => state.todoList;
 export const headingSelector = (state: StoreType) => state.heading;
 export const storeSelector = (state: StoreType) => state;
-
-// subscribe to store changes
-store.subscribe(
-  throttle(() => {
-    saveState(storageName, store.getState());
-  }, 1000)
-);
 
 export default store;
