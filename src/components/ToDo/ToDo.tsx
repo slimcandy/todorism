@@ -12,13 +12,10 @@ const ToDo = () => {
   const handleCurrentTodoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoTitle(e.target.value);
   };
-  const handleAddTodo = () => {
-    dispatch(addTodo(todoTitle));
-    setTodoTitle("");
-  };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleAddTodo();
+    dispatch(addTodo(todoTitle));
+    setTodoTitle("");
 
     inputRef.current?.focus();
   };
