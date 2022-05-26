@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import ToDo from "./components/ToDo";
-import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import store from "./store/store";
@@ -13,11 +12,10 @@ const App = () => (
     <AppWrapper>
       <CurrentUser />
       <aside>
-        <Navigation />
+        <People />
       </aside>
       <hr />
       <main>
-        <People />
         <Header />
         <ToDo />
         <Footer />

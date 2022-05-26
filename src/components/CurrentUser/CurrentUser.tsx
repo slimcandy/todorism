@@ -28,7 +28,7 @@ const CurrentUser = () => {
   };
 
   useEffect(() => {
-    setIsOpen(currentUserId === null);
+    setIsOpen(people.length > 0 && currentUserId === null);
 
     const [defaultUser] = people;
     if (defaultUser && defaultUser.id > 0) setSelectedId(defaultUser.id);

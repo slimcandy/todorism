@@ -43,7 +43,7 @@ const headingSlice = createSlice({
   name: "heading",
   initialState: initialStoreValue.heading,
   reducers: {
-    setHeading: (heading, action: PayloadAction<string>) => {
+    setHeading: (heading, action: PayloadAction<StoreType["heading"]>) => {
       if (action.payload.length > 0 && heading !== action.payload)
         return action.payload;
       else return heading;
@@ -82,7 +82,13 @@ const currentUserIdSlice = createSlice({
   name: "currentUser",
   initialState: initialStoreValue.currentUserId,
   reducers: {
-    setCurrentUserId: (currentUser, action: PayloadAction<Person["id"]>) => {
+    setCurrentUserId: (
+      currentUser,
+      action: PayloadAction<StoreType["currentUserId"]>
+    ) => {
+      if (action.payload === null) {
+        return null;
+      }
       if (action.payload > 0) {
         return action.payload;
       }

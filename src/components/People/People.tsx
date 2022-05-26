@@ -1,14 +1,23 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPerson, peopleSelector, removePerson } from "../../store/store";
+import {
+  addPerson,
+  currentUserIdSelector,
+  peopleSelector,
+  removePerson,
+  setCurrentUserId,
+} from "../../store/store";
 import { Person } from "../../store/types";
 
 const People = () => {
   const people = useSelector(peopleSelector);
+  const currentUserId = useSelector(currentUserIdSelector);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const [newPerson, setNewPerson] = useState<Person["name"]>("");
+  const [currentUser, setCurrentUser] = useState<Person>();
+
   const newPersonChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPerson(e.target.value);
   };
@@ -19,7 +28,19 @@ const People = () => {
 
     inputRef.current?.focus();
   };
-  const handleRemovePerson = (id: Person["id"]) => dispatch(removePerson(id));
+  const handleRemovePerson = (id: Person["id"]) => {
+    dispatch(removePerson(id));
+    if (currentUserId === id) {
+      setCurrentUser(undefined);
+      dispatch(setCurrentUserId(null));
+    }
+  };
+
+  useEffect(() => {
+    setCurrentUser(
+      people.find((person) => person.id === currentUserId) || undefined
+    );
+  }, [currentUserId, people]);
 
   const formTag = (
     <form onSubmit={formSubmitHandler}>
@@ -44,6 +65,12 @@ const People = () => {
 
   return (
     <dl>
+      {currentUser && (
+        <>
+          <dt>You</dt>
+          <dd>{currentUser.name}</dd>
+        </>
+      )}
       <dt>People</dt>
       <dd>
         <ul>
