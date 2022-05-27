@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/store";
 import { Item } from "../../store/types";
@@ -25,13 +25,15 @@ const CreateForm = () => {
       title: itemTitle,
     };
     dispatch(addItem(item));
+    setItemTitle("");
+    setItemAmount(1);
 
     itemRef.current?.focus();
   };
 
   return (
-    <>
-      <h1>Add list item</h1>
+    <fieldset>
+      <legend>Add list item</legend>
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="title">Title</label>
         <input
@@ -53,7 +55,7 @@ const CreateForm = () => {
         />
         <button type="submit">➕ Add</button>
       </form>
-    </>
+    </fieldset>
   );
 };
 

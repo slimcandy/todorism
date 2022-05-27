@@ -1,7 +1,14 @@
-import { StoreType } from "./types";
+import { List, StoreType } from "./types";
 
 export const initialStore: StoreType = {
   list: null,
+};
+export const initialList: List = {
+  key: "List" + Date.now(),
+  name: "",
+  description: "",
+  items: [],
+  people: [],
 };
 
 export const currentListKey = "currentListKey";
