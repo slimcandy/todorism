@@ -18,3 +18,7 @@ export type Item = {
   checked: boolean;
   peopleIDs: Person["id"][];
 };
+
+export type StoreType = {
+  list: List | null;
+};
