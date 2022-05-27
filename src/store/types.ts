@@ -14,7 +14,7 @@ export type Person = {
 export type Item = {
   id: number;
   title: string;
-  quantity: number;
+  amount: number;
   checked: boolean;
   peopleIDs: Person["id"][];
 };

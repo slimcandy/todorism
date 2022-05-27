@@ -4,6 +4,7 @@ import { currentListKey } from "../../store/constants";
 import { clearList, listSelector, setList } from "../../store/store";
 import { pullLocalStorage } from "../../utils/localStorage";
 import { getStorageList } from "../../utils/storage";
+import CreateForm from "../CreateForm";
 import FindForm from "../FindForm";
 
 const Panel = () => {
@@ -42,7 +43,9 @@ const Panel = () => {
           <FindForm />
         </dd>
         or <dt>Create one</dt>
-        <dd>create list form</dd>
+        <dd>
+          <CreateForm />
+        </dd>
       </dl>
     );
   }
