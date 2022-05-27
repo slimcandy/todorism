@@ -4,6 +4,7 @@ import { currentListKey } from "../../store/constants";
 import { clearList, listSelector, setList } from "../../store/store";
 import { pullLocalStorage } from "../../utils/localStorage";
 import { getStorageList } from "../../utils/storage";
+import FindForm from "../FindForm";
 
 const Panel = () => {
   const [findListFormOpen, setFindListFormOpen] = useState(false);
@@ -34,7 +35,16 @@ const Panel = () => {
   }, [dispatch, list]);
 
   if (findListFormOpen) {
-    return <p>| find list form |</p>;
+    return (
+      <dl>
+        <dt>Open list</dt>
+        <dd>
+          <FindForm />
+        </dd>
+        or <dt>Create one</dt>
+        <dd>create list form</dd>
+      </dl>
+    );
   }
   if (list) {
     return <p>List</p>;
