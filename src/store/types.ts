@@ -1,7 +1,9 @@
-export type ToDoType = {
-  id: number;
-  title: string;
-  checked: boolean;
+export type List = {
+  key: string;
+  name: string;
+  description: string;
+  people: Person[];
+  items: Item[];
 };
 
 export type Person = {
@@ -9,9 +11,10 @@ export type Person = {
   name: string;
 };
 
-export type StoreType = {
-  todoList: ToDoType[];
-  heading: string;
-  people: Person[];
-  currentUserId: Person["id"] | null;
+export type Item = {
+  id: number;
+  title: string;
+  quantity: number;
+  checked: boolean;
+  peopleIDs: Person["id"][];
 };

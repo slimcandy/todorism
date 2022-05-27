@@ -1,40 +1,53 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { initialStoreValue } from "./constants";
-import { Person, StoreType, ToDoType } from "./types";
+import { Person, StoreType, TodoList, ToDoType } from "./types";
 
-const todoSlice = createSlice({
-  name: "todoList",
-  initialState: initialStoreValue.todoList,
+const listSlice = createSlice({
+  name: "list",
+  
+
+const todoListsSlice = createSlice({
+  name: "todoLists",
+  initialState: initialStoreValue.todoLists,
   reducers: {
-    addTodo: (todoList, action: PayloadAction<ToDoType["title"]>) => {
-      action.payload.length > 0 &&
-        todoList.push({
-          id: Date.now(),
-          title: action.payload,
-          checked: false,
+    addTodoList: (todoLists, action: PayloadAction<TodoList>) => {
+      action.payload.todoList.length > 0 &&
+        todoLists.push({
+          uniqueId: action.payload.uniqueId,
+          name: action.payload.name,
+          shared: action.payload.shared,
+          todoList: action.payload.todoList,
         });
     },
-    removeTodo: (todoList, action: PayloadAction<ToDoType["id"]>) => {
-      action.payload > 0 &&
-        todoList.splice(
-          todoList.findIndex((todo) => todo.id === action.payload),
+    removeTodoList: (
+      todoLists,
+      action: PayloadAction<TodoList["uniqueId"]>
+    ) => {
+      action.payload.length > 0 &&
+        todoLists.splice(
+          todoLists.findIndex(
+            (todoList) => todoList.uniqueId === action.payload
+          ),
           1
         );
     },
-    toggleTodo: (todoList, action: PayloadAction<ToDoType["id"]>) => {
-      action.payload > 0 &&
-        todoList.forEach((todo) => {
-          if (todo.id === action.payload) {
-            todo.checked = !todo.checked;
-          }
-        });
+    toggleShared: (todoLists, action: PayloadAction<TodoList["uniqueId"]>) => {
+      if (action.payload.length > 0) {
+        const index = todoLists.findIndex(
+          (list) => list.uniqueId === action.payload
+        );
+        todoLists[index].shared = !todoLists[index].shared;
+      }
     },
-    setToDos: (todoList, action: PayloadAction<StoreType["todoList"]>) => {
+    setTodoLists: (
+      todoLists,
+      action: PayloadAction<StoreType["todoLists"]>
+    ) => {
       if (action.payload.length > 0) {
         return action.payload;
       }
-      return todoList;
+      return todoLists;
     },
   },
 });
@@ -99,7 +112,7 @@ const currentUserIdSlice = createSlice({
 
 const store = configureStore({
   reducer: {
-    todoList: todoSlice.reducer,
+    todoLists: todoListsSlice.reducer,
     heading: headingSlice.reducer,
     people: peopleSlice.reducer,
     currentUserId: currentUserIdSlice.reducer,
@@ -107,12 +120,13 @@ const store = configureStore({
   preloadedState: initialStoreValue,
 });
 
-export const { addTodo, removeTodo, toggleTodo, setToDos } = todoSlice.actions;
+export const { addTodoList, removeTodoList, setTodoLists, toggleShared } =
+  todoListsSlice.actions;
 export const { addPerson, removePerson, setPeople } = peopleSlice.actions;
 export const { setCurrentUserId } = currentUserIdSlice.actions;
 export const { setHeading } = headingSlice.actions;
 
-export const todoListSelector = (state: StoreType) => state.todoList;
+export const todoListsSelector = (state: StoreType) => state.todoLists;
 export const peopleSelector = (state: StoreType) => state.people;
 export const headingSelector = (state: StoreType) => state.heading;
 export const currentUserIdSelector = (state: StoreType) => state.currentUserId;

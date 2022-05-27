@@ -1,25 +1,19 @@
-import { StoreType } from "../store/types";
+import { List } from "../store/types";
 
-export const loadState = async (
-  key: string,
-  initialValue: StoreType
-): Promise<StoreType> => {
+export const getLocalList = async (key: string): Promise<List | null> => {
   try {
     const item = await window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
+    return item ? JSON.parse(item) : null;
   } catch (error) {
-    console.log(error);
-    return initialValue;
+    console.error(error);
+    return null;
   }
 };
 
-export const saveState = async (
-  key: string,
-  value: StoreType
-): Promise<void> => {
+export const setLocalList = async (key: string, list: List): Promise<void> => {
   try {
-    await window.localStorage.setItem(key, JSON.stringify(value));
+    await window.localStorage.setItem(key, JSON.stringify(list));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

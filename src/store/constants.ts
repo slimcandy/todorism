@@ -1,13 +1,14 @@
-import { Person, StoreType, ToDoType } from "./types";
+import { Person, StoreType, ToDoType, TodoList } from "./types";
 
 export const initialToDo: ToDoType[] = [];
+export const initialToDoLists: TodoList[] = [];
 export const initialHeading: string = "Goods";
 export const initialPeople: Person[] = [];
 export const initialStoreValue: StoreType = {
-  todoList: initialToDo,
+  todoLists: initialToDoLists,
   heading: initialHeading,
   people: initialPeople,
   currentUserId: null,
 };
 
-export const storageName: string = "todo-list";
+export const listKey: string = "todo-list";
