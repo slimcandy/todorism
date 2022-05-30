@@ -2,6 +2,7 @@ import { List, StoreType } from "./types";
 
 export const initialStore: StoreType = {
   list: null,
+  currentListKey: null,
 };
 export const initialList: List = {
   key: "List" + Date.now(),
@@ -11,4 +12,4 @@ export const initialList: List = {
   people: [],
 };
 
-export const currentListKey = "currentListKey";
+export const currentListLabel = "currentListKey";

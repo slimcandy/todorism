@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { currentListKey, initialList } from "../../store/constants";
-import { clearList, listSelector, setList } from "../../store/store";
-import { pullLocalStorage } from "../../utils/localStorage";
-import { getStorageList } from "../../utils/storage";
+import { currentListLabel, initialList } from "../../store/constants";
+import store, { clearList, listSelector, setList } from "../../store/store";
+import { pullLocalStorage, pushLocalStorage } from "../../utils/localStorage";
+import { getStorageList, setStorageList } from "../../utils/storage";
 import { FindForm, CreateForm, List } from "../../components";
+import { throttle } from "../../utils/pure-helpers";
+import { List as ListT } from "../../store/types";
 
 const Panel = () => {
-  const [findListFormOpen, setFindListFormOpen] = useState(false);
   const [formOpened, setFormOpened] = useState(false);
+  const [currentKey, setCurrentKey] = useState<ListT["key"] | null>(
+    initialList.key
+  );
   const dispatch = useDispatch();
   const list = useSelector(listSelector);
 
@@ -19,34 +23,83 @@ const Panel = () => {
   };
 
   const handleClearList = (event: any) => {
-    dispatch(clearList());
-    setFormOpened(false);
+    setCurrentKey(null);
+    dispatch(clearList);
+    list &&
+      pushLocalStorage(list.key, "")
+        .then(() => {
+          console.log("Clear local storage");
+          dispatch(clearList());
+          setFormOpened(false);
+        })
+        .catch(console.error);
   };
 
   useEffect(() => {
-    pullLocalStorage(currentListKey)
-      .then((listKey) => {
-        // check list key
-        if (list === null || listKey === null) {
-          dispatch(clearList);
-          setFindListFormOpen(true);
-        }
+    // pull from local storage
+    pullLocalStorage(currentListLabel)
+      .then((key) => {
         // find list
-        if (listKey && listKey.length > 0) {
-          getStorageList(listKey)
+        if (key && key.length > 0) {
+          getStorageList(key)
             .then((storageList) => {
               if (storageList) {
                 dispatch(setList(storageList));
-                setFindListFormOpen(false);
+                // put key to store
+                setCurrentKey(key);
+                pushLocalStorage(currentListLabel, key);
               } else {
-                console.error("No list fetch");
+                console.error("No list fetched");
               }
             })
             .catch(console.error);
         }
       })
-      .catch(console.error);
-  }, [dispatch, list]);
+      .catch((error) => {
+        console.error(error);
+        // clear local storage
+        setCurrentKey(null);
+        dispatch(clearList);
+        pushLocalStorage(currentListLabel, "")
+          .then(console.log)
+          .catch(console.error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (currentKey) {
+      pushLocalStorage(currentListLabel, currentKey);
+    } else {
+      // clear local storage
+      pushLocalStorage(currentListLabel, "")
+        .then(console.log)
+        .catch(console.error);
+    }
+  }, [currentKey]);
+
+  useEffect(() => {
+    // find list
+    if (currentKey && currentKey.length > 0) {
+      getStorageList(currentKey)
+        .then((storageList) => {
+          if (storageList) {
+            dispatch(setList(storageList));
+          } else {
+            console.error("No list fetched");
+          }
+        })
+        .catch(console.error);
+    }
+  }, [currentKey, dispatch]);
+
+  useEffect(() => {
+    if (list) {
+      // subscribe to store changes
+      store.subscribe(
+        throttle(() => setStorageList(initialList.key, list), 1000)
+      );
+    }
+  }, [list]);
 
   return (
     <>
@@ -55,7 +108,7 @@ const Panel = () => {
         <dd>
           <FindForm />
         </dd>
-        or{" "}
+        or
         <dt>
           {formOpened ? (
             <h2>Create new</h2>
@@ -64,16 +117,13 @@ const Panel = () => {
           )}
         </dt>
         <dd>{formOpened && <CreateForm />}</dd>
-        {list && (
-          <>
-            <dt>Clear list</dt>
-            <dd>
-              <button onClick={handleClearList}>Remove list</button>
-            </dd>
-          </>
-        )}
       </dl>
-      {list && <List />}
+      {list && (
+        <>
+          <List />
+          <button onClick={handleClearList}>Remove list</button>
+        </>
+      )}
     </>
   );
 };

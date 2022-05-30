@@ -1,24 +1,25 @@
-export type List = {
-  key: string;
-  name: string;
-  description: string;
-  people: Person[];
-  items: Item[];
-};
+export interface List {
+  readonly key: string;
+  readonly name: string;
+  readonly description: string;
+  readonly people: Person[];
+  readonly items: Item[];
+}
 
-export type Person = {
-  id: number;
-  name: string;
-};
+export interface Person {
+  readonly id: number;
+  readonly name: string;
+}
 
-export type Item = {
-  id: number;
-  title: string;
-  amount: number;
-  checked: boolean;
-  peopleIDs: Person["id"][];
-};
+export interface Item {
+  readonly id: number;
+  readonly title: string;
+  readonly amount: number;
+  readonly checked: boolean;
+  readonly peopleIDs: Person["id"][];
+}
 
-export type StoreType = {
-  list: List | null;
-};
+export interface StoreType {
+  readonly list: List | null;
+  readonly currentListKey: List["key"] | null;
+}
