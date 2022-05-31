@@ -35,6 +35,7 @@ const FindForm = () => {
         id="key"
         value={key}
         onChange={handleKeyChange}
+        autoFocus={true}
       />
       <button type="submit">Open</button>
       {listNotFound && <small>Cannot find list. Try different key.</small>}

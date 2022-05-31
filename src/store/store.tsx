@@ -21,27 +21,11 @@ const listSlice = createSlice({
   },
 });
 
-// const currentListKeySlice = {
-//   name: "currentListKey",
-//   initialState: initialStore.currentListKey,
-//   reducers: {
-//     setCurrentListKey: (key, action: PayloadAction<List["key"]>) => {
-//       if (action.payload.length > 0) {
-//         return action.payload;
-//       }
-//       return key;
-//     },
-//     clearCurrentListKey: () => null,
-//   },
-// };
-
 const store = configureStore({
   reducer: {
     list: listSlice.reducer,
-    // currentListKey: currentListKeySlice.reducers,
   },
 });
-
 export const { setList, clearList, addItem } = listSlice.actions;
 
 export const listSelector = (state: StoreType) => state.list;

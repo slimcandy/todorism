@@ -32,30 +32,27 @@ const CreateForm = () => {
   };
 
   return (
-    <fieldset>
-      <legend>Add list item</legend>
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          ref={itemRef}
-          id="title"
-          type="text"
-          value={itemTitle}
-          onChange={handleTitleChange}
-          placeholder="Milk"
-        />
-        <label htmlFor="amount">Amount</label>
-        <input
-          type="number"
-          name="amount"
-          id="amount"
-          placeholder="42"
-          value={itemAmount}
-          onChange={handleAmountChange}
-        />
-        <button type="submit">➕ Add</button>
-      </form>
-    </fieldset>
+    <form onSubmit={handleFormSubmit}>
+      <label htmlFor="title">Title</label>
+      <input
+        ref={itemRef}
+        id="title"
+        type="text"
+        value={itemTitle}
+        onChange={handleTitleChange}
+        placeholder="Milk"
+      />
+      <label htmlFor="amount">Amount</label>
+      <input
+        type="number"
+        name="amount"
+        id="amount"
+        placeholder="42"
+        value={itemAmount}
+        onChange={handleAmountChange}
+      />
+      <button type="submit">➕ Add</button>
+    </form>
   );
 };
 

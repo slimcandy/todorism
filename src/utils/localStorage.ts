@@ -1,7 +1,7 @@
 import { List } from "../store/types";
 
 export const getLocalList = async (key: string): Promise<List | null> => {
-  console.log("key", key);
+  console.log("getLocalList - key", key);
   try {
     const item = await pullLocalStorage(key);
     return item ? JSON.parse(item) : null;
