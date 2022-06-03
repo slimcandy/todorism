@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStore } from "./constants";
-import { Item, List, StoreType } from "./types";
+import { Item, List, Person, StoreType } from "./types";
 
 const listSlice = createSlice({
   name: "list",
@@ -35,6 +35,20 @@ const listSlice = createSlice({
       }
       return list;
     },
+    addPerson: (list, action: PayloadAction<Person>) => {
+      if (list && action.payload.name.length > 0) {
+        list.people = [...list.people, action.payload];
+      }
+      return list;
+    },
+    removePerson: (list, action: PayloadAction<Person["id"]>) => {
+      if (list && action.payload > 0) {
+        list.people = list.people.filter(
+          (person) => person.id !== action.payload
+        );
+      }
+      return list;
+    },
   },
 });
 
@@ -43,8 +57,15 @@ const store = configureStore({
     list: listSlice.reducer,
   },
 });
-export const { setList, clearList, addItem, toggleItem, removeItem } =
-  listSlice.actions;
+export const {
+  setList,
+  clearList,
+  addItem,
+  toggleItem,
+  removeItem,
+  addPerson,
+  removePerson,
+} = listSlice.actions;
 
 export const listSelector = (state: StoreType) => state.list;
 

@@ -4,8 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { initialList } from "../../store/constants";
 import { clearList, listSelector, setList } from "../../store/store";
 import { pushLocalStorage } from "../../utils/localStorage";
-import { FindForm, CreateForm, List } from "../../components";
 import { setStorageList } from "../../utils/storage";
+import {
+  FindForm,
+  CreateForm,
+  List,
+  PeopleForm,
+  PeopleList,
+} from "../../components";
 
 const Panel = () => {
   const dispatch = useDispatch();
@@ -44,11 +50,16 @@ const Panel = () => {
       {list && (
         <dd>
           <fieldset>
-            <legend>Add list item</legend>
+            <legend>List</legend>
             <CreateForm />
             <List />
             <button onClick={handleClearList}>Remove list</button>
             <button onClick={handleSaveList}>Save list</button>
+          </fieldset>
+          <fieldset>
+            <legend>Assign People</legend>
+            <PeopleForm />
+            <PeopleList people={list.people} />
           </fieldset>
         </dd>
       )}
