@@ -29,6 +29,12 @@ const listSlice = createSlice({
       }
       return list;
     },
+    removeItem: (list, action: PayloadAction<Item["id"]>) => {
+      if (list && action.payload > 0) {
+        list.items = list.items.filter((item) => item.id !== action.payload);
+      }
+      return list;
+    },
   },
 });
 
@@ -37,7 +43,8 @@ const store = configureStore({
     list: listSlice.reducer,
   },
 });
-export const { setList, clearList, addItem, toggleItem } = listSlice.actions;
+export const { setList, clearList, addItem, toggleItem, removeItem } =
+  listSlice.actions;
 
 export const listSelector = (state: StoreType) => state.list;
 

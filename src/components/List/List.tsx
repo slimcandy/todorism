@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { listSelector, toggleItem } from "../../store/store";
+import { listSelector, removeItem, toggleItem } from "../../store/store";
 
 const List = () => {
   const list = useSelector(listSelector);
@@ -10,12 +10,14 @@ const List = () => {
     dispatch(toggleItem(Number(id)));
   };
 
+  const handleRemoveItem = (id: number) => dispatch(removeItem(id));
+
   if (list === null) {
     return <p>List is not found. Try another key.</p>;
   }
 
   return (
-    <ul>
+    <ol>
       {list.items.map((item) => (
         <li key={item.id + item.title}>
           <form>
@@ -29,10 +31,18 @@ const List = () => {
             <label htmlFor={`check-${item.title}`}>
               {item.title} - <small>{item.amount}</small>
             </label>
+            <button
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.preventDefault();
+                handleRemoveItem(item.id);
+              }}
+            >
+              ❌ Remove item
+            </button>
           </form>
         </li>
       ))}
-    </ul>
+    </ol>
   );
 };
 
