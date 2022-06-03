@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/store";
 import { Item } from "../../store/types";
@@ -30,6 +30,10 @@ const CreateForm = () => {
 
     itemRef.current?.focus();
   };
+
+  useEffect(() => {
+    itemRef.current?.focus();
+  }, []);
 
   return (
     <form onSubmit={handleFormSubmit}>
