@@ -18,6 +18,17 @@ const listSlice = createSlice({
       }
       return list;
     },
+    toggleItem: (list, action: PayloadAction<Item["id"]>) => {
+      if (list && action.payload > 0) {
+        list.items = list.items.map((item) => {
+          if (item.id === action.payload) {
+            item.checked = !item.checked;
+          }
+          return item;
+        });
+      }
+      return list;
+    },
   },
 });
 
@@ -26,7 +37,7 @@ const store = configureStore({
     list: listSlice.reducer,
   },
 });
-export const { setList, clearList, addItem } = listSlice.actions;
+export const { setList, clearList, addItem, toggleItem } = listSlice.actions;
 
 export const listSelector = (state: StoreType) => state.list;
 
