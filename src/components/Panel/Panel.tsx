@@ -12,6 +12,7 @@ import {
   PeopleForm,
   PeopleList,
 } from "../../components";
+import CurrentUser from "../CurrentUser";
 
 const Panel = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,17 @@ const Panel = () => {
       {list && (
         <dd>
           <fieldset>
-            <legend>List</legend>
+            <legend>Choose person</legend>
+            <CurrentUser />
+          </fieldset>
+          <fieldset>
+            <legend>
+              {list.key.length > 0 && list.items.length > 0 ? (
+                <strong>{list.key}</strong>
+              ) : (
+                <>List</>
+              )}
+            </legend>
             <CreateForm />
             <List />
             <button onClick={handleClearList}>Remove list</button>
