@@ -13,6 +13,7 @@ import {
   PeopleList,
 } from "../../components";
 import CurrentUser from "../CurrentUser";
+import { Button } from "../../ui";
 
 const Panel = () => {
   const dispatch = useDispatch();
@@ -40,14 +41,22 @@ const Panel = () => {
 
   return (
     <dl>
-      <dt>Open list</dt>
-      <dd>
-        <FindForm />
-      </dd>
-      or
-      <dt>
-        <button onClick={handleOpenForm}>Create one</button>
-      </dt>
+      <div className="border-b-2 mb-2 p-2 grid grid-cols-3 gap-3">
+        <div>
+          <dt className="font-bold">Open list</dt>
+          <dd>
+            <FindForm />
+          </dd>
+        </div>
+        <div className="col-span-2">
+          <dt className="flex flex-col">
+            <span className="pb-1">or</span>
+            <Button onClick={handleOpenForm} className="w-full">
+              Create one
+            </Button>
+          </dt>
+        </div>
+      </div>
       {list && (
         <dd>
           <fieldset>
