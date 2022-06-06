@@ -1,10 +1,15 @@
-import { StoreType, ToDoType } from "./types";
+import { List, StoreType } from "./types";
 
-export const initialToDo: ToDoType[] = [];
-export const initialHeading: string = "Goods";
-export const initialStoreValue: StoreType = {
-  todoList: initialToDo,
-  heading: initialHeading,
+export const initialStore: StoreType = {
+  list: null,
+  currentListKey: null,
+};
+export const initialList: List = {
+  key: "List" + Date.now(),
+  name: "",
+  description: "",
+  items: [],
+  people: [],
 };
 
-export const storageName: string = "todo-list";
+export const currentListLabel = "currentListKey";

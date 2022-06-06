@@ -1,20 +1,10 @@
-import { StoreType } from "../store/types";
-import { loadState as loadLocal, saveState as saveLocal } from "./localStorage";
-import { loadState as loadWeb } from "./fetchStorage";
+import { getLocalList, setLocalList } from "./localStorage";
+import { List } from "../store/types";
 
-export const getState = (
-  key: string,
-  initialValue: StoreType
-): Promise<StoreType> => {
-  if (process.env.REACT_APP_STORAGE_SOURCE === "fetchStorage") {
-    return loadWeb(key, initialValue);
-  }
+// Find list by ID
+export const getStorageList = (key: List["key"]): Promise<List | null> =>
+  getLocalList(key);
 
-  return loadLocal(key, initialValue);
-};
-
-export const setState = (key: string, value: StoreType): Promise<void> => {
-  // if(process.env.REACT_APP_STORAGE_SOURCE === 'localStorage') {}
-
-  return saveLocal(key, value);
-};
+// Save list by ID
+export const setStorageList = (key: List["key"], list: List): Promise<void> =>
+  setLocalList(key, list);

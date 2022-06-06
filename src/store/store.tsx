@@ -1,69 +1,72 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { initialStore } from "./constants";
+import { Item, List, Person, StoreType } from "./types";
 
-import { initialStoreValue } from "./constants";
-import { StoreType } from "./types";
-
-const todoSlice = createSlice({
-  name: "todoList",
-  initialState: initialStoreValue.todoList,
+const listSlice = createSlice({
+  name: "list",
+  initialState: initialStore.list,
   reducers: {
-    addTodo: (todoList, action: PayloadAction<string>) => {
-      action.payload.length > 0 &&
-        todoList.push({
-          id: Date.now(),
-          title: action.payload,
-          checked: false,
-        });
-    },
-    removeTodo: (todoList, action: PayloadAction<number>) => {
-      action.payload > 0 &&
-        todoList.splice(
-          todoList.findIndex((todo) => todo.id === action.payload),
-          1
-        );
-    },
-    toggleTodo: (todoList, action: PayloadAction<number>) => {
-      action.payload > 0 &&
-        todoList.forEach((todo) => {
-          if (todo.id === action.payload) {
-            todo.checked = !todo.checked;
-          }
-        });
-    },
-    setToDos: (todoList, action: PayloadAction<StoreType["todoList"]>) => {
-      if (action.payload.length > 0) {
+    setList: (list, action: PayloadAction<List>) => {
+      if (action.payload && action.payload.key.length > 0)
         return action.payload;
+      return list;
+    },
+    clearList: () => null,
+    addItem: (list, action: PayloadAction<Item>) => {
+      if (list && action.payload.title.length > 0) {
+        list.items = [...list.items, action.payload];
       }
-      return todoList;
+      return list;
     },
-  },
-});
-
-const headingSlice = createSlice({
-  name: "heading",
-  initialState: initialStoreValue.heading,
-  reducers: {
-    setHeading: (heading, action: PayloadAction<string>) => {
-      if (action.payload.length > 0 && heading !== action.payload)
-        return action.payload;
-      else return heading;
+    toggleItem: (list, action: PayloadAction<Item["id"]>) => {
+      if (list && action.payload > 0) {
+        list.items = list.items.map((item) => {
+          if (item.id === action.payload) {
+            item.checked = !item.checked;
+          }
+          return item;
+        });
+      }
+      return list;
+    },
+    removeItem: (list, action: PayloadAction<Item["id"]>) => {
+      if (list && action.payload > 0) {
+        list.items = list.items.filter((item) => item.id !== action.payload);
+      }
+      return list;
+    },
+    addPerson: (list, action: PayloadAction<Person>) => {
+      if (list && action.payload.name.length > 0) {
+        list.people = [...list.people, action.payload];
+      }
+      return list;
+    },
+    removePerson: (list, action: PayloadAction<Person["id"]>) => {
+      if (list && action.payload > 0) {
+        list.people = list.people.filter(
+          (person) => person.id !== action.payload
+        );
+      }
+      return list;
     },
   },
 });
 
 const store = configureStore({
   reducer: {
-    todoList: todoSlice.reducer,
-    heading: headingSlice.reducer,
+    list: listSlice.reducer,
   },
-  preloadedState: initialStoreValue,
 });
+export const {
+  setList,
+  clearList,
+  addItem,
+  toggleItem,
+  removeItem,
+  addPerson,
+  removePerson,
+} = listSlice.actions;
 
-export const { addTodo, removeTodo, toggleTodo, setToDos } = todoSlice.actions;
-export const { setHeading } = headingSlice.actions;
-
-export const todoListSelector = (state: StoreType) => state.todoList;
-export const headingSelector = (state: StoreType) => state.heading;
-export const storeSelector = (state: StoreType) => state;
+export const listSelector = (state: StoreType) => state.list;
 
 export default store;
