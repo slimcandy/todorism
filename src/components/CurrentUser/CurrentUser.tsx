@@ -29,7 +29,12 @@ const CurrentUser = () => {
   }
 
   return (
-    <select name="currentUser" id="currentUser" onChange={handleChange}>
+    <select
+      name="currentUser"
+      id="currentUser"
+      onChange={handleChange}
+      className="select select-bordered"
+    >
       <option value="">Select a person</option>
       {list.people.map((person) => (
         <option
