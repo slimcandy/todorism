@@ -6,14 +6,10 @@ import { Item } from "../../store/types";
 const CreateForm = () => {
   const dispatch = useDispatch();
   const [itemTitle, setItemTitle] = useState<Item["title"]>("");
-  const [itemAmount, setItemAmount] = useState<Item["amount"]>(1);
   const itemRef = useRef<HTMLInputElement>(null);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setItemTitle(event.target.value);
-  };
-  const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItemAmount(Number(event.target.value));
   };
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +22,6 @@ const CreateForm = () => {
     };
     dispatch(addItem(item));
     setItemTitle("");
-    setItemAmount(1);
 
     itemRef.current?.focus();
   };
