@@ -11,9 +11,8 @@ import {
   List,
   PeopleForm,
   PeopleList,
+  CurrentUser,
 } from "../../components";
-import CurrentUser from "../CurrentUser";
-import { Button } from "../../ui";
 
 const Panel = () => {
   const dispatch = useDispatch();
@@ -41,21 +40,22 @@ const Panel = () => {
 
   return (
     <dl>
-      <div className="border-b-2 mb-2 p-2 grid grid-cols-3 gap-3">
-        <div>
-          <dt className="font-bold">Open list</dt>
+      <div className="navbar border-b-2 border-b-base-200 shadow-md px-10">
+        <div className="flex-1">
+          <dt className="sr-only">Open list</dt>
           <dd>
             <FindForm />
           </dd>
         </div>
-        <div className="col-span-2">
-          <dt className="flex flex-col">
-            <span className="pb-1">or</span>
-            <Button onClick={handleOpenForm} className="w-full">
-              Create one
-            </Button>
-          </dt>
+        <div className="flex-1 normal-case text-xl">
+          TODO<span className="font-thin">rism</span>
         </div>
+        <dt className="flex-none">
+          <div className="divider divider-horizontal flex-1">OR</div>
+          <button onClick={handleOpenForm} className="btn">
+            Create one
+          </button>
+        </dt>
       </div>
       {list && (
         <dd className="p-2">
@@ -75,8 +75,12 @@ const Panel = () => {
             </legend>
             <CreateForm />
             <List />
-            <Button onClick={handleClearList}>Remove list</Button>
-            <Button onClick={handleSaveList}>Save list</Button>
+            <button onClick={handleClearList} className="btn">
+              Remove list
+            </button>
+            <button onClick={handleSaveList} className="btn">
+              Save list
+            </button>
           </fieldset>
           <fieldset>
             <legend>Assign People</legend>

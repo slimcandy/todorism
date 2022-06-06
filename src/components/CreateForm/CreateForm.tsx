@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/store";
 import { Item } from "../../store/types";
-import { Button, Input } from "../../ui";
 
 const CreateForm = () => {
   const dispatch = useDispatch();
@@ -41,28 +40,30 @@ const CreateForm = () => {
       <label htmlFor="title" className="sr-only">
         Title
       </label>
-      <Input
+      <input
         ref={itemRef}
         id="title"
         type="text"
         value={itemTitle}
         onChange={handleTitleChange}
         placeholder="Milk"
-        className="mr-2"
+        className="input w-full max-w-xs"
       />
       <label htmlFor="amount" className="sr-only">
         Amount
       </label>
-      <Input
+      <input
         type="number"
         name="amount"
         id="amount"
         placeholder="42"
         value={itemAmount}
         onChange={handleAmountChange}
-        className="mr-2 w-16"
+        className="input w-full max-w-xs"
       />
-      <Button type="submit">➕ Add</Button>
+      <button type="submit" className="btn">
+        ➕ Add
+      </button>
     </form>
   );
 };

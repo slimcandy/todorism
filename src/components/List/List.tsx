@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { listSelector, removeItem, toggleItem } from "../../store/store";
-import { Button, Input } from "../../ui";
 
 const List = () => {
   const list = useSelector(listSelector);
@@ -21,26 +20,27 @@ const List = () => {
     <ol>
       {list.items.map((item) => (
         <li key={item.id + item.title}>
-          <form className="grid grid-cols-4 w-60 justify-items-center">
-            <Input
+          <form className="grid grid-cols-4 w-60 justify-items-center ">
+            <input
               type="checkbox"
               name={item.title}
               id={String(item.id)}
               checked={item.checked}
               onChange={handleOnChange}
-              className="py-4"
+              className="input w-full max-w-xs"
             />
             <label htmlFor={`check-${item.title}`} className="font-thin">
               {item.title} - <small>{item.amount}</small>
             </label>
-            <Button
+            <button
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                 event.preventDefault();
                 handleRemoveItem(item.id);
               }}
+              className="btn"
             >
               ❌ <span className="sr-only">Remove item</span>
-            </Button>
+            </button>
           </form>
         </li>
       ))}
