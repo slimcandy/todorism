@@ -8,6 +8,9 @@ export interface IInputProps {
   readonly onChange?: InputHTMLAttributes<HTMLInputElement>["onChange"];
   readonly autoFocus?: InputHTMLAttributes<HTMLInputElement>["autoFocus"];
   readonly className?: InputHTMLAttributes<HTMLInputElement>["className"];
+  readonly name?: InputHTMLAttributes<HTMLInputElement>["name"];
+  readonly checked?: InputHTMLAttributes<HTMLInputElement>["checked"];
+  readonly ref?: React.Ref<HTMLInputElement>;
 }
 
 const Input = ({
@@ -18,16 +21,26 @@ const Input = ({
   onChange,
   autoFocus,
   className,
+  name,
+  ref,
+  checked,
 }: IInputProps) => {
   return (
     <input
+      ref={ref}
       type={type}
       placeholder={placeholder}
       id={id}
       value={value}
       onChange={onChange}
       autoFocus={autoFocus}
-      className={`text-slate-600 hover:text-slate-700 rounded-md py-2 px-1 focus:shadow-sm border-2 border-slate-300 hover:border-slate-400 focus:outline-none focus:border-slate-600 ${className}`}
+      name={name}
+      checked={checked}
+      className={`text-slate-600 hover:text-slate-700 rounded-md py-2 px-1 focus:shadow-sm border-2 border-slate-300 hover:border-slate-400 focus:outline-none focus:border-slate-600 ${
+        type === "checkbox"
+          ? "appearance-none h-4 w-4 p-2 mx-2 rounded-full checked:bg-blue-400 checked:border-blue-500 focus:border-blue-800"
+          : ""
+      } ${className}`}
     />
   );
 };

@@ -58,23 +58,25 @@ const Panel = () => {
         </div>
       </div>
       {list && (
-        <dd>
+        <dd className="p-2">
           <fieldset>
-            <legend>Choose person</legend>
+            <legend className="sr-only">Choose person</legend>
             <CurrentUser />
           </fieldset>
           <fieldset>
             <legend>
               {list.key.length > 0 && list.items.length > 0 ? (
-                <strong>{list.key}</strong>
+                <span className="select-all font-mono py-2 bg-slate-50 block">
+                  {list.key}
+                </span>
               ) : (
                 <>List</>
               )}
             </legend>
             <CreateForm />
             <List />
-            <button onClick={handleClearList}>Remove list</button>
-            <button onClick={handleSaveList}>Save list</button>
+            <Button onClick={handleClearList}>Remove list</Button>
+            <Button onClick={handleSaveList}>Save list</Button>
           </fieldset>
           <fieldset>
             <legend>Assign People</legend>

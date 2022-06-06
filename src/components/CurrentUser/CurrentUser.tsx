@@ -29,7 +29,12 @@ const CurrentUser = () => {
   }
 
   return (
-    <select name="currentUser" id="currentUser" onChange={handleChange}>
+    <select
+      name="currentUser"
+      id="currentUser"
+      onChange={handleChange}
+      className="text-slate-600 hover:text-slate-700 rounded-md py-2 px-1 focus:shadow-sm border-2 border-slate-300 hover:border-slate-400 focus:outline-none focus:border-slate-600 cursor-pointer"
+    >
       <option value="">Select a person</option>
       {list.people.map((person) => (
         <option
