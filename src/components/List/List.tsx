@@ -17,34 +17,59 @@ const List = () => {
   }
 
   return (
-    <ol>
-      {list.items.map((item) => (
-        <li key={item.id + item.title}>
-          <form className="grid grid-cols-4 w-60 justify-items-center ">
-            <input
-              type="checkbox"
-              name={item.title}
-              id={String(item.id)}
-              checked={item.checked}
-              onChange={handleOnChange}
-              className="input w-full max-w-xs"
-            />
-            <label htmlFor={`check-${item.title}`} className="font-thin">
-              {item.title} - <small>{item.amount}</small>
-            </label>
-            <button
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                event.preventDefault();
-                handleRemoveItem(item.id);
-              }}
-              className="btn"
-            >
-              ❌ <span className="sr-only">Remove item</span>
-            </button>
-          </form>
-        </li>
-      ))}
-    </ol>
+    <div className="overflow-x-auto">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.items.map((item) => (
+            <tr key={item.id + item.title}>
+              <th>
+                <input
+                  type="checkbox"
+                  name={item.title}
+                  id={String(item.id)}
+                  checked={item.checked}
+                  onChange={handleOnChange}
+                  className="checkbox"
+                />
+              </th>
+              <td>{item.title}</td>
+              <td>{item.amount}</td>
+              <th>
+                <button
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                    event.preventDefault();
+                    handleRemoveItem(item.id);
+                  }}
+                  className="btn btn-ghost btn-xs"
+                >
+                  ╳ <span className="sr-only">Remove item</span>
+                </button>
+              </th>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   );
 };
 

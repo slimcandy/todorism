@@ -36,34 +36,36 @@ const CreateForm = () => {
   }, []);
 
   return (
-    <form onSubmit={handleFormSubmit} className="flex border-t-2 pt-2 mt-2">
+    <form onSubmit={handleFormSubmit} className="flex my-4 form-control">
       <label htmlFor="title" className="sr-only">
         Title
       </label>
-      <input
-        ref={itemRef}
-        id="title"
-        type="text"
-        value={itemTitle}
-        onChange={handleTitleChange}
-        placeholder="Milk"
-        className="input w-full max-w-xs"
-      />
-      <label htmlFor="amount" className="sr-only">
-        Amount
-      </label>
-      <input
-        type="number"
-        name="amount"
-        id="amount"
-        placeholder="42"
-        value={itemAmount}
-        onChange={handleAmountChange}
-        className="input w-full max-w-xs"
-      />
-      <button type="submit" className="btn">
-        ➕ Add
-      </button>
+      <div className="input-group">
+        <input
+          ref={itemRef}
+          id="title"
+          type="text"
+          value={itemTitle}
+          onChange={handleTitleChange}
+          placeholder="Milk"
+          className="input input-bordered w-full max-w-xs"
+        />
+        <label htmlFor="amount" className="sr-only">
+          Amount
+        </label>
+        <input
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="42"
+          value={itemAmount}
+          onChange={handleAmountChange}
+          className="input input-bordered w-20"
+        />
+        <button type="submit" className="btn">
+          ➕ Add
+        </button>
+      </div>
     </form>
   );
 };

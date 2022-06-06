@@ -61,14 +61,17 @@ const Panel = () => {
         <dd className="p-2">
           <fieldset>
             <legend className="sr-only">Choose person</legend>
-            <CurrentUser />
+            <div className="form-control my-4">
+              <label className="input-group">
+                <span>I'm</span>
+                <CurrentUser />
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>
+            <legend className="py-2">
               {list.key.length > 0 && list.items.length > 0 ? (
-                <span className="select-all font-mono py-2 bg-slate-50 block">
-                  {list.key}
-                </span>
+                <span className="select-all">{list.key}</span>
               ) : (
                 <>List</>
               )}
