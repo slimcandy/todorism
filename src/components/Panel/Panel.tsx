@@ -71,7 +71,9 @@ const Panel = () => {
           <fieldset>
             <legend className="w-full py-2 border-b-2 border-b-base-200">
               {list.key.length > 0 && list.items.length > 0 ? (
-                <span className="select-all">{list.key}</span>
+                <>
+                  List key: <kbd className="kbd select-all">{list.key}</kbd>
+                </>
               ) : (
                 <>List</>
               )}
