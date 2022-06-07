@@ -3,12 +3,11 @@
  * @url https://decipher.dev/30-seconds-of-typescript/docs/throttle/
  */
 export const throttle = (fn: Function, wait: number = 300) => {
-  let inThrottle: boolean,
-    lastFn: ReturnType<typeof setTimeout>,
-    lastTime: number;
-  return function (this: any) {
-    const context = this,
-      args = arguments;
+  let inThrottle: boolean;
+  let lastFn: ReturnType<typeof setTimeout>;
+  let lastTime: number;
+  return function (this: any, ...args: IArguments[]) {
+    const context = this;
     if (!inThrottle) {
       fn.apply(context, args);
       lastTime = Date.now();
@@ -24,3 +23,5 @@ export const throttle = (fn: Function, wait: number = 300) => {
     }
   };
 };
+
+export default { throttle };

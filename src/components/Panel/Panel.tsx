@@ -1,42 +1,42 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { initialList } from "../../store/constants";
-import { clearList, listSelector, setList } from "../../store/store";
-import { pushLocalStorage } from "../../utils/localStorage";
-import { setStorageList } from "../../utils/storage";
+import { initialList } from '../../store/constants'
+import { clearList, listSelector, setList } from '../../store/store'
+import { pushLocalStorage } from '../../utils/localStorage'
+import { setStorageList } from '../../utils/storage'
 import {
   FindForm,
   CreateForm,
   List,
   PeopleForm,
   PeopleList,
-  CurrentUser,
-} from "../../components";
+  CurrentUser
+} from '../../components'
 
 const Panel = () => {
-  const dispatch = useDispatch();
-  const list = useSelector(listSelector);
+  const dispatch = useDispatch()
+  const list = useSelector(listSelector)
 
-  const handleOpenForm = () => dispatch(setList(initialList));
+  const handleOpenForm = () => dispatch(setList(initialList))
 
   const handleClearList = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    dispatch(clearList);
+    dispatch(clearList)
     list &&
-      pushLocalStorage(list.key, "")
+      pushLocalStorage(list.key, '')
         .then(() => dispatch(clearList()))
-        .catch(console.error);
-  };
+        .catch(console.error)
+  }
 
   const handleSaveList = () =>
     list &&
     setStorageList(list.key, list)
       .then(() => {
-        console.log("Saved form");
+        console.log('Saved form')
       })
-      .catch(console.error);
+      .catch(console.error)
 
   return (
     <dl>
@@ -127,7 +127,7 @@ const Panel = () => {
         </dd>
       )}
     </dl>
-  );
-};
+  )
+}
 
-export default Panel;
+export default Panel

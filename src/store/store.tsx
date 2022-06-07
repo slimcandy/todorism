@@ -1,14 +1,16 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialStore } from "./constants";
-import { Item, List, Person, StoreType } from "./types";
+/* eslint-disable no-param-reassign */
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { initialStore } from './constants';
+import {
+  Item, List, Person, StoreType,
+} from './types';
 
 const listSlice = createSlice({
-  name: "list",
+  name: 'list',
   initialState: initialStore.list,
   reducers: {
     setList: (list, action: PayloadAction<List>) => {
-      if (action.payload && action.payload.key.length > 0)
-        return action.payload;
+      if (action.payload && action.payload.key.length > 0) return action.payload;
       return list;
     },
     clearList: () => null,
@@ -18,7 +20,7 @@ const listSlice = createSlice({
       }
       return list;
     },
-    toggleItem: (list, action: PayloadAction<Item["id"]>) => {
+    toggleItem: (list, action: PayloadAction<Item['id']>) => {
       if (list && action.payload > 0) {
         list.items = list.items.map((item) => {
           if (item.id === action.payload) {
@@ -29,7 +31,7 @@ const listSlice = createSlice({
       }
       return list;
     },
-    removeItem: (list, action: PayloadAction<Item["id"]>) => {
+    removeItem: (list, action: PayloadAction<Item['id']>) => {
       if (list && action.payload > 0) {
         list.items = list.items.filter((item) => item.id !== action.payload);
       }
@@ -41,11 +43,9 @@ const listSlice = createSlice({
       }
       return list;
     },
-    removePerson: (list, action: PayloadAction<Person["id"]>) => {
+    removePerson: (list, action: PayloadAction<Person['id']>) => {
       if (list && action.payload > 0) {
-        list.people = list.people.filter(
-          (person) => person.id !== action.payload
-        );
+        list.people = list.people.filter((person) => person.id !== action.payload);
       }
       return list;
     },

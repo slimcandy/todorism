@@ -1,9 +1,9 @@
-import axios from "axios";
-import { StoreType } from "../store/types";
+import axios from 'axios';
+import { StoreType } from '../store/types';
 
 export const loadState = async (
   key: string,
-  initialValue: StoreType
+  initialValue: StoreType,
 ): Promise<StoreType> => {
   try {
     const response = await (
@@ -18,7 +18,7 @@ export const loadState = async (
 
 export const saveState = async (
   key: string,
-  value: StoreType
+  value: StoreType,
 ): Promise<void> => {
   try {
     await axios.post(`http://localhost:3001/api/v1/set-${key}/`, value);

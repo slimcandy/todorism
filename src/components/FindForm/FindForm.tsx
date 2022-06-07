@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setList } from "../../store/store";
-import { List } from "../../store/types";
-import { pullLocalStorage, pushLocalStorage } from "../../utils/localStorage";
-import { getStorageList } from "../../utils/storage";
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setList } from '../../store/store'
+import { List } from '../../store/types'
+import { pullLocalStorage, pushLocalStorage } from '../../utils/localStorage'
+import { getStorageList } from '../../utils/storage'
 
-const localStorageKey = "listKeyMemory";
+const localStorageKey = 'listKeyMemory'
 
 const FindForm = () => {
-  const dispatch = useDispatch();
-  const [key, setKey] = useState<List["key"]>();
-  const [listNotFound, setListNotFound] = useState(false);
+  const dispatch = useDispatch()
+  const [key, setKey] = useState<List['key']>()
+  const [listNotFound, setListNotFound] = useState(false)
 
   const handleKeyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKey(event.target.value);
-  };
+    setKey(event.target.value)
+  }
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     key &&
       getStorageList(key)
-        .then((storageList) => {
+        .then(storageList => {
           if (storageList) {
-            setListNotFound(false);
-            dispatch(setList(storageList));
+            setListNotFound(false)
+            dispatch(setList(storageList))
           } else {
-            setListNotFound(true);
+            setListNotFound(true)
           }
         })
-        .catch(console.error);
-    key && pushLocalStorage(localStorageKey, key);
-  };
+        .catch(console.error)
+    key && pushLocalStorage(localStorageKey, key)
+  }
 
   useEffect(() => {
     pullLocalStorage(localStorageKey)
-      .then((key) => key && setKey(key))
-      .catch(console.error);
-  }, []);
+      .then(key => key && setKey(key))
+      .catch(console.error)
+  }, [])
 
   return (
     <>
@@ -77,7 +77,7 @@ const FindForm = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default FindForm;
+export default FindForm

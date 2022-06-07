@@ -1,28 +1,28 @@
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPerson } from "../../store/store";
-import { Person } from "../../store/types";
+import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addPerson } from '../../store/store'
+import { Person } from '../../store/types'
 
 const PeopleForm = () => {
-  const dispatch = useDispatch();
-  const [personName, setPersonName] = useState<Person["name"]>("");
-  const personRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch()
+  const [personName, setPersonName] = useState<Person['name']>('')
+  const personRef = useRef<HTMLInputElement>(null)
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPersonName(event.target.value);
-  };
+    setPersonName(event.target.value)
+  }
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     const person: Person = {
       id: Date.now(),
-      name: personName,
-    };
-    dispatch(addPerson(person));
-    setPersonName("");
+      name: personName
+    }
+    dispatch(addPerson(person))
+    setPersonName('')
 
-    personRef.current?.focus();
-  };
+    personRef.current?.focus()
+  }
 
   return (
     <form
@@ -57,7 +57,7 @@ const PeopleForm = () => {
         <span className="sr-only">Add</span>
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default PeopleForm;
+export default PeopleForm

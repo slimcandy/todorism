@@ -1,26 +1,7 @@
-import { List } from "../store/types";
-
-export const getLocalList = async (key: string): Promise<List | null> => {
-  console.log("getLocalList - key", key);
-  try {
-    const item = await pullLocalStorage(key);
-    return item ? JSON.parse(item) : null;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-export const setLocalList = async (key: string, list: List): Promise<void> => {
-  try {
-    await pushLocalStorage(key, JSON.stringify(list));
-  } catch (error) {
-    console.error(error);
-  }
-};
+import { List } from '../store/types';
 
 export const pullLocalStorage = async (
-  localStorageKey: string
+  localStorageKey: string,
 ): Promise<string | null> => {
   try {
     const item = await window.localStorage.getItem(localStorageKey);
@@ -33,10 +14,29 @@ export const pullLocalStorage = async (
 
 export const pushLocalStorage = async (
   localStorageKey: string,
-  localStorageValue: string
+  localStorageValue: string,
 ): Promise<void> => {
   try {
     await window.localStorage.setItem(localStorageKey, localStorageValue);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLocalList = async (key: string): Promise<List | null> => {
+  console.log('getLocalList - key', key);
+  try {
+    const item = await pullLocalStorage(key);
+    return item ? JSON.parse(item) : null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const setLocalList = async (key: string, list: List): Promise<void> => {
+  try {
+    await pushLocalStorage(key, JSON.stringify(list));
   } catch (error) {
     console.error(error);
   }

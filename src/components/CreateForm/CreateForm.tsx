@@ -1,34 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../store/store";
-import { Item } from "../../store/types";
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../store/store'
+import { Item } from '../../store/types'
 
 const CreateForm = () => {
-  const dispatch = useDispatch();
-  const [itemTitle, setItemTitle] = useState<Item["title"]>("");
-  const itemRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch()
+  const [itemTitle, setItemTitle] = useState<Item['title']>('')
+  const itemRef = useRef<HTMLInputElement>(null)
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItemTitle(event.target.value);
-  };
+    setItemTitle(event.target.value)
+  }
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     const item: Item = {
       id: Date.now(),
       checked: false,
       peopleIDs: [],
       amount: 1,
-      title: itemTitle,
-    };
-    dispatch(addItem(item));
-    setItemTitle("");
+      title: itemTitle
+    }
+    dispatch(addItem(item))
+    setItemTitle('')
 
-    itemRef.current?.focus();
-  };
+    itemRef.current?.focus()
+  }
 
   useEffect(() => {
-    itemRef.current?.focus();
-  }, []);
+    itemRef.current?.focus()
+  }, [])
 
   return (
     <form
@@ -64,7 +64,7 @@ const CreateForm = () => {
         <span className="sr-only">Add</span>
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default CreateForm;
+export default CreateForm

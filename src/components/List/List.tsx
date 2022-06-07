@@ -1,19 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { listSelector, removeItem, toggleItem } from "../../store/store";
+import { useDispatch, useSelector } from 'react-redux'
+import { listSelector, removeItem, toggleItem } from '../../store/store'
 
 const List = () => {
-  const list = useSelector(listSelector);
-  const dispatch = useDispatch();
+  const list = useSelector(listSelector)
+  const dispatch = useDispatch()
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id } = event.target;
-    dispatch(toggleItem(Number(id)));
-  };
+    const { id } = event.target
+    dispatch(toggleItem(Number(id)))
+  }
 
-  const handleRemoveItem = (id: number) => dispatch(removeItem(id));
+  const handleRemoveItem = (id: number) => dispatch(removeItem(id))
 
   if (list === null) {
-    return <p>List is not found. Try another key.</p>;
+    return <p>List is not found. Try another key.</p>
   }
 
   return (
@@ -32,7 +32,7 @@ const List = () => {
           </tr>
         </thead>
         <tbody>
-          {list.items.map((item) => (
+          {list.items.map(item => (
             <tr key={item.id + item.title}>
               <th>
                 <input
@@ -49,8 +49,8 @@ const List = () => {
               <th>
                 <button
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                    event.preventDefault();
-                    handleRemoveItem(item.id);
+                    event.preventDefault()
+                    handleRemoveItem(item.id)
                   }}
                   className="btn btn-ghost"
                 >
@@ -81,7 +81,7 @@ const List = () => {
         </tfoot>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default List;
+export default List

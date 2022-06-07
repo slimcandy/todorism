@@ -1,8 +1,8 @@
-import { Provider } from "react-redux";
-import store from "./store/store";
-import { Panel } from "./components";
+import { Provider } from 'react-redux'
+import store from './store/store'
+import { Panel } from './components'
 
-import "./style.css";
+import './style.css'
 
 const App = () => (
   <Provider store={store}>
@@ -10,6 +10,6 @@ const App = () => (
       <Panel />
     </main>
   </Provider>
-);
+)
 
-export default App;
+export default App
