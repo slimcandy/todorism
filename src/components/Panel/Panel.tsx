@@ -98,7 +98,11 @@ const Panel = () => {
                 </svg>
                 Remove list
               </button>
-              <button onClick={handleSaveList} className="btn btn-active gap-2">
+              <button
+                onClick={handleSaveList}
+                className="btn btn-active gap-2"
+                data-test="save-list"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

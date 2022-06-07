@@ -34,6 +34,7 @@ const CreateForm = () => {
     <form
       onSubmit={handleFormSubmit}
       className="flex my-4 justify-center w-full gap-2"
+      data-test="create-list-form"
     >
       <label htmlFor="title" className="sr-only">
         Title
@@ -46,6 +47,7 @@ const CreateForm = () => {
         onChange={handleTitleChange}
         placeholder="Milk"
         className="input input-bordered w-full max-w-xs"
+        data-test="create-list-form-input"
       />
       <button type="submit" className="btn btn-ghost">
         <svg
