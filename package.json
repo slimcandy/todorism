@@ -27,7 +27,9 @@
     "build": "react-scripts build",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "prepare": "husky install",
+    "test": "./node_modules/.bin/cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +55,7 @@
     "cypress": "^10.0.3",
     "eslint": "^8.16.0",
     "express": "^4.18.1",
+    "husky": "^8.0.0",
     "nodemon": "^2.0.16",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
