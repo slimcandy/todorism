@@ -18,7 +18,7 @@ const List = () => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table table-zebra w-full">
+      <table className="table table-zebra w-full" data-test="list-items">
         <thead>
           <tr>
             <th>
