@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { listSelector, removeItem, toggleItem } from "../../store/store";
 
-const List = () => {
+function List() {
   const list = useSelector(listSelector);
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const List = () => {
             </th>
             <th>Item</th>
             <th>Amount</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -73,15 +73,15 @@ const List = () => {
         </tbody>
         <tfoot>
           <tr>
-            <th></th>
+            <th />
             <th>Item</th>
             <th>Amount</th>
-            <th></th>
+            <th />
           </tr>
         </tfoot>
       </table>
     </div>
   );
-};
+}
 
 export default List;

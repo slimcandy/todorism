@@ -6,7 +6,7 @@ export interface PeopleFormProps {
   readonly people: List["people"];
 }
 
-const PeopleList = ({ people }: PeopleFormProps) => {
+function PeopleList({ people }: PeopleFormProps) {
   const dispatch = useDispatch();
   const handleRemovePerson = (id: number) => dispatch(removePerson(id));
 
@@ -20,7 +20,7 @@ const PeopleList = ({ people }: PeopleFormProps) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -55,12 +55,12 @@ const PeopleList = ({ people }: PeopleFormProps) => {
         <tfoot>
           <tr>
             <th>Name</th>
-            <th></th>
+            <th />
           </tr>
         </tfoot>
       </table>
     </div>
   );
-};
+}
 
 export default PeopleList;

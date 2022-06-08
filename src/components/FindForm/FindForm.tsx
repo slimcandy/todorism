@@ -7,7 +7,7 @@ import { getStorageList } from "../../utils/storage";
 
 const localStorageKey = "listKeyMemory";
 
-const FindForm = () => {
+function FindForm() {
   const dispatch = useDispatch();
   const [key, setKey] = useState<List["key"]>();
   const [listNotFound, setListNotFound] = useState(false);
@@ -53,7 +53,7 @@ const FindForm = () => {
             id="key"
             value={key}
             onChange={handleKeyChange}
-            autoFocus={true}
+            autoFocus
             className="input input-bordered w-full max-w-xs"
           />
           <button className="btn btn-ghost btn-circle">
@@ -78,6 +78,6 @@ const FindForm = () => {
       )}
     </>
   );
-};
+}
 
 export default FindForm;

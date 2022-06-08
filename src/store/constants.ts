@@ -5,7 +5,7 @@ export const initialStore: StoreType = {
   currentListKey: null,
 };
 export const initialList: List = {
-  key: "List" + Date.now(),
+  key: `List${Date.now()}`,
   name: "",
   description: "",
   items: [],

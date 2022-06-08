@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addPerson } from "../../store/store";
 import { Person } from "../../store/types";
 
-const PeopleForm = () => {
+function PeopleForm() {
   const dispatch = useDispatch();
   const [personName, setPersonName] = useState<Person["name"]>("");
   const personRef = useRef<HTMLInputElement>(null);
@@ -58,6 +58,6 @@ const PeopleForm = () => {
       </button>
     </form>
   );
-};
+}
 
 export default PeopleForm;

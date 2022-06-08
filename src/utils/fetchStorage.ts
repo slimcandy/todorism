@@ -11,18 +11,9 @@ export const loadState = async (
     ).data;
     return response || initialValue;
   } catch (error) {
-    console.log(error);
     return initialValue;
   }
 };
 
-export const saveState = async (
-  key: string,
-  value: StoreType
-): Promise<void> => {
-  try {
-    await axios.post(`http://localhost:3001/api/v1/set-${key}/`, value);
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const saveState = async (key: string, value: StoreType): Promise<void> =>
+  axios.post(`http://localhost:3001/api/v1/set-${key}/`, value);

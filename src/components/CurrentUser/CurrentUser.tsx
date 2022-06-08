@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { listSelector } from "../../store/store";
 import { Person } from "../../store/types";
@@ -6,7 +6,7 @@ import { pullLocalStorage, pushLocalStorage } from "../../utils/localStorage";
 
 const localStorageKey = "currentUserIdMemory";
 
-const CurrentUser = () => {
+function CurrentUser() {
   const list = useSelector(listSelector);
   const [userId, setUserId] = useState<Person["id"]>();
 
@@ -17,11 +17,9 @@ const CurrentUser = () => {
   };
 
   useEffect(() => {
-    pullLocalStorage(localStorageKey)
-      .then(
-        (id) => typeof id == "string" && id.length > 0 && setUserId(Number(id))
-      )
-      .catch(console.error);
+    pullLocalStorage(localStorageKey).then(
+      (id) => typeof id === "string" && id.length > 0 && setUserId(Number(id))
+    );
   }, []);
 
   if (list === null) {
@@ -47,6 +45,6 @@ const CurrentUser = () => {
       ))}
     </select>
   );
-};
+}
 
 export default CurrentUser;

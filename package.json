@@ -29,7 +29,7 @@
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "server": "nodemon server/index.js",
     "prepare": "husky install",
-    "test": "npm run format"
+    "test": "npm run format && npm run lint"
   },
   "eslintConfig": {
     "extends": [
