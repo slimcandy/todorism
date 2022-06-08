@@ -24,19 +24,13 @@ function Panel() {
     event.preventDefault();
 
     dispatch(clearList);
-    list &&
-      pushLocalStorage(list.key, "")
-        .then(() => dispatch(clearList()))
-        .catch(console.error);
+    if (list !== null)
+      pushLocalStorage(list.key, "").then(() => dispatch(clearList()));
   };
 
-  const handleSaveList = () =>
-    list &&
-    setStorageList(list.key, list)
-      .then(() => {
-        console.log("Saved form");
-      })
-      .catch(console.error);
+  const handleSaveList = () => {
+    if (list !== null) setStorageList(list.key, list);
+  };
 
   return (
     <dl>
@@ -52,7 +46,7 @@ function Panel() {
         </div>
         <dt className="flex-none">
           <div className="divider divider-horizontal flex-1">OR</div>
-          <button onClick={handleOpenForm} className="btn">
+          <button type="button" onClick={handleOpenForm} className="btn">
             Create one
           </button>
         </dt>
@@ -62,8 +56,8 @@ function Panel() {
           <fieldset className="flex justify-center">
             <legend className="sr-only">Choose person</legend>
             <div className="form-control my-4">
-              <label className="input-group">
-                <span>I'm</span>
+              <label className="input-group" htmlFor="currentUser">
+                <span>I&apos;m</span>
                 <CurrentUser />
               </label>
             </div>
@@ -81,7 +75,11 @@ function Panel() {
             <CreateForm />
             <List />
             <div className="btn-group my-4 justify-center">
-              <button onClick={handleClearList} className="btn btn-ghost gap-2">
+              <button
+                type="button"
+                onClick={handleClearList}
+                className="btn btn-ghost gap-2"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -99,6 +97,7 @@ function Panel() {
                 Remove list
               </button>
               <button
+                type="button"
                 onClick={handleSaveList}
                 className="btn btn-active gap-2"
                 data-test="save-list"

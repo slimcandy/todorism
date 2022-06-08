@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import { Panel } from "./components";
+import Panel from "./components/Panel/Panel";
 
 import "./style.css";
 
