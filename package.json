@@ -1,7 +1,15 @@
 {
   "name": "todorism",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "description": "Super simple todo list before hiking or camping",
+  "author": "SlimCandy",
+  "keywords": [
+    "todo",
+    "hiking",
+    "camping",
+    "react"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
