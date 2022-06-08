@@ -7,7 +7,7 @@ import { getStorageList } from "../../utils/storage";
 
 const localStorageKey = "listKeyMemory";
 
-const FindForm = () => {
+function FindForm() {
   const dispatch = useDispatch();
   const [key, setKey] = useState<List["key"]>();
   const [listNotFound, setListNotFound] = useState(false);
@@ -17,24 +17,23 @@ const FindForm = () => {
   };
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    key &&
-      getStorageList(key)
-        .then((storageList) => {
-          if (storageList) {
-            setListNotFound(false);
-            dispatch(setList(storageList));
-          } else {
-            setListNotFound(true);
-          }
-        })
-        .catch(console.error);
-    key && pushLocalStorage(localStorageKey, key);
+    if (typeof key === "string" && key.length > 0) {
+      getStorageList(key).then((storageList) => {
+        if (storageList) {
+          setListNotFound(false);
+          dispatch(setList(storageList));
+        } else {
+          setListNotFound(true);
+        }
+      });
+      pushLocalStorage(localStorageKey, key);
+    }
   };
 
   useEffect(() => {
-    pullLocalStorage(localStorageKey)
-      .then((key) => key && setKey(key))
-      .catch(console.error);
+    pullLocalStorage(localStorageKey).then((nextKey) => {
+      if (typeof nextKey === "string" && nextKey.length > 0) setKey(nextKey);
+    });
   }, []);
 
   return (
@@ -53,10 +52,11 @@ const FindForm = () => {
             id="key"
             value={key}
             onChange={handleKeyChange}
-            autoFocus={true}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
             className="input input-bordered w-full max-w-xs"
           />
-          <button className="btn btn-ghost btn-circle">
+          <button type="button" className="btn btn-ghost btn-circle">
             <span className="sr-only">Open</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +78,6 @@ const FindForm = () => {
       )}
     </>
   );
-};
+}
 
 export default FindForm;

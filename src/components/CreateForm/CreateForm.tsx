@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../store/store";
 import { Item } from "../../store/types";
 
-const CreateForm = () => {
+function CreateForm() {
   const dispatch = useDispatch();
   const [itemTitle, setItemTitle] = useState<Item["title"]>("");
   const itemRef = useRef<HTMLInputElement>(null);
@@ -65,6 +65,6 @@ const CreateForm = () => {
       </button>
     </form>
   );
-};
+}
 
 export default CreateForm;

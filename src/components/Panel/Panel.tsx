@@ -12,9 +12,9 @@ import {
   PeopleForm,
   PeopleList,
   CurrentUser,
-} from "../../components";
+} from "..";
 
-const Panel = () => {
+function Panel() {
   const dispatch = useDispatch();
   const list = useSelector(listSelector);
 
@@ -24,19 +24,13 @@ const Panel = () => {
     event.preventDefault();
 
     dispatch(clearList);
-    list &&
-      pushLocalStorage(list.key, "")
-        .then(() => dispatch(clearList()))
-        .catch(console.error);
+    if (list !== null)
+      pushLocalStorage(list.key, "").then(() => dispatch(clearList()));
   };
 
-  const handleSaveList = () =>
-    list &&
-    setStorageList(list.key, list)
-      .then(() => {
-        console.log("Saved form");
-      })
-      .catch(console.error);
+  const handleSaveList = () => {
+    if (list !== null) setStorageList(list.key, list);
+  };
 
   return (
     <dl>
@@ -52,7 +46,7 @@ const Panel = () => {
         </div>
         <dt className="flex-none">
           <div className="divider divider-horizontal flex-1">OR</div>
-          <button onClick={handleOpenForm} className="btn">
+          <button type="button" onClick={handleOpenForm} className="btn">
             Create one
           </button>
         </dt>
@@ -62,8 +56,8 @@ const Panel = () => {
           <fieldset className="flex justify-center">
             <legend className="sr-only">Choose person</legend>
             <div className="form-control my-4">
-              <label className="input-group">
-                <span>I'm</span>
+              <label className="input-group" htmlFor="currentUser">
+                <span>I&apos;m</span>
                 <CurrentUser />
               </label>
             </div>
@@ -81,7 +75,11 @@ const Panel = () => {
             <CreateForm />
             <List />
             <div className="btn-group my-4 justify-center">
-              <button onClick={handleClearList} className="btn btn-ghost gap-2">
+              <button
+                type="button"
+                onClick={handleClearList}
+                className="btn btn-ghost gap-2"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -92,13 +90,14 @@ const Panel = () => {
                 >
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                   />
                 </svg>
                 Remove list
               </button>
               <button
+                type="button"
                 onClick={handleSaveList}
                 className="btn btn-active gap-2"
                 data-test="save-list"
@@ -128,6 +127,6 @@ const Panel = () => {
       )}
     </dl>
   );
-};
+}
 
 export default Panel;

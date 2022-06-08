@@ -1,7 +1,8 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listSelector, removeItem, toggleItem } from "../../store/store";
 
-const List = () => {
+function List() {
   const list = useSelector(listSelector);
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const List = () => {
             </th>
             <th>Item</th>
             <th>Amount</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@ const List = () => {
               <td>{item.amount}</td>
               <th>
                 <button
+                  type="button"
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                     event.preventDefault();
                     handleRemoveItem(item.id);
@@ -73,15 +75,19 @@ const List = () => {
         </tbody>
         <tfoot>
           <tr>
-            <th></th>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
             <th>Item</th>
             <th>Amount</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </tfoot>
       </table>
     </div>
   );
-};
+}
 
 export default List;

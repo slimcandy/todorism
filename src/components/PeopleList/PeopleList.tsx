@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { removePerson } from "../../store/store";
 import { List } from "../../store/types";
@@ -6,7 +7,7 @@ export interface PeopleFormProps {
   readonly people: List["people"];
 }
 
-const PeopleList = ({ people }: PeopleFormProps) => {
+function PeopleList({ people }: PeopleFormProps) {
   const dispatch = useDispatch();
   const handleRemovePerson = (id: number) => dispatch(removePerson(id));
 
@@ -20,7 +21,7 @@ const PeopleList = ({ people }: PeopleFormProps) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th></th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ const PeopleList = ({ people }: PeopleFormProps) => {
               <td> {person.name}</td>
               <th>
                 <button
+                  type="button"
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                     event.preventDefault();
                     handleRemovePerson(person.id);
@@ -55,12 +57,12 @@ const PeopleList = ({ people }: PeopleFormProps) => {
         <tfoot>
           <tr>
             <th>Name</th>
-            <th></th>
+            <th>Delete</th>
           </tr>
         </tfoot>
       </table>
     </div>
   );
-};
+}
 
 export default PeopleList;

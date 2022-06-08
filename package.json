@@ -29,7 +29,7 @@
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "server": "nodemon server/index.js",
     "prepare": "husky install",
-    "test": "./node_modules/.bin/cypress run"
+    "test": "npm run format && npm run lint"
   },
   "eslintConfig": {
     "extends": [
@@ -50,10 +50,19 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
     "autoprefixer": "^10.4.7",
     "cors": "^2.8.5",
     "cypress": "^10.0.3",
-    "eslint": "^8.16.0",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "express": "^4.18.1",
     "husky": "^8.0.0",
     "nodemon": "^2.0.16",

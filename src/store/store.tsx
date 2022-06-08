@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStore } from "./constants";
 import { Item, List, Person, StoreType } from "./types";
