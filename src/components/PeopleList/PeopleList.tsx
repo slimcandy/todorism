@@ -11,7 +11,7 @@ function PeopleList({ people }: PeopleFormProps) {
   const dispatch = useDispatch();
   const handleRemovePerson = (id: number) => dispatch(removePerson(id));
 
-  if (people.length === 0) {
+  if (!people.length) {
     return <p>No people</p>;
   }
 
