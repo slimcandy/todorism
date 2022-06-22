@@ -1,6 +1,6 @@
-import { List, StoreType } from "./types";
+import { List, Store } from "../interfaces";
 
-export const initialStore: StoreType = {
+export const initialStore: Store = {
   list: null,
   currentListKey: null,
 };

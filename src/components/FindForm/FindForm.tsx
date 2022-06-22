@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setList } from "../../store/store";
-import { List } from "../../store/types";
+import { List } from "../../interfaces";
 import { pullLocalStorage, pushLocalStorage } from "../../utils/localStorage";
 import { getStorageList } from "../../utils/storage";
 

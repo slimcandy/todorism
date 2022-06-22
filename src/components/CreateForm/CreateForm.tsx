@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/store";
-import { Item } from "../../store/types";
+import { Item } from "../../interfaces";
 
 function CreateForm() {
   const dispatch = useDispatch();

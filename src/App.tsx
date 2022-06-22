@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import Panel from "./components/Panel/Panel";
 
-import "./style.css";
+import "./styles/style.css";
 
 function App() {
   return (

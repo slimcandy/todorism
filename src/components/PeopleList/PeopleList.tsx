@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removePerson } from "../../store/store";
-import { List } from "../../store/types";
+import { List } from "../../interfaces";
 
 export interface PeopleFormProps {
   readonly people: List["people"];

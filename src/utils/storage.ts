@@ -1,5 +1,5 @@
 import { getLocalList, setLocalList } from "./localStorage";
-import { List } from "../store/types";
+import { List } from "../interfaces";
 
 // Find list by ID
 export const getStorageList = (key: List["key"]): Promise<List | null> =>

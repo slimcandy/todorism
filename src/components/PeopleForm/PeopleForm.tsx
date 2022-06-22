@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPerson } from "../../store/store";
-import { Person } from "../../store/types";
+import { Person } from "../../interfaces";
 
 function PeopleForm() {
   const dispatch = useDispatch();

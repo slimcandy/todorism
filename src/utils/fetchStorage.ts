@@ -1,10 +1,10 @@
 import axios from "axios";
-import { StoreType } from "../store/types";
+import { Store } from "../interfaces";
 
 export const loadState = async (
   key: string,
-  initialValue: StoreType
-): Promise<StoreType> => {
+  initialValue: Store
+): Promise<Store> => {
   try {
     const response = await (
       await axios.get(`http://localhost:3001/api/v1/get-${key}/`)
@@ -15,5 +15,5 @@ export const loadState = async (
   }
 };
 
-export const saveState = async (key: string, value: StoreType): Promise<void> =>
+export const saveState = async (key: string, value: Store): Promise<void> =>
   axios.post(`http://localhost:3001/api/v1/set-${key}/`, value);

@@ -1,4 +1,4 @@
-import { List } from "../store/types";
+import { List } from "../interfaces";
 
 export const pullLocalStorage = async (
   localStorageKey: string

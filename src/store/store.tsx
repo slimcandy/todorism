@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialStore } from "./constants";
-import { Item, List, Person, StoreType } from "./types";
+import { Item, List, Person, Store } from "../interfaces";
+import { initialStore } from "./storeConstants";
 
 const listSlice = createSlice({
   name: "list",
@@ -58,6 +58,7 @@ const store = configureStore({
     list: listSlice.reducer,
   },
 });
+
 export const {
   setList,
   clearList,
@@ -68,6 +69,6 @@ export const {
   removePerson,
 } = listSlice.actions;
 
-export const listSelector = (state: StoreType) => state.list;
+export const listSelector = (state: Store) => state.list;
 
 export default store;

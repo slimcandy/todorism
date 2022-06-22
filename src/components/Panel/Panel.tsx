@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { initialList } from "../../store/constants";
+import { initialList } from "../../store/storeConstants";
 import { clearList, listSelector, setList } from "../../store/store";
 import { pushLocalStorage } from "../../utils/localStorage";
 import { setStorageList } from "../../utils/storage";
