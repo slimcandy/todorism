@@ -30,7 +30,8 @@ function Panel() {
   };
 
   const handleSaveList = () => {
-    if (list !== null)     // eslint-disable-next-line no-void
+    if (list !== null)
+      // eslint-disable-next-line no-void
       void setStorageList(list.key, list);
   };
 
