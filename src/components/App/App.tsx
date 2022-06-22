@@ -1,9 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
-import store from "./store/store";
-import Panel from "./components/Panel/Panel";
+import store from "../../store/store";
+import Panel from "../Panel/Panel";
 
-import "./styles/index.css";
+import "../../styles/index.css";
 
 function App() {
   return (
