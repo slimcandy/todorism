@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { listSelector } from "../../store/store";
-import { Person } from "../../interfaces";
-import { pullLocalStorage, pushLocalStorage } from "../../utils/localStorage";
+import { listSelector } from "../../../stores/store";
+import { Person } from "../../../interfaces";
+import { pullLocalStorage, pushLocalStorage } from "../../../utils/localStorage";
 
 const localStorageKey = "currentUserIdMemory";
 

@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { initialList } from "../../store/storeConstants";
-import { clearList, listSelector, setList } from "../../store/store";
-import { pushLocalStorage } from "../../utils/localStorage";
-import { setStorageList } from "../../utils/storage";
+import { initialList } from "../../../stores/storeConstants";
+import { clearList, listSelector, setList } from "../../../stores/store";
+import { pushLocalStorage } from "../../../utils/localStorage";
+import { setStorageList } from "../../../utils/storage";
 import {
   FindForm,
   CreateForm,
@@ -12,7 +12,7 @@ import {
   PeopleForm,
   PeopleList,
   CurrentUser,
-} from "..";
+} from "../index";
 
 function Panel() {
   const dispatch = useDispatch();
@@ -29,8 +29,7 @@ function Panel() {
   };
 
   const handleSaveList = () => {
-    if (list !== null)
-      void setStorageList(list.key, list);
+    if (list !== null) void setStorageList(list.key, list);
   };
 
   return (

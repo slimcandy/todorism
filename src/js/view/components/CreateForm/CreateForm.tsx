@@ -1,46 +1,53 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPerson } from "../../store/store";
-import { Person } from "../../interfaces";
+import { addItem } from "../../../stores/store";
+import { Item } from "../../../interfaces";
 
-function PeopleForm() {
+function CreateForm() {
   const dispatch = useDispatch();
-  const [personName, setPersonName] = useState<Person["name"]>("");
-  const personRef = useRef<HTMLInputElement>(null);
+  const [itemTitle, setItemTitle] = useState<Item["title"]>("");
+  const itemRef = useRef<HTMLInputElement>(null);
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPersonName(event.target.value);
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setItemTitle(event.target.value);
   };
-
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const person: Person = {
+    const item: Item = {
       id: Date.now(),
-      name: personName,
+      checked: false,
+      peopleIDs: [],
+      amount: 1,
+      title: itemTitle,
     };
-    dispatch(addPerson(person));
-    setPersonName("");
+    dispatch(addItem(item));
+    setItemTitle("");
 
-    personRef.current?.focus();
+    itemRef.current?.focus();
   };
+
+  useEffect(() => {
+    itemRef.current?.focus();
+  }, []);
 
   return (
     <form
       onSubmit={handleFormSubmit}
       className="flex my-4 justify-center w-full gap-2"
+      data-test="create-list-form"
     >
-      <label htmlFor="name" className="sr-only">
-        Name
+      <label htmlFor="title" className="sr-only">
+        Title
       </label>
       <input
-        ref={personRef}
-        id="name"
+        ref={itemRef}
+        id="title"
         type="text"
-        autoComplete="name"
-        value={personName}
-        onChange={handleNameChange}
-        placeholder="Mike"
+        value={itemTitle}
+        onChange={handleTitleChange}
+        placeholder="Milk"
         className="input input-bordered w-full max-w-xs"
+        data-test="create-list-form-input"
       />
       <button type="submit" className="btn btn-ghost">
         <svg
@@ -60,4 +67,4 @@ function PeopleForm() {
   );
 }
 
-export default PeopleForm;
+export default CreateForm;

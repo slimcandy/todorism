@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listSelector, removeItem, toggleItem } from "../../store/store";
+import { listSelector, removeItem, toggleItem } from "../../../stores/store";
 
 function List() {
   const list = useSelector(listSelector);
