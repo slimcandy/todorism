@@ -7,12 +7,10 @@ export const throttle = (fn: () => void, wait = 300) => {
   let lastFn: ReturnType<typeof setTimeout>;
   let lastTime: number;
   return function throttleFn(this: unknown, ...args: IArguments[]) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const context = this;
     if (!inThrottle) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      fn.apply(context, args);
+      fn.apply(this, args);
       lastTime = Date.now();
       inThrottle = true;
     } else {
@@ -21,7 +19,7 @@ export const throttle = (fn: () => void, wait = 300) => {
         if (Date.now() - lastTime >= wait) {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          fn.apply(context, args);
+          fn.apply(this, args);
           lastTime = Date.now();
         }
       }, Math.max(wait - (Date.now() - lastTime), 0));
