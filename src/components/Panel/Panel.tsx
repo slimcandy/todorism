@@ -25,11 +25,13 @@ function Panel() {
 
     dispatch(clearList);
     if (list !== null)
-      pushLocalStorage(list.key, "").then(() => dispatch(clearList()));
+      // eslint-disable-next-line no-void
+      void pushLocalStorage(list.key, "").then(() => dispatch(clearList()));
   };
 
   const handleSaveList = () => {
-    if (list !== null) setStorageList(list.key, list);
+    if (list !== null)     // eslint-disable-next-line no-void
+      void setStorageList(list.key, list);
   };
 
   return (

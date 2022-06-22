@@ -1,3 +1,6 @@
+@import "_variables.css";
+@import "_mixins.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

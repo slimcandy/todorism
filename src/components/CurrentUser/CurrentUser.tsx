@@ -13,11 +13,13 @@ function CurrentUser() {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const id = event.target.value;
     setUserId(Number(id));
-    pushLocalStorage(localStorageKey, id);
+    // eslint-disable-next-line no-void
+    void pushLocalStorage(localStorageKey, id);
   };
 
   useEffect(() => {
-    pullLocalStorage(localStorageKey).then(
+    // eslint-disable-next-line no-void
+    void pullLocalStorage(localStorageKey).then(
       (id) => typeof id === "string" && id.length > 0 && setUserId(Number(id))
     );
   }, []);

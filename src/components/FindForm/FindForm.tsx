@@ -18,7 +18,8 @@ function FindForm() {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (typeof key === "string" && key.length > 0) {
-      getStorageList(key).then((storageList) => {
+      // eslint-disable-next-line no-void
+      void getStorageList(key).then((storageList) => {
         if (storageList) {
           setListNotFound(false);
           dispatch(setList(storageList));
@@ -26,12 +27,14 @@ function FindForm() {
           setListNotFound(true);
         }
       });
-      pushLocalStorage(localStorageKey, key);
+      // eslint-disable-next-line no-void
+      void pushLocalStorage(localStorageKey, key);
     }
   };
 
   useEffect(() => {
-    pullLocalStorage(localStorageKey).then((nextKey) => {
+    // eslint-disable-next-line no-void
+    void pullLocalStorage(localStorageKey).then((nextKey) => {
       if (typeof nextKey === "string" && nextKey.length > 0) setKey(nextKey);
     });
   }, []);

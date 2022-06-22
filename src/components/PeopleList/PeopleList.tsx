@@ -26,7 +26,7 @@ function PeopleList({ people }: PeopleFormProps) {
         </thead>
         <tbody>
           {people.map((person) => (
-            <tr key={person.id + person.name}>
+            <tr key={`${person.id}-${person.name}`}>
               <td> {person.name}</td>
               <th>
                 <button

@@ -34,7 +34,7 @@ function List() {
         </thead>
         <tbody>
           {list.items.map((item) => (
-            <tr key={item.id + item.title}>
+            <tr key={`${item.id}-${item.title}`}>
               <th>
                 <input
                   type="checkbox"

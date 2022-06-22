@@ -4,6 +4,7 @@ export const initialStore: Store = {
   list: null,
   currentListKey: null,
 };
+
 export const initialList: List = {
   key: `List${Date.now()}`,
   name: "",
