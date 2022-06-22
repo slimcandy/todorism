@@ -22,7 +22,7 @@ function CurrentUser() {
     );
   }, []);
 
-  if (list === null) {
+  if (!list) {
     return <p>Add people to assign items</p>;
   }
 
