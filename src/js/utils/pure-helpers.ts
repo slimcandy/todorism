@@ -2,14 +2,13 @@
  * Throttle a function
  * @url https://decipher.dev/30-seconds-of-typescript/docs/throttle/
  */
-export const throttle = (fn: () => void, wait = 300) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const throttle = (fn: Function, wait = 300) => {
   let inThrottle: boolean;
   let lastFn: ReturnType<typeof setTimeout>;
   let lastTime: number;
   return function throttleFn(this: unknown, ...args: IArguments[]) {
     if (!inThrottle) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       fn.apply(this, args);
       lastTime = Date.now();
       inThrottle = true;
@@ -17,8 +16,6 @@ export const throttle = (fn: () => void, wait = 300) => {
       clearTimeout(lastFn);
       lastFn = setTimeout(() => {
         if (Date.now() - lastTime >= wait) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           fn.apply(this, args);
           lastTime = Date.now();
         }
@@ -26,5 +23,3 @@ export const throttle = (fn: () => void, wait = 300) => {
     }
   };
 };
-
-export default { throttle };
