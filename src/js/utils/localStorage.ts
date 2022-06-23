@@ -21,8 +21,7 @@ export const pushLocalStorage = async (
 export const getLocalList = async (key: string): Promise<List | null> => {
   try {
     const item = await pullLocalStorage(key);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return item ? JSON.parse(item) : null;
+    return item ? JSON.parse(item) as List: null;
   } catch (error) {
     return null;
   }

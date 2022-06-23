@@ -2,7 +2,7 @@
  * Throttle a function
  * @url https://decipher.dev/30-seconds-of-typescript/docs/throttle/
  */
-export const throttle = (fn: (...args: IArguments[])=>void, wait = 300) => {
+export const throttle = (fn: (...args: IArguments[]) => void, wait = 300) => {
   let inThrottle: boolean;
   let lastFn: ReturnType<typeof setTimeout>;
   let lastTime: number;
