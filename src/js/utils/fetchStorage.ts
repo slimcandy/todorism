@@ -7,10 +7,10 @@ export const loadState = async (
   initialValue: Store
 ): Promise<Store> => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const response = await (await axios.get(`${urlApiGet}${key}/`)).data;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return response || initialValue;
+    const response = (await (
+      await axios.get(`${urlApiGet}${key}/`)
+    ).data) as Promise<Store>;
+    return (await response) || initialValue;
   } catch (error) {
     return initialValue;
   }
