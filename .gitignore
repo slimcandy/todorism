@@ -14,11 +14,27 @@ cypress/
 
 # misc
 .DS_Store
+Thumbs.db
+*.local
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+dist/
+build/
+.idea
+*.yml
+*.cjs
+*.mjs
 
+#logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#Thumbnails
+._*
+
+#Cache
+*.cache
