@@ -1,0 +1,17 @@
+.ui-kit-page {
+    background: var(--bg-color);
+    padding: 16px;
+    color: var(--font-color-bright);
+}
+
+.icons-sizes {
+    display: flex;
+    grid-gap: 16px;
+    padding: 8px;
+}
+
+.icons > div{
+    display: flex;
+    grid-gap: 12px;
+    margin-bottom: 12px;
+}
