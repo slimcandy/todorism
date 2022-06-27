@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useTranslation } from "react-i18next";
 import { initialList } from "../../../stores/storeConstants";
 import { clearList, listSelector, setList } from "../../../stores/store";
 import { pushLocalStorage } from "../../../utils/localStorage";
@@ -17,6 +17,7 @@ import {
 function Panel() {
   const dispatch = useDispatch();
   const list = useSelector(listSelector);
+  const {t} = useTranslation();
 
   const handleOpenForm = () => dispatch(setList(initialList));
 
@@ -47,7 +48,7 @@ function Panel() {
         <dt className="flex-none">
           <div className="divider divider-horizontal flex-1">OR</div>
           <button type="button" onClick={handleOpenForm} className="btn">
-            Create one
+            {t("buttons.add")}
           </button>
         </dt>
       </div>
@@ -94,7 +95,7 @@ function Panel() {
                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                   />
                 </svg>
-                Remove list
+                {t("buttons.delete")}
               </button>
               <button
                 type="button"
@@ -112,7 +113,7 @@ function Panel() {
                 >
                   <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
                 </svg>
-                Save list
+                {t("buttons.save_list")}
               </button>
             </div>
           </fieldset>
