@@ -13,11 +13,11 @@ export function App() {
     <Provider store={store}>
       <main>
         <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<DevNavPage/>}/>
-              <Route path="/alex" element={<Panel />}/>
-              <Route path="/ui-kit" element={ <UIKitPage />} />
-            </Routes>
+          <Routes>
+            <Route path="/" element={<DevNavPage />} />
+            <Route path="/alex" element={<Panel />} />
+            <Route path="/ui-kit" element={<UIKitPage />} />
+          </Routes>
         </BrowserRouter>
       </main>
     </Provider>

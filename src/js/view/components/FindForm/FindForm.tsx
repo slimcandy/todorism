@@ -62,7 +62,7 @@ function FindForm() {
           />
           <button type="button" className="btn btn-ghost btn-circle">
             <span className="sr-only">Open</span>
-            <ZoomIcon size={32} color="#1C1C28"/>
+            <ZoomIcon size={32} color="#1C1C28" />
           </button>
         </div>
       </form>
