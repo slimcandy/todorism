@@ -15,4 +15,8 @@
     --font-color-bright: var(--light);
     --font-color-dark: var(--dark-2);
     --font-color: #C7C9D9;
+
+    /* Radius */
+    --radius-primary: 12px;
 }
+
