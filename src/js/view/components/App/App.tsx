@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <main>
         <Panel />
-        <UIKitPage/>
+        <UIKitPage />
       </main>
     </Provider>
   );
