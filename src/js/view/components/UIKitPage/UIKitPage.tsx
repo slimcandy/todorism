@@ -11,6 +11,7 @@ import { ShareIcon } from "../../icons/ShareIcon";
 import { CloseIcon } from "../../icons/CloseIcon";
 
 import "./UIKitPage.css";
+import { ArrowIcon } from "../../icons/ArrowIcon";
 
 export function UIKitPage() {
   return (
@@ -86,6 +87,13 @@ export function UIKitPage() {
           <CloseIcon size={20} />
           <CloseIcon size={16} />
           <CloseIcon size={12} />
+        </div>
+        <div className="flex-1">
+          <ArrowIcon size={32} direction="up"/>
+          <ArrowIcon size={24} direction="down"/>
+          <ArrowIcon size={20} direction="left"/>
+          <ArrowIcon size={16} direction="right"/>
+          <ArrowIcon size={12} direction="up"/>
         </div>
       </div>
     </div>

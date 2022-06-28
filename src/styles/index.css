@@ -6,3 +6,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.arrow-direction_up {
+    transform: rotate(0deg);
+}
+
+.arrow-direction_down {
+    transform: rotate(180deg);
+}
+
+.arrow-direction_right {
+    transform: rotate(90deg);
+}
+
+.arrow-direction_left {
+    transform: rotate(-90deg);
+}
