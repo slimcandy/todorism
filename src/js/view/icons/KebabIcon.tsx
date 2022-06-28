@@ -1,14 +1,8 @@
 import React, { FunctionComponent } from "react";
+import { SVGprops } from "../../interfaces";
 
-export interface SVGprops {
-  size: number;
-  color?: string;
-  fill?: string;
-}
-
-// eslint-disable-next-line react/function-component-definition
 export const KebabIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color, fill } = props;
+  const { size, color = "white", fill = "none" } = props;
   return (
     <svg
       width={size.toString()}
@@ -22,9 +16,4 @@ export const KebabIcon: FunctionComponent<SVGprops> = (props) => {
       <rect x="12" y="24" width="8" height="8" rx="4" fill={color} />
     </svg>
   );
-};
-
-KebabIcon.defaultProps = {
-  color: "white",
-  fill: "none",
 };

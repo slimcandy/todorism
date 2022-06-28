@@ -59,6 +59,12 @@
         "allowDestructuring": true, // Allow `const { props, state } = this`; false by default
         "allowedNames": ["context"] // Allow `const vm= this`; `[]` by default
       }
+    ],
+    "react/function-component-definition": [
+      0,
+      {
+        "namedComponents": "function-declaration"
+      }
     ]
   }
 }

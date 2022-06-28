@@ -1,14 +1,8 @@
 import React, { FunctionComponent } from "react";
+import { SVGprops } from "../../interfaces";
 
-export interface SVGprops {
-  size: number;
-  color?: string;
-  fill?: string;
-}
-
-// eslint-disable-next-line react/function-component-definition
 export const DeleteIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color, fill } = props;
+  const { size, color = "white", fill = "none" } = props;
   return (
     <svg
       width={size.toString()}
@@ -25,9 +19,4 @@ export const DeleteIcon: FunctionComponent<SVGprops> = (props) => {
       />
     </svg>
   );
-};
-
-DeleteIcon.defaultProps = {
-  color: "white",
-  fill: "none",
 };

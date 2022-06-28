@@ -1,14 +1,8 @@
 import React, { FunctionComponent } from "react";
+import { SVGprops } from "../../interfaces";
 
-export interface SVGprops {
-  size: number;
-  color?: string;
-  fill?: string;
-}
-
-// eslint-disable-next-line react/function-component-definition
 export const CloseIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color, fill } = props;
+  const { size, color = "white", fill = "none" } = props;
   return (
     <svg
       width={size.toString()}
@@ -27,7 +21,3 @@ export const CloseIcon: FunctionComponent<SVGprops> = (props) => {
   );
 };
 
-CloseIcon.defaultProps = {
-  color: "white",
-  fill: "none",
-};

@@ -1,17 +1,19 @@
 import React from "react";
 // Icons
-import { KebabIcon } from "../../icons/KebabIcon";
-import { CalendarIcon } from "../../icons/CalendarIcon";
-import { PlusIcon } from "../../icons/PlusIcon";
-import { MinusIcon } from "../../icons/MinusIcon";
-import { ZoomIcon } from "../../icons/ZoomIcon";
-import { DeleteIcon } from "../../icons/DeleteIcon";
-import { EditIcon } from "../../icons/EditIcon";
-import { ShareIcon } from "../../icons/ShareIcon";
-import { CloseIcon } from "../../icons/CloseIcon";
+import {
+  ArrowIcon,
+  CalendarIcon,
+  CloseIcon,
+  DeleteIcon,
+  EditIcon,
+  KebabIcon,
+  MinusIcon,
+  PlusIcon,
+  ShareIcon,
+  ZoomIcon
+} from "../../icons";
 
 import "./UIKitPage.css";
-import { ArrowIcon } from "../../icons/ArrowIcon";
 
 export function UIKitPage() {
   return (
@@ -89,11 +91,11 @@ export function UIKitPage() {
           <CloseIcon size={12} />
         </div>
         <div className="flex-1">
-          <ArrowIcon size={32} direction="up"/>
-          <ArrowIcon size={24} direction="down"/>
-          <ArrowIcon size={20} direction="left"/>
-          <ArrowIcon size={16} direction="right"/>
-          <ArrowIcon size={12} direction="up"/>
+          <ArrowIcon size={32}/>
+          <ArrowIcon size={24} direction="down" />
+          <ArrowIcon size={20} direction="left" />
+          <ArrowIcon size={16} direction="right" />
+          <ArrowIcon size={12}/>
         </div>
       </div>
     </div>
