@@ -20,4 +20,3 @@ export const CloseIcon: FunctionComponent<SVGprops> = (props) => {
     </svg>
   );
 };
-

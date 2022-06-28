@@ -91,11 +91,11 @@ export function UIKitPage() {
           <CloseIcon size={12} />
         </div>
         <div className="flex-1">
-          <ArrowIcon size={32}/>
+          <ArrowIcon size={32} />
           <ArrowIcon size={24} direction="down" />
           <ArrowIcon size={20} direction="left" />
           <ArrowIcon size={16} direction="right" />
-          <ArrowIcon size={12}/>
+          <ArrowIcon size={12} />
         </div>
       </div>
     </div>
