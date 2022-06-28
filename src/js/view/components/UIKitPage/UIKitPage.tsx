@@ -29,7 +29,7 @@ export function UIKitPage() {
       <div className="icons">
         <div className="flex mb-4 gap-3 items-center">
           <KebabIcon size={32} />
-          <KebabIcon size={24} /> 
+          <KebabIcon size={24} />
           <KebabIcon size={20} />
           <KebabIcon size={16} />
           <KebabIcon size={12} />
