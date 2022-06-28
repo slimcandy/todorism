@@ -1,0 +1,40 @@
+{
+  "language": "Русский",
+  "events": {
+    "list": {
+      "your_events": "Ваши мероприятия"
+    },
+    "create_new_event": {
+      "new_event": "Новое мероприятие",
+      "enter_event_name": "Введите название мероприятия",
+      "choose_dates": "Выберите даты",
+      "description": "Описание"
+    },
+    "members": {
+      "add_members": "Добавьте участников",
+      "another_member": "Еще участник"
+    }
+  },
+  "categories": {
+    "choose_category": "Выберете категорию",
+    "take": {
+      "what": "Что взять с собой",
+      "how_much": "Сколько взять с собой"
+    }
+  },
+  "buttons": {
+    "add": "Добавить",
+    "create": "Создать",
+    "save": "Сохранить",
+    "save_list": "Сохранить список",
+    "take": "Взять",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "share": "Поделиться"
+  },
+  "tabs": {
+    "common_things": "Общие вещи",
+    "private_things": "Личные вещи",
+    "bring_along": "Взять с собой"
+  }
+}
