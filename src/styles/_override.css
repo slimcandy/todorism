@@ -1,0 +1,17 @@
+button.btn {
+    border-radius: var(--radius-primary);
+}
+
+button.btn-primary {
+    background: var(--primary);
+    border: none;
+    color: var(--font-color-dark)
+}
+
+button.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+button.btn-primary:focus {
+    background: var(--primary-pressed);
+}
