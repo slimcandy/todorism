@@ -5,16 +5,21 @@
     --primary-hover: #57EBAC;
     --primary-pressed: #39D996;
     --light: #fff;
+    --dark-0: #17181F;
     --dark-1: #262631;
     --dark-2: #1C1C28;
     --dark-3: #252732;
+    --black-3: #3E4153;
 
     --bg-color: var(--dark-1);
+    --disabled: var(--dark-3);
 
     /* Font colors */
     --font-color-bright: var(--light);
+    --font-color-light: #E4E4EB;
     --font-color-dark: var(--dark-2);
     --font-color: #C7C9D9;
+    --font-color-disabled: #555770;
 
     /* Radius */
     --radius-primary: 12px;

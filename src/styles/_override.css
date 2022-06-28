@@ -1,10 +1,17 @@
+/* Buttons */
 button.btn {
     border-radius: var(--radius-primary);
+    border: none;
+
+    /* TODO: вынести в миксин */
+    font-size: 0.8rem;
+    line-height: 1.18rem;
+    letter-spacing: -0.17px;
+    text-transform: none;
 }
 
 button.btn-primary {
     background: var(--primary);
-    border: none;
     color: var(--font-color-dark)
 }
 
@@ -15,3 +22,49 @@ button.btn-primary:hover {
 button.btn-primary:focus {
     background: var(--primary-pressed);
 }
+
+button.btn-primary > svg > path {
+    fill: var(--dark-0);
+}
+
+button.btn-dark {
+    background-color: var(--dark-3);
+    color: var(--font-color-light);
+}
+
+button.btn-dark:hover {
+    background-color: var(--black-3);
+}
+
+button.btn-dark:focus {
+    background-color: var(--font-color-disabled);
+}
+
+button.btn-disabled {
+    background-color: var(--disabled);
+    color: var(--font-color-disabled)
+}
+
+button.btn-wide {
+    max-width: 17.9rem;
+    padding: 0.938rem 1.5rem;
+    text-transform: none;
+
+/* TODO: вынести в миксин */
+    font-size: 0.8rem;
+    line-height: 1.18rem;
+    letter-spacing: -0.17px;
+}
+
+/* TODO: Проработать */
+button.btn-sm {
+    max-height: 35px;
+    max-width: 107px;
+    padding: 8px 16px;
+}
+
+button.btn-square {
+    /* TODO: check in Figma */
+    border-radius: 40%;
+}
+
