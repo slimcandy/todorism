@@ -12,21 +12,21 @@ import {
   ShareIcon,
   ZoomIcon,
 } from "../../icons";
-
-import "./UIKitPage.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4">
-      <h1>UI-kit page</h1>
-      <div className="icons-sizes flex p-2 gap-4">
+    <div className="ui-kit-page p-4 bg-todo-black-0">
+      <h1 className="text-white">UI-kit page</h1>
+      <div className="icons-sizes flex p-2 gap-4 text-white">
         <h5>32</h5>
         <h5>24</h5>
         <h5>20</h5>
         <h5>16</h5>
         <h5>12</h5>
       </div>
-      <div className="icons">
+      <h2 className="text-white">Icons</h2>
+      <div className="icons text-white">
         <div className="flex mb-4 gap-3 items-center">
           <KebabIcon size={32} />
           <KebabIcon size={24} />
