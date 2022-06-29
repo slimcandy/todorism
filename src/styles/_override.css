@@ -1,13 +1,6 @@
 /* Buttons */
 button.btn {
-    border-radius: var(--radius-primary);
     border: none;
-
-    /* TODO: вынести в миксин */
-    font-size: 0.8rem;
-    line-height: 1.18rem;
-    letter-spacing: -0.17px;
-    text-transform: none;
 }
 
 button.btn-primary {
@@ -45,26 +38,16 @@ button.btn-disabled {
     color: var(--font-color-disabled)
 }
 
-button.btn-wide {
-    max-width: 17.9rem;
-    padding: 0.938rem 1.5rem;
+button.btn-block {
     text-transform: none;
-
-/* TODO: вынести в миксин */
-    font-size: 0.8rem;
-    line-height: 1.18rem;
-    letter-spacing: -0.17px;
+    border-radius: var(--radius-primary);
 }
 
 /* TODO: Проработать */
 button.btn-sm {
-    max-height: 35px;
+    height: 35px;
     max-width: 107px;
-    padding: 8px 16px;
+    border-radius: var(--radius-primary);
 }
 
-button.btn-square {
-    /* TODO: check in Figma */
-    border-radius: 40%;
-}
 

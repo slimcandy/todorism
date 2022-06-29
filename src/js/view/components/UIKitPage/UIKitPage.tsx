@@ -105,24 +105,33 @@ export function UIKitPage() {
         </div>
         <div>
           <h2 className="mb-4">Buttons</h2>
-            <div>
-              <div className="mb-3">
-                <h5 className="mb-3">Large button</h5>
-                <button className="btn btn-primary btn-wide" type="button">+ Создать новое мероприятие</button>
-              </div>
-
-              <h5>Disabled button</h5>
-              <button className="btn btn-wide btn-disabled" aria-disabled="true" type="button">+ Создать новое мероприятие</button>
-
-              <h5 className="mb-3">Icon button</h5>
-              <button className="btn btn-primary btn-square" type="button">
-                <PlusIcon size={24} />
+          <div>
+            <div className="mb-3">
+              <h5 className="mb-3">Large button</h5>
+              <button className="btn btn-primary btn-block" type="button">
+                + Создать новое мероприятие
               </button>
-
-              <h5 className="mb-3">Small button</h5>
-              <button className="btn btn-dark btn-sm" type="button">+ Добавить</button>
-
             </div>
+
+            <h5>Disabled button</h5>
+            <button
+              className="btn btn-wide btn-disabled"
+              aria-disabled="true"
+              type="button"
+            >
+              + Создать новое мероприятие
+            </button>
+
+            <h5 className="mb-3">Icon button</h5>
+            <button className="btn btn-primary btn-circle" type="button">
+              <PlusIcon size={24} />
+            </button>
+
+            <h5 className="mb-3 mt-3">Small button</h5>
+            <button className="btn btn-dark btn-sm py-2" type="button">
+              + Добавить
+            </button>
+          </div>
         </div>
       </div>
     </div>
