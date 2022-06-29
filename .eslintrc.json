@@ -4,7 +4,11 @@
     "es2021": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "airbnb",
     "airbnb-typescript",
     "prettier"
@@ -34,6 +38,26 @@
         "required": {
           "some": ["nesting", "id"]
         }
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/no-self-import": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        "caseSensitive": false
+      }
+    ],
+    "no-void": ["error", { "allowAsStatement": true }],
+    "import/newline-after-import": "warn",
+    "@typescript-eslint/quotes": ["warn", "double"],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-this-alias": [
+      "error",
+      {
+        "allowDestructuring": true, // Allow `const { props, state } = this`; false by default
+        "allowedNames": ["context"] // Allow `const vm= this`; `[]` by default
       }
     ]
   }
