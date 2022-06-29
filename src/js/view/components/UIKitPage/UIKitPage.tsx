@@ -128,7 +128,7 @@ export function UIKitPage() {
             </button>
 
             <h5 className="mb-3 mt-3">Small button</h5>
-            <button className="btn btn-dark btn-sm py-2" type="button">
+            <button className="btn btn-dark btn-sm px-4" type="button">
               + Добавить
             </button>
           </div>
