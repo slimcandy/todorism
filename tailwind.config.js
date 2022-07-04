@@ -21,15 +21,15 @@ module.exports = {
         black: "900"
       },
       fontStyle: {
-        h1: { fontSize: ["1.5rem", { lineHeight: "32" }], fontWeight: "700" },
-        h2: { fontSize: ["1.125rem", { lineHeight: "22" }], fontWeight: "700" },
-        /* h3: { fontSize: this.fontSize.lg, fontWeight: this.fontWeight.semiBold },
+        h1: { fontSize: this.fontSize.xxl, fontWeight: this.fontWeight.bold },
+        h2: { fontSize: this.fontSize.xl, fontWeight: this.fontWeight.bold },
+        h3: { fontSize: this.fontSize.lg, fontWeight: this.fontWeight.semiBold },
         "body-lg": { fontSize: this.fontSize.lg, fontWeight: this.fontWeight.medium },
         "body-md": { fontSize: this.fontSize.base, fontWeight: this.fontWeight.medium },
         "body-base": { fontSize: this.fontSize.base, fontWeight: this.fontWeight.regular },
-        "body-sm": { fontSize: this.fontSize.sm, fontWeight: this.fontWeight.regular } */
+        "body-sm": { fontSize: this.fontSize.sm, fontWeight: this.fontWeight.regular }
       }
     }
   },
-  plugins: [require("daisyui"), require("@tailwindcss/typography"),]
+  plugins: [require("daisyui"), require('@tailwindcss/typography'),]
 };
