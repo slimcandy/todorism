@@ -19,7 +19,7 @@ export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4">
       <h1>UI-kit page</h1>
-        <h2 className="h2">h2: Заголовок второго уровня</h2>
+      <h2 className="h2">h2: Заголовок второго уровня</h2>
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
           <h1 className="h1">h1: Заголовок первого уровня</h1>
