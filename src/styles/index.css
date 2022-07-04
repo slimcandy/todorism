@@ -1,8 +1,12 @@
 @import "_variables.css";
 @import "_mixins.css";
 @import "_override.css";
-@import "_typo.css";
+@import "_fonts.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: "Manrope", sans-serif;
+}
