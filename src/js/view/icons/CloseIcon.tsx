@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { SVGprops } from "../../interfaces";
 
 export const CloseIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, fill = "none" } = props;
+  const { size, fill = "currentColor" } = props;
   return (
     <svg
       width={size.toString()}

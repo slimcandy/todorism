@@ -4,7 +4,7 @@ import { SVGprops } from "../../../interfaces";
 import "./ArrowIcon.css";
 
 export const ArrowIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, fill = "none", direction = "up" } = props;
+  const { size, fill = "currentColor", direction = "up" } = props;
 
   return (
     <svg

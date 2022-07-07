@@ -16,7 +16,7 @@ import SearchBar from "../SearchBar/SearchBar";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4 bg-todo-black-0">
+    <div className="ui-kit-page p-4 bg-black-0">
       <h1 className="text-white">UI-kit page</h1>
       <div className="icons-sizes flex p-2 gap-4 text-white">
         <h5>32</h5>

@@ -7,7 +7,7 @@ const SearchBar = (props: SearchBarProps) => {
   return (
     <form onSubmit={onSubmit}>
       <label
-        className={`relative text-todo-dark-2 bg-todo-black-2 hover:text-todo-dark-3 focus-within:placeholder:text-todo-dark-3 ${className}`}
+        className={`relative text-dark-2 bg-black-2 hover:text-dark-3 focus-within:placeholder:text-dark-3 ${className}`}
       >
         <ZoomIcon
           className="pointer-events-none absolute top-1/2 transform -translate-y-1/2 left-4"
@@ -16,7 +16,7 @@ const SearchBar = (props: SearchBarProps) => {
         <input
           type="search"
           placeholder={placeholder}
-          className="input w-full max-w-xs text-current pl-12 h-9 bg-todo-black-2 text-white placeholder:text-todo-dark-2 hover:placeholder:text-todo-dark-3 focus:placeholder:text-white"
+          className="input w-full max-w-xs text-current pl-12 h-9 bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white"
           onChange={onChange}
           value={value}
         />

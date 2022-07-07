@@ -3,11 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "todo-dark-1": "#262631",
-        "todo-dark-2": "#555770",
-        "todo-dark-3": "#8F90A6",
-        "todo-black-0": "#1C1C28",
-        "todo-black-2": "#252732",
+        "dark-1": "#262631",
+        "dark-2": "#555770",
+        "dark-3": "#8F90A6",
+        "black-0": "#1C1C28",
+        "black-2": "#252732",
       },
     },
   },
