@@ -7,6 +7,7 @@ import store from "../../../stores/store";
 import { Panel } from "../Panel/Panel";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
+import SPAremoveit from "../SPAremoveit/SPAremoveit";
 
 import "../../../../styles/index.css";
 
@@ -55,6 +56,7 @@ export function App() {
             <Route path="/" element={<DevNavPage />} />
             <Route path="/alex" element={<Panel />} />
             <Route path="/ui-kit" element={<UIKitPage />} />
+            <Route path="/SPAremoveit" element={<SPAremoveit />} />
           </Routes>
         </BrowserRouter>
       </main>
