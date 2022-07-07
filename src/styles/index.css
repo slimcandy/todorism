@@ -1,6 +1,7 @@
 @import "_variables.css";
 @import "_mixins.css";
 @import "_override.css";
+@import "_typo.css";
 
 @tailwind base;
 @tailwind components;

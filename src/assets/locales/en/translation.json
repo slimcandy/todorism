@@ -1,0 +1,40 @@
+{
+  "language": "English",
+  "events": {
+    "list": {
+      "your_events": "Your events"
+    },
+    "create_new_event": {
+      "new_event": "New event",
+      "enter_event_name": "Enter event name",
+      "choose_dates": "Choose dates",
+      "description": "Description"
+    },
+    "members": {
+      "add_members": "Add members",
+      "another_member": "Another member"
+    }
+  },
+  "categories": {
+    "choose_category": "Choose category",
+    "take": {
+      "what": "Item to bring along",
+      "how_much": "Quantity of items"
+    }
+  },
+  "buttons": {
+    "add": "Add",
+    "create": "Create",
+    "save": "Save",
+    "save_list": "Save list",
+    "take": "Take",
+    "delete": "Delete",
+    "edit": "Edit",
+    "share": "Share"
+  },
+  "tabs": {
+    "common_things": "Common things",
+    "private_things": "Private things",
+    "bring_along": "Bring along"
+  }
+}

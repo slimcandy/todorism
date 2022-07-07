@@ -14,7 +14,7 @@ import {
   CurrentUser,
 } from "../index";
 
-function Panel() {
+export function Panel() {
   const dispatch = useDispatch();
   const list = useSelector(listSelector);
 
@@ -128,5 +128,3 @@ function Panel() {
     </dl>
   );
 }
-
-export default Panel;
