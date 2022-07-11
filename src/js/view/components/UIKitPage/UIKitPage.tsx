@@ -1,5 +1,4 @@
 import React from "react";
-// Icons
 import {
   ArrowIcon,
   CalendarIcon,
@@ -10,27 +9,38 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon,
+  ZoomIcon
 } from "../../icons";
-import { TitleH } from "../../elements/ typo/TitleH";
+import {
+  TextBodyLarge,
+  TextBodyMedium,
+  TextBodySmall,
+  TextBodyStandard,
+  TitleH1,
+  TitleH2,
+  TitleH3
+} from "../../elements/typo";
 
 import "./UIKitPage.css";
 
 export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4">
-      <TitleH hLevel={1}>UI-kit page</TitleH>
+      <TitleH1>UI-kit page</TitleH1>
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
-          <TitleH hLevel={1}>TitleH hLevel=1: Заголовок первого уровня</TitleH>
-          <TitleH hLevel={2}>TitleH hLevel=2: Заголовок второго уровня</TitleH>
-          <TitleH hLevel={3}>TitleH hLevel=3: Заголовок третьего уровня</TitleH>
+          <TitleH1>TitleH1: Заголовок первого уровня</TitleH1>
+          <TitleH2>TitleH2: Заголовок второго уровня</TitleH2>
+          <TitleH3>TitleH3: Заголовок третьего уровня</TitleH3>
         </div>
         <div>
-          <p className="body-lg">body-lg: </p>
-          <p className="text-body-md text-base text-regular">body-md: </p>
-          <p className="text-body-base text-base">body-base: </p>
-          <p className="text-body-sm text-sm">body-sm: </p>
+          <TextBodyLarge>TextBodyLarge: Крупный наборный текст</TextBodyLarge>
+          <br/>
+          <TextBodyMedium>TextBodyMedium: Текст для кнопок и кликабельного текста</TextBodyMedium>
+          <br/>
+          <TextBodyStandard>TextBodyStandard: Стандартный наборный текст</TextBodyStandard>
+          <br/>
+          <TextBodySmall>TextBodySmall: Мелкий наборный текст, текст для пояснений</TextBodySmall>
         </div>
       </div>
       <div className="icons-sizes flex p-2 gap-4">

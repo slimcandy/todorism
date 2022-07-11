@@ -65,6 +65,7 @@
       {
         "namedComponents": "function-declaration"
       }
-    ]
+    ],
+    "react/require-default-props": "off"
   }
 }
