@@ -12,25 +12,25 @@ import {
   ShareIcon,
   ZoomIcon,
 } from "../../icons";
+import { TitleH } from "../../elements/ typo/TitleH";
 
 import "./UIKitPage.css";
 
 export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4">
-      <h1>UI-kit page</h1>
-      <h2 className="h2">h2: Заголовок второго уровня</h2>
+      <TitleH hLevel={1}>UI-kit page</TitleH>
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
-          <h1 className="h1">h1: Заголовок первого уровня</h1>
-          <h2 className="h2">h2: Заголовок второго уровня</h2>
-          <h3 className="h3">h3: Заголовок третьего уровня</h3>
+          <TitleH hLevel={1}>TitleH hLevel=1: Заголовок первого уровня</TitleH>
+          <TitleH hLevel={2}>TitleH hLevel=2: Заголовок второго уровня</TitleH>
+          <TitleH hLevel={3}>TitleH hLevel=3: Заголовок третьего уровня</TitleH>
         </div>
         <div>
           <p className="body-lg">body-lg: </p>
-          <p className="body-md">body-md: </p>
-          <p className="body-base">body-base: </p>
-          <p className="body-sm">body-sm: </p>
+          <p className="text-body-md text-base text-regular">body-md: </p>
+          <p className="text-body-base text-base">body-base: </p>
+          <p className="text-body-sm text-sm">body-sm: </p>
         </div>
       </div>
       <div className="icons-sizes flex p-2 gap-4">
