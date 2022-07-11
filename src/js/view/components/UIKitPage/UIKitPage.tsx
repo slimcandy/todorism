@@ -131,6 +131,7 @@ export function UIKitPage() {
       </div>
       <div>
         <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
+        <ButtonPrimary disabled>+ Создать новое мероприятие</ButtonPrimary>
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ module.exports = {
       {
         "my-daisyui-theme": {
           primary: "#8BFFC1",
-          "primary-hover": "#57EBAC",
-          "primary-focus": "#39D996",
+          "primary-focus": "#57EBAC", // for hover
+          "primary-disabled": "#252732", // for hover
+          // TODO: найти способ задать стиль для состояния focus
           secondary: "#252732",
         }
       }
