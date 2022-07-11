@@ -9,7 +9,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 import {
   TextBodyLarge,
@@ -18,7 +18,7 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3
+  TitleH3,
 } from "../../elements/typo";
 
 import "./UIKitPage.css";
@@ -35,12 +35,18 @@ export function UIKitPage() {
         </div>
         <div>
           <TextBodyLarge>TextBodyLarge: Крупный наборный текст</TextBodyLarge>
-          <br/>
-          <TextBodyMedium>TextBodyMedium: Текст для кнопок и кликабельного текста</TextBodyMedium>
-          <br/>
-          <TextBodyStandard>TextBodyStandard: Стандартный наборный текст</TextBodyStandard>
-          <br/>
-          <TextBodySmall>TextBodySmall: Мелкий наборный текст, текст для пояснений</TextBodySmall>
+          <br />
+          <TextBodyMedium>
+            TextBodyMedium: Текст для кнопок и кликабельного текста
+          </TextBodyMedium>
+          <br />
+          <TextBodyStandard>
+            TextBodyStandard: Стандартный наборный текст
+          </TextBodyStandard>
+          <br />
+          <TextBodySmall>
+            TextBodySmall: Мелкий наборный текст, текст для пояснений
+          </TextBodySmall>
         </div>
       </div>
       <div className="icons-sizes flex p-2 gap-4">
