@@ -1,0 +1,70 @@
+[
+  {
+    "tripUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "title": "string",
+    "description": "string",
+    "start": "2022-06-29T16:56:27.761Z",
+    "end": "2022-06-29T16:56:27.761Z",
+    "members": [
+      {
+        "memberUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "memberName": "string"
+      }
+    ],
+    "memberBinding": {
+      "additionalProp1": {
+        "userUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "userName": "string",
+        "email": "string"
+      },
+      "additionalProp2": {
+        "userUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "userName": "string",
+        "email": "string"
+      },
+      "additionalProp3": {
+        "userUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "userName": "string",
+        "email": "string"
+      }
+    },
+    "recommendedPrivateList": [
+      {
+        "pointUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "item": {
+          "itemUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "name": "string",
+          "estimatedPrice": 0,
+          "weight": 0,
+          "volume": 0,
+          "photo": "string"
+        },
+        "count": 0
+      }
+    ],
+    "commonList": [
+      {
+        "pointUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "item": {
+          "itemUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "name": "string",
+          "estimatedPrice": 0,
+          "weight": 0,
+          "volume": 0,
+          "photo": "string"
+        },
+        "count": 0
+      }
+    ],
+    "commonListBindings": [
+      {
+        "pointUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "memberUid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "count": 0,
+        "hasBought": true
+      }
+    ],
+    "status": "Creating",
+    "creationStage": "Created"
+  }
+]
