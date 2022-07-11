@@ -66,6 +66,7 @@
         "namedComponents": "function-declaration"
       }
     ],
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/button-has-type": "off"
   }
 }

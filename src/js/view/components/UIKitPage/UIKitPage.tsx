@@ -20,6 +20,7 @@ import {
   TitleH2,
   TitleH3,
 } from "../../elements/typo";
+import { ButtonPrimary } from "../../elements/buttons";
 
 import "./UIKitPage.css";
 
@@ -127,6 +128,9 @@ export function UIKitPage() {
           <ArrowIcon size={16} direction="right" />
           <ArrowIcon size={12} />
         </div>
+      </div>
+      <div>
+        <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
       </div>
     </div>
   );

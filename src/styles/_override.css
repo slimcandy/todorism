@@ -4,7 +4,7 @@ button.btn {
 }
 
 /* TODO: Переделать цвета на Лешин вариант */
-button.btn-primary {
+/*button.btn-primary {
     background: var(--primary);
     color: var(--font-color-dark)
 }
@@ -46,6 +46,6 @@ button.btn-block {
 
 button.btn-sm {
     border-radius: var(--radius-primary);
-}
+}*/
 
 
