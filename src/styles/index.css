@@ -8,8 +8,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "output.css";
-
 body {
     font-family: "Manrope", sans-serif;
 }

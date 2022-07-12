@@ -1,5 +1,6 @@
+/*
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/!**!/!*.{js,jsx,ts,tsx}"],
   theme: {
       colors: {
         "dark-0": "#17181F",
@@ -56,3 +57,4 @@ module.exports = {
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography"),]
 };
+*/
