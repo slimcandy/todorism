@@ -10,7 +10,7 @@ export const ZoomIcon: FunctionComponent<SVGprops> = (props) => {
       viewBox="0 0 32 32"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={className || ""}
     >
       <path
         fillRule="evenodd"
