@@ -8,8 +8,8 @@ export const ButtonTextOnly = (props: BtnProps) => {
 
   const textClasses = classnames({
     "text-light-4": !disabled,
-    "text-dark-2": disabled
-  })
+    "text-dark-2": disabled,
+  });
 
   return (
     <button

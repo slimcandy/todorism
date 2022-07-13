@@ -20,7 +20,11 @@ import {
   TitleH2,
   TitleH3,
 } from "../../elements/typo";
-import { ButtonCircle, ButtonPrimary, ButtonSecondary } from "../../elements/buttons";
+import {
+  ButtonCircle,
+  ButtonPrimary,
+  ButtonSecondary,
+} from "../../elements/buttons";
 
 import "./UIKitPage.css";
 import { ButtonTextOnly } from "../../elements/buttons/ButtonTextOnly";
@@ -53,17 +57,19 @@ export function UIKitPage() {
         <div className="buttons">
           <TextBodyLarge>Button primary</TextBodyLarge>
           <div className="flex mt-1">
-          <div className="mr-2">
-            <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
-          </div>
-          <div>
-            <ButtonPrimary disabled>+ Создать новое мероприятие</ButtonPrimary>
-          </div>
+            <div className="mr-2">
+              <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
+            </div>
+            <div>
+              <ButtonPrimary disabled>
+                + Создать новое мероприятие
+              </ButtonPrimary>
+            </div>
             <div>
               {/* TODO: find solution to pass colors to SVG as tailwind variables */}
-              <ButtonCircle icon={<PlusIcon size={24} color="#1C1C28"/>}/>
+              <ButtonCircle icon={<PlusIcon size={24} color="#1C1C28" />} />
             </div>
-        </div>
+          </div>
           <div className="mt-2">
             <TextBodyLarge>Button secondary</TextBodyLarge>
           </div>
@@ -72,7 +78,9 @@ export function UIKitPage() {
               <ButtonSecondary>+ Создать новое мероприятие</ButtonSecondary>
             </div>
             <div>
-              <ButtonSecondary disabled>+ Создать новое мероприятие</ButtonSecondary>
+              <ButtonSecondary disabled>
+                + Создать новое мероприятие
+              </ButtonSecondary>
             </div>
           </div>
           <div className="mt-2">
@@ -167,7 +175,6 @@ export function UIKitPage() {
           <ArrowIcon size={12} />
         </div>
       </div>
-
     </div>
   );
 }
