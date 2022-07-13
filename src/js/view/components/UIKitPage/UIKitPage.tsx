@@ -27,7 +27,7 @@ import {
 } from "../../elements/buttons";
 
 import "./UIKitPage.css";
-import { ButtonTextOnly } from "../../elements/buttons/ButtonTextOnly";
+import { ButtonTransparent } from "../../elements/buttons/ButtonTransparent";
 
 export function UIKitPage() {
   return (
@@ -88,10 +88,10 @@ export function UIKitPage() {
           </div>
           <div className="flex mt-1">
             <div className="mr-2">
-              <ButtonTextOnly>+ Добавить</ButtonTextOnly>
+              <ButtonTransparent>+ Добавить</ButtonTransparent>
             </div>
             <div>
-              <ButtonTextOnly disabled>+ Добавить</ButtonTextOnly>
+              <ButtonTransparent disabled>+ Добавить</ButtonTransparent>
             </div>
           </div>
         </div>

@@ -65,9 +65,7 @@ module.exports = {
           secondary: "#252732",
           "secondary-focus": "#3E4153",
           "secondary-disabled": "#252732",
-           ghost: "transparent",
-          "ghost-focus": "transparent",
-          "ghost-disabled": "transparent",
+
 
         }
       }
