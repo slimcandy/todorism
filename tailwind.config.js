@@ -60,11 +60,15 @@ module.exports = {
       {
         "my-app-theme": {
           primary: "#8BFFC1",
-          "primary-hover": "red", // for hover
           "primary-focus": "#57EBAC", // for hover
           "primary-disabled": "#252732",
-          // TODO: найти способ задать стиль для состояния focus
           secondary: "#252732",
+          "secondary-focus": "#3E4153",
+          "secondary-disabled": "#252732",
+           ghost: "transparent",
+          "ghost-focus": "transparent",
+          "ghost-disabled": "transparent",
+
         }
       }
     ]
