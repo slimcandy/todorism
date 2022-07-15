@@ -10,8 +10,9 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon,
+  ZoomIcon
 } from "../../icons";
+import { Indicator } from "../../elements";
 
 import "./UIKitPage.css";
 
@@ -19,6 +20,12 @@ export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4">
       <h1>UI-kit page</h1>
+      <span className="mr-2">
+          <Indicator />
+      </span>
+      <span className="mr-2">
+          <Indicator isActive />
+      </span>
       <div className="icons-sizes flex p-2 gap-4">
         <h5>32</h5>
         <h5>24</h5>
