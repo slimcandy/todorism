@@ -9,7 +9,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon,
+  ZoomIcon
 } from "../../icons";
 import {
   TextBodyLarge,
@@ -18,21 +18,36 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3,
+  TitleH3
 } from "../../elements/typo";
 import {
   ButtonCircle,
   ButtonPrimary,
   ButtonSecondary,
+  ButtonSquare,
+  ButtonTransparent
 } from "../../elements/buttons";
 
 import "./UIKitPage.css";
-import { ButtonTransparent } from "../../elements/buttons/ButtonTransparent";
 
 export function UIKitPage() {
+/*  const onToggleTheme = () => {
+
+  } */
+
   return (
-    <div className="ui-kit-page p-4">
+    <div className="ui-kit-page p-4 bg:light-4 dark:bg:dark-1">
       <TitleH1>UI-kit page</TitleH1>
+
+      <div className="d-flex justify-content-start">
+          <div className="">
+            <label className="cursor-pointer flex justify-content-start align-items-center">
+              <span className="label-text mr-2">Choose theme</span>
+              <input type="checkbox" className="toggle" checked />
+            </label>
+        </div>
+      </div>
+
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
           <TitleH1>TitleH1: Заголовок первого уровня</TitleH1>
@@ -56,7 +71,7 @@ export function UIKitPage() {
         </div>
         <div className="buttons">
           <TextBodyLarge>Button primary</TextBodyLarge>
-          <div className="flex mt-1">
+          <div className="flex mt-1 mr-2">
             <div className="mr-2">
               <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
             </div>
@@ -65,9 +80,12 @@ export function UIKitPage() {
                 + Создать новое мероприятие
               </ButtonPrimary>
             </div>
-            <div>
+            <div className="mr-2">
               {/* TODO: find solution to pass colors to SVG as tailwind variables */}
               <ButtonCircle icon={<PlusIcon size={24} color="#1C1C28" />} />
+            </div>      <div>
+              {/* TODO: find solution to pass colors to SVG as tailwind variables */}
+              <ButtonSquare icon={<PlusIcon size={24} color="#1C1C28" />} />
             </div>
           </div>
           <div className="mt-2">
@@ -90,8 +108,19 @@ export function UIKitPage() {
             <div className="mr-2">
               <ButtonTransparent>+ Добавить</ButtonTransparent>
             </div>
-            <div>
+            <div className="mr-2">
               <ButtonTransparent disabled>+ Добавить</ButtonTransparent>
+            </div>
+            <div className="mr-2">
+              <ButtonTransparent icon={<ArrowIcon size={16} direction="up"/>}>
+                Скрыть
+              </ButtonTransparent>
+            </div>
+            <div>
+              <ButtonTransparent icon={<ArrowIcon size={16} direction="up"/>}
+                                 disabled>
+                Скрыть
+              </ButtonTransparent>
             </div>
           </div>
         </div>

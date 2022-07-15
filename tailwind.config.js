@@ -1,6 +1,7 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   plugins: [require("daisyui"), require('@tailwindcss/typography'),],
+  darkMode: "class",
   theme: {
     colors: {
       "dark-0": "#17181F",
@@ -58,15 +59,21 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        "my-app-theme": {
+        "light": {
           primary: "#8BFFC1",
           "primary-focus": "#57EBAC", // for hover
           "primary-disabled": "#252732",
           secondary: "#252732",
           "secondary-focus": "#3E4153",
           "secondary-disabled": "#252732",
-
-
+        },
+        "dark": {
+          primary: "#57EBAC",
+          "primary-focus": "#39D996", // for hover
+          "primary-disabled": "#FAFAFC",
+          secondary: "#252732",
+          "secondary-focus": "#3E4153",
+          "secondary-disabled": "#252732",
         }
       }
     ]

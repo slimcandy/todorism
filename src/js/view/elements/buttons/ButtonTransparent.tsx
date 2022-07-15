@@ -1,8 +1,9 @@
 import React from "react";
+import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonTransparent = (props: BtnProps) => {
-  const { children, type, disabled, className = "" } = props;
+  const { children, icon, type, disabled, className = "" } = props;
 
   return (
     <button
@@ -15,7 +16,8 @@ export const ButtonTransparent = (props: BtnProps) => {
       type={type}
       disabled={disabled}
     >
-      <span className="text-medium font-medium">{children}</span>
+      {icon}
+      <TextBodyMedium className={icon ? "ml-2" : ""}>{children}</TextBodyMedium>
     </button>
   );
 };
