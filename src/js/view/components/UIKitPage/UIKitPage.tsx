@@ -70,11 +70,9 @@ export function UIKitPage() {
               </ButtonPrimary>
             </div>
             <div className="mr-2">
-              {/* TODO: find solution to pass colors to SVG as tailwind variables */}
               <ButtonCircle icon={<PlusIcon size={24} />} />
-            </div>{" "}
+            </div>
             <div>
-              {/* TODO: find solution to pass colors to SVG as tailwind variables */}
               <ButtonSquare icon={<PlusIcon size={24} />} />
             </div>
           </div>
