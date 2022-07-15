@@ -1,10 +1,7 @@
 import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import classnames from "classnames"
 
-
 type IndicatorProps = {
-  // eslint-disable-next-line react/require-default-props
   isActive?: boolean
 }
 
