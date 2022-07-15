@@ -31,13 +31,11 @@ import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 import "./UIKitPage.css";
 
-
-
 export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1">
+      <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
-      <ThemeToggler/>
 
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
