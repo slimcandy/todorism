@@ -9,7 +9,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 import {
   TextBodyLarge,
@@ -18,35 +18,26 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3
+  TitleH3,
 } from "../../elements/typo";
 import {
   ButtonCircle,
   ButtonPrimary,
   ButtonSecondary,
   ButtonSquare,
-  ButtonTransparent
+  ButtonTransparent,
 } from "../../elements/buttons";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 import "./UIKitPage.css";
 
+
+
 export function UIKitPage() {
-/*  const onToggleTheme = () => {
-
-  } */
-
   return (
-    <div className="ui-kit-page p-4 bg:light-4 dark:bg:dark-1">
+    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1">
       <TitleH1>UI-kit page</TitleH1>
-
-      <div className="d-flex justify-content-start">
-          <div className="">
-            <label className="cursor-pointer flex justify-content-start align-items-center">
-              <span className="label-text mr-2">Choose theme</span>
-              <input type="checkbox" className="toggle" checked />
-            </label>
-        </div>
-      </div>
+      <ThemeToggler/>
 
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
@@ -82,10 +73,11 @@ export function UIKitPage() {
             </div>
             <div className="mr-2">
               {/* TODO: find solution to pass colors to SVG as tailwind variables */}
-              <ButtonCircle icon={<PlusIcon size={24} color="#1C1C28" />} />
-            </div>      <div>
+              <ButtonCircle icon={<PlusIcon size={24} />} />
+            </div>{" "}
+            <div>
               {/* TODO: find solution to pass colors to SVG as tailwind variables */}
-              <ButtonSquare icon={<PlusIcon size={24} color="#1C1C28" />} />
+              <ButtonSquare icon={<PlusIcon size={24} />} />
             </div>
           </div>
           <div className="mt-2">
@@ -112,13 +104,15 @@ export function UIKitPage() {
               <ButtonTransparent disabled>+ Добавить</ButtonTransparent>
             </div>
             <div className="mr-2">
-              <ButtonTransparent icon={<ArrowIcon size={16} direction="up"/>}>
+              <ButtonTransparent icon={<ArrowIcon size={16} direction="up" />}>
                 Скрыть
               </ButtonTransparent>
             </div>
             <div>
-              <ButtonTransparent icon={<ArrowIcon size={16} direction="up"/>}
-                                 disabled>
+              <ButtonTransparent
+                icon={<ArrowIcon size={16} direction="up" />}
+                disabled
+              >
                 Скрыть
               </ButtonTransparent>
             </div>

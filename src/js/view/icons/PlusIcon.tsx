@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { SVGprops } from "../../interfaces";
 
 export const PlusIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color = "white", fill = "none" } = props;
+  const { size, color = "currentColor", fill = "none" } = props;
   return (
     <svg
       width={size.toString()}
