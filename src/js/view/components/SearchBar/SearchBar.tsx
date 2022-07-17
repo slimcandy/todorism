@@ -3,7 +3,14 @@ import { ZoomIcon } from "../../icons";
 import { SearchBarProps } from "./types";
 
 const SearchBar = (props: SearchBarProps) => {
-  const { placeholder, value, onChange, onSubmit, className = "" } = props;
+  const {
+    placeholder,
+    value,
+    onChange,
+    onSubmit,
+    className = "",
+    disabled,
+  } = props;
   return (
     <form onSubmit={onSubmit}>
       <label
@@ -16,9 +23,10 @@ const SearchBar = (props: SearchBarProps) => {
         <input
           type="search"
           placeholder={placeholder}
-          className="input w-full max-w-xs text-current pl-12 h-9 bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white"
+          className="input w-full max-w-xs text-current pl-12 h-9 bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white disabled:text-black-3 disabled:bg-black-2 disabled:border-none disabled:placeholder:text-black-3"
           onChange={onChange}
           value={value}
+          disabled={disabled}
         />
       </label>
     </form>

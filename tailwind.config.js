@@ -8,6 +8,7 @@ module.exports = {
         "dark-3": "#8F90A6",
         "black-0": "#1C1C28",
         "black-2": "#252732",
+        "black-3": "#3E4153",
       },
     },
   },

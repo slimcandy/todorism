@@ -10,4 +10,5 @@ export interface SearchBarProps {
   value?: InputHTMLAttributes<HTMLInputElement>["value"];
   onSubmit?: FormEventHandler<HTMLFormElement>;
   className?: InputHTMLAttributes<HTMLInputElement>["className"];
+  disabled?: InputHTMLAttributes<HTMLInputElement>["disabled"];
 }
