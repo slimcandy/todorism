@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  USERNAME_LOCAL_STORAGE_KEY,
-  TRIP_IDS_LOCAL_STORAGE_KEY,
+  localStorageUsernameKey,
+  localStorageTripIdKey,
 } from "../../../common/constants";
 import {
   pullLocalStorage,
@@ -12,7 +12,7 @@ const SPAremoveit = () => {
   // 1. Username
   const [username, setUsername] = useState<string>("");
   useEffect(() => {
-    pullLocalStorage(USERNAME_LOCAL_STORAGE_KEY)
+    pullLocalStorage(localStorageUsernameKey)
       .then((usernameFromLocalStorage) => {
         if (
           typeof usernameFromLocalStorage === "string" &&
@@ -28,7 +28,7 @@ const SPAremoveit = () => {
   const onUsernameSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (typeof username === "string" && username.trim().length > 0) {
-      pushLocalStorage(USERNAME_LOCAL_STORAGE_KEY, username)
+      pushLocalStorage(localStorageUsernameKey, username)
         .then(() => console.log("username sucessfully saved"))
         .catch(console.error);
     }
@@ -38,7 +38,7 @@ const SPAremoveit = () => {
   const [tripIds, setTripIds] = useState<string[]>([]);
   const [newTripFormOpen, setNewTripFormOpen] = useState<boolean>(false);
   useEffect(() => {
-    pullLocalStorage(TRIP_IDS_LOCAL_STORAGE_KEY)
+    pullLocalStorage(localStorageTripIdKey)
       .then((localStorageString) => {
         if (
           typeof localStorageString === "string" &&
@@ -68,7 +68,7 @@ const SPAremoveit = () => {
   const onNewTripFormDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => setNewTripFormDescription(event.target.value);
-  const onNewTripFormSubmut = (event: React.FormEvent<HTMLFormElement>) => {
+  const onNewTripFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // save to local storage
     setPeopleFormOpen(true);
@@ -80,7 +80,7 @@ const SPAremoveit = () => {
   const [successPageOpen, setSuccessPageOpen] = useState<boolean>(false);
   const onPersonFormNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPersonFormName(event.target.value);
-  const onPersonFormSubmut = (event: React.FormEvent<HTMLFormElement>) => {
+  const onPersonFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setPeople([...people, personFormName]);
   };
@@ -160,7 +160,7 @@ const SPAremoveit = () => {
         {newTripFormOpen ? (
           <li>
             <h2>3. Форма нового мероприятия</h2>
-            <form onSubmit={onNewTripFormSubmut}>
+            <form onSubmit={onNewTripFormSubmit}>
               <label className="label">
                 Название мероприятия
                 <input
@@ -207,7 +207,7 @@ const SPAremoveit = () => {
             ) : (
               "Добавьте участников"
             )}
-            <form onSubmit={onPersonFormSubmut}>
+            <form onSubmit={onPersonFormSubmit}>
               <label className="label">
                 Имя
                 <input
