@@ -23,6 +23,13 @@ app.post("/api/trip/", (req, res) => {
   res.send(require("./json/trip.json"));
 });
 
+// /api/User/User/CreateUser
+app.post("/api/User/User/CreateUser", (req, res) => {
+  res.setHeader("end-time", Date.now());
+  res.setHeader("Access-Control-Expose-Headers", "end-time");
+  res.send(require("./json/createUser.json"));
+});
+
 app.listen(port, () => {
   console.log(`Mock server is listening at http://localhost:${port}`);
 });

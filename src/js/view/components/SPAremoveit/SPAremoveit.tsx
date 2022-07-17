@@ -8,27 +8,45 @@ import {
   pushLocalStorage,
 } from "../../../utils/localStorage";
 
+const serverUrl = process.env.SERVER || "http://localhost:3001";
+
 const SPAremoveit = () => {
   // 1. Username
   const [username, setUsername] = useState<string>("");
-  useEffect(() => {
-    pullLocalStorage(localStorageUsernameKey)
-      .then((usernameFromLocalStorage) => {
-        if (
-          typeof usernameFromLocalStorage === "string" &&
-          usernameFromLocalStorage.length > 0
-        )
-          setUsername(usernameFromLocalStorage);
-      })
-      .catch(console.error);
-  }, []);
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
-  const onUsernameSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (typeof username === "string" && username.trim().length > 0) {
-      pushLocalStorage(localStorageUsernameKey, username)
+  const onUsernameSubmit = async () => {
+    interface IUsernameResponse {
+      user_uid: string;
+    }
+    interface IUserNameObj {
+      username: string;
+      user_uid: string;
+    }
+    const response = await fetch(`${serverUrl}/api/User/User/CreateUser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+
+    if (response.ok) {
+      const json: IUsernameResponse =
+        (await response.json()) as IUsernameResponse;
+      const { user_uid: userUid } = json;
+      const localStorageUserNameObj: IUserNameObj = {
+        username,
+        user_uid: userUid,
+      };
+
+      pushLocalStorage(
+        localStorageUsernameKey,
+        JSON.stringify(localStorageUserNameObj)
+      )
         .then(() => console.log("username sucessfully saved"))
         .catch(console.error);
     }
@@ -87,7 +105,6 @@ const SPAremoveit = () => {
 
   const onFormSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const serverUrl = process.env.SERVER || "";
     fetch(`${serverUrl}/api/trip/`, {
       method: "POST",
       body: JSON.stringify({
@@ -126,7 +143,13 @@ const SPAremoveit = () => {
       <ol>
         <li>
           <h2>1. Первый экран</h2>
-          <form onSubmit={onUsernameSubmit}>
+          <form
+            onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+              event.preventDefault();
+
+              onUsernameSubmit().then(console.log).catch(console.error);
+            }}
+          >
             <label className="label">
               Представьтесь
               <input
