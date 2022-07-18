@@ -13,7 +13,7 @@ export const ButtonPrimary = (props: BtnProps) => {
 
   return (
     <button
-      className={`btn btn-primary
+      className={`btn btn-primary w-full
       dark:focus:bg-green-2 dark:focus-visible:bg-green-2
       focus:bg-green-1 focus-visible:bg-green-1
       disabled:bg-light-3 dark:disabled:bg-black-2
