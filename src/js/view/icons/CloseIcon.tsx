@@ -1,7 +1,7 @@
 import React from "react";
 import { SVGprops } from "../../interfaces";
 
-export const CloseIcon = (props:SVGprops) => {
+export const CloseIcon = (props: SVGprops) => {
   const { size, color = "currentColor", fill = "none" } = props;
   return (
     <svg
