@@ -29,11 +29,9 @@ import {
 } from "../../elements/buttons";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
-import "./UIKitPage.css";
-
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1">
+    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
 

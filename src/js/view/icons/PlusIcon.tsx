@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { SVGprops } from "../../interfaces";
 
-export const PlusIcon: FunctionComponent<SVGprops> = (props) => {
+export const PlusIcon = (props: SVGprops) => {
   const { size, color = "currentColor", fill = "none" } = props;
   return (
     <svg

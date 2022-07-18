@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { SVGprops } from "../../interfaces";
 
-export const DeleteIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color = "white", fill = "none" } = props;
+export const DeleteIcon = (props: SVGprops) => {
+  const { size, color = "currentColor", fill = "none" } = props;
   return (
     <svg
       width={size.toString()}
