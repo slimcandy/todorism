@@ -1,15 +1,20 @@
-import React from "react";
+import React, { memo } from "react";
 
 type InputProps = {
   type: string;
   title?: string;
   placeholder?: string;
+  state?: "focus" | "active" | "disabled" | "error"
+  className?: string
 };
 
-export const Input = (props: InputProps) => {
-  const { type, title = "", placeholder = "" } = props;
+export const Input = memo((props: InputProps) => {
+  const { type, title = "", placeholder = "", state, className = "" } = props;
+
+  const disabled = state === "disabled" || undefined
+
   return (
-    <label className="block">
+    <label className={`block ${className}`}>
       {title && (
         <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
           {title}
@@ -18,13 +23,17 @@ export const Input = (props: InputProps) => {
       <input
         type={type}
         name={type}
-        className="mt-1 px-3 py-2 bg-white border shadow-sm
-                 border-slate-300 placeholder-slate-400
-                 focus:outline-none focus:border-sky-500 focus:ring-sky-500
-                 block w-full rounded-md sm:text-sm focus:ring-1
-                 dark:bg-black-2 border-none outline-none"
+        className="mt-1 px-4 py-3
+                 bg-light-2 dark:bg-black-2
+                 focus:outline-none focus:border-none shadow-none
+                 block w-full rounded-lg
+                 border-none
+                 placeholder-dark-4 dark:placeholder-dark-2
+                 hover:placeholder-dark-3 dark:hover:placeholder-black-2
+                 disabled:placeholder-dark-4 dark:disabled:placeholder-black-3"
         placeholder={placeholder}
+        disabled={disabled}
       />
     </label>
   );
-};
+});

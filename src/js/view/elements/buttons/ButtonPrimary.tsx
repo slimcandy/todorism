@@ -1,10 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
 import classnames from "classnames";
 import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
-export const ButtonPrimary = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "" } = props;
+export const ButtonPrimary = memo((props: BtnProps) => {
+  const {
+    children,
+    icon,
+    type,
+    disabled,
+    className = "",
+    buttonRef,
+    ...rest
+  } = props;
 
   const textClasses = classnames({
     "text-black-0": !disabled,
@@ -12,7 +20,8 @@ export const ButtonPrimary = (props: BtnProps) => {
   });
 
   return (
-    <button
+    <button {...rest}
+            ref={buttonRef}
       className={`btn btn-primary w-full
       dark:focus:bg-green-2 dark:focus-visible:bg-green-2
       focus:bg-green-1 focus-visible:bg-green-1
@@ -25,4 +34,4 @@ export const ButtonPrimary = (props: BtnProps) => {
       <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>
     </button>
   );
-};
+});
