@@ -28,6 +28,13 @@ export function DevNavPage() {
               </button>
             </Link>
           </div>
+          <div className="mb-8 mx-auto">
+            <Link to="/events">
+              <button type="button" className="btn btn-primary">
+                Events page
+              </button>
+            </Link>
+          </div>
         </div>
       </nav>
     </div>

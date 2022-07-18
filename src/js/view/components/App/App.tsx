@@ -7,8 +7,10 @@ import store from "../../../stores/store";
 import { Panel } from "../Panel/Panel";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
+import { AllEventsPage } from "../Events/AllEventsPage";
 
 import "../../../../styles/index.css";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -49,12 +51,15 @@ export function App() {
         </select>
       </div>
 
+      <ThemeToggler />
+
       <main>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<DevNavPage />} />
             <Route path="/alex" element={<Panel />} />
             <Route path="/ui-kit" element={<UIKitPage />} />
+            <Route path="/events" element={<AllEventsPage />} />
           </Routes>
         </BrowserRouter>
       </main>
