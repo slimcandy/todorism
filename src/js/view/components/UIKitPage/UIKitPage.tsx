@@ -13,12 +13,29 @@ import {
   ZoomIcon,
 } from "../../icons";
 import { Indicator } from "../../elements";
-
-import "./UIKitPage.css";
+// Texts
+import {
+  TextBodyLarge,
+  TextBodyMedium,
+  TextBodySmall,
+  TextBodyStandard,
+  TitleH1,
+  TitleH2,
+  TitleH3,
+} from "../../elements/typo";
+// Buttons
+import {
+  ButtonCircle,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonSquare,
+  ButtonTransparent,
+} from "../../elements/buttons";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4">
+    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
       <h1>UI-kit page</h1>
       <span className="mr-2">
         <Indicator />
@@ -26,6 +43,87 @@ export function UIKitPage() {
       <span className="mr-2">
         <Indicator isActive />
       </span>
+      <ThemeToggler />
+      <TitleH1>UI-kit page</TitleH1>
+
+      <div className="fonts flex p-2 gap-4">
+        <div className="flex-column">
+          <TitleH1>TitleH1: Заголовок первого уровня</TitleH1>
+          <TitleH2>TitleH2: Заголовок второго уровня</TitleH2>
+          <TitleH3>TitleH3: Заголовок третьего уровня</TitleH3>
+        </div>
+        <div>
+          <TextBodyLarge>TextBodyLarge: Крупный наборный текст</TextBodyLarge>
+          <br />
+          <TextBodyMedium>
+            TextBodyMedium: Текст для кнопок и кликабельного текста
+          </TextBodyMedium>
+          <br />
+          <TextBodyStandard>
+            TextBodyStandard: Стандартный наборный текст
+          </TextBodyStandard>
+          <br />
+          <TextBodySmall>
+            TextBodySmall: Мелкий наборный текст, текст для пояснений
+          </TextBodySmall>
+        </div>
+        <div className="buttons">
+          <TextBodyLarge>Button primary</TextBodyLarge>
+          <div className="flex mt-1 mr-2">
+            <div className="mr-2">
+              <ButtonPrimary>+ Создать новое мероприятие</ButtonPrimary>
+            </div>
+            <div>
+              <ButtonPrimary disabled>
+                + Создать новое мероприятие
+              </ButtonPrimary>
+            </div>
+            <div className="mr-2">
+              <ButtonCircle icon={<PlusIcon size={24} />} />
+            </div>
+            <div>
+              <ButtonSquare icon={<PlusIcon size={24} />} />
+            </div>
+          </div>
+          <div className="mt-2">
+            <TextBodyLarge>Button secondary</TextBodyLarge>
+          </div>
+          <div className="flex mt-1">
+            <div className="mr-2">
+              <ButtonSecondary>+ Создать новое мероприятие</ButtonSecondary>
+            </div>
+            <div>
+              <ButtonSecondary disabled>
+                + Создать новое мероприятие
+              </ButtonSecondary>
+            </div>
+          </div>
+          <div className="mt-2">
+            <TextBodyLarge>Button text only</TextBodyLarge>
+          </div>
+          <div className="flex mt-1">
+            <div className="mr-2">
+              <ButtonTransparent>+ Добавить</ButtonTransparent>
+            </div>
+            <div className="mr-2">
+              <ButtonTransparent disabled>+ Добавить</ButtonTransparent>
+            </div>
+            <div className="mr-2">
+              <ButtonTransparent icon={<ArrowIcon size={16} direction="up" />}>
+                Скрыть
+              </ButtonTransparent>
+            </div>
+            <div>
+              <ButtonTransparent
+                icon={<ArrowIcon size={16} direction="up" />}
+                disabled
+              >
+                Скрыть
+              </ButtonTransparent>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="icons-sizes flex p-2 gap-4">
         <h5>32</h5>
         <h5>24</h5>
