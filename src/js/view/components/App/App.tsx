@@ -8,9 +8,10 @@ import { Panel } from "../Panel/Panel";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import { AllEventsPage } from "../Events/AllEventsPage";
+import SPAremoveit from "../SPAremoveit/SPAremoveit";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 import "../../../../styles/index.css";
-import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -60,6 +61,7 @@ export function App() {
             <Route path="/alex" element={<Panel />} />
             <Route path="/ui-kit" element={<UIKitPage />} />
             <Route path="/events" element={<AllEventsPage />} />
+            <Route path="/SPAremoveit" element={<SPAremoveit />} />
           </Routes>
         </BrowserRouter>
       </main>
