@@ -1,6 +1,7 @@
 import { List, Store } from "../interfaces";
 
 export const initialStore: Store = {
+  userUid: null,
   list: null,
   currentListKey: null,
 };

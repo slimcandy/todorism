@@ -1,11 +1,13 @@
 import React from "react";
 import { TextBodyLarge, TitleH1 } from "../../elements/typo";
 import { Input } from "../../elements/Input";
-import tentImg from "../../../../assets/images/tent.png";
 import { ButtonPrimary } from "../../elements/buttons";
+import tentImg from "../../../../assets/images/tent.png";
 
 export const WelcomePage = () => {
+
   const placeHolder = "Как вас зовут?";
+
   return (
     <div className="pt-16 pb-6 px-4 h-full text-center">
       <div className="mb-16">
