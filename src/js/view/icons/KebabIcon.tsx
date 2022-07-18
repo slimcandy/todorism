@@ -4,7 +4,8 @@ import { SVGprops } from "../../interfaces";
 export const KebabIcon = (props: SVGprops) => {
   const { size, color = "currentColor", fill = "none", className = "" } = props;
   return (
-    <svg className={className}
+    <svg
+      className={className}
       width={size.toString()}
       height={size.toString()}
       viewBox="0 0 32 32"

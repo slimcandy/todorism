@@ -10,7 +10,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 import { Indicator } from "../../elements";
 // Texts
@@ -21,10 +21,16 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3
+  TitleH3,
 } from "../../elements/typo";
 // Buttons
-import { ButtonCircle, ButtonPrimary, ButtonSecondary, ButtonSquare, ButtonTransparent } from "../../elements/buttons";
+import {
+  ButtonCircle,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonSquare,
+  ButtonTransparent,
+} from "../../elements/buttons";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import { EventListItem } from "../Events/EventListItem";
 
@@ -203,15 +209,15 @@ export function UIKitPage() {
         </div>
         <div className="flex flex-col">
           <div className="mb-2">
-            <EventListItem title="Поход на Ястребиное"
-                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
-                           dateStart={new Date()}
-                           dateEnd={new Date()}
+            <EventListItem
+              title="Поход на Ястребиное"
+              description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+              dateStart={new Date()}
+              dateEnd={new Date()}
             />
           </div>
 
-          <EventListItem title="Поход на байдарках"
-                         dateStart={new Date()} />
+          <EventListItem title="Поход на байдарках" dateStart={new Date()} />
         </div>
       </div>
     </div>

@@ -3,5 +3,5 @@ export interface SVGprops {
   color?: string;
   fill?: string;
   direction?: string;
-  className?: string
+  className?: string;
 }

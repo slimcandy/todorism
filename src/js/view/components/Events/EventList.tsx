@@ -1,7 +1,8 @@
 import React from "react";
 import { EventListItem } from "./EventListItem";
 
-export const EventList = () => (<>
+export const EventList = () => (
+  <>
     <div className="mb-2">
       <EventListItem title="title" />
     </div>
@@ -11,4 +12,5 @@ export const EventList = () => (<>
     <div className="mb-2">
       <EventListItem title="title" />
     </div>
-  </>)
+  </>
+);
