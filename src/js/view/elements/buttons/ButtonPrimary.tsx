@@ -20,8 +20,9 @@ export const ButtonPrimary = memo((props: BtnProps) => {
   });
 
   return (
-    <button {...rest}
-            ref={buttonRef}
+    <button
+      {...rest}
+      ref={buttonRef}
       className={`btn btn-primary w-full
       dark:focus:bg-green-2 dark:focus-visible:bg-green-2
       focus:bg-green-1 focus-visible:bg-green-1

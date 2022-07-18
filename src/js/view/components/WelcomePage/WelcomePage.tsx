@@ -8,7 +8,6 @@ export const WelcomePage = () => {
   const placeHolder = "Как вас зовут?";
   return (
     <div className="pt-16 pb-6 px-4 h-full text-center">
-
       <div className="mb-16">
         <img src={tentImg} alt="Tent" />
       </div>
@@ -31,10 +30,11 @@ export const WelcomePage = () => {
         <Input type="text" placeholder={placeHolder} />
       </div>
 
-      <div className="px-7" >
-        <ButtonPrimary onClick={()=>console.log("click") }>Запомнить меня</ButtonPrimary>
+      <div className="px-7">
+        <ButtonPrimary onClick={() => console.log("click")}>
+          Запомнить меня
+        </ButtonPrimary>
       </div>
-
     </div>
   );
 };

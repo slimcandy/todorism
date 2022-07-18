@@ -4,14 +4,14 @@ type InputProps = {
   type: string;
   title?: string;
   placeholder?: string;
-  state?: "focus" | "active" | "disabled" | "error"
-  className?: string
+  state?: "focus" | "active" | "disabled" | "error";
+  className?: string;
 };
 
 export const Input = memo((props: InputProps) => {
   const { type, title = "", placeholder = "", state, className = "" } = props;
 
-  const disabled = state === "disabled" || undefined
+  const disabled = state === "disabled" || undefined;
 
   return (
     <label className={`block ${className}`}>

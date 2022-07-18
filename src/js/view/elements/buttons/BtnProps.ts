@@ -9,4 +9,10 @@ export type BtnProps = {
   disabled?: boolean;
   className?: string;
   buttonRef?: RefObject<HTMLButtonElement>;
-} & Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "lang">
+} & Omit<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >,
+  "lang"
+>;
