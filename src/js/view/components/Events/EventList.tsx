@@ -1,26 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { EventListItem } from "./EventListItem";
+import { Event } from "../../../interfaces/Event";
 
 export const EventList = () => {
-  /*  const getUserId = axios.post("/User/User?CreateUser", {
-    "nickname": "testUser"
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-  }).then((response) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return response.data;
-  }).catch((err) => {
-    console.error(err);
-  }) */
+  const [events, setEvents] = useState<Array<Event> | []>([]);
+
   const getEvents = async () =>
     axios
       .get(
-        "https://tracking-organizer.herokuapp.com/Trip/3fa85f64-5717-4562-b3fc-2c963f66afa6/All"
+        "https://tracking-organizer.herokuapp.com/Trip/f3ebd9dd-17f3-4fb4-9460-58c73128911e/All"
       )
       .then((response) => {
+        // eslint-disable-next-line no-console
         console.log(response);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        setEvents(response.data);
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.error(error);
       });
 
@@ -30,15 +28,17 @@ export const EventList = () => {
 
   return (
     <>
-      <div className="mb-2">
-        <EventListItem tripUid="id0" title="title" />
-      </div>
-      <div className="mb-2">
-        <EventListItem tripUid="id1" title="title" />
-      </div>
-      <div className="mb-2">
-        <EventListItem tripUid="id2" title="title" />
-      </div>
+      {events.map((event: Event) => (
+        <div className="mb-2">
+          <EventListItem
+            tripUid={event.trip_uid}
+            title={event.title}
+            dateStart={event.start}
+            dateEnd={event.end}
+            description={event.description}
+          />
+        </div>
+      ))}
     </>
   );
 };
