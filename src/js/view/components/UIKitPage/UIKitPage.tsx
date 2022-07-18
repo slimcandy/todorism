@@ -209,7 +209,8 @@ export function UIKitPage() {
         </div>
         <div className="flex flex-col">
           <div className="mb-2">
-            <EventListItem tripUid="id0"
+            <EventListItem
+              tripUid="id0"
               title="Поход на Ястребиное"
               description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
               dateStart={new Date()}
@@ -217,9 +218,11 @@ export function UIKitPage() {
             />
           </div>
 
-          <EventListItem tripUid="id1"
-                         title="Поход на байдарках"
-                         dateStart={new Date()} />
+          <EventListItem
+            tripUid="id1"
+            title="Поход на байдарках"
+            dateStart={new Date()}
+          />
         </div>
       </div>
     </div>
