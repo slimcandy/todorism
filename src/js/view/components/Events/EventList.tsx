@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Event } from "../../../interfaces";
 import { EventListItem } from "./EventListItem";
-import { Event } from "../../../interfaces/Event";
 
 export const EventList = () => {
   const [events, setEvents] = useState<Array<Event> | []>([]);
