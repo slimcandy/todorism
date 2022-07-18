@@ -19,7 +19,7 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
-} from "../../elements/typo";
+} from "../../elements/typography";
 
 import "./UIKitPage.css";
 
