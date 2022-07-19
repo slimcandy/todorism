@@ -4,7 +4,14 @@ import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonSecondary = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "", textClassName = "" } = props;
+  const {
+    children,
+    icon,
+    type,
+    disabled,
+    className = "",
+    textClassName = "",
+  } = props;
 
   const textClasses = classesOf(
     textClassName,

@@ -14,7 +14,7 @@ export const ArrowIcon = (props: SVGprops) => {
     "origin-center",
     "rotate-180" && direction === "down",
     "rotate-90" && direction === "right",
-    "-rotate-90" && direction === "left",
+    "-rotate-90" && direction === "left"
   );
 
   return (

@@ -4,12 +4,19 @@ import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonPrimary = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "", textClassName ="" } = props;
+  const {
+    children,
+    icon,
+    type,
+    disabled,
+    className = "",
+    textClassName = "",
+  } = props;
 
   const textClasses = classesOf(
     textClassName,
     "text-black-0" && !disabled,
-    "text-light-0 dark:text-dark-2" && disabled,
+    "text-light-0 dark:text-dark-2" && disabled
   );
 
   return (
