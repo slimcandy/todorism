@@ -6,12 +6,13 @@ import { Input } from "../../elements/Input";
 import tentImg from "../../../../assets/images/tent.png";
 
 export const WelcomePage = () => {
-
-  const createUser = async () => axios.post("https://tracking-organizer.herokuapp.com/User/User/CreateUser", {
-    nickname: "testUser"
-  })
-    .then(response => console.log(response))
-    .catch(err => console.error(err))
+  const createUser = async () =>
+    axios
+      .post("https://tracking-organizer.herokuapp.com/User/User/CreateUser", {
+        nickname: "testUser",
+      })
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
 
   return (
     <div className="pt-16 pb-6 px-4 h-full text-center">
@@ -40,7 +41,7 @@ export const WelcomePage = () => {
       <div className="px-7">
         {/* eslint-disable-next-line no-void */}
         <button onClick={() => void createUser()}> Запомнить меня </button>
-   {/*     <ButtonPrimary onClick={() => console.log("click")}>
+        {/*     <ButtonPrimary onClick={() => console.log("click")}>
           Запомнить меня
         </ButtonPrimary> */}
       </div>

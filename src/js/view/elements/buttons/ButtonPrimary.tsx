@@ -4,14 +4,7 @@ import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonPrimary = memo((props: BtnProps) => {
-  const {
-    children,
-    icon,
-    type,
-    disabled,
-    className = "",
-    buttonRef,
-  } = props;
+  const { children, icon, type, disabled, className = "", buttonRef } = props;
 
   const textClasses = classnames({
     "text-black-0": !disabled,
