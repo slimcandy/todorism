@@ -5,6 +5,6 @@ export const TextBodyStandard = (props: TypographyProps) => {
   const { children, className = "" } = props;
 
   return (
-    <span className={`text-medium font-regular ${className}`}>{children}</span>
+    <span className={`text-medium font-regular font-main ${className}`}>{children}</span>
   );
 };

@@ -4,5 +4,5 @@ import { TypographyProps } from "./TypographyProps";
 export const TitleH2 = (props: TypographyProps) => {
   const { children, className = "" } = props;
 
-  return <h2 className={`text-h2 font-bold ${className}`}>{children}</h2>;
+  return <h2 className={`text-h2 font-bold font-main ${className}`}>{children}</h2>;
 };

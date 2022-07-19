@@ -21,7 +21,6 @@ import {
   TitleH3,
 } from "../../elements/typography";
 
-
 export function UIKitPage() {
   return (
     <div className="ui-kit-page p-4 font-main">
