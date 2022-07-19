@@ -1,15 +1,16 @@
 import React from "react";
-import classnames from "classnames";
+import { classesOf } from "../../../utils";
 import { TextBodyMedium } from "../typo";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonPrimary = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "" } = props;
+  const { children, icon, type, disabled, className = "", textClassName ="" } = props;
 
-  const textClasses = classnames({
-    "text-black-0": !disabled,
-    "text-light-0 dark:text-dark-2": disabled,
-  });
+  const textClasses = classesOf(
+    textClassName,
+    "text-black-0" && !disabled,
+    "text-light-0 dark:text-dark-2" && disabled,
+  );
 
   return (
     <button
@@ -22,7 +23,7 @@ export const ButtonPrimary = (props: BtnProps) => {
       disabled={disabled}
     >
       {icon}
-      <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>
+      <TextBodyMedium className={textClasses || ""}>{children}</TextBodyMedium>
     </button>
   );
 };

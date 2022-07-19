@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames";
+import { classesOf } from "../../../utils";
 import { SVGprops } from "../../../interfaces";
 
 export const ArrowIcon = (props: SVGprops) => {
@@ -10,12 +10,12 @@ export const ArrowIcon = (props: SVGprops) => {
     direction = "up",
   } = props;
 
-  const arrowClasses = classNames({
-    "origin-center": true,
-    "rotate-180": direction === "down",
-    "rotate-90": direction === "right",
-    "-rotate-90": direction === "left",
-  });
+  const arrowClasses = classesOf(
+    "origin-center",
+    "rotate-180" && direction === "down",
+    "rotate-90" && direction === "right",
+    "-rotate-90" && direction === "left",
+  );
 
   return (
     <svg

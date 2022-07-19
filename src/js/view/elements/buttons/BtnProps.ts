@@ -8,4 +8,5 @@ export interface BtnProps {
   type?: BtnType;
   disabled?: boolean;
   className?: string;
+  textClassName?: string
 }
