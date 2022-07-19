@@ -21,11 +21,10 @@ import {
   TitleH3,
 } from "../../elements/typography";
 
-import "./UIKitPage.css";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4">
+    <div className="ui-kit-page p-4 font-main">
       <TitleH1>UI-kit page</TitleH1>
       <div className="fonts flex p-2 gap-4">
         <div className="flex-column">
