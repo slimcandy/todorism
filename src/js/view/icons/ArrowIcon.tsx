@@ -1,6 +1,6 @@
 import React from "react";
-import { classesOf } from "../../../utils";
-import { SVGprops } from "../../../interfaces";
+import { classesOf } from "../../utils";
+import { SVGprops } from "../../interfaces";
 
 export const ArrowIcon = (props: SVGprops) => {
   const {
