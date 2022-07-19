@@ -1,12 +1,17 @@
 import React from "react";
+import axios from "axios";
 import { TextBodyLarge, TitleH1 } from "../../elements/typo";
 import { Input } from "../../elements/Input";
-import { ButtonPrimary } from "../../elements/buttons";
+// import { ButtonPrimary } from "../../elements/buttons";
 import tentImg from "../../../../assets/images/tent.png";
 
 export const WelcomePage = () => {
 
-  const placeHolder = "Как вас зовут?";
+  const createUser = async () => axios.post("https://tracking-organizer.herokuapp.com/User/User/CreateUser", {
+    nickname: "testUser"
+  })
+    .then(response => console.log(response))
+    .catch(err => console.error(err))
 
   return (
     <div className="pt-16 pb-6 px-4 h-full text-center">
@@ -29,13 +34,15 @@ export const WelcomePage = () => {
       </div>
 
       <div className="mb-20">
-        <Input type="text" placeholder={placeHolder} />
+        <Input type="text" placeholder="Как вас зовут?" />
       </div>
 
       <div className="px-7">
-        <ButtonPrimary onClick={() => console.log("click")}>
+        {/* eslint-disable-next-line no-void */}
+        <button onClick={() => void createUser()}> Запомнить меня </button>
+   {/*     <ButtonPrimary onClick={() => console.log("click")}>
           Запомнить меня
-        </ButtonPrimary>
+        </ButtonPrimary> */}
       </div>
     </div>
   );

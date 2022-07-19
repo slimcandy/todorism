@@ -11,7 +11,6 @@ export const ButtonPrimary = memo((props: BtnProps) => {
     disabled,
     className = "",
     buttonRef,
-    ...rest
   } = props;
 
   const textClasses = classnames({
@@ -21,7 +20,6 @@ export const ButtonPrimary = memo((props: BtnProps) => {
 
   return (
     <button
-      {...rest}
       ref={buttonRef}
       className={`btn btn-primary w-full
       dark:focus:bg-green-2 dark:focus-visible:bg-green-2
