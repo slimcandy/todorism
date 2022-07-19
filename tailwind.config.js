@@ -1,6 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  plugins: [require("daisyui"), require("@tailwindcss/typography")],
+  plugins: [require("daisyui")],
   theme: {
     extend: {
       fontFamily: { "main": ["Manrope", "sans-serif"] },
