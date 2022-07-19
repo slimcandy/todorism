@@ -7,7 +7,7 @@ export const ButtonTransparent = (props: BtnProps) => {
 
   return (
     <button
-      className={`btn
+      className={`btn btn-ghost
       hover:bg-transparent hover:text-green-3
       focus:bg-transparent focus:text-green-2
       focus-visible:bg-transparent focus-visible:text-green-2
