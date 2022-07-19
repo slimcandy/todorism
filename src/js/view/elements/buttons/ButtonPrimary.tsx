@@ -14,6 +14,7 @@ export const ButtonPrimary = (props: BtnProps) => {
   } = props;
 
   const textClasses = classesOf(
+    "text-black-0",
     textClassName,
     "text-black-0" && !disabled,
     "text-light-0 dark:text-dark-2" && disabled
@@ -30,7 +31,7 @@ export const ButtonPrimary = (props: BtnProps) => {
       disabled={disabled}
     >
       {icon}
-      <TextBodyMedium className={textClasses || ""}>{children}</TextBodyMedium>
+      <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>
     </button>
   );
 };
