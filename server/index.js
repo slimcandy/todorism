@@ -17,10 +17,24 @@ app.get("/api/Items/", (req, res) => {
   res.send(require("./json/items.json"));
 });
 
-app.get("/api/Trip/", (req, res) => {
+app.post("/trip/", (req, res) => {
   res.setHeader("end-time", Date.now());
   res.setHeader("Access-Control-Expose-Headers", "end-time");
-  res.send(require("./json/trips.json"));
+  res.send(require("./json/trip.json"));
+});
+
+// /Trip/CreateTrip
+app.post("/Trip/CreateTrip", (req, res) => {
+  res.setHeader("end-time", Date.now());
+  res.setHeader("Access-Control-Expose-Headers", "end-time");
+  res.send(require("./json/createTrip.json"));
+});
+
+// /User/User/CreateUser
+app.post("/User/User/CreateUser", (req, res) => {
+  res.setHeader("end-time", Date.now());
+  res.setHeader("Access-Control-Expose-Headers", "end-time");
+  res.send(require("./json/createUser.json"));
 });
 
 app.listen(port, () => {

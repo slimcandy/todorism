@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-export interface TypoProps {
+export interface TypographyProps {
   children: PropsWithChildren<string>;
   className?: string;
 }

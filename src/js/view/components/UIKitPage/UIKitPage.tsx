@@ -12,8 +12,8 @@ import {
   ShareIcon,
   ZoomIcon,
 } from "../../icons";
-import { Indicator } from "../../elements";
-// Texts
+
+// Texts and buttons
 import {
   TextBodyLarge,
   TextBodyMedium,
@@ -22,15 +22,14 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
-} from "../../elements/typo";
-// Buttons
-import {
   ButtonCircle,
   ButtonPrimary,
   ButtonSecondary,
   ButtonSquare,
   ButtonTransparent,
-} from "../../elements/buttons";
+  Indicator
+} from "../../elements";
+
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function UIKitPage() {

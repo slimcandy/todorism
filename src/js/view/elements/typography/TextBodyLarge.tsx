@@ -1,7 +1,7 @@
 import React from "react";
-import { TypoProps } from "./TypoProps";
+import { TypographyProps } from "./TypographyProps";
 
-export const TextBodyLarge = (props: TypoProps) => {
+export const TextBodyLarge = (props: TypographyProps) => {
   const { children, className = "" } = props;
 
   return (

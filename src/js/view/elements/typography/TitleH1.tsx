@@ -1,7 +1,7 @@
 import React from "react";
-import { TypoProps } from "./TypoProps";
+import { TypographyProps } from "./TypographyProps";
 
-export const TitleH1 = (props: TypoProps) => {
+export const TitleH1 = (props: TypographyProps) => {
   const { children, className = "" } = props;
 
   return (

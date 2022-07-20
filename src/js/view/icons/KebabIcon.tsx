@@ -11,7 +11,7 @@ export const KebabIcon = (props: SVGprops) => {
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect x="12" width="8" height="8" rx="4" fill="white" />
+      <rect x="12" width="8" height="8" rx="4" fill={color} />
       <rect x="12" y="12" width="8" height="8" rx="4" fill={color} />
       <rect x="12" y="24" width="8" height="8" rx="4" fill={color} />
     </svg>
