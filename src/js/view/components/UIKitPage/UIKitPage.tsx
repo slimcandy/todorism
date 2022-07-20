@@ -1,5 +1,4 @@
 import React from "react";
-// Icons
 import {
   ArrowIcon,
   CalendarIcon,
@@ -12,13 +11,42 @@ import {
   ShareIcon,
   ZoomIcon,
 } from "../../icons";
-
-import "./UIKitPage.css";
+import {
+  TextBodyLarge,
+  TextBodyMedium,
+  TextBodySmall,
+  TextBodyStandard,
+  TitleH1,
+  TitleH2,
+  TitleH3,
+} from "../../elements/typography";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page p-4">
-      <h1>UI-kit page</h1>
+    <div className="ui-kit-page p-4 font-main">
+      <TitleH1>UI-kit page</TitleH1>
+      <div className="fonts flex p-2 gap-4">
+        <div className="flex-column">
+          <TitleH1>TitleH1: Заголовок первого уровня</TitleH1>
+          <TitleH2>TitleH2: Заголовок второго уровня</TitleH2>
+          <TitleH3>TitleH3: Заголовок третьего уровня</TitleH3>
+        </div>
+        <div>
+          <TextBodyLarge>TextBodyLarge: Крупный наборный текст</TextBodyLarge>
+          <br />
+          <TextBodyMedium>
+            TextBodyMedium: Текст для кнопок и кликабельного текста
+          </TextBodyMedium>
+          <br />
+          <TextBodyStandard>
+            TextBodyStandard: Стандартный наборный текст
+          </TextBodyStandard>
+          <br />
+          <TextBodySmall>
+            TextBodySmall: Мелкий наборный текст, текст для пояснений
+          </TextBodySmall>
+        </div>
+      </div>
       <div className="icons-sizes flex p-2 gap-4">
         <h5>32</h5>
         <h5>24</h5>
