@@ -1,6 +1,6 @@
 import React from "react";
 import { classesOf } from "../../../utils";
-import { TextBodyMedium } from "../typo";
+import { TextBodyMedium } from "../typography";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonSecondary = (props: BtnProps) => {

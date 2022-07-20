@@ -12,16 +12,12 @@ export function DevNavPage() {
         <div className="p-8 flex flex-col mx-auto">
           <div className="mb-8 mx-auto">
             <Link to="/alex">
-              <ButtonPrimary>
-                Alex&apos;s demo
-              </ButtonPrimary>
+              <ButtonPrimary>Alex&apos;s demo</ButtonPrimary>
             </Link>
           </div>
           <div className="mb-8 mx-auto">
             <Link to="/ui-kit">
-              <ButtonPrimary>
-                UI-kit page
-              </ButtonPrimary>
+              <ButtonPrimary>UI-kit page</ButtonPrimary>
             </Link>
           </div>
           <div className="mb-8 mx-auto">
