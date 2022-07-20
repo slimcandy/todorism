@@ -1,4 +1,4 @@
-export * from "./ArrowIcon/ArrowIcon";
+export * from "./ArrowIcon";
 export * from "./CalendarIcon";
 export * from "./CloseIcon";
 export * from "./EditIcon";

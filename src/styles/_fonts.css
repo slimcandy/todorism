@@ -1,41 +1,55 @@
 /* 200 Очень Тонкий */
 @font-face {
     font-family: "Manrope-ExtraLight";
+    font-style: normal;
+    font-weight: 200;
     src: url("../assets/fonts/Manrope-ExtraLight.ttf");
 }
 
 /* 300 Тонкий */
 @font-face {
     font-family: "Manrope-Light";
+    font-style: normal;
+    font-weight: 300;
     src: url("../assets/fonts/Manrope-Light.ttf");
 }
 
 /* 400 Обычный */
 @font-face {
     font-family: "Manrope";
+    font-style: normal;
+    font-weight: 400;
     src: url("../assets/fonts/Manrope-Regular.ttf");
 }
 
 /* 500  */
 @font-face {
     font-family: "Manrope-Medium";
+    font-style: normal;
+    font-weight: 500;
     src: url("../assets/fonts/Manrope-Medium.ttf");
 }
 
 /* 600 Полу-Жирный */
 @font-face {
     font-family: "Manrope-SemiBold";
+    font-style: normal;
+    font-weight: 600;
     src: url("../assets/fonts/Manrope-SemiBold.ttf");
 }
 
 /* 700 Жирный */
 @font-face {
     font-family: "Manrope-Bold";
+    font-style: normal;
+    font-weight: 700;
     src: url("../assets/fonts/Manrope-Bold.ttf");
 }
 
 /* 800 очень Жирный */
 @font-face {
     font-family: "Manrope-ExtraBold";
+    font-style: normal;
+    font-weight: 800;
     src: url("../assets/fonts/Manrope-ExtraBold.ttf");
 }

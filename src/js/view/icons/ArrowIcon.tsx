@@ -1,14 +1,25 @@
-import React, { FunctionComponent } from "react";
-import { SVGprops } from "../../../interfaces";
+import React from "react";
+import { classesOf } from "../../utils";
+import { SVGprops } from "../../interfaces";
 
-import "./ArrowIcon.css";
+export const ArrowIcon = (props: SVGprops) => {
+  const {
+    size,
+    color = "currentColor",
+    fill = "none",
+    direction = "up",
+  } = props;
 
-export const ArrowIcon: FunctionComponent<SVGprops> = (props) => {
-  const { size, color = "white", fill = "none", direction = "up" } = props;
+  const arrowClasses = classesOf(
+    "origin-center",
+    "rotate-180" && direction === "down",
+    "rotate-90" && direction === "right",
+    "-rotate-90" && direction === "left"
+  );
 
   return (
     <svg
-      className={`arrow-icon_${direction}`}
+      className={arrowClasses}
       width={size.toString()}
       height={size.toString()}
       viewBox="0 0 32 32"
