@@ -47,6 +47,7 @@ module.exports = {
       "red-4": "#FFE5E5",
     },
     extend: {
+      fontFamily: { main: ["Manrope", "sans-serif"]},
       fontSize: {
         "h1": ["1.5rem", { lineHeight: "32px" }],
         "h2": ["1.125rem", { lineHeight: "22px" }],

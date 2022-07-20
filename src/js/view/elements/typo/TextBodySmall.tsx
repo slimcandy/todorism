@@ -5,6 +5,8 @@ export const TextBodySmall = (props: TypoProps) => {
   const { children, className = "" } = props;
 
   return (
-    <span className={`text-small font-regular ${className}`}>{children}</span>
+    <span className={`text-small font-regular font-main ${className}`}>
+      {children}
+    </span>
   );
 };

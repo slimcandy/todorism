@@ -5,6 +5,8 @@ export const TextBodyLarge = (props: TypoProps) => {
   const { children, className = "" } = props;
 
   return (
-    <span className={`text-h3 font-regular ${className}`}>{children}</span>
+    <span className={`text-h3 font-regular font-main ${className}`}>
+      {children}
+    </span>
   );
 };
