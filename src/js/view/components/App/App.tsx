@@ -10,6 +10,8 @@ import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
 
 import "../../../../styles/index.css";
+import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,29 +39,33 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div style={{ width: 150, padding: 12 }}>
-        <select
-          className="select w-full select-xs w-full max-w-xs"
-          onChange={(e) => onLangChange(e)}
-        >
-          {langLocales.map((opt) => (
-            <option key={opt.id} value={opt.lang}>
-              {opt.title}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="bg-light-4 dark:bg-dark-1 min-h-screen">
+        <div style={{ width: 150, padding: 12, display: "flex" }}>
+          <select
+            className="select w-full select-xs w-full max-w-xs"
+            onChange={(e) => onLangChange(e)}
+          >
+            {langLocales.map((opt) => (
+              <option key={opt.id} value={opt.lang}>
+                {opt.title}
+              </option>
+            ))}
+          </select>
+          <ThemeToggler />
+        </div>
 
-      <main>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<DevNavPage />} />
-            <Route path="/alex" element={<Panel />} />
-            <Route path="/ui-kit" element={<UIKitPage />} />
-            <Route path="/SPAremoveit" element={<SPAremoveit />} />
-          </Routes>
-        </BrowserRouter>
-      </main>
+        <main>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<DevNavPage />} />
+              <Route path="/alex" element={<Panel />} />
+              <Route path="/ui-kit" element={<UIKitPage />} />
+              <Route path="/no-events" element={<NoEventsPage />} />
+              <Route path="/SPAremoveit" element={<SPAremoveit />} />
+            </Routes>
+          </BrowserRouter>
+        </main>
+      </div>
     </Provider>
   );
 }
