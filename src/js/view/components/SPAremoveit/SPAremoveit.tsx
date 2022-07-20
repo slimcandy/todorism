@@ -48,7 +48,10 @@ const SPAremoveit = () => {
       };
 
       setUserUid(userUid);
-      pushLocalStorage(localStorageUsernameKey, JSON.stringify(localStorageUserNameObj))
+      pushLocalStorage(
+        localStorageUsernameKey,
+        JSON.stringify(localStorageUserNameObj)
+      )
         .then(
           () => {},
           () => {}

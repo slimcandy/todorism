@@ -27,7 +27,7 @@ import {
   ButtonSecondary,
   ButtonSquare,
   ButtonTransparent,
-  Indicator
+  Indicator,
 } from "../../elements";
 
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
