@@ -30,7 +30,7 @@ export const ButtonSecondary = (props: BtnProps) => {
       disabled={disabled}
     >
       {icon}
-      <TextBodyMedium className={textClasses || ""}>{children}</TextBodyMedium>
+      <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>
     </button>
   );
 };

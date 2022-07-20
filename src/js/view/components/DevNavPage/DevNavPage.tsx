@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonPrimary } from "../../elements/buttons";
+import { ButtonPrimary } from "../../elements";
 
 export function DevNavPage() {
   return (

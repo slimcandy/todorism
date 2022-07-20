@@ -1,4 +1,5 @@
 import React from "react";
+// Icons
 import {
   ArrowIcon,
   CalendarIcon,
@@ -11,6 +12,8 @@ import {
   ShareIcon,
   ZoomIcon,
 } from "../../icons";
+
+// Texts and buttons
 import {
   TextBodyLarge,
   TextBodyMedium,
@@ -19,19 +22,26 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
-} from "../../elements/typography";
-import {
   ButtonCircle,
   ButtonPrimary,
   ButtonSecondary,
   ButtonSquare,
   ButtonTransparent,
-} from "../../elements/buttons";
+  Indicator,
+} from "../../elements";
+
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function UIKitPage() {
   return (
-    <div className="ui-kit-page font-main p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
+    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
+      <h1>UI-kit page</h1>
+      <span className="mr-2">
+        <Indicator />
+      </span>
+      <span className="mr-2">
+        <Indicator isActive />
+      </span>
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
 
