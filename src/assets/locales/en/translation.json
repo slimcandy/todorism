@@ -2,9 +2,11 @@
   "language": "English",
   "events": {
     "list": {
-      "your_events": "Your events"
+      "your_events": "Your events",
+      "no_events": "You have no events"
     },
     "create_new_event": {
+      "create_btn": "+ Create a new event",
       "new_event": "New event",
       "enter_event_name": "Enter event name",
       "choose_dates": "Choose dates",
