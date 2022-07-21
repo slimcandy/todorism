@@ -10,7 +10,9 @@ export const NoEventsPage = () => (
    flex flex-col
    justify-between
     px-4 pt-3 pb-6
-    md:w-80 w-full
+    sm:w-6/12
+    w-full
+    mx-auto
     text-black-0 dark:text-light-4"
   >
     <TitleH1>Ваши мероприятия</TitleH1>
