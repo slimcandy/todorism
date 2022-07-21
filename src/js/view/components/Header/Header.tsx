@@ -14,12 +14,12 @@ export const Header = (props: HeaderProps) => {
 
   const { i18n } = useTranslation();
 
-    const cLanguage = useCallback(
-      async (language: string) => {
-        await i18n.changeLanguage(language).then();
-      },
-      [i18n]
-    );
+  const cLanguage = useCallback(
+    async (language: string) => {
+      await i18n.changeLanguage(language).then();
+    },
+    [i18n]
+  );
 
   const onLangChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
