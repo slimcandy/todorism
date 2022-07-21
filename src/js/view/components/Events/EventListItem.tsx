@@ -1,7 +1,7 @@
 import React from "react";
 import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
 import { KebabIcon } from "../../icons";
-import { isDateExpired, dateToStringDDMMYYYY } from "../../../utils";
+import { dateToStringDDMMYYYY, isDateExpired } from "../../../utils";
 
 export interface EventListItemProps {
   tripUid: string;
@@ -49,7 +49,7 @@ export const EventListItem = (props: EventListItemProps) => {
       </div>
 
       <KebabIcon
-        size={12}
+        size={16}
         className="cursor-pointer dark:text-dark-2 text-dark-4"
       />
     </div>
