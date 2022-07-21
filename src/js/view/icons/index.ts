@@ -3,6 +3,7 @@ export * from "./CalendarIcon";
 export * from "./CloseIcon";
 export * from "./EditIcon";
 export * from "./DeleteIcon";
+export * from "./GearIcon";
 export * from "./MinusIcon";
 export * from "./PlusIcon";
 export * from "./KebabIcon";
