@@ -2,16 +2,16 @@ import React, { useCallback, useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { langLocales } from "../../../common/constants";
+// import { langLocales } from "../../../common/constants";
 import store from "../../../stores/store";
 import { Panel } from "../Panel/Panel";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
+import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
+import { Header } from "../Header/Header";
 
 import "../../../../styles/index.css";
-import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
-import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -22,16 +22,16 @@ export function App() {
     [i18n]
   );
 
-  const onLangChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      if (e.target.value) {
-        void cLanguage(e.target.value);
-      } else {
-        void cLanguage("ru");
-      }
-    },
-    [cLanguage]
-  );
+  /*  const onLangChange = useCallback(
+      (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if (e.target.value) {
+          void cLanguage(e.target.value);
+        } else {
+          void cLanguage("ru");
+        }
+      },
+      [cLanguage]
+    ); */
 
   useEffect(() => {
     void cLanguage("ru");
@@ -39,9 +39,9 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="bg-light-4 dark:bg-dark-1 min-h-screen">
+      <div className="relative bg-light-4 dark:bg-dark-1 min-h-screen">
         <div style={{ width: 150, padding: 12, display: "flex" }}>
-          <select
+          {/*          <select
             className="select w-full select-xs w-full max-w-xs"
             onChange={(e) => onLangChange(e)}
           >
@@ -50,11 +50,11 @@ export function App() {
                 {opt.title}
               </option>
             ))}
-          </select>
-          <ThemeToggler />
+          </select> */}
+          <Header isWithLogo />
         </div>
 
-        <main>
+        <main className="pt-4">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<DevNavPage />} />
