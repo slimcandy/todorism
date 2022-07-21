@@ -29,6 +29,7 @@ import {
   ButtonTransparent,
   Indicator,
 } from "../../elements";
+import SearchBar from "../SearchBar/SearchBar";
 
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
@@ -202,6 +203,9 @@ export function UIKitPage() {
           <ArrowIcon size={12} />
         </div>
       </div>
+      <h2 className="text-white">Components</h2>
+      <h4 className="text-myPerfectDark">SearchBar</h4>
+      <SearchBar placeholder="Поиск" />
     </div>
   );
 }
