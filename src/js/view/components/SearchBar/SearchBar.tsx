@@ -1,6 +1,7 @@
 import React from "react";
 import { ZoomIcon } from "../../icons";
 import { SearchBarProps } from "./types";
+import styles from "../../../../styles/SearchBar.module.scss";
 
 const SearchBar = (props: SearchBarProps) => {
   const {
@@ -23,7 +24,7 @@ const SearchBar = (props: SearchBarProps) => {
         <input
           type="search"
           placeholder={placeholder}
-          className="input w-full max-w-xs text-current pl-12 h-9 bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white disabled:text-black-3 disabled:bg-black-2 disabled:border-none disabled:placeholder:text-black-3"
+          className={`input w-full max-w-xs text-current pl-12 h-9 bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white disabled:text-black-3 disabled:bg-black-2 disabled:border-none disabled:placeholder:text-black-3 ${styles.search} `}
           onChange={onChange}
           value={value}
           disabled={disabled}
