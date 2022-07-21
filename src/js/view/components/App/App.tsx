@@ -40,8 +40,8 @@ export function App() {
   return (
     <Provider store={store}>
       <div className="relative bg-light-4 dark:bg-dark-1 min-h-screen">
-        <div style={{ width: 150, padding: 12, display: "flex" }}>
-          {/*          <select
+        {/*  <div style={{ width: 150, padding: 12, display: "flex" }}>
+                   <select
             className="select w-full select-xs w-full max-w-xs"
             onChange={(e) => onLangChange(e)}
           >
@@ -50,11 +50,11 @@ export function App() {
                 {opt.title}
               </option>
             ))}
-          </select> */}
-          <Header isWithLogo />
-        </div>
+          </select>
+        </div> */}
+        <Header isWithLogo />
 
-        <main className="pt-4">
+        <main className="pt-10">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<DevNavPage />} />

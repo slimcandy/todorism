@@ -2,8 +2,6 @@ import React from "react";
 import { ButtonPrimary, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
 
-import "./NoEventsPage.css";
-
 export const NoEventsPage = () => (
   <div
     className="no-events-page
@@ -11,7 +9,7 @@ export const NoEventsPage = () => (
    justify-between
     px-4 pt-3 pb-6
     sm:w-6/12
-    w-full
+    w-full h-[calc(100vh_-_51px)]
     mx-auto
     text-black-0 dark:text-light-4"
   >
