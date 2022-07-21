@@ -1,6 +1,6 @@
 import React from "react";
 import { ZoomIcon } from "../../icons";
-import { SearchBarProps } from "./types";
+import { SearchBarProps } from "./SearchBarProps";
 import styles from "../../../../styles/SearchBar.module.scss";
 
 const SearchBar = (props: SearchBarProps) => {
