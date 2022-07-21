@@ -1,2 +1,2 @@
 export * from "./classesOf";
-export * from  "./date/index"
+export * from "./date/index";

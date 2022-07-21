@@ -28,10 +28,10 @@ export const EventList = () => {
       .post(
         "https://tracking-organizer.herokuapp.com/Trip/CreateTrip?user_uid=f3ebd9dd-17f3-4fb4-9460-58c73128911e",
         {
-          "title": "Выходные на байдарках",
-          "description": "С заходом на базу отдыха «Надежда» и на скалу Парнас",
-          "start": new Date("December 17, 2025 03:24:00"),
-          "end": new Date("December 27, 2025 03:24:00")
+          title: "Выходные на байдарках",
+          description: "С заходом на базу отдыха «Надежда» и на скалу Парнас",
+          start: new Date("December 17, 2025 03:24:00"),
+          end: new Date("December 27, 2025 03:24:00"),
         }
       )
       .then((response) => {

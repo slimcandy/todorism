@@ -29,7 +29,6 @@ export function App() {
   return (
     <Provider store={store}>
       <div className="relative bg-light-4 dark:bg-dark-0 min-h-screen">
-
         <Header isWithLogo />
 
         <main className="pt-10">

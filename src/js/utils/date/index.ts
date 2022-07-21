@@ -1,2 +1,2 @@
-export * from "./dateToStringDDMMYYYY"
-export * from "./isDateExpired"
+export * from "./dateToStringDDMMYYYY";
+export * from "./isDateExpired";

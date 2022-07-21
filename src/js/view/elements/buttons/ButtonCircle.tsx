@@ -5,9 +5,9 @@ export const ButtonCircle = (props: BtnIconProps) => {
   const { icon, type, disabled, className = "", onClick } = props;
 
   const onClickFn = () => {
-    if(!onClick) return;
+    if (!onClick) return;
     onClick();
-  }
+  };
 
   return (
     <button

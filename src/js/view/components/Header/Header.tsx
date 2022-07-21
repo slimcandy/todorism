@@ -38,7 +38,11 @@ export const Header = (props: HeaderProps) => {
     flex justify-between w-full
     dark:text-light-4 text-black-0"
     >
-      {isWithLogo && <a href="/"><TitleH1>LOGO</TitleH1></a>}
+      {isWithLogo && (
+        <a href="/">
+          <TitleH1>LOGO</TitleH1>
+        </a>
+      )}
       {!isWithLogo && <div> Back </div>}
       <div className="flex">
         <div className="mr-4">
