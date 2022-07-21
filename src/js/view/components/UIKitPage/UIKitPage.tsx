@@ -10,7 +10,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 
 // Texts and buttons
@@ -27,7 +27,7 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3
+  TitleH3,
 } from "../../elements";
 import SearchBar from "../SearchBar/SearchBar";
 
