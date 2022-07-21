@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from "react";
 import {
   localStorageUsernameKey,
@@ -8,9 +9,12 @@ import {
   pushLocalStorage,
 } from "../../../utils/localStorage";
 
-const serverUrl = process.env.SERVER || "http://localhost:3001";
+const SERVER_URL = process.env.REACT_APP_SERVER || "http://localhost:3001";
 
 const SPAremoveit = () => {
+  // global store
+  const [_userUid, setUserUid] = useState("");
+  const [_tripUid, setTripUid] = useState("");
   // 1. Username
   const [username, setUsername] = useState<string>("");
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +28,7 @@ const SPAremoveit = () => {
       username: string;
       user_uid: string;
     }
-    const response = await fetch(`${serverUrl}/api/User/User/CreateUser`, {
+    const response = await fetch(`${SERVER_URL}/User/User/CreateUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,12 +47,16 @@ const SPAremoveit = () => {
         user_uid: userUid,
       };
 
+      setUserUid(userUid);
       pushLocalStorage(
         localStorageUsernameKey,
         JSON.stringify(localStorageUserNameObj)
       )
-        .then(() => console.log("username sucessfully saved"))
-        .catch(console.error);
+        .then(
+          () => {},
+          () => {}
+        )
+        .catch(() => {});
     }
   };
 
@@ -64,7 +72,7 @@ const SPAremoveit = () => {
         )
           setTripIds(JSON.parse(localStorageString) as string[]);
       })
-      .catch(console.error);
+      .catch(() => {});
   }, []);
   const onNewTripClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -86,10 +94,41 @@ const SPAremoveit = () => {
   const onNewTripFormDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => setNewTripFormDescription(event.target.value);
-  const onNewTripFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // save to local storage
-    setPeopleFormOpen(true);
+  const onNewTripFormSubmit = async () => {
+    const response = await fetch(
+      `${SERVER_URL}/Trip/CreateTrip?user_uid=${_userUid}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: newTripFormName,
+          description: newTripFormDescription,
+          start: newTripFormDates,
+          end: newTripFormDates,
+        }),
+      }
+    );
+
+    interface INewTripResponse {
+      trip_uid: string;
+    }
+    if (response.ok) {
+      const json: INewTripResponse =
+        (await response.json()) as INewTripResponse;
+      const { trip_uid: tripUid } = json;
+
+      setPeopleFormOpen(true);
+      setTripUid(tripUid);
+
+      pushLocalStorage("localStorageTripIdKey", JSON.stringify(_tripUid))
+        .then(
+          () => {},
+          () => {}
+        )
+        .catch(() => {});
+    }
   };
 
   // 4. Форма нового человека
@@ -105,7 +144,7 @@ const SPAremoveit = () => {
 
   const onFormSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    fetch(`${serverUrl}/api/trip/`, {
+    fetch(`${SERVER_URL}/trip/`, {
       method: "POST",
       body: JSON.stringify({
         name: newTripFormName,
@@ -114,8 +153,8 @@ const SPAremoveit = () => {
         people,
       }),
     })
-      .then(console.log)
-      .catch(console.error)
+      .then(() => {})
+      .catch(() => {})
       .finally(() => setSuccessPageOpen(true)); // тут и ссылка на мероприятие будет
   };
 
@@ -147,7 +186,9 @@ const SPAremoveit = () => {
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
 
-              onUsernameSubmit().then(console.log).catch(console.error);
+              onUsernameSubmit()
+                .then(() => {})
+                .catch(() => {});
             }}
           >
             <label className="label">
@@ -161,7 +202,7 @@ const SPAremoveit = () => {
               />
             </label>
             <button type="submit" className="btn">
-              Сохранить имя
+              1. Сохранить имя
             </button>
           </form>
         </li>
@@ -177,13 +218,20 @@ const SPAremoveit = () => {
             <p>У вас ещё нет мероприятий</p>
           )}
           <button type="button" onClick={onNewTripClick} className="btn">
-            +Создать новое мероприятие
+            2. Создать новое мероприятие
           </button>
         </li>
         {newTripFormOpen ? (
           <li>
             <h2>3. Форма нового мероприятия</h2>
-            <form onSubmit={onNewTripFormSubmit}>
+            <form
+              onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+                event.preventDefault();
+                onNewTripFormSubmit()
+                  .then(() => {})
+                  .catch(() => {});
+              }}
+            >
               <label className="label">
                 Название мероприятия
                 <input
@@ -211,7 +259,7 @@ const SPAremoveit = () => {
                 />
               </label>
               <button type="submit" className="btn">
-                Добавить
+                3. Добавить
               </button>
             </form>
           </li>
@@ -245,7 +293,7 @@ const SPAremoveit = () => {
               </button>
             </form>
             <button type="button" onClick={onFormSubmit} className="btn">
-              Сохранить список
+              4. Сохранить список
             </button>
           </li>
         ) : (

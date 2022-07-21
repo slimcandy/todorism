@@ -2,7 +2,7 @@ import React from "react";
 import { SVGprops } from "../../interfaces";
 
 export const ZoomIcon = (props: SVGprops) => {
-  const { size, color = "currentColor", fill = "none" } = props;
+  const { size, color = "currentColor", fill = "none", className } = props;
   return (
     <svg
       width={size.toString()}
@@ -10,6 +10,7 @@ export const ZoomIcon = (props: SVGprops) => {
       viewBox="0 0 32 32"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
+      className={className || ""}
     >
       <path
         fillRule="evenodd"

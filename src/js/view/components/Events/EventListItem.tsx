@@ -1,8 +1,7 @@
 import React from "react";
-import { TextBodySmall, TitleH3 } from "../../elements/typo";
+import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
 import { KebabIcon } from "../../icons";
-import { Indicator } from "../../elements";
-import { dateToStringDDMMYYYY } from "../../../utils/date";
+import { isDateExpired, dateToStringDDMMYYYY } from "../../../utils";
 
 export interface EventListItemProps {
   tripUid: string;
@@ -22,6 +21,7 @@ export const EventListItem = (props: EventListItemProps) => {
   if (dateEnd) {
     end = dateToStringDDMMYYYY(new Date(dateEnd));
   }
+
   return (
     <div
       id={tripUid}
@@ -31,7 +31,7 @@ export const EventListItem = (props: EventListItemProps) => {
     >
       <div className="mr-3 w-full">
         <div className="mb-3">
-          <TitleH3>{title}</TitleH3>
+          <TitleH3 className="mb-1">{title}</TitleH3>
           <TextBodySmall className="text-dark-3 mt-1">
             {description || ""}
           </TextBodySmall>
@@ -39,7 +39,7 @@ export const EventListItem = (props: EventListItemProps) => {
 
         {start && (
           <div>
-            <Indicator isActive />
+            <Indicator isActive={dateStart ? isDateExpired(dateStart) : true} />
             <TextBodySmall className="ml-1">{start || ""}</TextBodySmall>
             {end && (
               <TextBodySmall className="ml-1">{`- ${end || ""}`}</TextBodySmall>

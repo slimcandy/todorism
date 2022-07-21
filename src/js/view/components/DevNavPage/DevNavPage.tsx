@@ -1,45 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ButtonPrimary } from "../../elements";
 
 export function DevNavPage() {
-  const devNavPageStyles = {
-    backgroundColor: "#262631",
-    height: "100vh",
-  };
-
   return (
-    <div className="dev-nav-page pt-8" style={devNavPageStyles}>
-      <h1 className="text-center " style={{ color: "#fff" }}>
+    <div className="dev-nav-page pt-8 h-full">
+      <h1 className="text-center text-light-4">
         Welcome to develop navigation page
       </h1>
       <nav>
         <div className="p-8 flex flex-col mx-auto">
           <div className="mb-8 mx-auto">
             <Link to="/alex">
-              <button type="button" className="btn btn-primary">
-                Alex&apos;s demo
-              </button>
+              <ButtonPrimary>Alex&apos;s demo</ButtonPrimary>
             </Link>
           </div>
           <div className="mb-8 mx-auto">
             <Link to="/ui-kit">
-              <button type="button" className="btn btn-primary">
-                UI-kit page
-              </button>
+              <ButtonPrimary>UI-kit page</ButtonPrimary>
+            </Link>
+          </div>
+          <div className="mb-8 mx-auto">
+            <Link to="/no-events">
+              <ButtonPrimary>No Events Page</ButtonPrimary>
             </Link>
           </div>
           <div className="mb-8 mx-auto">
             <Link to="/events">
-              <button type="button" className="btn btn-primary">
+              <ButtonPrimary>
                 Events page
-              </button>
+              </ButtonPrimary>
             </Link>
           </div>
           <div className="mb-8 mx-auto">
             <Link to="/SPAremoveit">
-              <button type="button" className="btn btn-primary">
+              <ButtonPrimary>
                 Один огромный компонент, который нужно разбить
-              </button>
+              </ButtonPrimary>
             </Link>
           </div>
         </div>

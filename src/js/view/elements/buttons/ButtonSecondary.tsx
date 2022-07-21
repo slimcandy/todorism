@@ -1,19 +1,27 @@
 import React from "react";
-import classnames from "classnames";
-import { TextBodyMedium } from "../typo";
+import { classesOf } from "../../../utils";
+import { TextBodyMedium } from "../typography";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonSecondary = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "" } = props;
+  const {
+    children,
+    icon,
+    type,
+    disabled,
+    className = "",
+    textClassName = "",
+  } = props;
 
-  const textClasses = classnames({
-    "text-light-4": !disabled,
-    "text-dark-2": disabled,
-  });
+  const textClasses = classesOf(
+    textClassName,
+    "text-light-4" && !disabled,
+    "text-dark-2" && disabled
+  );
 
   return (
     <button
-      className={`btn btn-secondary
+      className={`btn btn-secondary w-full
       dark:focus:bg-black-4 dark:focus-visible:bg-black-4 
       hover:bg-black-3 dark:hover:bg-black-3
       focus:bg-dark-1 focus-visible:bg-dark-4 

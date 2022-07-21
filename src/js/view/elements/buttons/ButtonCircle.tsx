@@ -2,7 +2,12 @@ import React from "react";
 import { BtnIconProps } from "./BtnIconProps";
 
 export const ButtonCircle = (props: BtnIconProps) => {
-  const { icon, type, disabled, className = "" } = props;
+  const { icon, type, disabled, className = "", onClick } = props;
+
+  const onClickFn = () => {
+    if(!onClick) return;
+    onClick();
+  }
 
   return (
     <button
@@ -12,6 +17,7 @@ export const ButtonCircle = (props: BtnIconProps) => {
       normal-case ${className}`}
       type={type}
       disabled={disabled}
+      onClick={onClickFn}
     >
       {icon}
     </button>

@@ -2,9 +2,11 @@
   "language": "Русский",
   "events": {
     "list": {
-      "your_events": "Ваши мероприятия"
+      "your_events": "Ваши мероприятия",
+      "no_events": "У вас еще нет мероприятий"
     },
     "create_new_event": {
+      "create_btn": "+ Создать новое мероприятие",
       "new_event": "Новое мероприятие",
       "enter_event_name": "Введите название мероприятия",
       "choose_dates": "Выберите даты",
