@@ -12,7 +12,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 
 // Texts and buttons
@@ -30,7 +30,7 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
-  Input
+  Input,
 } from "../../elements";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -224,8 +224,7 @@ export function UIKitPage() {
             </div>
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")}
-                     disabled />
+              <Input placeholder={t("inputs.whats_your_name")} disabled />
             </div>
           </div>
         </div>

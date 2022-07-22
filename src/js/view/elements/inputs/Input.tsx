@@ -2,11 +2,7 @@ import React from "react";
 import { InputProps } from "./InputProps";
 
 export const Input = (props: InputProps) => {
-  const {
-    placeholder,
-    className = "",
-    disabled = false
-  } = props;
+  const { placeholder, className = "", disabled = false } = props;
 
   return (
     <form>
@@ -15,7 +11,8 @@ export const Input = (props: InputProps) => {
         focus-within:text-dark-3 focus-within:placeholder:text-dark-3 
         ${className}`}
       >
-        <input className={`input w-full
+        <input
+          className={`input w-full
                           py-3 h-11
                           focus:outline-none
                           
@@ -32,9 +29,9 @@ export const Input = (props: InputProps) => {
                           disabled:text-dark-4 disabled:bg-light-2
                           disabled:border-none 
                           ${className}`}
-               disabled={disabled}
-               placeholder={placeholder}
-                />
+          disabled={disabled}
+          placeholder={placeholder}
+        />
       </label>
     </form>
   );
