@@ -222,9 +222,30 @@ export function UIKitPage() {
             <div className="w-80">
               <Input placeholder={t("inputs.whats_your_name")} />
             </div>
+
+            <TextBodySmall>With Icon</TextBodySmall>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} 
+              icon={<CalendarIcon size={20}/>}/>
+            </div>
+
+            <div className="w-80 mt-4">
+              <Input placeholder={t("inputs.whats_your_name")} 
+              icon={<CalendarIcon size={20} className="cursor-pointer"/>}
+              isIconLeft/>
+            </div>
+
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} disabled />
+              <Input placeholder={t("inputs.whats_your_name")} 
+              disabled />
+            </div>
+
+            <TextBodySmall>Disabled with icon</TextBodySmall>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} 
+              icon={<CalendarIcon size={20}/>}
+              disabled />
             </div>
           </div>
         </div>
