@@ -38,5 +38,8 @@
     "common_things": "Common things",
     "private_things": "Private things",
     "bring_along": "Bring along"
+  },
+  "inputs": {
+    "whats_your_name": "What is your name?"
   }
 }

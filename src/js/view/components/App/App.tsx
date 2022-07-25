@@ -39,7 +39,7 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="relative bg-light-4 dark:bg-dark-1 min-h-screen">
+      <div className="relative bg-light-4 dark:bg-dark-0 min-h-screen">
         {/*  <div style={{ width: 150, padding: 12, display: "flex" }}>
                    <select
             className="select w-full select-xs w-full max-w-xs"
