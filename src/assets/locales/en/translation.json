@@ -32,7 +32,8 @@
     "take": "Take",
     "delete": "Delete",
     "edit": "Edit",
-    "share": "Share"
+    "share": "Share",
+    "remember_me": "Remember me"
   },
   "tabs": {
     "common_things": "Common things",
@@ -41,5 +42,12 @@
   },
   "inputs": {
     "whats_your_name": "What is your name?"
+  },
+  "pages": {
+    "welcome": {
+      "title": "Welcome!",
+      "description": "We are an app [NAME], the best app to organize your event!",
+      "whats_your_name": "What is your name?"
+    }
   }
 }
