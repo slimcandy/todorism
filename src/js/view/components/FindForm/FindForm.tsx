@@ -7,7 +7,7 @@ import {
   pushLocalStorage,
 } from "../../../utils/localStorage";
 import { getStorageList } from "../../../utils/storage";
-import { ZoomIcon } from "../../icons/ZoomIcon";
+import { ZoomIcon } from "../../icons";
 
 const localStorageKey = "listKeyMemory";
 

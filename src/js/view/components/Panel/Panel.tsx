@@ -6,12 +6,12 @@ import { clearList, listSelector, setList } from "../../../stores/store";
 import { pushLocalStorage } from "../../../utils/localStorage";
 import { setStorageList } from "../../../utils/storage";
 import {
-  FindForm,
   CreateForm,
+  CurrentUser,
+  FindForm,
   List,
   PeopleForm,
   PeopleList,
-  CurrentUser,
 } from "../index";
 
 export function Panel() {
