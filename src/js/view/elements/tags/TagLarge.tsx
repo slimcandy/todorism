@@ -14,6 +14,8 @@ export const TagLarge = (props: TagProps) => {
   );
 
   return (
-    <div className={tagClasses}><TextBodyStandard>{children}</TextBodyStandard></div>
+    <div className={tagClasses}>
+      <TextBodyStandard>{children}</TextBodyStandard>
+    </div>
   );
 };

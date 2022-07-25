@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from "react";
-import { localStorageTripIdKey, localStorageUsernameKey } from "../../../common/constants";
-import { pullLocalStorage, pushLocalStorage } from "../../../utils/localStorage";
+import {
+  localStorageTripIdKey,
+  localStorageUsernameKey,
+} from "../../../common/constants";
+import {
+  pullLocalStorage,
+  pushLocalStorage,
+} from "../../../utils/localStorage";
 
 const SERVER_URL = process.env.REACT_APP_SERVER || "http://localhost:3001";
 
@@ -27,11 +33,11 @@ const SPAremoveit = () => {
     const response = await fetch(`${SERVER_URL}/User/User/CreateUser`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username
-      })
+        username,
+      }),
     });
 
     if (response.ok) {
@@ -40,7 +46,7 @@ const SPAremoveit = () => {
       const { user_uid: userUid } = json;
       const localStorageUserNameObj: IUserNameObj = {
         username,
-        user_uid: userUid
+        user_uid: userUid,
       };
 
       setUserUid(userUid);
@@ -49,13 +55,10 @@ const SPAremoveit = () => {
         JSON.stringify(localStorageUserNameObj)
       )
         .then(
-          () => {
-          },
-          () => {
-          }
+          () => {},
+          () => {}
         )
-        .catch(() => {
-        });
+        .catch(() => {});
     }
   };
 
@@ -71,8 +74,7 @@ const SPAremoveit = () => {
         )
           setTripIds(JSON.parse(localStorageString) as string[]);
       })
-      .catch(() => {
-      });
+      .catch(() => {});
   }, []);
   const onNewTripClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -100,14 +102,14 @@ const SPAremoveit = () => {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: newTripFormName,
           description: newTripFormDescription,
           start: newTripFormDates,
-          end: newTripFormDates
-        })
+          end: newTripFormDates,
+        }),
       }
     );
 
@@ -125,13 +127,10 @@ const SPAremoveit = () => {
 
       pushLocalStorage("localStorageTripIdKey", JSON.stringify(_tripUid))
         .then(
-          () => {
-          },
-          () => {
-          }
+          () => {},
+          () => {}
         )
-        .catch(() => {
-        });
+        .catch(() => {});
     }
   };
 
@@ -154,13 +153,11 @@ const SPAremoveit = () => {
         name: newTripFormName,
         dates: newTripFormDates,
         describe: newTripFormDescription,
-        people
-      })
+        people,
+      }),
     })
-      .then(() => {
-      })
-      .catch(() => {
-      })
+      .then(() => {})
+      .catch(() => {})
       .finally(() => setSuccessPageOpen(true)); // тут и ссылка на мероприятие будет
   };
 
@@ -193,10 +190,8 @@ const SPAremoveit = () => {
               event.preventDefault();
 
               onUsernameSubmit()
-                .then(() => {
-                })
-                .catch(() => {
-                });
+                .then(() => {})
+                .catch(() => {});
             }}
           >
             <label className="label">
@@ -236,10 +231,8 @@ const SPAremoveit = () => {
               onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
                 event.preventDefault();
                 onNewTripFormSubmit()
-                  .then(() => {
-                  })
-                  .catch(() => {
-                  });
+                  .then(() => {})
+                  .catch(() => {});
               }}
             >
               <label className="label">
@@ -349,10 +342,8 @@ const SPAremoveit = () => {
                   className="h-6 w-6"
                   viewBox="0 0 16 16"
                 >
-                  <path
-                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                  <path
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
                 <span className="sr-only">Add</span>
               </button>

@@ -14,6 +14,8 @@ export const TagSmall = (props: TagProps) => {
   );
 
   return (
-    <div className={tagClasses}><TextBodySmall>{children}</TextBodySmall></div>
+    <div className={tagClasses}>
+      <TextBodySmall>{children}</TextBodySmall>
+    </div>
   );
 };

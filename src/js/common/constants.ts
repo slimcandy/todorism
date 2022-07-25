@@ -11,11 +11,11 @@ export const langLocales = [
   {
     id: 1,
     title: "Русский",
-    lang: "ru"
+    lang: "ru",
   },
   {
     id: 2,
     title: "English",
-    lang: "en"
-  }
+    lang: "en",
+  },
 ];

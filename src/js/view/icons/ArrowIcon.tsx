@@ -7,7 +7,7 @@ export const ArrowIcon = (props: SVGprops) => {
     size,
     color = "currentColor",
     fill = "none",
-    direction = "up"
+    direction = "up",
   } = props;
 
   const arrowClasses = classesOf(

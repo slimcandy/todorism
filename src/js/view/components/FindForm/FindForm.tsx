@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setList } from "../../../stores/store";
 import { List } from "../../../interfaces";
-import { pullLocalStorage, pushLocalStorage } from "../../../utils/localStorage";
+import {
+  pullLocalStorage,
+  pushLocalStorage,
+} from "../../../utils/localStorage";
 import { getStorageList } from "../../../utils/storage";
 import { ZoomIcon } from "../../icons";
 

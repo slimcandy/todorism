@@ -10,7 +10,7 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon
+  ZoomIcon,
 } from "../../icons";
 
 // Texts and buttons
@@ -30,7 +30,7 @@ import {
   TextBodyStandard,
   TitleH1,
   TitleH2,
-  TitleH3
+  TitleH3,
 } from "../../elements";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -56,10 +56,13 @@ export function UIKitPage() {
           <TitleH3>TitleH3: Заголовок третьего уровня</TitleH3>
         </div>
         <div>
-          <TextBodyLarge>TextBodyLarge / Body 16 Regular: Крупный наборный текст</TextBodyLarge>
+          <TextBodyLarge>
+            TextBodyLarge / Body 16 Regular: Крупный наборный текст
+          </TextBodyLarge>
           <br />
           <TextBodyMedium>
-            TextBodyMedium / Body 14 Medium: Текст для кнопок и кликабельного текста
+            TextBodyMedium / Body 14 Medium: Текст для кнопок и кликабельного
+            текста
           </TextBodyMedium>
           <br />
           <TextBodyStandard>
@@ -67,7 +70,8 @@ export function UIKitPage() {
           </TextBodyStandard>
           <br />
           <TextBodySmall>
-            TextBodySmall / Body 12 Regular: Мелкий наборный текст, текст для пояснений
+            TextBodySmall / Body 12 Regular: Мелкий наборный текст, текст для
+            пояснений
           </TextBodySmall>
         </div>
         <div className="buttons">
@@ -137,7 +141,6 @@ export function UIKitPage() {
             <h5>12</h5>
           </div>
           <div className="icons">
-
             <div className="flex mb-4 gap-3 items-center">
               <KebabIcon size={32} />
               <KebabIcon size={24} />
@@ -221,9 +224,7 @@ export function UIKitPage() {
           <TextBodyMedium>TagSmall</TextBodyMedium>
           <div className="flex">
             <div className="mr-4 mt-1">
-              <TagSmall>
-                21.06.2020
-              </TagSmall>
+              <TagSmall>21.06.2020</TagSmall>
             </div>
             <div className="mr-4 mt-1">
               <TagSmall isActive>21.06.2020</TagSmall>

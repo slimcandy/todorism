@@ -14,6 +14,8 @@ export const TagMedium = (props: TagProps) => {
   );
 
   return (
-    <div className={tagClasses}><TextBodyLarge>{children}</TextBodyLarge></div>
+    <div className={tagClasses}>
+      <TextBodyLarge>{children}</TextBodyLarge>
+    </div>
   );
 };

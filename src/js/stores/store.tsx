@@ -49,14 +49,14 @@ const listSlice = createSlice({
         );
       }
       return list;
-    }
-  }
+    },
+  },
 });
 
 const store = configureStore({
   reducer: {
-    list: listSlice.reducer
-  }
+    list: listSlice.reducer,
+  },
 });
 
 export const {
@@ -66,7 +66,7 @@ export const {
   toggleItem,
   removeItem,
   addPerson,
-  removePerson
+  removePerson,
 } = listSlice.actions;
 
 export const listSelector = (state: Store) => state.list;

@@ -17,16 +17,16 @@ void i18n
     supportedLngs: ["en", "ru"],
     fallbackLng: "en",
     react: {
-      useSuspense: false
+      useSuspense: false,
     },
     detection: {
       order: ["cookie", "localStorage", "htmlTag", "path", "subdomain"],
-      caches: ["cookie"]
+      caches: ["cookie"],
     },
 
     resources: {
       en: { translation: translationEN },
-      ru: { translation: translationRU }
-    }
+      ru: { translation: translationRU },
+    },
   })
   .then();
