@@ -2,7 +2,7 @@ import { List, Store } from "../interfaces";
 
 export const initialStore: Store = {
   list: null,
-  currentListKey: null,
+  currentListKey: null
 };
 
 export const initialList: List = {
@@ -10,7 +10,7 @@ export const initialList: List = {
   name: "",
   description: "",
   items: [],
-  people: [],
+  people: []
 };
 
 export const currentListLabel = "currentListKey";

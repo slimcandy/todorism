@@ -10,7 +10,7 @@ export const ButtonSecondary = (props: BtnProps) => {
     type,
     disabled,
     className = "",
-    textClassName = "",
+    textClassName = ""
   } = props;
 
   const textClasses = classesOf(

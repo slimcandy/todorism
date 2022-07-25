@@ -10,7 +10,7 @@ const SearchBar = (props: SearchBarProps) => {
     onChange,
     onSubmit,
     className = "",
-    disabled,
+    disabled
   } = props;
 
   const firstValue = String(value) === "undefined" ? "" : String(value);

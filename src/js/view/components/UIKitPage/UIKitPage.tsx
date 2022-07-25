@@ -10,27 +10,27 @@ import {
   MinusIcon,
   PlusIcon,
   ShareIcon,
-  ZoomIcon,
+  ZoomIcon
 } from "../../icons";
 
 // Texts and buttons
 import {
-  TextBodyLarge,
-  TextBodyMedium,
-  TextBodySmall,
-  TextBodyStandard,
-  TitleH1,
-  TitleH2,
-  TitleH3,
   ButtonCircle,
   ButtonPrimary,
   ButtonSecondary,
   ButtonSquare,
   ButtonTransparent,
   Indicator,
-  TagSmall,
+  TagLarge,
   TagMedium,
-  TagLarge
+  TagSmall,
+  TextBodyLarge,
+  TextBodyMedium,
+  TextBodySmall,
+  TextBodyStandard,
+  TitleH1,
+  TitleH2,
+  TitleH3
 } from "../../elements";
 import SearchBar from "../SearchBar/SearchBar";
 
