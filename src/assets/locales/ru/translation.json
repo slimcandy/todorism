@@ -2,9 +2,11 @@
   "language": "Русский",
   "events": {
     "list": {
-      "your_events": "Ваши мероприятия"
+      "your_events": "Ваши мероприятия",
+      "no_events": "У вас еще нет мероприятий"
     },
     "create_new_event": {
+      "create_btn": "+ Создать новое мероприятие",
       "new_event": "Новое мероприятие",
       "enter_event_name": "Введите название мероприятия",
       "choose_dates": "Выберите даты",
@@ -30,11 +32,22 @@
     "take": "Взять",
     "delete": "Удалить",
     "edit": "Редактировать",
-    "share": "Поделиться"
+    "share": "Поделиться",
+    "remember_me": "Запомнить меня"
   },
   "tabs": {
     "common_things": "Общие вещи",
     "private_things": "Личные вещи",
     "bring_along": "Взять с собой"
+  },
+  "inputs": {
+    "whats_your_name": "Как вас зовут?"
+  },
+  "pages": {
+    "welcome": {
+      "title_welcome": "Добро пожаловать!",
+      "description": "Мы — приложение [NAME], лучшее приложение для организации мероприятий!",
+      "whats_your_name": "Как вас зовут?"
+    }
   }
 }

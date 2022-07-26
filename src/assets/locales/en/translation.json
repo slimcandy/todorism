@@ -2,9 +2,11 @@
   "language": "English",
   "events": {
     "list": {
-      "your_events": "Your events"
+      "your_events": "Your events",
+      "no_events": "You have no events"
     },
     "create_new_event": {
+      "create_btn": "+ Create a new event",
       "new_event": "New event",
       "enter_event_name": "Enter event name",
       "choose_dates": "Choose dates",
@@ -30,11 +32,22 @@
     "take": "Take",
     "delete": "Delete",
     "edit": "Edit",
-    "share": "Share"
+    "share": "Share",
+    "remember_me": "Remember me"
   },
   "tabs": {
     "common_things": "Common things",
     "private_things": "Private things",
     "bring_along": "Bring along"
+  },
+  "inputs": {
+    "whats_your_name": "What is your name?"
+  },
+  "pages": {
+    "welcome": {
+      "title": "Welcome!",
+      "description": "We are an app [NAME], the best app to organize your event!",
+      "whats_your_name": "What is your name?"
+    }
   }
 }
