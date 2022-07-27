@@ -21,6 +21,11 @@ export function DevNavPage() {
             </Link>
           </div>
           <div className="mb-8 mx-auto">
+            <Link to="/welcome">
+              <ButtonPrimary>Welcome Page</ButtonPrimary>
+            </Link>
+          </div>
+          <div className="mb-8 mx-auto">
             <Link to="/no-events">
               <ButtonPrimary>No Events Page</ButtonPrimary>
             </Link>
