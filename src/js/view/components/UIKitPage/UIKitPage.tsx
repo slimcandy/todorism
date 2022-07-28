@@ -32,8 +32,8 @@ import {
   TitleH3,
   Input,
 } from "../../elements";
+import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
-
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export function UIKitPage() {
@@ -47,6 +47,7 @@ export function UIKitPage() {
       <span className="mr-2">
         <Indicator isActive />
       </span>
+      <span className="mr-2"><TagMe/></span>
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
 
