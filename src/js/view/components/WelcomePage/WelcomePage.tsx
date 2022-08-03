@@ -7,12 +7,14 @@ export const WelcomePage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen
+    <div
+      className="min-h-screen
       text-center flex flex-col
       justify-between md:justify-start
       px-4 pt-16 xs:pt-24 pb-6 mx-auto
       sm:w-6/12
-      w-full">
+      w-full"
+    >
       <div>
         <div className="mb-8 xs:mb-14 mx-auto">
           <img src={tentImg} alt="Tent" className="mx-auto" />
@@ -23,9 +25,7 @@ export const WelcomePage = () => {
         </div>
 
         <div className="mb-6">
-          <TextBodyLarge>
-            {t("pages.welcome.description")}
-          </TextBodyLarge>
+          <TextBodyLarge>{t("pages.welcome.description")}</TextBodyLarge>
         </div>
 
         <div className="mb-8 xs:mb-10">
@@ -37,9 +37,7 @@ export const WelcomePage = () => {
         </div>
       </div>
       <div className="px-7">
-        <ButtonPrimary>
-          {t("buttons.remember_me")}
-        </ButtonPrimary>
+        <ButtonPrimary>{t("buttons.remember_me")}</ButtonPrimary>
       </div>
     </div>
   );

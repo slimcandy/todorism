@@ -35,6 +35,8 @@ import {
 import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
+import { EventListItem } from "../Events/EventListItem";
+// import { EventListItem } from "../Events/EventListItem";
 
 export function UIKitPage() {
   const { t } = useTranslation();
@@ -47,7 +49,9 @@ export function UIKitPage() {
       <span className="mr-2">
         <Indicator isActive />
       </span>
-      <span className="mr-2"><TagMe/></span>
+      <span className="mr-2">
+        <TagMe />
+      </span>
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
 
@@ -226,28 +230,42 @@ export function UIKitPage() {
 
             <TextBodySmall>With Icon</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} 
-              icon={<CalendarIcon size={20}/>}/>
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
+              />
             </div>
 
             <div className="w-80 mt-4">
-              <Input placeholder={t("inputs.whats_your_name")} 
-              icon={<CalendarIcon size={20} className="cursor-pointer"/>}
-              isIconLeft/>
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} className="cursor-pointer" />}
+                isIconLeft
+              />
             </div>
 
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} 
-              disabled />
+              <Input placeholder={t("inputs.whats_your_name")} disabled />
             </div>
 
             <TextBodySmall>Disabled with icon</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} 
-              icon={<CalendarIcon size={20}/>}
-              disabled />
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
+                disabled
+              />
             </div>
+          </div>
+        </div>
+        <div className="ml-8 w-80">
+          <TextBodyLarge>EventListItem</TextBodyLarge>
+          <div className="mt-6">
+            <EventListItem tripUid="123456789" title="Поход на Ястребиное"
+                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+                           dateStart={new Date(2020, 6, 2, 0, 0, 0)}
+                           dateEnd={new Date(2020, 6, 24, 0, 0, 0)}/>
           </div>
         </div>
       </div>

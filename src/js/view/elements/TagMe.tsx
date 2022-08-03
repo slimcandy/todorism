@@ -15,9 +15,7 @@ export const TagMe = () => {
   );
 
   return (
-    <div
-      className={classes}
-    >
+    <div className={classes}>
       <TextBodySmall>{t("me")}</TextBodySmall>
     </div>
   );
