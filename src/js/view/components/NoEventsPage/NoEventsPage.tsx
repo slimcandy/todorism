@@ -8,13 +8,12 @@ export const NoEventsPage = () => {
   return (
     <div
       className="no-events-page
-   flex flex-col
+   flex flex-col min-h-screen
    justify-between
-    px-4 pt-3 pb-6
+    px-4 pt-14 pb-6
     sm:w-6/12
-    w-full h-[calc(100vh_-_51px)]
-    mx-auto
-    text-black-0 dark:text-light-4"
+    w-full
+    mx-auto"
     >
       <TitleH1>{t("events.list.your_events")}</TitleH1>
 

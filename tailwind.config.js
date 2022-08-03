@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        "xs": "390px"
+      },
       fontFamily: { "main": ["Manrope", "sans-serif"]},
       fontSize: {
         "h1": ["1.5rem", { lineHeight: "32px" }],

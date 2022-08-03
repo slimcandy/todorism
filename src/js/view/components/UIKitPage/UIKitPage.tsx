@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 // Icons
 import {
   ArrowIcon,
@@ -28,21 +30,27 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
+  Input,
 } from "../../elements";
+import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
-
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import { EventListItem } from "../Events/EventListItem";
+// import { EventListItem } from "../Events/EventListItem";
 
 export function UIKitPage() {
+  const { t } = useTranslation();
   return (
-    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
+    <div className="ui-kit-page p-4  dark:text-light-4 text-black-0">
       <h1>UI-kit page</h1>
       <span className="mr-2">
         <Indicator />
       </span>
       <span className="mr-2">
         <Indicator isActive />
+      </span>
+      <span className="mr-2">
+        <TagMe />
       </span>
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
@@ -126,7 +134,7 @@ export function UIKitPage() {
         </div>
       </div>
       <div className="flex">
-        <div className="mr-6">
+        <div className="mr-8">
           <div className="icons-sizes flex p-2 gap-4">
             <h5>32</h5>
             <h5>24</h5>
@@ -207,29 +215,58 @@ export function UIKitPage() {
             </div>
           </div>
         </div>
-        <div className="w-80 mr-8">
-          <div className="flex flex-col">
-            <div className="mb-2">
-              <EventListItem
-                tripUid="id0"
-                title="Поход на Ястребиное"
-                description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
-                dateStart={new Date()}
-                dateEnd={new Date()}
+        <div>
+          <h2 className="text-white">Components</h2>
+          <div className="mb-6">
+            <h4 className="text-myPerfectDark">SearchBar</h4>
+            <SearchBar placeholder="Поиск" />
+          </div>
+          <div>
+            <TitleH3 className="mb-4">Inputs</TitleH3>
+            <TextBodyLarge>Simple input</TextBodyLarge>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} />
+            </div>
+
+            <TextBodySmall>With Icon</TextBodySmall>
+            <div className="w-80">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
               />
             </div>
 
-            <EventListItem
-              tripUid="id1"
-              title="Поход на байдарках"
-              dateStart={new Date()}
-            />
+            <div className="w-80 mt-4">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} className="cursor-pointer" />}
+                isIconLeft
+              />
+            </div>
+
+            <TextBodySmall>Disabled</TextBodySmall>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} disabled />
+            </div>
+
+            <TextBodySmall>Disabled with icon</TextBodySmall>
+            <div className="w-80">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
+                disabled
+              />
+            </div>
           </div>
         </div>
-        <div>
-          <h2 className="text-white">Components</h2>
-          <h4 className="text-myPerfectDark">SearchBar</h4>
-          <SearchBar placeholder="Поиск" />
+        <div className="ml-8 w-80">
+          <TextBodyLarge>EventListItem</TextBodyLarge>
+          <div className="mt-6">
+            <EventListItem tripUid="123456789" title="Поход на Ястребиное"
+                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+                           dateStart={new Date(2020, 6, 2, 0, 0, 0)}
+                           dateEnd={new Date(2020, 6, 24, 0, 0, 0)}/>
+          </div>
         </div>
       </div>
     </div>
