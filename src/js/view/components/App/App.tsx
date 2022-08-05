@@ -8,8 +8,8 @@ import { Header } from "../Header/Header";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
-import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
+import { EventsPage } from "../Events/EventsPage";
 
 import "../../../../styles/index.css";
 
@@ -38,7 +38,7 @@ export function App() {
               <Route path="/alex" element={<Panel />} />
               <Route path="/ui-kit" element={<UIKitPage />} />
               <Route path="/welcome" element={<WelcomePage />} />
-              <Route path="/no-events" element={<NoEventsPage />} />
+              <Route path="/events" element={<EventsPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
           </BrowserRouter>
