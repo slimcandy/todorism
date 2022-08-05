@@ -4,8 +4,8 @@ import { EventList } from "./EventList";
 import { Event } from "./Event";
 
 type Props = {
-  list: Array<Event>
-}
+  list: Array<Event>;
+};
 
 export const AllEvents = (props: Props) => {
   const { list } = props;
@@ -15,5 +15,6 @@ export const AllEvents = (props: Props) => {
         <SearchBar />
       </div>
       <EventList list={list} />
-    </>);
+    </>
+  );
 };
