@@ -2,16 +2,9 @@ import React from "react";
 import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
 import { KebabIcon } from "../../icons";
 import { dateToStringDDMMYYYY, isDateExpired } from "../../../utils";
+import { Event } from "./Event";
 
-export interface EventListItemProps {
-  tripUid: string;
-  title: string;
-  description?: string | undefined;
-  dateStart?: Date | undefined;
-  dateEnd?: Date | undefined;
-}
-
-export const EventListItem = (props: EventListItemProps) => {
+export const EventListItem = (props: Event) => {
   const { tripUid, title, description, dateStart, dateEnd } = props;
   let start;
   let end;
@@ -39,7 +32,7 @@ export const EventListItem = (props: EventListItemProps) => {
 
         {start && (
           <div>
-            <Indicator isActive={dateStart ? isDateExpired(dateStart) : true} />
+            <Indicator isActive={dateStart ? isDateExpired(new Date(dateStart)) : true} />
             <TextBodySmall className="ml-1">{start || ""}</TextBodySmall>
             {end && (
               <TextBodySmall className="ml-1">{`- ${end || ""}`}</TextBodySmall>
