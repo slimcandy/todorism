@@ -12,52 +12,21 @@ import {
 const SERVER_URL = process.env.REACT_APP_SERVER || "http://localhost:3001";
 
 const SPAremoveit = () => {
-  // global store
-  const [_userUid, setUserUid] = useState("");
-  const [_tripUid, setTripUid] = useState("");
+  // // global store
+  // const [_tripUid, setTripUid] = useState("");
+  // const [_memberUid, setMemberUid] = useState("");
   // 1. Username
   const [username, setUsername] = useState<string>("");
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
   const onUsernameSubmit = async () => {
-    interface IUsernameResponse {
-      user_uid: string;
-    }
-    interface IUserNameObj {
-      username: string;
-      user_uid: string;
-    }
-    const response = await fetch(`${SERVER_URL}/User/User/CreateUser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-      }),
-    });
-
-    if (response.ok) {
-      const json: IUsernameResponse =
-        (await response.json()) as IUsernameResponse;
-      const { user_uid: userUid } = json;
-      const localStorageUserNameObj: IUserNameObj = {
-        username,
-        user_uid: userUid,
-      };
-
-      setUserUid(userUid);
-      pushLocalStorage(
-        localStorageUsernameKey,
-        JSON.stringify(localStorageUserNameObj)
+    pushLocalStorage(localStorageUsernameKey, JSON.stringify(username))
+      .then(
+        () => {},
+        () => {}
       )
-        .then(
-          () => {},
-          () => {}
-        )
-        .catch(() => {});
-    }
+      .catch(() => {});
   };
 
   // 2. Get trips
@@ -80,8 +49,11 @@ const SPAremoveit = () => {
   };
 
   // 3. Форма нового мероприятия
+  const [newTripFormErrors, setNewTripFormErrors] = useState<string>("");
   const [newTripFormName, setNewTripFormName] = useState<string>("");
-  const [newTripFormDates, setNewTripFormDates] = useState<string>("");
+  const [newTripFormDates, setNewTripFormDates] = useState<string>(
+    new Date().toISOString()
+  );
   const [newTripFormDescription, setNewTripFormDescription] =
     useState<string>("");
   const [peopleFormOpen, setPeopleFormOpen] = useState<boolean>(false);
@@ -90,13 +62,13 @@ const SPAremoveit = () => {
   ) => setNewTripFormName(event.target.value);
   const onNewTripFormDatesChange = (
     event: React.ChangeEvent<HTMLInputElement>
-  ) => setNewTripFormDates(event.target.value);
+  ) => setNewTripFormDates(new Date(event.target.value).toISOString());
   const onNewTripFormDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => setNewTripFormDescription(event.target.value);
   const onNewTripFormSubmit = async () => {
     const response = await fetch(
-      `${SERVER_URL}/Trip/CreateTrip?user_uid=${_userUid}`,
+      `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
       {
         method: "POST",
         headers: {
@@ -113,21 +85,37 @@ const SPAremoveit = () => {
 
     interface INewTripResponse {
       trip_uid: string;
+      member_uid: string;
     }
     if (response.ok) {
       const json: INewTripResponse =
         (await response.json()) as INewTripResponse;
-      const { trip_uid: tripUid } = json;
+      const { trip_uid, member_uid } = json;
 
       setPeopleFormOpen(true);
-      setTripUid(tripUid);
 
-      pushLocalStorage("localStorageTripIdKey", JSON.stringify(_tripUid))
+      const mebmberTripObj = { trip_uid, member_uid };
+
+      pushLocalStorage(localStorageTripIdKey, JSON.stringify([mebmberTripObj]))
         .then(
           () => {},
           () => {}
         )
         .catch(() => {});
+    } else {
+      interface IErrorResponse {
+        detail: {
+          loc: string[];
+          msg: string;
+          type: string;
+        }[];
+      }
+      const errorResponse = (await response.json()) as IErrorResponse;
+      let errorMessage = "";
+      errorResponse.detail.forEach((error) => {
+        errorMessage += `${error.msg}. \n`;
+      });
+      setNewTripFormErrors(errorMessage);
     }
   };
 
@@ -261,6 +249,26 @@ const SPAremoveit = () => {
               <button type="submit" className="btn">
                 3. Добавить
               </button>
+              {newTripFormErrors.length > 0 && (
+                <div className="alert alert-error shadow-lg">
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="stroke-current flex-shrink-0 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>{newTripFormErrors}</span>
+                  </div>
+                </div>
+              )}
             </form>
           </li>
         ) : (
