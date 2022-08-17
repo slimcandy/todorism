@@ -1,10 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ButtonPrimary, Input, TextBodyLarge, TitleH1 } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
+import { initialStore } from "../../../stores/storeConstants";
 
 export const WelcomePage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const {nickname} = initialStore
+
+  const saveNickNameToLocalStorage = () => {
+    localStorage.setItem("nickname", JSON.stringify(nickname));
+  }
+
+  const goToEventsListPage = () => {
+    const path = "/no-events";
+    navigate(path);
+  }
+
+  const onRememberMe = () => {
+    saveNickNameToLocalStorage()
+    goToEventsListPage()
+  }
 
   return (
     <div
@@ -33,11 +51,15 @@ export const WelcomePage = () => {
         </div>
 
         <div className="mb-10 xs:mb-14">
-          <Input placeholder={t("pages.welcome.whats_your_name")} />
+          <Input value={nickname}
+                 placeholder={t("pages.welcome.whats_your_name")}
+          />
         </div>
       </div>
       <div className="px-7">
-        <ButtonPrimary>{t("buttons.remember_me")}</ButtonPrimary>
+        <ButtonPrimary onClick={onRememberMe}>
+          {t("buttons.remember_me")}
+        </ButtonPrimary>
       </div>
     </div>
   );

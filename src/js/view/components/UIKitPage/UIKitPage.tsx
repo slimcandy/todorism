@@ -225,19 +225,19 @@ export function UIKitPage() {
             <TitleH3 className="mb-4">Inputs</TitleH3>
             <TextBodyLarge>Simple input</TextBodyLarge>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} />
+              <Input placeholder={t("inputs.whats_your_name")} value=""/>
             </div>
 
             <TextBodySmall>With Icon</TextBodySmall>
             <div className="w-80">
-              <Input
+              <Input value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} />}
               />
             </div>
 
             <div className="w-80 mt-4">
-              <Input
+              <Input value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} className="cursor-pointer" />}
                 isIconLeft
@@ -246,12 +246,12 @@ export function UIKitPage() {
 
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} disabled />
+              <Input placeholder={t("inputs.whats_your_name")} value="" disabled />
             </div>
 
             <TextBodySmall>Disabled with icon</TextBodySmall>
             <div className="w-80">
-              <Input
+              <Input value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} />}
                 disabled

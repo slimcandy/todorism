@@ -11,6 +11,7 @@ export const ButtonPrimary = (props: BtnProps) => {
     disabled,
     className = "",
     textClassName = "",
+    onClick,
   } = props;
 
   const textClasses = classesOf(
@@ -30,6 +31,7 @@ export const ButtonPrimary = (props: BtnProps) => {
       normal-case ${className}`}
       type={type}
       disabled={disabled}
+      onClick={onClick}
     >
       {icon}
       <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>

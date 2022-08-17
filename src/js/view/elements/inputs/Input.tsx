@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo, useRef } from "react";
 import { classesOf } from "../../../utils";
 import { InputProps } from "./InputProps";
 
-export const Input = (props: InputProps) => {
+export const Input = memo( (props: InputProps) => {
   const {
     value,
     placeholder,
@@ -13,7 +13,9 @@ export const Input = (props: InputProps) => {
     onChange,
   } = props;
 
-  const firstValue = String(value) === "undefined" ? "" : String(value);
+  const refInput = useRef<HTMLInputElement>(null)
+
+  const firstValue = String(value) === "undefined" || String(value) === "null" ? "" : String(value);
   const [localValue, setLocalValue] = React.useState(firstValue);
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.target.value);
@@ -55,13 +57,14 @@ export const Input = (props: InputProps) => {
         {icon && <div className={iconClasses}> {icon} </div>}
 
         <input
+          ref={refInput}
           onChange={handleOnChange}
           className={inputClasses}
           disabled={disabled}
-          value={localValue}
+          value={value ?? localValue}
           placeholder={placeholder}
         />
       </label>
     </form>
   );
-};
+});
