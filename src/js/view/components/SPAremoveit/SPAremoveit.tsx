@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import {
   localStorageUsernameKey,
-  localStorageTripIdKey,
+  localStorageTripObjects,
 } from "../../../common/constants";
 import {
   pullLocalStorage,
@@ -10,11 +10,12 @@ import {
 } from "../../../utils/localStorage";
 
 const SERVER_URL = process.env.REACT_APP_SERVER || "http://localhost:3001";
+interface INewTripResponse {
+  trip_uid: string;
+  member_uid: string;
+}
 
 const SPAremoveit = () => {
-  // // global store
-  // const [_tripUid, setTripUid] = useState("");
-  // const [_memberUid, setMemberUid] = useState("");
   // 1. Username
   const [username, setUsername] = useState<string>("");
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,16 +31,16 @@ const SPAremoveit = () => {
   };
 
   // 2. Get trips
-  const [tripIds, setTripIds] = useState<string[]>([]);
+  const [tripObjects, setTripObjects] = useState<INewTripResponse[]>([]);
   const [newTripFormOpen, setNewTripFormOpen] = useState<boolean>(false);
   useEffect(() => {
-    pullLocalStorage(localStorageTripIdKey)
+    pullLocalStorage(localStorageTripObjects)
       .then((localStorageString) => {
         if (
           typeof localStorageString === "string" &&
           localStorageString.length > 0
         )
-          setTripIds(JSON.parse(localStorageString) as string[]);
+          setTripObjects(JSON.parse(localStorageString) as INewTripResponse[]);
       })
       .catch(() => {});
   }, []);
@@ -83,10 +84,6 @@ const SPAremoveit = () => {
       }
     );
 
-    interface INewTripResponse {
-      trip_uid: string;
-      member_uid: string;
-    }
     if (response.ok) {
       const json: INewTripResponse =
         (await response.json()) as INewTripResponse;
@@ -96,7 +93,10 @@ const SPAremoveit = () => {
 
       const mebmberTripObj = { trip_uid, member_uid };
 
-      pushLocalStorage(localStorageTripIdKey, JSON.stringify([mebmberTripObj]))
+      pushLocalStorage(
+        localStorageTripObjects,
+        JSON.stringify([mebmberTripObj])
+      )
         .then(
           () => {},
           () => {}
@@ -196,10 +196,14 @@ const SPAremoveit = () => {
         </li>
         <li>
           <h2>2. Походы</h2>
-          {tripIds.length > 0 ? (
+          {tripObjects.length > 0 ? (
             <ul>
-              {tripIds.map((tripId) => (
-                <li>{tripId}</li>
+              {tripObjects.map((trip) => (
+                <li>
+                  member_uid: <code>{trip.member_uid}</code>
+                  <br />
+                  trip_uid: <code>{trip.trip_uid}</code>
+                </li>
               ))}
             </ul>
           ) : (
