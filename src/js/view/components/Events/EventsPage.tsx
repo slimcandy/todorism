@@ -13,18 +13,14 @@ export const EventsPage = () => {
   const [events, setEvents] = useState<Array<Event>>([]);
 
   const fetchEvents = async () => {
-    await fetch(
-      "https://tracking-organizer.herokuapp.com/Trip/All", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify([
-          "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-        ])
-      }
-    )
+    await fetch("https://tracking-organizer.herokuapp.com/Trip/All", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(["3fa85f64-5717-4562-b3fc-2c963f66afa6"]),
+    })
       .then((res) => res.json())
       .then(setEvents)
       .catch((error) => console.error(error));
@@ -32,7 +28,7 @@ export const EventsPage = () => {
 
   useEffect(() => {
     void fetchEvents();
-  },[]);
+  }, []);
 
   const pageClasses = classesOf(
     "px-4 pt-14 pb-6",
