@@ -8,21 +8,21 @@ import { initialStore } from "../../../stores/storeConstants";
 export const WelcomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const {nickname} = initialStore
+  const { nickname } = initialStore;
 
   const saveNickNameToLocalStorage = () => {
     localStorage.setItem("nickname", JSON.stringify(nickname));
-  }
+  };
 
   const goToEventsListPage = () => {
     const path = "/no-events";
     navigate(path);
-  }
+  };
 
   const onRememberMe = () => {
-    saveNickNameToLocalStorage()
-    goToEventsListPage()
-  }
+    saveNickNameToLocalStorage();
+    goToEventsListPage();
+  };
 
   return (
     <div
@@ -51,8 +51,9 @@ export const WelcomePage = () => {
         </div>
 
         <div className="mb-10 xs:mb-14">
-          <Input value={nickname}
-                 placeholder={t("pages.welcome.whats_your_name")}
+          <Input
+            value={nickname}
+            placeholder={t("pages.welcome.whats_your_name")}
           />
         </div>
       </div>

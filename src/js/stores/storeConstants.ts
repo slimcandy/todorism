@@ -3,7 +3,7 @@ import { List, Store } from "../interfaces";
 export const initialStore: Store = {
   list: null,
   currentListKey: null,
-  nickname: null
+  nickname: null,
 };
 
 export const initialList: List = {

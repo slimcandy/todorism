@@ -9,5 +9,5 @@ export type BtnProps = {
   disabled?: boolean;
   className?: string;
   textClassName?: string;
-  onClick?: ()=>void;
-}
+  onClick?: () => void;
+};

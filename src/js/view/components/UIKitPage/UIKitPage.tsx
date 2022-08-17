@@ -225,19 +225,21 @@ export function UIKitPage() {
             <TitleH3 className="mb-4">Inputs</TitleH3>
             <TextBodyLarge>Simple input</TextBodyLarge>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} value=""/>
+              <Input placeholder={t("inputs.whats_your_name")} value="" />
             </div>
 
             <TextBodySmall>With Icon</TextBodySmall>
             <div className="w-80">
-              <Input value=""
+              <Input
+                value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} />}
               />
             </div>
 
             <div className="w-80 mt-4">
-              <Input value=""
+              <Input
+                value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} className="cursor-pointer" />}
                 isIconLeft
@@ -246,12 +248,17 @@ export function UIKitPage() {
 
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} value="" disabled />
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                value=""
+                disabled
+              />
             </div>
 
             <TextBodySmall>Disabled with icon</TextBodySmall>
             <div className="w-80">
-              <Input value=""
+              <Input
+                value=""
                 placeholder={t("inputs.whats_your_name")}
                 icon={<CalendarIcon size={20} />}
                 disabled
@@ -262,45 +269,50 @@ export function UIKitPage() {
         <div className="ml-8 w-80">
           <TextBodyLarge>EventListItem</TextBodyLarge>
           <div className="mt-6">
-            <EventListItem tripUid="123456789" title="Поход на Ястребиное"
-                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
-                           dateStart="2022-06-29T16:56:27.761Z"
-                           dateEnd="2022-06-29T16:56:27.761Z"/>
+            <EventListItem
+              tripUid="123456789"
+              title="Поход на Ястребиное"
+              description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+              dateStart="2022-06-29T16:56:27.761Z"
+              dateEnd="2022-06-29T16:56:27.761Z"
+            />
           </div>
           <div>
             <div className="mb-4 mt-8">
               <TextBodyLarge>EventList</TextBodyLarge>
             </div>
-            <EventList list={[
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                title: "Днюха в Солотче",
-                description: "string",
-                dateStart: "2022-06-29T16:56:27.761Z",
-                dateEnd: "2022-06-29T16:56:27.761Z"
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
-                title: "Поход на байдарках",
-                description: "",
-                dateStart: "2022-07-19T16:56:27.761Z",
-                dateEnd: "2022-07-29T16:56:27.761Z"
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                title: "Карелия",
-                description: "",
-                dateStart: "",
-                dateEnd: ""
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                title: "Вылазка на великах в Зеленогорск",
-                description: "",
-                dateStart: "2022-09-09T16:56:27.761Z",
-                dateEnd: "2022-09-09T16:56:27.761Z"
-              }
-            ]}/>
+            <EventList
+              list={[
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  title: "Днюха в Солотче",
+                  description: "string",
+                  dateStart: "2022-06-29T16:56:27.761Z",
+                  dateEnd: "2022-06-29T16:56:27.761Z",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
+                  title: "Поход на байдарках",
+                  description: "",
+                  dateStart: "2022-07-19T16:56:27.761Z",
+                  dateEnd: "2022-07-29T16:56:27.761Z",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                  title: "Карелия",
+                  description: "",
+                  dateStart: "",
+                  dateEnd: "",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                  title: "Вылазка на великах в Зеленогорск",
+                  description: "",
+                  dateStart: "2022-09-09T16:56:27.761Z",
+                  dateEnd: "2022-09-09T16:56:27.761Z",
+                },
+              ]}
+            />
           </div>
         </div>
       </div>

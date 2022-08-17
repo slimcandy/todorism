@@ -2,7 +2,7 @@ import React, { memo, useRef } from "react";
 import { classesOf } from "../../../utils";
 import { InputProps } from "./InputProps";
 
-export const Input = memo( (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
   const {
     value,
     placeholder,
@@ -13,9 +13,12 @@ export const Input = memo( (props: InputProps) => {
     onChange,
   } = props;
 
-  const refInput = useRef<HTMLInputElement>(null)
+  const refInput = useRef<HTMLInputElement>(null);
 
-  const firstValue = String(value) === "undefined" || String(value) === "null" ? "" : String(value);
+  const firstValue =
+    String(value) === "undefined" || String(value) === "null"
+      ? ""
+      : String(value);
   const [localValue, setLocalValue] = React.useState(firstValue);
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.target.value);
