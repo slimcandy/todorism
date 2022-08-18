@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ButtonPrimary, Input, InputDate, TextBodyStandard, TitleH1 } from "../../elements";
+import {
+  ButtonPrimary,
+  Input,
+  InputDate,
+  TextBodyStandard,
+  TitleH1,
+} from "../../elements";
 import { pushLocalStorage } from "../../../utils/localStorage";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
   // 3. Форма нового мероприятия
   const username = "TestUser";
-  const SERVER_URL = process.env.REACT_APP_SERVER || "https://tracking-organizer.herokuapp.com";
+  const SERVER_URL =
+    process.env.REACT_APP_SERVER || "https://tracking-organizer.herokuapp.com";
 
   const localStorageTripObjects = "trip_objects";
 
@@ -20,22 +27,17 @@ export const NewEventPage = () => {
   const [newTripEndDate, setNewTripEndDate] = useState<string>(
     new Date().toISOString()
   );
-  const [newTripDescription, setNewTripDescription] =
-    useState<string>("");
+  const [newTripDescription, setNewTripDescription] = useState<string>("");
 
-  const onNewTripNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const onNewTripNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTripName(event.target.value);
   };
 
-  const onStartDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => setNewTripStartDate(new Date(event.target.value).toISOString());
+  const onStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setNewTripStartDate(new Date(event.target.value).toISOString());
 
-  const onEndDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => setNewTripEndDate(new Date(event.target.value).toISOString());
+  const onEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setNewTripEndDate(new Date(event.target.value).toISOString());
 
   const onNewTripDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -47,14 +49,14 @@ export const NewEventPage = () => {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: newTripName,
           description: newTripDescription,
           start: newTripStartDate,
-          end: newTripEndDate
-        })
+          end: newTripEndDate,
+        }),
       }
     );
 
@@ -70,18 +72,12 @@ export const NewEventPage = () => {
 
       const memberTripObj = { trip_uid, member_uid };
 
-      pushLocalStorage(
-        localStorageTripObjects,
-        JSON.stringify([memberTripObj])
-      )
+      pushLocalStorage(localStorageTripObjects, JSON.stringify([memberTripObj]))
         .then(
-          () => {
-          },
-          () => {
-          }
+          () => {},
+          () => {}
         )
-        .catch(() => {
-        });
+        .catch(() => {});
     } else {
       interface IErrorResponse {
         detail: {
@@ -124,11 +120,12 @@ export const NewEventPage = () => {
             </TextBodyStandard>
             <TextBodyStandard className="dark:text-dark-3">*</TextBodyStandard>
           </div>
-          <Input value={newTripName}
-                 onChange={onNewTripNameChange}
-                 placeholder={`${t("pages.new_event.example")}, ${t(
-                   "pages.new_event.event_name_example"
-                 )}`}
+          <Input
+            value={newTripName}
+            onChange={onNewTripNameChange}
+            placeholder={`${t("pages.new_event.example")}, ${t(
+              "pages.new_event.event_name_example"
+            )}`}
           />
         </div>
         <div className="mb-4">
@@ -139,13 +136,23 @@ export const NewEventPage = () => {
           </div>
           <div className="flex">
             <div className="mr-4">
-              <InputDate value={newTripStartDate} onChange={onStartDateChange} type="date"
-                         placeholder={`${t("pages.new_event.date_start")}: ${t("pages.new_event.example")}, 12.06.2022`}
+              <InputDate
+                value={newTripStartDate}
+                onChange={onStartDateChange}
+                type="date"
+                placeholder={`${t("pages.new_event.date_start")}: ${t(
+                  "pages.new_event.example"
+                )}, 12.06.2022`}
               />
             </div>
             <div>
-              <InputDate value={newTripStartDate} onChange={onEndDateChange} type="date"
-                         placeholder={`${t("pages.new_event.date_end")}: ${t("pages.new_event.example")}, 12.06.2022`}
+              <InputDate
+                value={newTripStartDate}
+                onChange={onEndDateChange}
+                type="date"
+                placeholder={`${t("pages.new_event.date_end")}: ${t(
+                  "pages.new_event.example"
+                )}, 12.06.2022`}
               />
             </div>
           </div>
@@ -156,18 +163,19 @@ export const NewEventPage = () => {
               {t("pages.new_event.description")}
             </TextBodyStandard>
           </div>
-          <textarea onChange={onNewTripDescriptionChange}
-                    rows={3}
-                    className="textarea w-full px-4 py-3
+          <textarea
+            onChange={onNewTripDescriptionChange}
+            rows={3}
+            className="textarea w-full px-4 py-3
           focus:outline-none bg-light-2 text-black-4
           dark:bg-black-2 dark:text-light-0
           placeholder:text-dark-4 placeholder:dark:text-dark-2
           focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4
           hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3
           hover:text-dark-3"
-                    placeholder={`${t("pages.new_event.example")}, ${t(
-                      "pages.new_event.description_example"
-                    )}`}
+            placeholder={`${t("pages.new_event.example")}, ${t(
+              "pages.new_event.description_example"
+            )}`}
           />
         </div>
       </div>

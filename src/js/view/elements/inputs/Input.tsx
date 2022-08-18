@@ -11,7 +11,7 @@ export const Input = (props: InputProps) => {
     icon,
     isIconLeft = false,
     onChange,
-    type
+    type,
   } = props;
 
   const firstValue = String(value) === "undefined" ? "" : String(value);
@@ -38,7 +38,7 @@ export const Input = (props: InputProps) => {
     "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
     "invalid:border-red-1 invalid:dark:border-red-1",
     isIconLeft && "pl-11 pr-3",
-    (!isIconLeft && type !== "date") && "pr-11 pl-3",
+    !isIconLeft && type !== "date" && "pr-11 pl-3",
     !disabled &&
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
@@ -55,7 +55,8 @@ export const Input = (props: InputProps) => {
       >
         {icon && <div className={iconClasses}> {icon} </div>}
 
-        <input type={type}
+        <input
+          type={type}
           onChange={handleOnChange}
           className={inputClasses}
           disabled={disabled}

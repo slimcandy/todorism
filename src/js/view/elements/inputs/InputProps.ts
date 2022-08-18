@@ -5,7 +5,7 @@ export interface InputProps {
   value?: InputHTMLAttributes<HTMLInputElement>["value"];
   className?: string;
   disabled?: boolean;
-  type?: "date" | "email" | "number" | "time"
+  type?: "date" | "email" | "number" | "time";
   icon?: React.ReactNode;
   isIconLeft?: boolean;
   onChange?: (value?: any) => void;

@@ -10,7 +10,7 @@ export const InputDate = (props: InputProps) => {
     className = "",
     disabled = false,
     onChange,
-    type
+    type,
   } = props;
 
   const firstValue = String(value) === "undefined" ? "" : String(value);
@@ -19,7 +19,6 @@ export const InputDate = (props: InputProps) => {
     setLocalValue(event.target.value);
     onChange?.(event.target.value);
   };
-
 
   const inputClasses = classesOf(
     "input w-full h-11",
@@ -30,7 +29,7 @@ export const InputDate = (props: InputProps) => {
     "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
     "invalid:border-red-1 invalid:dark:border-red-1",
     !disabled &&
-    "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
+      "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
   return (
@@ -43,17 +42,22 @@ export const InputDate = (props: InputProps) => {
         focus-within:text-dark-3 focus-within:dark:text-dark-3 
         ${className}`}
       >
-          <span className="pointer-events-none
-            absolute right-4 top-0 bg-light-2 dark:bg-black-2">
-            <button><CalendarIcon size={20}/></button>
-          </span>
+        <span
+          className="pointer-events-none
+            absolute right-4 top-0 bg-light-2 dark:bg-black-2"
+        >
+          <button>
+            <CalendarIcon size={20} />
+          </button>
+        </span>
 
-        <input type={type}
-               onChange={handleOnChange}
-               className={inputClasses}
-               disabled={disabled}
-               value={localValue}
-               placeholder={placeholder}
+        <input
+          type={type}
+          onChange={handleOnChange}
+          className={inputClasses}
+          disabled={disabled}
+          value={localValue}
+          placeholder={placeholder}
         />
       </label>
     </form>
