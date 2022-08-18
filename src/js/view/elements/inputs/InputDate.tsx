@@ -1,15 +1,14 @@
 import React from "react";
 import { classesOf } from "../../../utils";
 import { InputProps } from "./InputProps";
+import { CalendarIcon } from "../../icons";
 
-export const Input = (props: InputProps) => {
+export const InputDate = (props: InputProps) => {
   const {
     value,
     placeholder,
     className = "",
     disabled = false,
-    icon,
-    isIconLeft = false,
     onChange,
     type
   } = props;
@@ -21,13 +20,6 @@ export const Input = (props: InputProps) => {
     onChange?.(event.target.value);
   };
 
-  const iconClasses = classesOf(
-    "absolute top-1/2 transform -translate-y-1/2",
-    !isIconLeft && "right-4",
-    isIconLeft && "left-4",
-    disabled && "text-dark-4 dark:text-black-3",
-    localValue.length > 0 && "text-dark-3"
-  );
 
   const inputClasses = classesOf(
     "input w-full h-11",
@@ -37,10 +29,8 @@ export const Input = (props: InputProps) => {
     "disabled:dark:text-black-3 disabled:dark:placeholdertext-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
     "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
     "invalid:border-red-1 invalid:dark:border-red-1",
-    isIconLeft && "pl-11 pr-3",
-    (!isIconLeft && type !== "date") && "pr-11 pl-3",
     !disabled &&
-      "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
+    "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
   return (
@@ -53,14 +43,17 @@ export const Input = (props: InputProps) => {
         focus-within:text-dark-3 focus-within:dark:text-dark-3 
         ${className}`}
       >
-        {icon && <div className={iconClasses}> {icon} </div>}
+          <span className="pointer-events-none
+            absolute right-4 top-0 bg-light-2 dark:bg-black-2">
+            <button><CalendarIcon size={20}/></button>
+          </span>
 
         <input type={type}
-          onChange={handleOnChange}
-          className={inputClasses}
-          disabled={disabled}
-          value={localValue}
-          placeholder={placeholder}
+               onChange={handleOnChange}
+               className={inputClasses}
+               disabled={disabled}
+               value={localValue}
+               placeholder={placeholder}
         />
       </label>
     </form>
