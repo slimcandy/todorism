@@ -44,7 +44,7 @@ export const Input = memo((props: InputProps) => {
     isIconLeft && "pl-11 pr-3",
     !isIconLeft && "pr-11 pl-3",
     !disabled &&
-      "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
+    "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
   return (
