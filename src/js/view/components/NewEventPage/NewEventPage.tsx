@@ -113,11 +113,13 @@ export const NewEventPage = () => {
               {t("pages.new_event.description")}
             </TextBodyStandard>
           </div>
-          <Input
-            placeholder={`${t("pages.new_event.example")}, ${t(
-              "pages.new_event.description_example"
-            )}`}
-          />
+          <textarea rows={3} className="textarea w-full px-4 py-3
+          focus:outline-none bg-light-2 text-black-4
+          dark:bg-black-2 dark:text-light-0
+          placeholder:text-dark-4 placeholder:dark:text-dark-2
+          focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4
+          hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
+                    placeholder={`${t("pages.new_event.example")}, ${t("pages.new_event.description_example")}`}/>
         </div>
       </div>
     </div>
