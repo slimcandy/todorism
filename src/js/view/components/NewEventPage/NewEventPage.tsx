@@ -75,35 +75,51 @@ export const NewEventPage = () => {
     }; */
   return (
     <div
-    className="min-h-screen
+      className="min-h-screen
       flex flex-col
       justify-between md:justify-start
       px-4 pt-16 xs:pt-16 pb-6 mx-auto
       sm:w-6/12
-      w-full">
-    <div>
-      <div className="mb-6">
-        <TitleH1>{t("pages.new_event.title")}</TitleH1>
-      </div>
-      <div className="mb-4">
-        <div className="mb-2">
-          <TextBodyStandard className="dark:text-dark-3">{t("pages.new_event.event_name")}</TextBodyStandard>
-          <TextBodyStandard className="dark:text-dark-3">*</TextBodyStandard>
+      w-full"
+    >
+      <div>
+        <div className="mb-6">
+          <TitleH1>{t("pages.new_event.title")}</TitleH1>
         </div>
-        <Input placeholder={`${t("pages.new_event.example")}, ${t("pages.new_event.event_name_example")}`}/>
-      </div>
-      <div className="mb-4">
-        <div className="mb-2">
-          <TextBodyStandard className="dark:text-dark-3">{t("pages.new_event.dates")}</TextBodyStandard>
+        <div className="mb-4">
+          <div className="mb-2">
+            <TextBodyStandard className="dark:text-dark-3">
+              {t("pages.new_event.event_name")}
+            </TextBodyStandard>
+            <TextBodyStandard className="dark:text-dark-3">*</TextBodyStandard>
+          </div>
+          <Input
+            placeholder={`${t("pages.new_event.example")}, ${t(
+              "pages.new_event.event_name_example"
+            )}`}
+          />
         </div>
-        <Input placeholder={`${t("pages.new_event.example")}, 12.06.2022`}/>
-      </div>
-      <div className="mb-4">
-        <div className="mb-2">
-          <TextBodyStandard className="dark:text-dark-3">{t("pages.new_event.description")}</TextBodyStandard>
+        <div className="mb-4">
+          <div className="mb-2">
+            <TextBodyStandard className="dark:text-dark-3">
+              {t("pages.new_event.dates")}
+            </TextBodyStandard>
+          </div>
+          <Input placeholder={`${t("pages.new_event.example")}, 12.06.2022`} />
         </div>
-        <Input placeholder={`${t("pages.new_event.example")}, ${t("pages.new_event.description_example")}`}/>
+        <div className="mb-4">
+          <div className="mb-2">
+            <TextBodyStandard className="dark:text-dark-3">
+              {t("pages.new_event.description")}
+            </TextBodyStandard>
+          </div>
+          <Input
+            placeholder={`${t("pages.new_event.example")}, ${t(
+              "pages.new_event.description_example"
+            )}`}
+          />
+        </div>
       </div>
     </div>
-  </div>)
-}
+  );
+};
