@@ -49,7 +49,7 @@
         "caseSensitive": false
       }
     ],
-    "no-void": ["error", { "allowAsStatement": true }],
+    "no-void": ["warn", { "allowAsStatement": true }],
     "import/newline-after-import": "warn",
     "@typescript-eslint/quotes": ["warn", "double"],
     "@typescript-eslint/no-empty-function": "off",

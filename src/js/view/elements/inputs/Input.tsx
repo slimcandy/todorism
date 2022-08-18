@@ -14,8 +14,10 @@ export const Input = (props: InputProps) => {
     type,
   } = props;
 
-  const firstValue = String(value) === "undefined" ? "" : String(value);
+  const firstValue = String(value) === "undefined" || String(value) === "null" ? "" : String(value);
+
   const [localValue, setLocalValue] = React.useState(firstValue);
+
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.target.value);
     onChange?.(event.target.value);

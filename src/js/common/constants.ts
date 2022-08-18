@@ -5,6 +5,8 @@ export const urlApiGet = `${urlApi}v1/get-`;
 export const urlApiSet = `${urlApi}v1/set-`;
 export const localStorageUsernameKey = "username";
 export const localStorageTripIdKey = "trip_ids";
+export const localStorageTripObjects = "trip_objects";
+export const SERVER_URL = process.env.REACT_APP_SERVER || "https://tracking-organizer.herokuapp.com";
 
 // Elements
 export const langLocales = [

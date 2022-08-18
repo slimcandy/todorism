@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from "react";
 
 export interface InputProps {
   placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
-  value?: InputHTMLAttributes<HTMLInputElement>["value"];
+  value?: InputHTMLAttributes<HTMLInputElement>["value"] | null;
   className?: string;
   disabled?: boolean;
   type?: "date" | "email" | "number" | "time";

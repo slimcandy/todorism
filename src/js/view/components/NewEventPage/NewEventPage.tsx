@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonPrimary, Input, InputDate, TextBodyStandard, TitleH1 } from "../../elements";
-import { pushLocalStorage } from "../../../utils/localStorage";
-import { ErrorResponse, NewTripResponse } from "../../../interfaces";
+import { createNewEvent } from "../../../api_clients";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
   // 3. Форма нового мероприятия
   const username = "TestUser";
-  const SERVER_URL =
-    process.env.REACT_APP_SERVER || "https://tracking-organizer.herokuapp.com";
-
-  const localStorageTripObjects = "trip_objects";
 
   // const [newTripErrors, setNewTripErrors] = useState<string>("");
 
-  const [newTripName, setNewTripName] = useState<string>("");
+  const [newTripName, setNewTripName] = useState<string|null>(null);
 
   const [newTripStartDate, setNewTripStartDate] = useState<string>(
     new Date().toISOString()
@@ -26,8 +21,8 @@ export const NewEventPage = () => {
 
   const [newTripDescription, setNewTripDescription] = useState<string>("");
 
-  const onNewTripNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTripName(event.target.value);
+  const onNewTripNameChange = (newName: string) => {
+    setNewTripName(newName);
   };
 
   const onStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -40,52 +35,7 @@ export const NewEventPage = () => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => setNewTripDescription(event.target.value);
 
-  const onNewTripSubmit = async () => {
-    const response = await fetch(
-      `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title: newTripName,
-          description: newTripDescription,
-          start: newTripStartDate,
-          end: newTripEndDate
-        })
-      }
-    );
-
-    if (response.ok) {
-      const json: NewTripResponse = (await response.json()) as NewTripResponse;
-
-      const { trip_uid, member_uid } = json;
-
-      const memberTripObj = { trip_uid, member_uid };
-
-      pushLocalStorage(localStorageTripObjects, JSON.stringify([memberTripObj]))
-        .then(
-          () => {
-            console.log("Go to Add members")
-          }
-        )
-        .catch(() => {
-        });
-    } else {
-      const errorResponse = (await response.json()) as ErrorResponse;
-      let errorMessage = "";
-      errorResponse.detail.forEach((error) => {
-        errorMessage += `${error.msg}. \n`;
-      });
-      console.error(errorMessage);
-      // setNewTripErrors(errorMessage);
-    }
-  };
-
-  useEffect(() => {
-    console.log("newTripName ", newTripName);
-  }, [newTripName]);
+  const onNewTripSubmit = createNewEvent;
 
   // const isBtnDisabled = !newTripName || newTripName.length === 0;
 
@@ -111,7 +61,7 @@ export const NewEventPage = () => {
           </div>
           <Input
             value={newTripName}
-            onChange={onNewTripNameChange}
+            onChange={(onNewTripNameChange)}
             placeholder={`${t("pages.new_event.example")}, ${t(
               "pages.new_event.event_name_example"
             )}`}
@@ -169,7 +119,9 @@ export const NewEventPage = () => {
         </div>
       </div>
       {/* eslint-disable-next-line no-void */}
-      <ButtonPrimary type="submit" onClick={() => void onNewTripSubmit()}>
+      <ButtonPrimary type="submit" 
+      disabled={newTripName === null || newTripName.length === 0} 
+      onClick={() => void onNewTripSubmit(username, newTripName?? "", newTripDescription, newTripStartDate, newTripEndDate)}>
         {t("buttons.create")}
       </ButtonPrimary>
     </div>
