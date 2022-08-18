@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ButtonPrimary,
-  Input,
-  InputDate,
-  TextBodyStandard,
-  TitleH1,
-} from "../../elements";
+import { ButtonPrimary, Input, InputDate, TextBodyStandard, TitleH1 } from "../../elements";
 import { pushLocalStorage } from "../../../utils/localStorage";
+import { ErrorResponse, NewTripResponse } from "../../../interfaces";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
@@ -21,12 +16,14 @@ export const NewEventPage = () => {
   // const [newTripErrors, setNewTripErrors] = useState<string>("");
 
   const [newTripName, setNewTripName] = useState<string>("");
+
   const [newTripStartDate, setNewTripStartDate] = useState<string>(
     new Date().toISOString()
   );
   const [newTripEndDate, setNewTripEndDate] = useState<string>(
     new Date().toISOString()
   );
+
   const [newTripDescription, setNewTripDescription] = useState<string>("");
 
   const onNewTripNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,45 +46,34 @@ export const NewEventPage = () => {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           title: newTripName,
           description: newTripDescription,
           start: newTripStartDate,
-          end: newTripEndDate,
-        }),
+          end: newTripEndDate
+        })
       }
     );
 
-    interface INewTripResponse {
-      trip_uid: string;
-      member_uid: string;
-    }
-
     if (response.ok) {
-      const json: INewTripResponse =
-        (await response.json()) as INewTripResponse;
+      const json: NewTripResponse = (await response.json()) as NewTripResponse;
+
       const { trip_uid, member_uid } = json;
 
       const memberTripObj = { trip_uid, member_uid };
 
       pushLocalStorage(localStorageTripObjects, JSON.stringify([memberTripObj]))
         .then(
-          () => {},
-          () => {}
+          () => {
+            console.log("Go to Add members")
+          }
         )
-        .catch(() => {});
+        .catch(() => {
+        });
     } else {
-      interface IErrorResponse {
-        detail: {
-          loc: string[];
-          msg: string;
-          type: string;
-        }[];
-      }
-
-      const errorResponse = (await response.json()) as IErrorResponse;
+      const errorResponse = (await response.json()) as ErrorResponse;
       let errorMessage = "";
       errorResponse.detail.forEach((error) => {
         errorMessage += `${error.msg}. \n`;
@@ -96,10 +82,13 @@ export const NewEventPage = () => {
       // setNewTripErrors(errorMessage);
     }
   };
+
   useEffect(() => {
     console.log("newTripName ", newTripName);
   }, [newTripName]);
+
   // const isBtnDisabled = !newTripName || newTripName.length === 0;
+
   return (
     <div
       className="min-h-screen
