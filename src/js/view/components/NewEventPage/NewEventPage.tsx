@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ButtonPrimary, Input, InputDate, TextBodyStandard, TitleH1 } from "../../elements";
+import {
+  ButtonPrimary,
+  Input,
+  InputDate,
+  TextBodyStandard,
+  TitleH1,
+} from "../../elements";
 import { createNewEvent } from "../../../api_clients";
 import { TextArea } from "../../elements/inputs/TextArea";
 
@@ -18,7 +24,9 @@ export const NewEventPage = () => {
     new Date().toISOString()
   );
 
-  const [newTripDescription, setNewTripDescription] = useState<string | null>(null);
+  const [newTripDescription, setNewTripDescription] = useState<string | null>(
+    null
+  );
 
   const onNewTripNameChange = (newName: string) => {
     setNewTripName(newName);
@@ -58,7 +66,7 @@ export const NewEventPage = () => {
           </div>
           <Input
             value={newTripName}
-            onChange={(onNewTripNameChange)}
+            onChange={onNewTripNameChange}
             placeholder={`${t("pages.new_event.example")}, ${t(
               "pages.new_event.event_name_example"
             )}`}
@@ -99,21 +107,28 @@ export const NewEventPage = () => {
               {t("pages.new_event.description")}
             </TextBodyStandard>
           </div>
-          <TextArea rows={3}
-                    placeholder={`${t("pages.new_event.example")}, ${t(
-                      "pages.new_event.description_example"
-                    )}`}
-                    onChange={onNewTripDescriptionChange} />
+          <TextArea
+            rows={3}
+            placeholder={`${t("pages.new_event.example")}, ${t(
+              "pages.new_event.description_example"
+            )}`}
+            onChange={onNewTripDescriptionChange}
+          />
         </div>
       </div>
-      <ButtonPrimary type="submit"
-                     disabled={newTripName === null || newTripName.length === 0}
-                     onClick={() => void onNewTripSubmit(
-                       username,
-                       newTripName ?? "",
-                       newTripDescription,
-                       newTripStartDate,
-                       newTripEndDate)}>
+      <ButtonPrimary
+        type="submit"
+        disabled={newTripName === null || newTripName.length === 0}
+        onClick={() =>
+          void onNewTripSubmit(
+            username,
+            newTripName ?? "",
+            newTripDescription,
+            newTripStartDate,
+            newTripEndDate
+          )
+        }
+      >
         {t("buttons.create")}
       </ButtonPrimary>
     </div>

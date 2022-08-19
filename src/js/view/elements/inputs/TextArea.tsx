@@ -11,7 +11,10 @@ export const TextArea = (props: TextAreaProps) => {
     rows,
   } = props;
 
-  const firstValue = String(value) === "undefined" || String(value) === "null" ? "" : String(value);
+  const firstValue =
+    String(value) === "undefined" || String(value) === "null"
+      ? ""
+      : String(value);
   const [localValue, setLocalValue] = React.useState(firstValue);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -34,5 +37,5 @@ export const TextArea = (props: TextAreaProps) => {
           hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3
           hover:text-dark-3 ${className}`}
     />
-  )
-}
+  );
+};
