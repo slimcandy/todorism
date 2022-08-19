@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonPrimary, Input, InputDate, TextBodyStandard, TitleH1 } from "../../elements";
 import { createNewEvent } from "../../../api_clients";
+import { TextArea } from "../../elements/inputs/TextArea";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
   // 3. Форма нового мероприятия
   const username = "TestUser";
 
-  // const [newTripErrors, setNewTripErrors] = useState<string>("");
-
-  const [newTripName, setNewTripName] = useState<string|null>(null);
+  const [newTripName, setNewTripName] = useState<string | null>(null);
 
   const [newTripStartDate, setNewTripStartDate] = useState<string>(
     new Date().toISOString()
@@ -19,7 +18,7 @@ export const NewEventPage = () => {
     new Date().toISOString()
   );
 
-  const [newTripDescription, setNewTripDescription] = useState<string>("");
+  const [newTripDescription, setNewTripDescription] = useState<string | null>(null);
 
   const onNewTripNameChange = (newName: string) => {
     setNewTripName(newName);
@@ -31,13 +30,11 @@ export const NewEventPage = () => {
   const onEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setNewTripEndDate(new Date(event.target.value).toISOString());
 
-  const onNewTripDescriptionChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => setNewTripDescription(event.target.value);
+  const onNewTripDescriptionChange = (desc: string) => {
+    setNewTripDescription(desc);
+  };
 
   const onNewTripSubmit = createNewEvent;
-
-  // const isBtnDisabled = !newTripName || newTripName.length === 0;
 
   return (
     <div
@@ -102,26 +99,21 @@ export const NewEventPage = () => {
               {t("pages.new_event.description")}
             </TextBodyStandard>
           </div>
-          <textarea
-            onChange={onNewTripDescriptionChange}
-            rows={3}
-            className="textarea w-full px-4 py-3
-          focus:outline-none bg-light-2 text-black-4
-          dark:bg-black-2 dark:text-light-0
-          placeholder:text-dark-4 placeholder:dark:text-dark-2
-          focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4
-          hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3
-          hover:text-dark-3"
-            placeholder={`${t("pages.new_event.example")}, ${t(
-              "pages.new_event.description_example"
-            )}`}
-          />
+          <TextArea rows={3}
+                    placeholder={`${t("pages.new_event.example")}, ${t(
+                      "pages.new_event.description_example"
+                    )}`}
+                    onChange={onNewTripDescriptionChange} />
         </div>
       </div>
-      {/* eslint-disable-next-line no-void */}
-      <ButtonPrimary type="submit" 
-      disabled={newTripName === null || newTripName.length === 0} 
-      onClick={() => void onNewTripSubmit(username, newTripName?? "", newTripDescription, newTripStartDate, newTripEndDate)}>
+      <ButtonPrimary type="submit"
+                     disabled={newTripName === null || newTripName.length === 0}
+                     onClick={() => void onNewTripSubmit(
+                       username,
+                       newTripName ?? "",
+                       newTripDescription,
+                       newTripStartDate,
+                       newTripEndDate)}>
         {t("buttons.create")}
       </ButtonPrimary>
     </div>
