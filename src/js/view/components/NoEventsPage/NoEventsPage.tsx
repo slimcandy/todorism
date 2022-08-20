@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonPrimary, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
+import { localStorageUsernameKey } from "../../../common/constants";
+import { pullLocalStorage } from "../../../utils/localStorage";
 
 export const NoEventsPage = () => {
   const { t } = useTranslation();
+
+  const [username, setUsername] = useState<string>("");
+
+  useEffect(() => {
+    pullLocalStorage(localStorageUsernameKey)
+      .then((localStorageUsername) => {
+        if (
+          typeof localStorageUsername === "string" &&
+          localStorageUsername.length > 0
+        )
+          setUsername(localStorageUsername);
+      })
+      .catch(() => {});
+  }, []);
   return (
     <div
       className="no-events-page
@@ -15,7 +31,9 @@ export const NoEventsPage = () => {
     w-full
     mx-auto"
     >
-      <TitleH1>{t("events.list.your_events")}</TitleH1>
+      <TitleH1>
+        {t("events.list.your_events")}, {username || ""}!
+      </TitleH1>
 
       <div className="place-items-center">
         <div className="mb-16 mx-auto w-48 text-light-0 dark:text-green-0">
