@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 // Icons
 import {
   ArrowIcon,
@@ -15,15 +17,6 @@ import {
 
 // Texts and buttons
 import {
-  ButtonCircle,
-  ButtonPrimary,
-  ButtonSecondary,
-  ButtonSquare,
-  ButtonTransparent,
-  Indicator,
-  TagLarge,
-  TagMedium,
-  TagSmall,
   TextBodyLarge,
   TextBodyMedium,
   TextBodySmall,
@@ -31,20 +24,36 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
+  ButtonCircle,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonSquare,
+  ButtonTransparent,
+  Indicator,
+  Input,
+  TagLarge,
+  TagMedium,
+  TagSmall,
 } from "../../elements";
+import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
-
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
+import { EventListItem } from "../Events/EventListItem";
+import { EventList } from "../Events/EventList";
 
 export function UIKitPage() {
+  const { t } = useTranslation();
   return (
-    <div className="ui-kit-page p-4 bg-light-4 dark:bg-dark-1 dark:text-light-4 text-black-0">
+    <div className="ui-kit-page p-4  dark:text-light-4 text-black-0">
       <h1>UI-kit page</h1>
       <span className="mr-2">
         <Indicator />
       </span>
       <span className="mr-2">
         <Indicator isActive />
+      </span>
+      <span className="mr-2">
+        <TagMe />
       </span>
       <ThemeToggler />
       <TitleH1>UI-kit page</TitleH1>
@@ -132,7 +141,7 @@ export function UIKitPage() {
         </div>
       </div>
       <div className="flex">
-        <div>
+        <div className="mr-8">
           <div className="icons-sizes flex p-2 gap-4">
             <h5>32</h5>
             <h5>24</h5>
@@ -215,38 +224,121 @@ export function UIKitPage() {
         </div>
         <div>
           <h2 className="text-white">Components</h2>
-          <h4 className="text-myPerfectDark">SearchBar</h4>
-          <SearchBar placeholder="Поиск" />
+          <div className="mb-6">
+            <h4 className="text-myPerfectDark">SearchBar</h4>
+            <SearchBar placeholder="Поиск" />
+          </div>
+          <div>
+            <TitleH3 className="mb-4">Inputs</TitleH3>
+            <TextBodyLarge>Simple input</TextBodyLarge>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} />
+            </div>
+
+            <TextBodySmall>With Icon</TextBodySmall>
+            <div className="w-80">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
+              />
+            </div>
+
+            <div className="w-80 mt-4">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} className="cursor-pointer" />}
+                isIconLeft
+              />
+            </div>
+
+            <TextBodySmall>Disabled</TextBodySmall>
+            <div className="w-80">
+              <Input placeholder={t("inputs.whats_your_name")} disabled />
+            </div>
+
+            <TextBodySmall>Disabled with icon</TextBodySmall>
+            <div className="w-80">
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                icon={<CalendarIcon size={20} />}
+                disabled
+              />
+            </div>
+          </div>
         </div>
-        <div className="ml-4">
-          <TextBodyLarge>Tags</TextBodyLarge>
-          <br />
-          <TextBodyMedium>TagSmall</TextBodyMedium>
-          <div className="flex">
-            <div className="mr-4 mt-1">
-              <TagSmall>21.06.2020</TagSmall>
-            </div>
-            <div className="mr-4 mt-1">
-              <TagSmall isActive>21.06.2020</TagSmall>
-            </div>
+        <div className="ml-8 w-80">
+          <TextBodyLarge>EventListItem</TextBodyLarge>
+          <div className="mt-6">
+            <EventListItem tripUid="123456789" title="Поход на Ястребиное"
+                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+                           dateStart="2022-06-29T16:56:27.761Z"
+                           dateEnd="2022-06-29T16:56:27.761Z"/>
           </div>
-          <TextBodyMedium>TagMedium</TextBodyMedium>
-          <div className="flex">
-            <div className="mr-4 mt-1">
-              <TagMedium>1 шт</TagMedium>
+          <div>
+            <div className="mb-4 mt-8">
+              <TextBodyLarge>EventList</TextBodyLarge>
             </div>
-            <div className="mr-4 mt-1">
-              <TagMedium isActive>1 шт</TagMedium>
-            </div>
+            <EventList list={[
+              {
+                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                title: "Днюха в Солотче",
+                description: "string",
+                dateStart: "2022-06-29T16:56:27.761Z",
+                dateEnd: "2022-06-29T16:56:27.761Z"
+              },
+              {
+                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
+                title: "Поход на байдарках",
+                description: "",
+                dateStart: "2022-07-19T16:56:27.761Z",
+                dateEnd: "2022-07-29T16:56:27.761Z"
+              },
+              {
+                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                title: "Карелия",
+                description: "",
+                dateStart: "",
+                dateEnd: ""
+              },
+              {
+                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                title: "Вылазка на великах в Зеленогорск",
+                description: "",
+                dateStart: "2022-09-09T16:56:27.761Z",
+                dateEnd: "2022-09-09T16:56:27.761Z"
+              }
+            ]}/>
           </div>
-          <TextBodyMedium>TagLarge</TextBodyMedium>
-          <div className="flex">
-            <div className="mr-4 mt-1">
-              <TagLarge>Text</TagLarge>
-            </div>
-            <div className="mr-4 mt-1">
-              <TagLarge isActive>Text</TagLarge>
-            </div>
+        </div>
+      </div>
+      <div className="ml-4">
+        <TextBodyLarge>Tags</TextBodyLarge>
+        <br />
+        <TextBodyMedium>TagSmall</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagSmall>21.06.2020</TagSmall>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagSmall isActive>21.06.2020</TagSmall>
+          </div>
+        </div>
+        <TextBodyMedium>TagMedium</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagMedium>1 шт</TagMedium>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagMedium isActive>1 шт</TagMedium>
+          </div>
+        </div>
+        <TextBodyMedium>TagLarge</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagLarge>Text</TagLarge>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagLarge isActive>Text</TagLarge>
           </div>
         </div>
       </div>
