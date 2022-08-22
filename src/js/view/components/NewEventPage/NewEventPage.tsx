@@ -8,7 +8,7 @@ import {
   InputDate,
   TextBodyStandard,
   TitleH1,
-  TextArea
+  TextArea,
 } from "../../elements";
 
 export const NewEventPage = () => {
@@ -47,7 +47,7 @@ export const NewEventPage = () => {
 
   const onNewTripSubmit = createNewEvent;
 
-  const isBtnDisabled = newTripName === null || newTripName.length === 0
+  const isBtnDisabled = newTripName === null || newTripName.length === 0;
 
   return (
     <div
@@ -131,7 +131,7 @@ export const NewEventPage = () => {
             newTripDescription,
             newTripStartDate,
             newTripEndDate,
-            ()=>navigate(path)
+            () => navigate(path)
           )
         }
       >
