@@ -66,7 +66,7 @@ const SPAremoveit = () => {
   const [tripIds, setTripIds] = useState<string[]>([]);
   const [newTripFormOpen, setNewTripFormOpen] = useState<boolean>(false);
   useEffect(() => {
-    pullLocalStorage(localStorageTripIdKey)
+    pullLocalStorage(localStorageTripIdKey as string)
       .then((localStorageString) => {
         if (
           typeof localStorageString === "string" &&
