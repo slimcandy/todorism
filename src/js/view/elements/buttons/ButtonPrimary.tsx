@@ -32,7 +32,7 @@ export const ButtonPrimary = (props: BtnProps) => {
       disabled={disabled}
     >
       {icon}
-      <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>
+      {children && <TextBodyMedium className={textClasses}>{children}</TextBodyMedium>}
     </button>
   );
 };

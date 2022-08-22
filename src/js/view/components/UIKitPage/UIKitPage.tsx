@@ -40,6 +40,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import { EventListItem } from "../Events/EventListItem";
 import { EventList } from "../Events/EventList";
+import { MemberListItem } from "../Members/MemberListItem";
 
 export function UIKitPage() {
   const { t } = useTranslation();
@@ -313,6 +314,15 @@ export function UIKitPage() {
                 },
               ]}
             />
+          </div>
+        </div>
+        <div>
+          <div className="mb-4 mt-8">
+            <TextBodyLarge>MemberListItem</TextBodyLarge>
+          </div>
+          <div className="ml-4 w-80">
+            <MemberListItem memberName="Аня" isMe/>
+            <MemberListItem memberName="Макс"/>
           </div>
         </div>
       </div>
