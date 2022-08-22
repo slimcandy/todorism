@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { createNewEvent } from "../../../api_clients";
 import {
   ButtonPrimary,
   Input,
   InputDate,
   TextBodyStandard,
   TitleH1,
+  TextArea
 } from "../../elements";
-import { createNewEvent } from "../../../api_clients";
-import { TextArea } from "../../elements/inputs/TextArea";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
-  // 3. Форма нового мероприятия
+  const navigate = useNavigate();
+  // TODO: get username from localStorage or store
   const username = "TestUser";
+  const path = "/";
 
   const [newTripName, setNewTripName] = useState<string | null>(null);
 
@@ -32,17 +35,19 @@ export const NewEventPage = () => {
     setNewTripName(newName);
   };
 
-  const onStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setNewTripStartDate(new Date(event.target.value).toISOString());
+  const onStartDateChange = (startDate: string) =>
+    setNewTripStartDate(new Date(startDate).toISOString());
 
-  const onEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setNewTripEndDate(new Date(event.target.value).toISOString());
+  const onEndDateChange = (endDate: string) =>
+    setNewTripEndDate(new Date(endDate).toISOString());
 
   const onNewTripDescriptionChange = (desc: string) => {
     setNewTripDescription(desc);
   };
 
   const onNewTripSubmit = createNewEvent;
+
+  const isBtnDisabled = newTripName === null || newTripName.length === 0
 
   return (
     <div
@@ -118,14 +123,15 @@ export const NewEventPage = () => {
       </div>
       <ButtonPrimary
         type="submit"
-        disabled={newTripName === null || newTripName.length === 0}
+        disabled={isBtnDisabled}
         onClick={() =>
           void onNewTripSubmit(
             username,
             newTripName ?? "",
             newTripDescription,
             newTripStartDate,
-            newTripEndDate
+            newTripEndDate,
+            ()=>navigate(path)
           )
         }
       >

@@ -7,7 +7,8 @@ export const createNewEvent = async (
   eventName: string,
   eventDescription: string | null,
   eventStartDate: string | null,
-  eventEndDate: string | null
+  eventEndDate: string | null,
+  navigate?: ()=>void
 ) => {
   const response = await fetch(
     `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
@@ -23,11 +24,10 @@ export const createNewEvent = async (
         end: eventEndDate,
       }),
     }
-  );
+  )
 
   if (response.ok) {
     const json: NewTripResponse = (await response.json()) as NewTripResponse;
-
     let savedEvents: Array<NewTripResponse> = [];
 
     await pullLocalStorage(localStorageTripObjects).then((str) => {
@@ -38,7 +38,8 @@ export const createNewEvent = async (
 
     pushLocalStorage(localStorageTripObjects, JSON.stringify(savedEvents))
       .then(() => {
-        console.log("Go to Add members");
+        if(!navigate) return
+        navigate()
       })
       .catch(() => {});
   } else {
