@@ -32,7 +32,9 @@ export const EventListItem = (props: Event) => {
 
         {start && (
           <div>
-            <Indicator isActive={dateStart ? isDateExpired(new Date(dateStart)) : true} />
+            <Indicator
+              isActive={dateStart ? isDateExpired(new Date(dateStart)) : true}
+            />
             <TextBodySmall className="ml-1">{start || ""}</TextBodySmall>
             {end && (
               <TextBodySmall className="ml-1">{`- ${end || ""}`}</TextBodySmall>

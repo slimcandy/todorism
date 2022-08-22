@@ -17,12 +17,6 @@ import {
 
 // Texts and buttons
 import {
-  ButtonCircle,
-  ButtonPrimary,
-  ButtonSecondary,
-  ButtonSquare,
-  ButtonTransparent,
-  Indicator,
   TextBodyLarge,
   TextBodyMedium,
   TextBodySmall,
@@ -30,7 +24,16 @@ import {
   TitleH1,
   TitleH2,
   TitleH3,
+  ButtonCircle,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonSquare,
+  ButtonTransparent,
+  Indicator,
   Input,
+  TagLarge,
+  TagMedium,
+  TagSmall,
 } from "../../elements";
 import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
@@ -62,18 +65,22 @@ export function UIKitPage() {
           <TitleH3>TitleH3: Заголовок третьего уровня</TitleH3>
         </div>
         <div>
-          <TextBodyLarge>TextBodyLarge: Крупный наборный текст</TextBodyLarge>
+          <TextBodyLarge>
+            TextBodyLarge / Body 16 Regular: Крупный наборный текст
+          </TextBodyLarge>
           <br />
           <TextBodyMedium>
-            TextBodyMedium: Текст для кнопок и кликабельного текста
+            TextBodyMedium / Body 14 Medium: Текст для кнопок и кликабельного
+            текста
           </TextBodyMedium>
           <br />
           <TextBodyStandard>
-            TextBodyStandard: Стандартный наборный текст
+            TextBodyStandard / Body 14 Regular: Стандартный наборный текст
           </TextBodyStandard>
           <br />
           <TextBodySmall>
-            TextBodySmall: Мелкий наборный текст, текст для пояснений
+            TextBodySmall / Body 12 Regular: Мелкий наборный текст, текст для
+            пояснений
           </TextBodySmall>
         </div>
         <div className="buttons">
@@ -262,45 +269,81 @@ export function UIKitPage() {
         <div className="ml-8 w-80">
           <TextBodyLarge>EventListItem</TextBodyLarge>
           <div className="mt-6">
-            <EventListItem tripUid="123456789" title="Поход на Ястребиное"
-                           description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
-                           dateStart="2022-06-29T16:56:27.761Z"
-                           dateEnd="2022-06-29T16:56:27.761Z"/>
+            <EventListItem
+              tripUid="123456789"
+              title="Поход на Ястребиное"
+              description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
+              dateStart="2022-06-29T16:56:27.761Z"
+              dateEnd="2022-06-29T16:56:27.761Z"
+            />
           </div>
           <div>
             <div className="mb-4 mt-8">
               <TextBodyLarge>EventList</TextBodyLarge>
             </div>
-            <EventList list={[
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                title: "Днюха в Солотче",
-                description: "string",
-                dateStart: "2022-06-29T16:56:27.761Z",
-                dateEnd: "2022-06-29T16:56:27.761Z"
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
-                title: "Поход на байдарках",
-                description: "",
-                dateStart: "2022-07-19T16:56:27.761Z",
-                dateEnd: "2022-07-29T16:56:27.761Z"
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                title: "Карелия",
-                description: "",
-                dateStart: "",
-                dateEnd: ""
-              },
-              {
-                tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                title: "Вылазка на великах в Зеленогорск",
-                description: "",
-                dateStart: "2022-09-09T16:56:27.761Z",
-                dateEnd: "2022-09-09T16:56:27.761Z"
-              }
-            ]}/>
+            <EventList
+              list={[
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  title: "Днюха в Солотче",
+                  description: "string",
+                  dateStart: "2022-06-29T16:56:27.761Z",
+                  dateEnd: "2022-06-29T16:56:27.761Z",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
+                  title: "Поход на байдарках",
+                  description: "",
+                  dateStart: "2022-07-19T16:56:27.761Z",
+                  dateEnd: "2022-07-29T16:56:27.761Z",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                  title: "Карелия",
+                  description: "",
+                  dateStart: "",
+                  dateEnd: "",
+                },
+                {
+                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+                  title: "Вылазка на великах в Зеленогорск",
+                  description: "",
+                  dateStart: "2022-09-09T16:56:27.761Z",
+                  dateEnd: "2022-09-09T16:56:27.761Z",
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="ml-4">
+        <TextBodyLarge>Tags</TextBodyLarge>
+        <br />
+        <TextBodyMedium>TagSmall</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagSmall>21.06.2020</TagSmall>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagSmall isActive>21.06.2020</TagSmall>
+          </div>
+        </div>
+        <TextBodyMedium>TagMedium</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagMedium>1 шт</TagMedium>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagMedium isActive>1 шт</TagMedium>
+          </div>
+        </div>
+        <TextBodyMedium>TagLarge</TextBodyMedium>
+        <div className="flex">
+          <div className="mr-4 mt-1">
+            <TagLarge>Text</TagLarge>
+          </div>
+          <div className="mr-4 mt-1">
+            <TagLarge isActive>Text</TagLarge>
           </div>
         </div>
       </div>

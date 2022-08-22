@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from "react";
 import {
-  localStorageUsernameKey,
   localStorageTripIdKey,
+  localStorageUsernameKey,
 } from "../../../common/constants";
 import {
   pullLocalStorage,
@@ -24,10 +24,12 @@ const SPAremoveit = () => {
     interface IUsernameResponse {
       user_uid: string;
     }
+
     interface IUserNameObj {
       username: string;
       user_uid: string;
     }
+
     const response = await fetch(`${SERVER_URL}/User/User/CreateUser`, {
       method: "POST",
       headers: {
@@ -64,7 +66,7 @@ const SPAremoveit = () => {
   const [tripIds, setTripIds] = useState<string[]>([]);
   const [newTripFormOpen, setNewTripFormOpen] = useState<boolean>(false);
   useEffect(() => {
-    pullLocalStorage(localStorageTripIdKey)
+    pullLocalStorage(localStorageTripIdKey as string)
       .then((localStorageString) => {
         if (
           typeof localStorageString === "string" &&
@@ -114,6 +116,7 @@ const SPAremoveit = () => {
     interface INewTripResponse {
       trip_uid: string;
     }
+
     if (response.ok) {
       const json: INewTripResponse =
         (await response.json()) as INewTripResponse;
