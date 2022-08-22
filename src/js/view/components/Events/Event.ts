@@ -1,7 +1,17 @@
 export interface Event {
-  tripUid: string;
   title: string;
-  description?: string | undefined;
-  dateStart?: string | undefined;
-  dateEnd?: string | undefined;
+  description: string;
+  start: string;
+  end: string;
+  trip_uid: string;
+  status?: number;
+  creation_stage?: number;
+}
+export interface EventListItemProps {
+  tripUid: string;
+  key?: string;
+  title: string;
+  description: string;
+  dateStart: string;
+  dateEnd: string;
 }

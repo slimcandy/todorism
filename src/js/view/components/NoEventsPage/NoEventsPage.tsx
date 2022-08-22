@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Navigate } from "react-router-dom";
 import { ButtonPrimary, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
-import { localStorageUsernameKey } from "../../../common/constants";
+import {
+  localStorageTripObjects,
+  localStorageUsernameKey,
+} from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
+import { INewTripResponse } from "../../../interfaces/Event";
 
 export const NoEventsPage = () => {
   const { t } = useTranslation();
 
   const [username, setUsername] = useState<string>("");
+  const [redirectToEvents, setRedirectToEvents] = useState(false);
 
   useEffect(() => {
     pullLocalStorage(localStorageUsernameKey)
@@ -21,6 +27,23 @@ export const NoEventsPage = () => {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    pullLocalStorage(localStorageTripObjects)
+      .then((localStorageString) => {
+        if (
+          typeof localStorageString === "string" &&
+          localStorageString.length > 0
+        ) {
+          const trips = JSON.parse(localStorageString) as INewTripResponse[];
+          if (trips.length > 0) {
+            setRedirectToEvents(true);
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <div
       className="no-events-page
@@ -48,6 +71,7 @@ export const NoEventsPage = () => {
       <div className="px-7">
         <ButtonPrimary>{t("events.create_new_event.create_btn")}</ButtonPrimary>
       </div>
+      {redirectToEvents && <Navigate to="/events" replace />}
     </div>
   );
 };

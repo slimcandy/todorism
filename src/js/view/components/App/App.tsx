@@ -12,6 +12,7 @@ import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
 
 import "../../../../styles/index.css";
+import EventPage from "../Events/EventPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -40,6 +41,7 @@ export function App() {
               <Route path="/welcome" element={<WelcomePage />} />
               <Route path="/no-events" element={<NoEventsPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
+              <Route path="/events" element={<EventPage />} />
             </Routes>
           </BrowserRouter>
         </main>

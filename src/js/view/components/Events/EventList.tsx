@@ -11,8 +11,7 @@ export const EventList = (props: EventListProps) => {
 
   const sortedListByDayDesc = list.sort(
     (a, b) =>
-      new Date(b.dateStart || "").getTime() -
-      new Date(a.dateStart || "").getTime()
+      new Date(b.start || "").getTime() - new Date(a.end || "").getTime()
   );
 
   return (
@@ -20,12 +19,12 @@ export const EventList = (props: EventListProps) => {
       {sortedListByDayDesc.map((event) => (
         <div className="mb-2">
           <EventListItem
-            tripUid={event.tripUid}
-            key={event.tripUid}
+            tripUid={event.trip_uid}
+            key={event.trip_uid}
             title={event.title}
             description={event.description}
-            dateStart={event.dateStart}
-            dateEnd={event.dateEnd}
+            dateStart={event.start}
+            dateEnd={event.end}
           />
         </div>
       ))}

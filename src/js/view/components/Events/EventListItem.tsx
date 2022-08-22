@@ -2,9 +2,9 @@ import React from "react";
 import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
 import { KebabIcon } from "../../icons";
 import { dateToStringDDMMYYYY, isDateExpired } from "../../../utils";
-import { Event } from "./Event";
+import { EventListItemProps } from "./Event";
 
-export const EventListItem = (props: Event) => {
+export const EventListItem = (props: EventListItemProps) => {
   const { tripUid, title, description, dateStart, dateEnd } = props;
   let start;
   let end;
