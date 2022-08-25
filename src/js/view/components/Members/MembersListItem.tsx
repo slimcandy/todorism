@@ -5,13 +5,14 @@ import { ButtonIcon } from "../../elements";
 
 type Props = {
   memberName: string;
-  isMe?: boolean;
+  isMe: boolean;
 };
 
-export const MemberListItem = (props: Props) => {
+export const MembersListItem = (props: Props) => {
   const { memberName, isMe } = props;
 
-  const firstValue = String(memberName) === "undefined" ? "" : String(memberName);
+  const firstValue =
+    String(memberName) === "undefined" ? "" : String(memberName);
 
   return (
     <div className="w-100 flex justify-between pb-1 border-b border-light-2 dark:border-black-3">
@@ -24,11 +25,11 @@ export const MemberListItem = (props: Props) => {
         {isMe && <TagMe />}
       </div>
       <div className="flex">
-          <ButtonIcon
-            className="dark:text-dark-2 text-dark-4 cursor-pointer"
-            icon={<EditIcon size={24} />}
-            onClick={() => {}}
-          />
+        <ButtonIcon
+          className="dark:text-dark-2 text-dark-4 cursor-pointer"
+          icon={<EditIcon size={24} />}
+          onClick={() => {}}
+        />
         <ButtonIcon
           className="dark:text-dark-2 text-dark-4 cursor-pointer"
           icon={<DeleteIcon size={24} />}

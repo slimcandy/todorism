@@ -40,7 +40,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import { EventListItem } from "../Events/EventListItem";
 import { EventList } from "../Events/EventList";
-import { MemberListItem } from "../Members/MemberListItem";
+import { MembersListItem } from "../Members/MembersListItem";
+import { MembersList } from "../Members/MembersList";
 
 export function UIKitPage() {
   const { t } = useTranslation();
@@ -321,8 +322,29 @@ export function UIKitPage() {
             <TextBodyLarge>MemberListItem</TextBodyLarge>
           </div>
           <div className="ml-4 w-80">
-            <MemberListItem memberName="Аня" isMe />
-            <MemberListItem memberName="Макс" />
+            <MembersListItem memberName="Аня" isMe />
+            <MembersListItem memberName="Макс" isMe={false}/>
+          </div>
+        </div>
+        <div>
+          <div className="mb-4 mt-8">
+            <TextBodyLarge>MemberList</TextBodyLarge>
+          </div>
+          <div className="ml-4 w-80">
+            <MembersList list={[
+              {
+                "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "name": "Anna",
+              },
+              {
+                "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66agr8",
+                "name": "Max",
+              },
+              {
+                "member_uid": "3fa85f64-5717-4562-b3fc-2c78fdkuhe82",
+                "name": "Alex",
+              },
+            ]}/>
           </div>
         </div>
       </div>
