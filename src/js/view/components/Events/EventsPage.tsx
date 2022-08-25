@@ -12,22 +12,21 @@ export const EventsPage = () => {
   // TODO: переписать в соответсвии с новым API
   const [events, setEvents] = useState<Array<Event>>([]);
 
-  const fetchEvents = async () => {
-    await fetch("https://tracking-organizer.herokuapp.com/Trip/All", {
+  const fetchEvents = () =>
+    fetch("https://tracking-organizer.herokuapp.com/Trip/All", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(["3fa85f64-5717-4562-b3fc-2c963f66afa6"]),
-    })
+    });
+
+  useEffect(() => {
+    fetchEvents()
       .then((res) => res.json())
       .then(setEvents)
       .catch((error) => console.error(error));
-  };
-
-  useEffect(() => {
-    void fetchEvents();
   }, []);
 
   const pageClasses = classesOf(
