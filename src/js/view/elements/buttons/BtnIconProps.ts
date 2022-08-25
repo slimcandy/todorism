@@ -7,4 +7,10 @@ export type BtnIconProps = {
   type?: BtnType;
   disabled?: boolean;
   className?: string;
-} & Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "">;
+} & Omit<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >,
+  ""
+>;

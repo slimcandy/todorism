@@ -321,8 +321,8 @@ export function UIKitPage() {
             <TextBodyLarge>MemberListItem</TextBodyLarge>
           </div>
           <div className="ml-4 w-80">
-            <MemberListItem memberName="Аня" isMe/>
-            <MemberListItem memberName="Макс"/>
+            <MemberListItem memberName="Аня" isMe />
+            <MemberListItem memberName="Макс" />
           </div>
         </div>
       </div>
