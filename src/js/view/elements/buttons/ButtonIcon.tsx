@@ -1,9 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { BtnIconProps } from "./BtnIconProps";
 
-export const ButtonIcon = (props: BtnIconProps) => {
+export const ButtonIcon = memo((props: BtnIconProps) => {
   const { icon, type, disabled, className = "", ...rest } = props;
-
   return (
     <button
       {...rest}
@@ -18,4 +17,4 @@ export const ButtonIcon = (props: BtnIconProps) => {
       {icon}
     </button>
   );
-};
+});

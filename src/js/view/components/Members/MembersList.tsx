@@ -4,10 +4,11 @@ import { MembersListItem } from "./MembersListItem";
 
 type MembersListProps = {
   list: Array<IMember>;
+  onEdit: ()=>void
 };
 
 export const MembersList = (props: MembersListProps) => {
-  const { list } = props;
+  const { list, onEdit } = props;
   return (
     <>
       {list.map((member) => (
@@ -15,7 +16,9 @@ export const MembersList = (props: MembersListProps) => {
           <MembersListItem
             key={member.member_uid}
             memberName={member.name}
+            memberUid={member.member_uid}
             isMe={false}
+            onEdit={onEdit}
           />
         </div>
       ))}
