@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { classesOf } from "../../../utils";
 import { InputProps } from "./InputProps";
 
@@ -13,7 +13,10 @@ export const Input = (props: InputProps) => {
     onChange,
   } = props;
 
-  const firstValue = String(value) === "undefined" ? "" : String(value);
+  const firstValue =
+    String(value) === "undefined" || String(value) === "null"
+      ? ""
+      : String(value);
   const [localValue, setLocalValue] = React.useState(firstValue);
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.target.value);
@@ -41,6 +44,8 @@ export const Input = (props: InputProps) => {
     !disabled &&
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
+
+  useEffect(()=>{setLocalValue(firstValue)}, [firstValue])
 
   return (
     <form>

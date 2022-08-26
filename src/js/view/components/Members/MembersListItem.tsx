@@ -1,25 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { TagMe } from "../../elements/TagMe";
 import { DeleteIcon, EditIcon } from "../../icons";
 import { ButtonIcon } from "../../elements";
 
 type Props = {
   memberName: string;
-  memberUid?: string;
+  memberUid: string;
   isMe: boolean;
-  onEdit: (memberName: string)=>void
+  onEdit: (member: {name: string, member_uid: string})=>void
+  onEditClick: (value: boolean)=>void
 };
 
 export const MembersListItem = (props: Props) => {
-  const { memberName, memberUid, isMe, onEdit} = props;
+  const { memberName, memberUid, isMe, onEdit, onEditClick} = props;
 
   const firstValue = String(memberName) === "undefined" ? "" : String(memberName);
-  const [localValue, setLocalValue] = React.useState(firstValue);
+  const [localValue, ] = React.useState(firstValue);
+  const [member, setMember] = useState<{name: string, member_uid: string}>({name: "", member_uid: ""});
 
-  const onEditClick = (member: string) => {
-    setLocalValue(member);
+  const onEditHandler = (name: string, id: string) => {
+    setMember({name, member_uid: id});
     console.log("onEditClick member ",member)
-    onEdit?.(member);
+    onEdit?.({name, member_uid: id});
+    onEditClick?.(true)
   }
 
   return (
@@ -37,7 +40,9 @@ export const MembersListItem = (props: Props) => {
         <ButtonIcon
           className="dark:text-dark-2 text-dark-4 cursor-pointer"
           icon={<EditIcon size={24} />}
-          onClick={()=>onEditClick( memberName)}
+          onClick={()=> {
+            onEditHandler(memberName, memberUid);
+          }}
         />
         <ButtonIcon
           className="dark:text-dark-2 text-dark-4 cursor-pointer"

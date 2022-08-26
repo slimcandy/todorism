@@ -4,11 +4,12 @@ import { MembersListItem } from "./MembersListItem";
 
 type MembersListProps = {
   list: Array<IMember>;
-  onEdit: ()=>void
+  onEdit: (member: {name: string, member_uid: string})=>void
+  onEditClick: (value: boolean)=>void
 };
 
 export const MembersList = (props: MembersListProps) => {
-  const { list, onEdit } = props;
+  const { list, onEdit, onEditClick } = props;
   return (
     <>
       {list.map((member) => (
@@ -19,6 +20,7 @@ export const MembersList = (props: MembersListProps) => {
             memberUid={member.member_uid}
             isMe={false}
             onEdit={onEdit}
+            onEditClick={onEditClick}
           />
         </div>
       ))}

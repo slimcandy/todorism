@@ -7,5 +7,5 @@ export interface InputProps {
   disabled?: boolean;
   icon?: React.ReactNode;
   isIconLeft?: boolean;
-  onChange?: (value?: string) => void;
+  onChange?: (value?: any) => void;
 }
