@@ -20,5 +20,5 @@ export const MembersList = (props: MembersListProps) => {
         </div>
       ))}
     </>
-  )
-}
+  );
+};

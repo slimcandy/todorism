@@ -323,7 +323,7 @@ export function UIKitPage() {
           </div>
           <div className="ml-4 w-80">
             <MembersListItem memberName="Аня" isMe />
-            <MembersListItem memberName="Макс" isMe={false}/>
+            <MembersListItem memberName="Макс" isMe={false} />
           </div>
         </div>
         <div>
@@ -331,20 +331,22 @@ export function UIKitPage() {
             <TextBodyLarge>MemberList</TextBodyLarge>
           </div>
           <div className="ml-4 w-80">
-            <MembersList list={[
-              {
-                "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "name": "Anna",
-              },
-              {
-                "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66agr8",
-                "name": "Max",
-              },
-              {
-                "member_uid": "3fa85f64-5717-4562-b3fc-2c78fdkuhe82",
-                "name": "Alex",
-              },
-            ]}/>
+            <MembersList
+              list={[
+                {
+                  member_uid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  name: "Anna",
+                },
+                {
+                  member_uid: "3fa85f64-5717-4562-b3fc-2c963f66agr8",
+                  name: "Max",
+                },
+                {
+                  member_uid: "3fa85f64-5717-4562-b3fc-2c78fdkuhe82",
+                  name: "Alex",
+                },
+              ]}
+            />
           </div>
         </div>
       </div>
