@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
 import {createNewEvent} from "../../../api_clients";
+import {IEvent} from "../Events/IEvent";
 import {
     ButtonPrimary,
     Input,
@@ -17,44 +18,41 @@ export const NewEventPage = () => {
     const username = "TestUser";
     const path = "/";
 
-    const [newTripName, setNewTripName] = useState<string | null>(null);
-
-    const [newTripStartDate, setNewTripStartDate] = useState<string>(
-        new Date().toISOString()
-    );
-    const [newTripEndDate, setNewTripEndDate] = useState<string>(
-        new Date().toISOString()
-    );
-
-    const [newTripDescription, setNewTripDescription] = useState<string | null>(
-        null
-    );
+    const [newEvent, setNewEvent] = useState<IEvent>({
+        trip_uid: "",
+        title: "",
+        description: "",
+        start: undefined,
+        end: undefined
+    })
 
     const onNewTripNameChange = (newName: string) => {
-        setNewTripName(newName);
+        setNewEvent({...newEvent, title: newName});
     };
 
     const onStartDateChange = (startDate: string) =>
-        setNewTripStartDate(new Date(startDate).toISOString());
+        setNewEvent({...newEvent, start: new Date(startDate).toISOString()});
 
     const onEndDateChange = (endDate: string) =>
-        setNewTripEndDate(new Date(endDate).toISOString());
+        setNewEvent({...newEvent, end: new Date(endDate).toISOString()});
+
 
     const onNewTripDescriptionChange = (desc: string) => {
-        setNewTripDescription(desc);
+        setNewEvent({...newEvent, description: desc});
     };
 
-    const isBtnDisabled = newTripName === null || newTripName.length === 0;
+    const isBtnDisabled = newEvent.title === null || newEvent.title.length === 0;
 
     return (
         <form
-            onSubmit={() => {
+            onSubmit={(event) => {
+                event.preventDefault()
                 createNewEvent(
                     username,
-                    newTripName ?? "",
-                    newTripDescription,
-                    newTripStartDate,
-                    newTripEndDate,
+                    newEvent.title ?? "",
+                    newEvent.description,
+                    newEvent.start,
+                    newEvent.end,
                     () => navigate(path)
                 )
                     .then(
@@ -80,7 +78,7 @@ export const NewEventPage = () => {
                 <div className="mb-4">
                     <Input
                         label={t("pages.new_event.event_name")}
-                        value={newTripName}
+                        value={newEvent.title}
                         onChange={onNewTripNameChange}
                         placeholder={`${t("pages.new_event.example")}, ${t(
                             "pages.new_event.event_name_example"
@@ -92,7 +90,7 @@ export const NewEventPage = () => {
                         <div className="mr-4">
                             <InputDate
                                 label={t("pages.new_event.dates")}
-                                value={newTripStartDate}
+                                value={newEvent.start}
                                 onChange={onStartDateChange}
                                 type="date"
                                 placeholder={`${t("pages.new_event.date_start")}: ${t(
@@ -101,8 +99,9 @@ export const NewEventPage = () => {
                             />
                         </div>
                         <div>
-                            <InputDate  label={t("pages.new_event.dates")}
-                                value={newTripStartDate}
+                            <InputDate
+                                label={t("pages.new_event.dates")}
+                                value={newEvent.end}
                                 onChange={onEndDateChange}
                                 type="date"
                                 placeholder={`${t("pages.new_event.date_end")}: ${t(
@@ -120,6 +119,7 @@ export const NewEventPage = () => {
                             "pages.new_event.description_example"
                         )}`}
                         onChange={onNewTripDescriptionChange}
+                        value={newEvent.description}
                     />
                 </div>
             </div>
