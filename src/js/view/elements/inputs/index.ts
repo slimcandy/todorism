@@ -1,3 +1,3 @@
-export * from "./Input";
-export * from "./InputDate";
-export * from "./TextArea";
+export * from "./Input/Input";
+export * from "./InputDate/InputDate";
+export * from "./TextArea/TextArea";

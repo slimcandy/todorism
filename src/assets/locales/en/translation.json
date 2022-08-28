@@ -52,7 +52,7 @@
     },
     "new_event": {
       "title": "New event",
-      "event_name": "Name your event",
+      "event_name": "Name your event*",
       "event_name_example": "Hiking in the mountains",
       "dates": "Choose dates",
       "date_start": "Start date",
