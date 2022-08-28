@@ -320,7 +320,7 @@ export function UIKitPage() {
             <TextBodyLarge>MemberListItem</TextBodyLarge>
           </div>
           <div className="ml-4 w-80">
-     {/*       <MembersListItem memberName="Аня" isMe />
+            {/*       <MembersListItem memberName="Аня" isMe />
             <MembersListItem memberName="Макс" isMe={false} /> */}
           </div>
         </div>
@@ -329,7 +329,7 @@ export function UIKitPage() {
             <TextBodyLarge>MemberList</TextBodyLarge>
           </div>
           <div className="ml-4 w-80">
-{/*            <MembersList
+            {/*            <MembersList
               list={[
                 {
                   member_uid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",

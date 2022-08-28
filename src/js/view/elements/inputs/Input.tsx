@@ -45,7 +45,9 @@ export const Input = (props: InputProps) => {
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
-  useEffect(()=>{setLocalValue(firstValue)}, [firstValue])
+  useEffect(() => {
+    setLocalValue(firstValue);
+  }, [firstValue]);
 
   return (
     <form>
