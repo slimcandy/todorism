@@ -45,12 +45,25 @@ export const NewEventPage = () => {
     setNewTripDescription(desc);
   };
 
-  const onNewTripSubmit = createNewEvent;
-
   const isBtnDisabled = newTripName === null || newTripName.length === 0;
 
   return (
-    <div
+    <form
+      onSubmit={() => {
+        createNewEvent(
+          username,
+          newTripName ?? "",
+          newTripDescription,
+          newTripStartDate,
+          newTripEndDate,
+          () => navigate(path)
+        )
+          .then(
+            () => {},
+            () => {}
+          )
+          .catch(() => {});
+      }}
       className="min-h-screen
       flex flex-col h-100
       justify-between md:justify-start
@@ -121,22 +134,9 @@ export const NewEventPage = () => {
           />
         </div>
       </div>
-      <ButtonPrimary
-        type="submit"
-        disabled={isBtnDisabled}
-        onClick={() =>
-          void onNewTripSubmit(
-            username,
-            newTripName ?? "",
-            newTripDescription,
-            newTripStartDate,
-            newTripEndDate,
-            () => navigate(path)
-          )
-        }
-      >
+      <ButtonPrimary type="submit" disabled={isBtnDisabled}>
         {t("buttons.create")}
       </ButtonPrimary>
-    </div>
+    </form>
   );
 };
