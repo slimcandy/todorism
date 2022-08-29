@@ -34,7 +34,8 @@ export const TextArea = (props: TextAreaProps) => {
           </TextBodyStandard>
         </label>
       )}
-      <textarea id={textareaId}
+      <textarea
+        id={textareaId}
         rows={rows}
         onChange={handleOnChange}
         disabled={disabled}

@@ -3,12 +3,12 @@ import { ErrorResponse, NewTripResponse } from "../interfaces";
 import { pullLocalStorage, pushLocalStorage } from "../utils/localStorage";
 
 export const createNewEvent = async (
-    username: string,
-    eventName: string,
-    eventDescription: string | undefined,
-    eventStartDate: string | undefined,
-    eventEndDate: string | undefined,
-    navigate?: () => void
+  username: string,
+  eventName: string,
+  eventDescription: string | undefined,
+  eventStartDate: string | undefined,
+  eventEndDate: string | undefined,
+  navigate?: () => void
 ) => {
   const response = await fetch(
     `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
