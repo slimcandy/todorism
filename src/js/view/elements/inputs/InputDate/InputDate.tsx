@@ -52,7 +52,10 @@ export const InputDate = (props: InputProps) => {
         focus-within:text-dark-3 focus-within:dark:text-dark-3 
         ${className}`}
       >
-        <div className="pointer-events-none absolute right-4 bg-light-2 dark:bg-black-2" style={{top: 11}}>
+        <div
+          className="pointer-events-none absolute right-4 bg-light-2 dark:bg-black-2"
+          style={{ top: 11 }}
+        >
           <button>
             <CalendarIcon size={20} />
           </button>
