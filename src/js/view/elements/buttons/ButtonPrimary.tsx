@@ -11,6 +11,7 @@ export const ButtonPrimary = (props: BtnProps) => {
     disabled,
     className = "",
     textClassName = "",
+    ...rest
   } = props;
 
   const textClasses = classesOf(
@@ -21,7 +22,7 @@ export const ButtonPrimary = (props: BtnProps) => {
   );
 
   return (
-    <button
+    <button {...rest}
       className={`btn btn-primary w-full 
       dark:bg-green-4 bg-green-3
       dark:focus:bg-green-2 dark:focus-visible:bg-green-2

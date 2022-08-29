@@ -5,6 +5,7 @@ export const urlApiGet = `${urlApi}v1/get-`;
 export const urlApiSet = `${urlApi}v1/set-`;
 export const localStorageUsernameKey = "username";
 export const localStorageTripIdKey = "trip_ids";
+export const localStorageCurrentEventObject = "currentEvent";
 
 // Elements
 export const langLocales = [

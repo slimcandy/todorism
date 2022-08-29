@@ -11,7 +11,6 @@ type MembersListProps = {
 
 export const MembersList = memo((props: MembersListProps) => {
   const { list, onEdit, onDelete, onEditClick } = props;
-
   const [members, setMembers] = useState(list);
 
   useEffect(() => {

@@ -14,19 +14,21 @@ type Props = {
 
 export const MembersListItem = memo((props: Props) => {
   const { memberName, memberUid, isMe, onEdit, onDelete, onEditClick } = props;
+  const id = React.useId();
 
-  const onEditHandler = (name: string, id: string) => {
-    onEdit?.({ name, member_uid: id });
+  const onEditHandler = (name: string, uid: string) => {
+    onEdit?.({ name, member_uid: uid });
     onEditClick?.(true);
   };
 
-  const onDeleteHandler = (name: string, id: string) => {
-    onDelete?.({ name, member_uid: id });
+  const onDeleteHandler = (name: string, uid: string) => {
+    onDelete?.({ name, member_uid: uid });
   };
 
   return (
     <div
-      id={memberUid}
+      id={`id-${id}`}
+      data-member-id={memberUid}
       className="w-100 flex justify-between pb-1 border-b border-light-2 dark:border-black-3"
     >
       <div className="flex items-center">

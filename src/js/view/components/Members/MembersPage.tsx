@@ -1,132 +1,155 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MembersList } from "./MembersList";
-import { ButtonCircle, Input, TitleH1 } from "../../elements";
+import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
+import { localStorageCurrentEventObject } from "../../../common/constants";
+import { pullLocalStorage } from "../../../utils/localStorage";
 
 export const MembersPage = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const [currEvent, setCurrEvent] = useState<{ trip_uid: string, member_uid: string } | null>(null);
+    const [editingMemberName, setEditingMemberName] = useState<string>("");
+    const [editingMember, setEditingMember] = useState<{
+      name: string;
+      member_uid: string;
+    }>({
+      name: "",
+      member_uid: ""
+    });
+    const [deletingMember, setDeletingMember] = useState<{
+      name: string;
+      member_uid: string;
+    }>({
+      name: "",
+      member_uid: ""
+    });
+    const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const [editingMemberName, setEditingMemberName] = useState<string>("");
-  const [editingMember, setEditingMember] = useState<{
-    name: string;
-    member_uid: string;
-  }>({
-    name: "",
-    member_uid: "",
-  });
-  const [deletingMember, setDeletingMember] = useState<{
-    name: string;
-    member_uid: string;
-  }>({
-    name: "",
-    member_uid: "",
-  });
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [list, setList] =
+      useState<Array<{ name: string; member_uid: string }>>([]);
 
-  const membersList = [
-    {
-      member_uid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      name: "Anna",
-    },
-    {
-      member_uid: "3fa85f64-5717-4562-b3fc-2c963f66agr8",
-      name: "Max",
-    },
-    {
-      member_uid: "3fa85f64-5717-4562-b3fc-2c78fdkuhe82",
-      name: "Alex",
-    },
-  ];
-  const [list, setList] =
-    useState<Array<{ name: string; member_uid: string }>>(membersList);
+    const onRemoveMemberFromList = () => {
+      const newList = list.filter(
+        (m) => m.member_uid !== deletingMember.member_uid
+      );
+      setList(newList);
+    };
 
-  const onRemoveMemberFromList = () => {
-    const newList = list.filter(
-      (m) => m.member_uid !== deletingMember.member_uid
-    );
-    setList(newList);
-  };
+    function onAddMember() {
+      setList([...list, ...[{ name: editingMemberName, member_uid: "" }]]);
+      setIsEditing(false);
+    }
 
-  function onAddMember() {
-    /*        membersList.push({
-                "member_uid": editingMember.member_uid,
-                "name": editingMember.name
-            });
-            await fetch(`https://tracking-organizer.herokuapp.com/Trip/${trip_uid}/Members/AddMembers`,
-                {
-                    method: "POST",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        "member_uid": editingMember.member_uid,
-                        "name": editingMember.name
-                    })
-                });
-            return undefined; */
-    setList([...list, ...[{ name: editingMemberName, member_uid: "test" }]]);
-  }
+    const onSubmitEdit = () => {
+      const newList = list.map((m) =>
+        m.member_uid === editingMember.member_uid
+          ? { ...m, name: editingMemberName }
+          : m
+      );
+      setList(newList);
+      setIsEditing(false);
+    };
 
-  const onSubmitEdit = () => {
-    const newList = list.map((m) =>
-      m.member_uid === editingMember.member_uid
-        ? { ...m, name: editingMemberName }
-        : m
-    );
-    setList(newList);
-    setIsEditing(false);
-  };
+    const getCurrEvent = async () => {
+      await pullLocalStorage(localStorageCurrentEventObject)
+        .then((res) => {
+            if (res === null) return;
+            const parsedItem: { trip_uid: string, member_uid: string } =
+              JSON.parse(res) as { trip_uid: string, member_uid: string };
+            setCurrEvent(parsedItem);
+          }
+        );
+    };
 
-  useEffect(() => {
-    setList(list);
-  }, [isEditing]);
+    const getMembers = async () => {
+      if (currEvent === null) return;
+      const response = await fetch(`https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members`);
+      if (response.ok) {
+        const json: [{ name: string, member_uid: string }] =
+          (await response.json()) as [{ name: string, member_uid: string }];
+        setList([...list, json[0]]);
+      }
+    };
 
-  useEffect(() => {
-    onRemoveMemberFromList();
-  }, [deletingMember, onRemoveMemberFromList]);
+    const onSubmitAddingMembers = async () => {
+      if (currEvent === null) return;
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(list)
+      };
+      await fetch(`https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/AddMembers`,
+        requestOptions);
+      navigate("/");
+    };
 
-  return (
-    <div
-      className="members-page
+
+    useEffect(() => {
+      void getCurrEvent();
+    }, []);
+
+    useEffect(() => {
+      void getMembers();
+    }, [currEvent]);
+
+    useEffect(() => {
+      setList(list);
+    }, [isEditing]);
+
+    useEffect(() => {
+      onRemoveMemberFromList();
+    }, [deletingMember]);
+
+    return (
+      <div
+        className="members-page
    flex flex-col min-h-screen
     justify-between
     px-4 pt-14 pb-6
     sm:w-6/12
     w-full
     mx-auto"
-    >
-      <div>
-        <TitleH1>{t("pages.members.add_members")}</TitleH1>
-        <MembersList
-          list={list}
-          onEdit={setEditingMember}
-          onEditClick={setIsEditing}
-          onDelete={setDeletingMember}
-        />
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="mr-6 w-full">
-          <Input
-            value={isEditing ? editingMember.name : ""}
-            placeholder="ещё участник"
-            onChange={setEditingMemberName}
+      >
+        <div>
+          <TitleH1>{t("pages.members.add_members")}</TitleH1>
+          <MembersList
+            list={list}
+            onEdit={setEditingMember}
+            onEditClick={setIsEditing}
+            onDelete={setDeletingMember}
           />
         </div>
-        {isEditing && (
-          <ButtonCircle
-            icon={<DoneIcon size={24} />}
-            onClick={() => onSubmitEdit()}
-          />
-        )}
-        {!isEditing && (
-          <ButtonCircle
-            icon={<PlusIcon size={24} />}
-            onClick={() => onAddMember()}
-          />
-        )}
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <div className="mr-6 w-full">
+              <Input
+                value={isEditing ? editingMember.name : ""}
+                placeholder="ещё участник"
+                onChange={setEditingMemberName}
+              />
+            </div>
+            {isEditing && (
+              <ButtonCircle
+                icon={<DoneIcon size={24} />}
+                onClick={() => onSubmitEdit()}
+              />
+            )}
+            {!isEditing && (
+              <ButtonCircle
+                icon={<PlusIcon size={24} />}
+                onClick={() => onAddMember()}
+              />
+            )}
+          </div>
+          <div className="px-7">
+            {/* eslint-disable-next-line no-void */}
+            <ButtonPrimary onClick={() => void onSubmitAddingMembers()}>Далее</ButtonPrimary>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+;
