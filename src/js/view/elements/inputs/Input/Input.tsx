@@ -61,7 +61,7 @@ export const Input = (props: InputProps) => {
         </label>
       )}
       <div
-        className={`relative     
+        className={`relative rounded-lg    
         text-dark-4 dark:text-dark-2 
         bg-light-2 dark:bg-black-2 
         hover:text-dark-3 hover:dark:text-dark-3
