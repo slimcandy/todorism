@@ -17,7 +17,7 @@ export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const path = "/";
-  const [userName, setUserName] = useState<string | null>(null)
+  const [userName, setUserName] = useState<string | null>(null);
 
   const [newEvent, setNewEvent] = useState<IEvent>({
     trip_uid: "",
@@ -52,12 +52,13 @@ export const NewEventPage = () => {
         ) {
           setUserName(localStorageString);
         }
-      }).catch(() => {});
-  }
+      })
+      .catch(() => {});
+  };
 
-  useEffect(()=>{
-    getUserNameFromLocalStorage()
-  },[])
+  useEffect(() => {
+    getUserNameFromLocalStorage();
+  }, []);
 
   return (
     <form
@@ -71,9 +72,7 @@ export const NewEventPage = () => {
           newEvent.end,
           () => navigate(path)
         )
-          .then(
-            () => {}
-          )
+          .then(() => {})
           .catch(() => {});
       }}
       className="min-h-screen
