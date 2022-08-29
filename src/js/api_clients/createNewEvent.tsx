@@ -1,4 +1,4 @@
-import { localStorageTripObjects, SERVER_URL } from "../common/constants";
+import { localStorageCurrentEventObject, localStorageTripObjects, SERVER_URL } from "../common/constants";
 import { ErrorResponse, NewTripResponse } from "../interfaces";
 import { pullLocalStorage, pushLocalStorage } from "../utils/localStorage";
 
@@ -15,14 +15,14 @@ export const createNewEvent = async (
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         title: eventName,
         description: eventDescription,
         start: eventStartDate,
-        end: eventEndDate,
-      }),
+        end: eventEndDate
+      })
     }
   );
 
@@ -41,7 +41,14 @@ export const createNewEvent = async (
         if (!navigate) return;
         navigate();
       })
-      .catch(() => {});
+      .catch(() => {
+      });
+    pushLocalStorage(localStorageCurrentEventObject, JSON.stringify(json))
+      .then(() => {
+
+      })
+      .catch(() => {
+      });
   } else {
     const errorResponse = (await response.json()) as ErrorResponse;
     let errorMessage = "";

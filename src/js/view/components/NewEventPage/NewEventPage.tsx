@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
+import { localStorageUsernameKey } from "../../../common/constants";
+import { pullLocalStorage } from "../../../utils/localStorage";
 import { IEvent } from "../Events/IEvent";
 import {
   ButtonPrimary,
@@ -14,9 +16,8 @@ import {
 export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // TODO: get username from localStorage or store
-  const username = "TestUser";
   const path = "/";
+  const [userName, setUserName] = useState<string | null>(null)
 
   const [newEvent, setNewEvent] = useState<IEvent>({
     trip_uid: "",
@@ -42,12 +43,28 @@ export const NewEventPage = () => {
 
   const isBtnDisabled = newEvent.title === null || newEvent.title.length === 0;
 
+  const getUserNameFromLocalStorage = () => {
+    void pullLocalStorage(localStorageUsernameKey)
+      .then((localStorageString) => {
+        if (
+          typeof localStorageString === "string" &&
+          localStorageString.length > 0
+        ) {
+          setUserName(localStorageString);
+        }
+      }).catch(() => {});
+  }
+
+  useEffect(()=>{
+    getUserNameFromLocalStorage()
+  },[])
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
         createNewEvent(
-          username,
+          userName ?? "",
           newEvent.title ?? "",
           newEvent.description,
           newEvent.start,
@@ -55,7 +72,6 @@ export const NewEventPage = () => {
           () => navigate(path)
         )
           .then(
-            () => {},
             () => {}
           )
           .catch(() => {});
