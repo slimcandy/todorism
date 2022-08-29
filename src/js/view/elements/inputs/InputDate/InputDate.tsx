@@ -9,6 +9,7 @@ export const InputDate = (props: InputProps) => {
     value,
     placeholder,
     label,
+    inputId,
     className = "",
     disabled = false,
     onChange,
@@ -37,13 +38,13 @@ export const InputDate = (props: InputProps) => {
   return (
     <>
       {label && (
-        <div className="mb-2">
+        <label className="mb-2 block" htmlFor={inputId}>
           <TextBodyStandard className="dark:text-dark-3">
             {label}
           </TextBodyStandard>
-        </div>
+        </label>
       )}
-      <label
+      <div
         className={`relative     
         text-dark-4 dark:text-dark-2 
         bg-light-2 dark:bg-black-2 
@@ -57,7 +58,7 @@ export const InputDate = (props: InputProps) => {
           </button>
         </span>
 
-        <input
+        <input id={inputId}
           type={type}
           onChange={handleOnChange}
           className={inputClasses}
@@ -65,7 +66,7 @@ export const InputDate = (props: InputProps) => {
           value={localValue}
           placeholder={placeholder}
         />
-      </label>
+      </div>
     </>
   );
 };

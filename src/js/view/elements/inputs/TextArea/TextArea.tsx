@@ -7,6 +7,7 @@ export const TextArea = (props: TextAreaProps) => {
     value,
     placeholder,
     label,
+    textareaId,
     className = "",
     disabled = false,
     onChange,
@@ -27,13 +28,13 @@ export const TextArea = (props: TextAreaProps) => {
   return (
     <>
       {label && (
-        <div className="mb-2">
+        <label className="mb-2 block" htmlFor={textareaId}>
           <TextBodyStandard className="dark:text-dark-3">
             {label}
           </TextBodyStandard>
-        </div>
+        </label>
       )}
-      <textarea
+      <textarea id={textareaId}
         rows={rows}
         onChange={handleOnChange}
         disabled={disabled}

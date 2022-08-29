@@ -76,7 +76,7 @@ export const NewEventPage = () => {
                     <TitleH1>{t("pages.new_event.title")}</TitleH1>
                 </div>
                 <div className="mb-4">
-                    <Input
+                    <Input inputId="event-name"
                         label={t("pages.new_event.event_name")}
                         value={newEvent.title}
                         onChange={onNewTripNameChange}
@@ -88,7 +88,7 @@ export const NewEventPage = () => {
                 <div className="mb-4">
                     <div className="flex">
                         <div className="mr-4">
-                            <InputDate
+                            <InputDate inputId="event-start-date"
                                 label={t("pages.new_event.dates")}
                                 value={newEvent.start}
                                 onChange={onStartDateChange}
@@ -99,7 +99,7 @@ export const NewEventPage = () => {
                             />
                         </div>
                         <div>
-                            <InputDate
+                            <InputDate inputId="event-end-date"
                                 label={t("pages.new_event.dates")}
                                 value={newEvent.end}
                                 onChange={onEndDateChange}
@@ -112,7 +112,7 @@ export const NewEventPage = () => {
                     </div>
                 </div>
                 <div className="mb-4">
-                    <TextArea
+                    <TextArea textareaId="event-description"
                         label={t("pages.new_event.description")}
                         rows={3}
                         placeholder={`${t("pages.new_event.example")}, ${t(

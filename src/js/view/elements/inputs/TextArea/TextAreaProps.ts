@@ -4,6 +4,7 @@ export interface TextAreaProps {
   placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
   value?: string | null;
   label?: string;
+  textareaId: string;
   className?: string;
   disabled?: boolean;
   rows?: number;
