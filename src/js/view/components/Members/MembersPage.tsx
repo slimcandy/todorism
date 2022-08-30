@@ -20,14 +20,14 @@ export const MembersPage = () => {
     member_uid: string;
   }>({
     name: "",
-    member_uid: ""
+    member_uid: "",
   });
   const [deletingMember, setDeletingMember] = useState<{
     name: string;
     member_uid: string;
   }>({
     name: "",
-    member_uid: ""
+    member_uid: "",
   });
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -37,42 +37,43 @@ export const MembersPage = () => {
 
   const onRemoveMemberFromList = () => {
     if (!currEvent) return;
-    fetch(`https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${editingMember.member_uid}`,
-      { method: "DELETE" })
-      .then((response) =>
-        response.json()
-      )
+    fetch(
+      `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${editingMember.member_uid}`,
+      { method: "DELETE" }
+    )
+      .then((response) => response.json())
       .then(() => {
         const newList = list.filter(
           (m) => m.member_uid !== editingMember.member_uid
         );
         setList(newList);
       })
-      .catch(()=>{});
+      .catch(() => {});
   };
 
   function onAddMember() {
     if (!currEvent) return;
-    fetch(`https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/AddMember`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        member_uid: null,
-        name: editingMemberName
-      })
-    })
-      .then((response) =>
-        response.json()
-      ).then((data: IMember) => {
-      if (data) {
-        setList([...list, data]);
-        setIsEditing(false);
+    fetch(
+      `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/AddMember`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          member_uid: null,
+          name: editingMemberName,
+        }),
       }
-    })
-      .catch(() => {
-      });
+    )
+      .then((response) => response.json())
+      .then((data: IMember) => {
+        if (data) {
+          setList([...list, data]);
+          setIsEditing(false);
+        }
+      })
+      .catch(() => {});
   }
 
   const onSubmitEdit = () => {
@@ -166,9 +167,7 @@ export const MembersPage = () => {
         </div>
         <div className="px-7">
           <Link to="/">
-            <ButtonPrimary>
-              Далее
-            </ButtonPrimary>
+            <ButtonPrimary>Далее</ButtonPrimary>
           </Link>
         </div>
       </div>
