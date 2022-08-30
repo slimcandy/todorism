@@ -1,20 +1,29 @@
 import React from "react";
-import { classesOf } from "../../../utils";
-import { InputProps } from "./InputProps";
+import { classesOf } from "../../../../utils";
+import { InputProps } from "../InputProps";
+import { TextBodyStandard } from "../../typography";
 
 export const Input = (props: InputProps) => {
   const {
     value,
     placeholder,
+    label,
+    inputId,
     className = "",
     disabled = false,
     icon,
     isIconLeft = false,
     onChange,
+    type,
   } = props;
 
-  const firstValue = String(value) === "undefined" ? "" : String(value);
+  const firstValue =
+    String(value) === "undefined" || String(value) === "null"
+      ? ""
+      : String(value);
+
   const [localValue, setLocalValue] = React.useState(firstValue);
+
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.target.value);
     onChange?.(event.target.value);
@@ -37,15 +46,22 @@ export const Input = (props: InputProps) => {
     "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
     "invalid:border-red-1 invalid:dark:border-red-1",
     isIconLeft && "pl-11 pr-3",
-    !isIconLeft && "pr-11 pl-3",
+    !isIconLeft && type !== "date" && "pr-11 pl-3",
     !disabled &&
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
   return (
-    <form>
-      <label
-        className={`relative     
+    <>
+      {label && (
+        <label className="mb-2 block" htmlFor={inputId}>
+          <TextBodyStandard className="dark:text-dark-3">
+            {label}
+          </TextBodyStandard>
+        </label>
+      )}
+      <div
+        className={`relative rounded-lg    
         text-dark-4 dark:text-dark-2 
         bg-light-2 dark:bg-black-2 
         hover:text-dark-3 hover:dark:text-dark-3
@@ -55,13 +71,15 @@ export const Input = (props: InputProps) => {
         {icon && <div className={iconClasses}> {icon} </div>}
 
         <input
+          id={inputId}
+          type={type}
           onChange={handleOnChange}
           className={inputClasses}
           disabled={disabled}
           value={localValue}
           placeholder={placeholder}
         />
-      </label>
-    </form>
+      </div>
+    </>
   );
 };
