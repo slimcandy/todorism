@@ -49,7 +49,8 @@
         "caseSensitive": false
       }
     ],
-    "no-void": ["warn", { "allowAsStatement": true }],
+    "no-void": ["error", { "allowAsStatement": true }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/newline-after-import": "warn",
     "@typescript-eslint/quotes": ["warn", "double"],
     "@typescript-eslint/no-empty-function": "off",

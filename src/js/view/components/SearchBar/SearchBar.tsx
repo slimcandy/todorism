@@ -33,7 +33,7 @@ const SearchBar = (props: SearchBarProps) => {
         <input
           type="search"
           placeholder={placeholder}
-          className={`input w-full max-w-xs text-current pl-12 h-11 focus:outline-none bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white disabled:text-black-3 disabled:bg-black-2 disabled:border-none disabled:placeholder:text-black-3 ${styles.search}`}
+          className={`input w-full text-current pl-12 h-11 focus:outline-none bg-black-2 text-white placeholder:text-dark-2 hover:placeholder:text-dark-3 focus:placeholder:text-white disabled:text-black-3 disabled:bg-black-2 disabled:border-none disabled:placeholder:text-black-3 ${styles.search}`}
           onChange={handleOnChange}
           value={localValue}
           disabled={disabled}

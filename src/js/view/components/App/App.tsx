@@ -8,8 +8,8 @@ import { Header } from "../Header/Header";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
-import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
+import { NoEvents as NoEventsPage } from "../Events/NoEvents";
 
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
