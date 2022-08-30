@@ -33,7 +33,11 @@ export const WelcomePage = () => {
         </div>
 
         <div className="mb-10 xs:mb-14">
-          <Input placeholder={t("pages.welcome.whats_your_name")} />
+          <Input
+            inputId="user-name"
+            value=""
+            placeholder={t("pages.welcome.whats_your_name")}
+          />
         </div>
       </div>
       <div className="px-7">

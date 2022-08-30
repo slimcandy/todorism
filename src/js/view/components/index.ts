@@ -4,5 +4,6 @@ export { default as List } from "./List/List";
 export { default as PeopleForm } from "./PeopleForm/PeopleForm";
 export { default as PeopleList } from "./PeopleList/PeopleList";
 export { default as CurrentUser } from "./CurrentUser/CurrentUser";
-export * from "./ThemeToggler/ThemeToggler";
 export { default as SPAremoveit } from "./SPAremoveit/SPAremoveit";
+export * from "./ThemeToggler/ThemeToggler";
+export * from "./NewEventPage/NewEventPage";

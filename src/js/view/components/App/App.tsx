@@ -12,6 +12,7 @@ import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
 
 import "../../../../styles/index.css";
+import { NewEventPage } from "../NewEventPage/NewEventPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -39,6 +40,7 @@ export function App() {
               <Route path="/ui-kit" element={<UIKitPage />} />
               <Route path="/welcome" element={<WelcomePage />} />
               <Route path="/no-events" element={<NoEventsPage />} />
+              <Route path="/new-event" element={<NewEventPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
           </BrowserRouter>

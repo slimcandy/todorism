@@ -31,6 +31,11 @@ export function DevNavPage() {
             </Link>
           </div>
           <div className="mb-8 mx-auto">
+            <Link to="/new-event">
+              <ButtonPrimary>New Event Page</ButtonPrimary>
+            </Link>
+          </div>
+          <div className="mb-8 mx-auto">
             <Link to="/SPAremoveit">
               <ButtonPrimary>
                 Один огромный компонент, который нужно разбить
