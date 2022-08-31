@@ -20,14 +20,14 @@ export const MembersPage = () => {
     member_uid: string;
   }>({
     name: "",
-    member_uid: "",
+    member_uid: ""
   });
   const [deletingMember, setDeletingMember] = useState<{
     name: string;
     member_uid: string;
   }>({
     name: "",
-    member_uid: "",
+    member_uid: ""
   });
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -38,17 +38,18 @@ export const MembersPage = () => {
   const onRemoveMemberFromList = () => {
     if (!currEvent) return;
     fetch(
-      `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${editingMember.member_uid}`,
+      `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${deletingMember.member_uid}`,
       { method: "DELETE" }
     )
       .then((response) => response.json())
       .then(() => {
         const newList = list.filter(
-          (m) => m.member_uid !== editingMember.member_uid
+          (m) => m.member_uid !== deletingMember.member_uid
         );
         setList(newList);
       })
-      .catch(() => {});
+      .catch(() => {
+      });
   };
 
   function onAddMember() {
@@ -58,12 +59,12 @@ export const MembersPage = () => {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           member_uid: null,
-          name: editingMemberName,
-        }),
+          name: editingMemberName
+        })
       }
     )
       .then((response) => response.json())
@@ -73,7 +74,8 @@ export const MembersPage = () => {
           setIsEditing(false);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+      });
   }
 
   const onSubmitEdit = () => {
@@ -104,7 +106,7 @@ export const MembersPage = () => {
     if (response.ok) {
       const json: [{ name: string; member_uid: string }] =
         (await response.json()) as [{ name: string; member_uid: string }];
-      setList([...list, json[0]]);
+      setList([...list, ...json]);
     }
   };
 
@@ -129,22 +131,26 @@ export const MembersPage = () => {
       className="members-page
    flex flex-col min-h-screen
     justify-between
-    px-4 pt-14 pb-6
+    px-4 pt-14
     sm:w-6/12
     w-full
-    mx-auto"
+    mx-auto relative"
     >
-      <div>
-        <TitleH1>{t("pages.members.add_members")}</TitleH1>
-        <MembersList
-          list={list}
-          onEdit={setEditingMember}
-          onEditClick={setIsEditing}
-          onDelete={setDeletingMember}
-        />
-      </div>
-      <div>
-        <div className="flex items-center justify-between mb-6">
+          <div className="relative h-[calc(100vh-220px)] overflow-auto">
+            <div className="absolute top-0 left-0 w-full">
+                <div className="bg-light-4 dark:bg-dark-0 sticky top-0 z-10 w-full pb-6">
+                  <TitleH1>{t("pages.members.add_members")}</TitleH1>
+                </div>
+                <MembersList
+                  list={list}
+                  onEdit={setEditingMember}
+                  onEditClick={setIsEditing}
+                  onDelete={setDeletingMember}
+                />
+              </div>
+          </div>
+      <div className="sticky bottom-0 left-0 pb-6 bg-light-4 dark:bg-dark-0 w-full">
+        <div className="flex items-center justify-between mb-6 pt-2">
           <div className="mr-6 w-full">
             <Input
               value={isEditing ? editingMember.name : ""}

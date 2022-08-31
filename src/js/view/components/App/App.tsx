@@ -29,11 +29,12 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="relative bg-light-4 dark:bg-dark-0 ">
+      <div className="relative bg-light-4 dark:bg-dark-0">
+        <BrowserRouter>
+
         <Header isWithLogo />
 
         <main>
-          <BrowserRouter>
             <Routes>
               <Route path="/" element={<DevNavPage />} />
               <Route path="/alex" element={<Panel />} />
@@ -43,8 +44,9 @@ export function App() {
               <Route path="/add-members" element={<MembersPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
-          </BrowserRouter>
         </main>
+        </BrowserRouter>
+
       </div>
     </Provider>
   );
