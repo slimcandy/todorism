@@ -16,7 +16,7 @@ import {
 export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const path = "/";
+  const path = "/events";
   const [userName, setUserName] = useState<string | null>(null);
 
   const [newEvent, setNewEvent] = useState<IEvent>({
