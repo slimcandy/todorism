@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { EventList } from "./EventList";
 import { Event } from "./Event";
 import { pullLocalStorage } from "../../../utils/localStorage";
 import { localStorageTripObjects, SERVER_URL } from "../../../common/constants";
 import { INewTripResponse } from "../../../interfaces/Event";
 import { TitleH1 } from "../../elements";
+import { AllEvents } from "./AllEvents";
+import { NoEventsPage } from "./NoEvents";
 
 function EventsPage() {
   const { t } = useTranslation();
@@ -56,7 +57,8 @@ function EventsPage() {
   return (
     <div className="px-4 pt-14 pb-6 sm:w-6/12 w-full mx-auto flex flex-col min-h-screen">
       <TitleH1>{t("events.list.your_events")}</TitleH1>
-      <EventList list={events} />
+      {!!events.length && <AllEvents list={events} />}
+      {!events.length && <NoEventsPage />}
     </div>
   );
 }
