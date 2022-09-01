@@ -42,7 +42,7 @@ export const NoEventsPage = () => {
         }
       })
       .catch(() => {});
-  }, []);
+  }, [navigate]);
 
   return (
     <form
