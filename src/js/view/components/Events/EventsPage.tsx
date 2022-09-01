@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { classesOf } from "../../../utils";
 import { Event } from "./Event";
 import { AllEvents } from "./AllEvents";
-import { NoEvents } from "./NoEvents";
+import { NoEventsPage } from "./NoEvents";
 import { TitleH1 } from "../../elements";
 
 export const EventsPage = () => {
@@ -42,7 +42,7 @@ export const EventsPage = () => {
     <div className={pageClasses}>
       <TitleH1>{t("events.list.your_events")}</TitleH1>
       {!!events.length && <AllEvents list={events} />}
-      {!events.length && <NoEvents />}
+      {!events.length && <NoEventsPage />}
     </div>
   );
 };
