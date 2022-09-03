@@ -65,7 +65,7 @@ export const WelcomePage = () => {
       <div className="px-7">
         <ButtonPrimary type="submit">{t("buttons.remember_me")}</ButtonPrimary>
       </div>
-      {redirectToEvents && <Navigate to="/no-events" replace />}
+      {redirectToEvents && <Navigate to="/events" replace />}
     </form>
   );
 };
