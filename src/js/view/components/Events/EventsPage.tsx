@@ -43,10 +43,7 @@ function EventsPage() {
               tripUids.push(tripObject.trip_uid);
             });
             getAllTrips(tripUids)
-              .then(
-                () => {},
-                () => {}
-              )
+              .then()
               .catch(() => {});
           }
         }

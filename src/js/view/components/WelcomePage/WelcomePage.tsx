@@ -19,10 +19,7 @@ export const WelcomePage = () => {
     event.preventDefault();
 
     pushLocalStorage(localStorageUsernameKey, JSON.stringify(username))
-      .then(
-        () => setRedirectToEvents(true),
-        () => {}
-      )
+      .then(() => setRedirectToEvents(true))
       .catch(() => {});
   };
 
