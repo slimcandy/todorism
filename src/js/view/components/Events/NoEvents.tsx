@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ButtonPrimary, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
-import {
-  localStorageTripObjects,
-  localStorageUsernameKey,
-} from "../../../common/constants";
+import { localStorageTripObjects } from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
 import { INewTripResponse } from "../../../interfaces/Event";
 
 export const NoEventsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState<string>("");
-
-  useEffect(() => {
-    pullLocalStorage(localStorageUsernameKey)
-      .then((localStorageUsername) => {
-        if (
-          typeof localStorageUsername === "string" &&
-          localStorageUsername.length > 0
-        )
-          setUsername(localStorageUsername);
-      })
-      .catch(() => {});
-  }, []);
 
   useEffect(() => {
     pullLocalStorage(localStorageTripObjects)
@@ -55,10 +38,6 @@ export const NoEventsPage = () => {
     mx-auto"
       onSubmit={() => navigate("/new-event")}
     >
-      <TitleH1>
-        {t("events.list.your_events")}, {username || ""}!
-      </TitleH1>
-
       <div className="place-items-center">
         <div className="mb-16 mx-auto w-48 text-light-0 dark:text-green-0">
           <EllipseWithImg imgSrc={fireImg} />
