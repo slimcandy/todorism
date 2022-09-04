@@ -1,31 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ButtonPrimary, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
-import { localStorageTripObjects } from "../../../common/constants";
-import { pullLocalStorage } from "../../../utils/localStorage";
-import { INewTripResponse } from "../../../interfaces/Event";
 
 export const NoEventsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    pullLocalStorage(localStorageTripObjects)
-      .then((localStorageString) => {
-        if (
-          typeof localStorageString === "string" &&
-          localStorageString.length > 0
-        ) {
-          const trips = JSON.parse(localStorageString) as INewTripResponse[];
-          if (trips.length > 0) {
-            navigate("/events");
-          }
-        }
-      })
-      .catch(() => {});
-  }, [navigate]);
 
   return (
     <form
