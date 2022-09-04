@@ -38,10 +38,9 @@ function EventsPage() {
             localStorageString
           ) as INewTripResponse[];
           if (tripObjects.length > 0) {
-            const tripUids: INewTripResponse["trip_uid"][] = [];
-            tripObjects.forEach((tripObject) => {
-              tripUids.push(tripObject.trip_uid);
-            });
+            const tripUids: INewTripResponse["trip_uid"][] = tripObjects.map(
+              (tripObj) => tripObj.trip_uid
+            );
             getAllTrips(tripUids)
               .then()
               .catch(() => {});
