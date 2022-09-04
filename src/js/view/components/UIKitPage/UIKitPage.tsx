@@ -232,7 +232,9 @@ export function UIKitPage() {
             <TitleH3 className="mb-4">Inputs</TitleH3>
             <TextBodyLarge>Simple input</TextBodyLarge>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} />
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+              />
             </div>
 
             <TextBodySmall>With Icon</TextBodySmall>
@@ -253,7 +255,10 @@ export function UIKitPage() {
 
             <TextBodySmall>Disabled</TextBodySmall>
             <div className="w-80">
-              <Input placeholder={t("inputs.whats_your_name")} disabled />
+              <Input
+                placeholder={t("inputs.whats_your_name")}
+                disabled
+              />
             </div>
 
             <TextBodySmall>Disabled with icon</TextBodySmall>

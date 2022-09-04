@@ -9,7 +9,11 @@ export const ButtonIcon = memo((props: BtnIconProps) => {
       className={`btn btn-ghost btn-square
       hover:bg-transparent 
       focus-visible:bg-transparent
+      text-dark-3 dark:text-dark-2
+      disabled:dark:text-dark-1
+      disabled:text-dark-4
       rounded-xl
+      cursor-pointer
       normal-case ${className}`}
       type={type}
       disabled={disabled}

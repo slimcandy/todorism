@@ -34,7 +34,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
-    "remember_me": "Remember me"
+    "remember_me": "Remember me",
+    "next": "Next"
   },
   "tabs": {
     "common_things": "Common things",
@@ -50,9 +51,21 @@
       "description": "We are an app [NAME], the best app to organize your event!",
       "whats_your_name": "What is your name?"
     },
+    "new_event": {
+      "title": "New event",
+      "event_name": "Name your event*",
+      "event_name_example": "Hiking in the mountains",
+      "dates": "Choose dates",
+      "date_start": "Start date",
+      "date_end": "End date",
+      "description": "Description",
+      "description_example": "We go to the Great Waterfall through the pine forest, and have dinner on an alpine meadow with a view of the mountain peaks",
+      "example": "Example"
+    },
     "members": {
       "add_members": "Add members",
-      "edit_members": "Edit members"
+      "edit_members": "Edit members",
+      "input_placeholder": "One more member"
     }
   }
 }

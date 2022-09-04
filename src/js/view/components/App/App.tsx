@@ -8,11 +8,12 @@ import { Header } from "../Header/Header";
 import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
-import { NoEventsPage } from "../NoEventsPage/NoEventsPage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
+import { NoEvents as NoEventsPage } from "../Events/NoEvents";
+import { MembersPage } from "../Members/MembersPage";
+import { NewEventPage } from "../NewEventPage/NewEventPage";
 
 import "../../../../styles/index.css";
-import { MembersPage } from "../Members/MembersPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -31,22 +32,21 @@ export function App() {
     <Provider store={store}>
       <div className="relative bg-light-4 dark:bg-dark-0">
         <BrowserRouter>
+          <Header isWithLogo />
 
-        <Header isWithLogo />
-
-        <main>
+          <main>
             <Routes>
               <Route path="/" element={<DevNavPage />} />
               <Route path="/alex" element={<Panel />} />
               <Route path="/ui-kit" element={<UIKitPage />} />
               <Route path="/welcome" element={<WelcomePage />} />
               <Route path="/no-events" element={<NoEventsPage />} />
+              <Route path="/new-event" element={<NewEventPage />} />
               <Route path="/add-members" element={<MembersPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
-        </main>
+          </main>
         </BrowserRouter>
-
       </div>
     </Provider>
   );

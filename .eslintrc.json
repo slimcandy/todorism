@@ -40,6 +40,7 @@
         }
       }
     ],
+    "jsx-a11y/control-has-associated-label": "off",
     "import/prefer-default-export": "off",
     "import/no-self-import": "error",
     "import/no-unresolved": [
@@ -49,6 +50,7 @@
       }
     ],
     "no-void": ["error", { "allowAsStatement": true }],
+    "no-console": ["off", { "allow": ["warn", "error"] }],
     "import/newline-after-import": "warn",
     "@typescript-eslint/quotes": ["warn", "double"],
     "@typescript-eslint/no-empty-function": "off",
@@ -60,6 +62,7 @@
         "allowedNames": ["context"] // Allow `const vm= this`; `[]` by default
       }
     ],
+    "@typescript-eslint/naming-convention": "off",
     "react/function-component-definition": [
       0,
       {
@@ -68,6 +71,7 @@
     ],
     "react/require-default-props": "off",
     "react/button-has-type": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

@@ -9,16 +9,18 @@ type Props = {
   isMe: boolean;
   onEdit: (member: { name: string; member_uid: string }) => void;
   onDelete: (member: { name: string; member_uid: string }) => void;
-  onEditClick: (value: boolean) => void;
+  onFinishEdit: (value: boolean) => void;
+  onFocusInput: (value: boolean) => void;
 };
 
 export const MembersListItem = memo((props: Props) => {
-  const { memberName, memberUid, isMe, onEdit, onDelete, onEditClick } = props;
+  const { memberName, memberUid, isMe, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
   const id = React.useId();
 
   const onEditHandler = (name: string, uid: string) => {
     onEdit?.({ name, member_uid: uid });
-    onEditClick?.(true);
+    onFinishEdit?.(true);
+    onFocusInput?.(true);
   };
 
   const onDeleteHandler = (name: string, uid: string) => {
@@ -48,6 +50,7 @@ export const MembersListItem = memo((props: Props) => {
           }}
         />
         <ButtonIcon
+            disabled={isMe}
           className="dark:text-dark-2 text-dark-4 cursor-pointer"
           icon={<DeleteIcon size={24} />}
           onClick={() => onDeleteHandler(memberName, memberUid)}

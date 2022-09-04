@@ -4,13 +4,14 @@ import { MembersListItem } from "./MembersListItem";
 
 type MembersListProps = {
   list: Array<IMember>;
-  onEdit: (member: { name: string; member_uid: string }) => void;
-  onDelete: (member: { name: string; member_uid: string }) => void;
-  onEditClick: (value: boolean) => void;
+  onEdit: (member: IMember) => void;
+  onDelete: (member: IMember) => void;
+  onFinishEdit: (value: boolean) => void;
+  onFocusInput: (value: boolean) => void;
 };
 
 export const MembersList = memo((props: MembersListProps) => {
-  const { list, onEdit, onDelete, onEditClick } = props;
+  const { list, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
   const [members, setMembers] = useState(list);
 
   useEffect(() => {
@@ -25,9 +26,10 @@ export const MembersList = memo((props: MembersListProps) => {
             key={member.member_uid}
             memberName={member.name}
             memberUid={member.member_uid}
-            isMe={false}
+            isMe={member.member_uid === list[0].member_uid}
             onEdit={onEdit}
-            onEditClick={onEditClick}
+            onFinishEdit={onFinishEdit}
+            onFocusInput={onFocusInput}
             onDelete={onDelete}
           />
         </div>
