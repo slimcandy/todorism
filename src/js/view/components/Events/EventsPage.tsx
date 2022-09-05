@@ -37,7 +37,7 @@ function EventsPage() {
           const tripObjects = JSON.parse(
             localStorageString
           ) as INewTripResponse[];
-          if (tripObjects.length > 0) {
+          if (Array.isArray(tripObjects) && tripObjects.length > 0) {
             const tripUids: INewTripResponse["trip_uid"][] = tripObjects.map(
               (tripObj) => tripObj.trip_uid
             );
