@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
 
 export interface TypographyProps {
-  children: PropsWithChildren<string>;
+  children: ReactNode;
   className?: string;
 }

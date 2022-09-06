@@ -10,5 +10,5 @@ export interface InputProps {
   type?: "date" | "email" | "number" | "time";
   icon?: React.ReactNode;
   isIconLeft?: boolean;
-  onChange?: (value?: any) => void;
+  onChange?: (value?: string) => void;
 }

@@ -1,48 +1,62 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { classesOf } from "../../../utils";
 import { Event } from "./Event";
-import { AllEvents } from "./AllEvents";
-import { NoEvents } from "./NoEvents";
+import { pullLocalStorage } from "../../../utils/localStorage";
+import { localStorageTripObjects, SERVER_URL } from "../../../common/constants";
+import { INewTripResponse } from "../../../interfaces/Event";
 import { TitleH1 } from "../../elements";
+import { AllEvents } from "./AllEvents";
+import { NoEventsPage } from "./NoEvents";
 
-export const EventsPage = () => {
+function EventsPage() {
   const { t } = useTranslation();
-
-  // TODO: переписать в соответсвии с новым API
-  const [events, setEvents] = useState<Array<Event>>([]);
-
-  const fetchEvents = () =>
-    fetch("https://tracking-organizer.herokuapp.com/Trip/All", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(["3fa85f64-5717-4562-b3fc-2c963f66afa6"]),
-    });
+  const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    fetchEvents()
-      .then((res) => res.json())
-      .then(setEvents)
-      .catch((error) => console.error(error));
+    const getAllTrips = async (tripUids: INewTripResponse["trip_uid"][]) => {
+      const response = await fetch(`${SERVER_URL}/Trip/All?`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tripUids),
+      });
+
+      if (response.ok) {
+        const json: Event[] = (await response.json()) as Event[];
+        setEvents(json);
+      }
+    };
+
+    pullLocalStorage(localStorageTripObjects)
+      .then((localStorageString) => {
+        if (
+          typeof localStorageString === "string" &&
+          localStorageString.length > 0
+        ) {
+          const tripObjects = JSON.parse(
+            localStorageString
+          ) as INewTripResponse[];
+          if (Array.isArray(tripObjects) && tripObjects.length > 0) {
+            const tripUids: INewTripResponse["trip_uid"][] = tripObjects.map(
+              (tripObj) => tripObj.trip_uid
+            );
+            getAllTrips(tripUids)
+              .then()
+              .catch(() => {});
+          }
+        }
+      })
+      .catch(() => {});
   }, []);
 
-  const pageClasses = classesOf(
-    "px-4 pt-14 pb-6",
-    "sm:w-6/12",
-    "w-full",
-    "mx-auto",
-    "flex flex-col min-h-screen",
-    !events.length && "justify-between"
-  );
-
   return (
-    <div className={pageClasses}>
+    <div className="px-4 pt-14 pb-6 sm:w-6/12 w-full mx-auto flex flex-col min-h-screen">
       <TitleH1>{t("events.list.your_events")}</TitleH1>
       {!!events.length && <AllEvents list={events} />}
-      {!events.length && <NoEvents />}
+      {!events.length && <NoEventsPage />}
     </div>
   );
-};
+}
+
+export default EventsPage;

@@ -12,11 +12,12 @@ import {
   TitleH1,
   TextArea,
 } from "../../elements";
+import { InputProps } from "../../elements/inputs/InputProps";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const path = "/";
+  const path = "/events";
   const [userName, setUserName] = useState<string | null>(null);
 
   const [newEvent, setNewEvent] = useState<IEvent>({
@@ -27,15 +28,20 @@ export const NewEventPage = () => {
     end: undefined,
   });
 
-  const onNewTripNameChange = (newName: string) => {
-    setNewEvent({ ...newEvent, title: newName });
+  const onNewTripNameChange: InputProps["onChange"] = (newName) => {
+    if (typeof newName === "string")
+      setNewEvent({ ...newEvent, title: newName });
   };
 
-  const onStartDateChange = (startDate: string) =>
-    setNewEvent({ ...newEvent, start: new Date(startDate).toISOString() });
+  const onStartDateChange: InputProps["onChange"] = (startDate) => {
+    if (typeof startDate === "string")
+      setNewEvent({ ...newEvent, start: new Date(startDate).toISOString() });
+  };
 
-  const onEndDateChange = (endDate: string) =>
-    setNewEvent({ ...newEvent, end: new Date(endDate).toISOString() });
+  const onEndDateChange: InputProps["onChange"] = (endDate) => {
+    if (typeof endDate === "string")
+      setNewEvent({ ...newEvent, end: new Date(endDate).toISOString() });
+  };
 
   const onNewTripDescriptionChange = (desc: string) => {
     setNewEvent({ ...newEvent, description: desc });
