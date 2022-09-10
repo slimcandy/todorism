@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 import { ButtonPrimary, Input, TextBodyLarge, TitleH1 } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
-import { pushLocalStorage } from "../../../utils/localStorage";
-import { localStorageUsernameKey } from "../../../common/constants";
+import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
 import { InputProps } from "../../elements/inputs/InputProps";
 
 export const WelcomePage = () => {
@@ -18,9 +17,8 @@ export const WelcomePage = () => {
   const onUsernameSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    pushLocalStorage(localStorageUsernameKey, JSON.stringify(username))
-      .then(() => setRedirectToEvents(true))
-      .catch(() => {});
+    saveUserNameInLocalStorage(username);
+    setRedirectToEvents(true);
   };
 
   return (

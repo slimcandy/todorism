@@ -7,7 +7,7 @@ import {
 import {
   pullLocalStorage,
   pushLocalStorage,
-} from "../../../utils/localStorage";
+} from "../../../utils/localStorage_old";
 
 const SERVER_URL = process.env.REACT_APP_SERVER || "http://localhost:3001";
 

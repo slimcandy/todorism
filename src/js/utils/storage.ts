@@ -1,4 +1,4 @@
-import { getLocalList, setLocalList } from "./localStorage";
+import { getLocalList, setLocalList } from "./localStorage_old";
 import { List } from "../interfaces";
 
 // Find list by ID
