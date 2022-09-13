@@ -1,7 +1,10 @@
 import React from "react";
 import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
 import { KebabIcon } from "../../icons";
-import { dateToStringDDMMYYYY, isDateExpired } from "../../../utils";
+import {
+  convertDateToDDMMYYYYWithDots,
+  checkExpiredDate,
+} from "../../../utils";
 import { Event } from "./Event";
 
 export const EventListItem = (props: Event) => {
@@ -9,10 +12,10 @@ export const EventListItem = (props: Event) => {
   let start;
   let end;
   if (dateStart) {
-    start = dateToStringDDMMYYYY(new Date(dateStart));
+    start = convertDateToDDMMYYYYWithDots(dateStart);
   }
   if (dateEnd) {
-    end = dateToStringDDMMYYYY(new Date(dateEnd));
+    end = convertDateToDDMMYYYYWithDots(dateEnd);
   }
 
   return (
@@ -32,9 +35,7 @@ export const EventListItem = (props: Event) => {
 
         {start && (
           <div>
-            <Indicator
-              isActive={dateStart ? isDateExpired(new Date(dateStart)) : true}
-            />
+            <Indicator isActive={!checkExpiredDate(dateStart as string)} />
             <TextBodySmall className="ml-1">{start || ""}</TextBodySmall>
             {end && (
               <TextBodySmall className="ml-1">{`- ${end || ""}`}</TextBodySmall>
