@@ -9,10 +9,11 @@ import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
-import { NoEvents as NoEventsPage } from "../Events/NoEvents";
+import { NoEventsPage } from "../Events/NoEvents";
 
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
+import EventsPage from "../Events/EventsPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -41,6 +42,7 @@ export function App() {
               <Route path="/welcome" element={<WelcomePage />} />
               <Route path="/no-events" element={<NoEventsPage />} />
               <Route path="/new-event" element={<NewEventPage />} />
+              <Route path="/events" element={<EventsPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
           </BrowserRouter>
