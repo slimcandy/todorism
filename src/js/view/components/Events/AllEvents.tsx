@@ -1,6 +1,6 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import { EventList } from "./EventList";
+import { EventList } from "./EventList/EventList";
 import { Event } from "./Event";
 
 type Props = {

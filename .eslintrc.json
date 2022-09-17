@@ -22,7 +22,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "eslint-plugin-storybook"],
   "rules": {
     "jsx-a11y/label-has-associated-control": [
       "error",
@@ -71,6 +71,16 @@
     ],
     "react/require-default-props": "off",
     "react/button-has-type": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*"
+        ],
+        "peerDependencies": true
+      }
+    ]
   }
 }

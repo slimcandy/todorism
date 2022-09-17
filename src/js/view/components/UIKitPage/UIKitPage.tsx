@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
 // Icons
 import {
@@ -29,8 +28,6 @@ import {
   ButtonSecondary,
   ButtonSquare,
   ButtonTransparent,
-  Indicator,
-  Input,
   TagLarge,
   TagMedium,
   TagSmall,
@@ -38,20 +35,11 @@ import {
 import { TagMe } from "../../elements/TagMe";
 import SearchBar from "../SearchBar/SearchBar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
-import { EventListItem } from "../Events/EventListItem";
-import { EventList } from "../Events/EventList";
 
 export function UIKitPage() {
-  const { t } = useTranslation();
   return (
     <div className="ui-kit-page p-4  dark:text-light-4 text-black-0">
       <h1>UI-kit page</h1>
-      <span className="mr-2">
-        <Indicator />
-      </span>
-      <span className="mr-2">
-        <Indicator isActive />
-      </span>
       <span className="mr-2">
         <TagMe />
       </span>
@@ -227,102 +215,6 @@ export function UIKitPage() {
           <div className="mb-6">
             <h4 className="text-myPerfectDark">SearchBar</h4>
             <SearchBar placeholder="Поиск" />
-          </div>
-          <div>
-            <TitleH3 className="mb-4">Inputs</TitleH3>
-            <TextBodyLarge>Simple input</TextBodyLarge>
-            <div className="w-80">
-              <Input
-                placeholder={t("inputs.whats_your_name")}
-                inputId="user-name-1"
-              />
-            </div>
-
-            <TextBodySmall>With Icon</TextBodySmall>
-            <div className="w-80">
-              <Input
-                inputId="user-name-2"
-                placeholder={t("inputs.whats_your_name")}
-                icon={<CalendarIcon size={20} />}
-              />
-            </div>
-
-            <div className="w-80 mt-4">
-              <Input
-                inputId="user-name-3"
-                placeholder={t("inputs.whats_your_name")}
-                icon={<CalendarIcon size={20} className="cursor-pointer" />}
-                isIconLeft
-              />
-            </div>
-
-            <TextBodySmall>Disabled</TextBodySmall>
-            <div className="w-80">
-              <Input
-                inputId="disabled-user-id"
-                placeholder={t("inputs.whats_your_name")}
-                disabled
-              />
-            </div>
-
-            <TextBodySmall>Disabled with icon</TextBodySmall>
-            <div className="w-80">
-              <Input
-                inputId="disabled-with-icon-user-id"
-                placeholder={t("inputs.whats_your_name")}
-                icon={<CalendarIcon size={20} />}
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-        <div className="ml-8 w-80">
-          <TextBodyLarge>EventListItem</TextBodyLarge>
-          <div className="mt-6">
-            <EventListItem
-              tripUid="123456789"
-              title="Поход на Ястребиное"
-              description="С заходом на базу отдыха «Надежда» и на скалу Парнас"
-              dateStart="2022-06-29T16:56:27.761Z"
-              dateEnd="2022-06-29T16:56:27.761Z"
-            />
-          </div>
-          <div>
-            <div className="mb-4 mt-8">
-              <TextBodyLarge>EventList</TextBodyLarge>
-            </div>
-            <EventList
-              list={[
-                {
-                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                  title: "Днюха в Солотче",
-                  description: "string",
-                  dateStart: "2022-06-29T16:56:27.761Z",
-                  dateEnd: "2022-06-29T16:56:27.761Z",
-                },
-                {
-                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
-                  title: "Поход на байдарках",
-                  description: "",
-                  dateStart: "2022-07-19T16:56:27.761Z",
-                  dateEnd: "2022-07-29T16:56:27.761Z",
-                },
-                {
-                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                  title: "Карелия",
-                  description: "",
-                  dateStart: "",
-                  dateEnd: "",
-                },
-                {
-                  tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
-                  title: "Вылазка на великах в Зеленогорск",
-                  description: "",
-                  dateStart: "2022-09-09T16:56:27.761Z",
-                  dateEnd: "2022-09-09T16:56:27.761Z",
-                },
-              ]}
-            />
           </div>
         </div>
       </div>
