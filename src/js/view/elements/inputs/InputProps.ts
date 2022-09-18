@@ -3,6 +3,8 @@ import React, { InputHTMLAttributes } from "react";
 export interface InputProps {
   placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
   value?: InputHTMLAttributes<HTMLInputElement>["value"] | null;
+  readonly?: InputHTMLAttributes<HTMLInputElement>["readOnly"];
+  title?: InputHTMLAttributes<HTMLInputElement>["title"];
   label?: string;
   inputId: string;
   className?: string;
@@ -11,4 +13,5 @@ export interface InputProps {
   icon?: React.ReactNode;
   isIconLeft?: boolean;
   onChange?: (value?: string) => void;
+  onClick?: (value: string) => void;
 }

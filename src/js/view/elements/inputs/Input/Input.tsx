@@ -6,6 +6,8 @@ import { TextBodyStandard } from "../../typography";
 export const Input = (props: InputProps) => {
   const {
     value,
+    readonly,
+    title,
     placeholder,
     label,
     inputId,
@@ -14,6 +16,7 @@ export const Input = (props: InputProps) => {
     icon,
     isIconLeft = false,
     onChange,
+    onClick,
     type,
   } = props;
 
@@ -28,6 +31,9 @@ export const Input = (props: InputProps) => {
     setLocalValue(event.target.value);
     onChange?.(event.target.value);
   };
+
+  const handleOnClick: React.MouseEventHandler<HTMLInputElement> = () =>
+    onClick?.(localValue);
 
   const iconClasses = classesOf(
     "absolute top-1/2 transform -translate-y-1/2",
@@ -74,10 +80,13 @@ export const Input = (props: InputProps) => {
           id={inputId}
           type={type}
           onChange={handleOnChange}
+          onClick={handleOnClick}
           className={inputClasses}
           disabled={disabled}
           value={localValue}
           placeholder={placeholder}
+          readOnly={readonly}
+          title={title}
         />
       </div>
     </>

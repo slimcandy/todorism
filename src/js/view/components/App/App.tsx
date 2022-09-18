@@ -14,6 +14,7 @@ import { NoEventsPage } from "../Events/NoEvents";
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
 import EventsPage from "../Events/EventsPage";
+import { ShareLinkPage } from "../ShareLinkPage/ShareLinkPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -40,6 +41,7 @@ export function App() {
               <Route path="/alex" element={<Panel />} />
               <Route path="/ui-kit" element={<UIKitPage />} />
               <Route path="/welcome" element={<WelcomePage />} />
+              <Route path="/share" element={<ShareLinkPage />} />
               <Route path="/no-events" element={<NoEventsPage />} />
               <Route path="/new-event" element={<NewEventPage />} />
               <Route path="/events" element={<EventsPage />} />
