@@ -26,7 +26,7 @@
     "i18next": "^21.8.8",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
-    "react": "^18.1.0",
+    "react": "^18.2.0",
     "react-dom": "^18.1.0",
     "react-i18next": "^11.17.0",
     "react-redux": "^8.0.1",
@@ -44,13 +44,9 @@
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "server": "nodemon server/index.js",
     "prepare": "husky install",
-    "test": "npm run format && npm run lint"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "test": "npm run format && npm run lint",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -65,6 +61,15 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/node-logger": "^6.5.12",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "autoprefixer": "^10.4.7",
@@ -80,12 +85,17 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-storybook": "^0.6.4",
     "express": "^4.18.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "nodemon": "^2.0.16",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
-    "tailwindcss": "^3.0.24"
+    "prop-types": "^15.8.1",
+    "storybook": "^6.5.12",
+    "storybook-tailwind-dark-mode": "^1.0.15",
+    "tailwindcss": "^3.0.24",
+    "webpack": "^5.74.0"
   }
 }

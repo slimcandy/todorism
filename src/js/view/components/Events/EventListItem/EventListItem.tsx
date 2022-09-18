@@ -1,11 +1,11 @@
 import React from "react";
-import { Indicator, TextBodySmall, TitleH3 } from "../../elements";
-import { KebabIcon } from "../../icons";
+import { Indicator, TextBodySmall, TitleH3 } from "../../../elements";
+import { KebabIcon } from "../../../icons";
 import {
   convertDateToDDMMYYYYWithDots,
   checkExpiredDate,
-} from "../../../utils";
-import { Event } from "./Event";
+} from "../../../../utils";
+import { Event } from "../Event";
 
 export const EventListItem = (props: Event) => {
   const { tripUid, title, description, dateStart, dateEnd } = props;

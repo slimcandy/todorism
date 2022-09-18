@@ -1,6 +1,6 @@
 import React from "react";
-import { Event } from "./Event";
-import { EventListItem } from "./EventListItem";
+import { Event } from "../Event";
+import { EventListItem } from "../EventListItem/EventListItem";
 
 type EventListProps = {
   list: Array<Event>;
