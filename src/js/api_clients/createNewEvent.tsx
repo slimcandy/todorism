@@ -9,9 +9,9 @@ import {
 export const createNewEvent = async (
   username: string,
   eventName: string,
-  eventDescription: string | undefined,
-  eventStartDate: string | undefined,
-  eventEndDate: string | undefined,
+  eventDescription: string | null,
+  eventStartDate: string | null,
+  eventEndDate: string | null,
   navigate?: () => void
 ) => {
   const response = await fetch(

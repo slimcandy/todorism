@@ -1,9 +1,9 @@
 import React from "react";
-import { Event } from "../Event";
+import { IEvent } from "../../../../interfaces";
 import { EventListItem } from "../EventListItem/EventListItem";
 
 type EventListProps = {
-  list: Array<Event>;
+  list: Array<IEvent>;
 };
 
 export const EventList = (props: EventListProps) => {
@@ -11,8 +11,7 @@ export const EventList = (props: EventListProps) => {
 
   const sortedListByDayDesc = list.sort(
     (a, b) =>
-      new Date(b.dateStart || "").getTime() -
-      new Date(a.dateStart || "").getTime()
+      new Date(b.start || "").getTime() - new Date(a.start || "").getTime()
   );
 
   return (
@@ -24,8 +23,8 @@ export const EventList = (props: EventListProps) => {
             key={event.tripUid}
             title={event.title}
             description={event.description}
-            dateStart={event.dateStart}
-            dateEnd={event.dateEnd}
+            start={event.start}
+            end={event.end}
           />
         </div>
       ))}

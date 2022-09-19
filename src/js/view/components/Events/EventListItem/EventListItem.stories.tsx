@@ -19,14 +19,14 @@ const Template: ComponentStory<typeof EventListItem> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   description: "о. Вуокса, примерная дистанция - 15км",
-  dateStart: "2025-07-19T16:56:27.761Z",
-  dateEnd: "2025-07-29T16:56:27.761Z",
+  start: "2025-07-19T16:56:27.761Z",
+  end: "2025-07-29T16:56:27.761Z",
 };
 
 export const WithoutDescription = Template.bind({});
 WithoutDescription.args = {
-  dateStart: "2025-07-19T16:56:27.761Z",
-  dateEnd: "2025-07-29T16:56:27.761Z",
+  start: "2025-07-19T16:56:27.761Z",
+  end: "2025-07-29T16:56:27.761Z",
 };
 
 export const WithoutDates = Template.bind({});
@@ -37,18 +37,18 @@ WithoutDates.args = {
 export const WithDateStart = Template.bind({});
 WithDateStart.args = {
   description: "о. Вуокса, примерная дистанция - 15км",
-  dateStart: "2025-07-19T16:56:27.761Z",
+  start: "2025-07-19T16:56:27.761Z",
 };
 
 export const WithDateEnd = Template.bind({});
 WithDateEnd.args = {
   description: "о. Вуокса, примерная дистанция - 15км",
-  dateEnd: "2025-07-29T16:56:27.761Z",
+  end: "2025-07-29T16:56:27.761Z",
 };
 
 export const Expired = Template.bind({});
 Expired.args = {
   description: "о. Вуокса, примерная дистанция - 15км",
-  dateStart: "2022-07-19T16:56:27.761Z",
-  dateEnd: "2022-07-29T16:56:27.761Z",
+  start: "2022-07-19T16:56:27.761Z",
+  end: "2022-07-29T16:56:27.761Z",
 };
