@@ -11,7 +11,7 @@ export const createNewEvent = async (
   eventName: string,
   eventDescription: string | undefined,
   eventStartDate: string | undefined,
-  eventEndDate: string | undefined,
+  eventEndDate: string | undefined
 ) => {
   const response = await fetch(
     `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
@@ -51,6 +51,7 @@ export const createNewEvent = async (
     errorResponse.detail.forEach((error) => {
       errorMessage += `${error.msg}. \n`;
     });
+
     console.error(errorMessage);
     // setNewTripErrors(errorMessage);
   }

@@ -14,10 +14,19 @@ type Props = {
 };
 
 export const MembersListItem = memo((props: Props) => {
-  const { memberName, memberUid, isMe, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
+  const {
+    memberName,
+    memberUid,
+    isMe,
+    onEdit,
+    onDelete,
+    onFinishEdit,
+    onFocusInput,
+  } = props;
   const id = React.useId();
 
   const onEditHandler = (name: string, uid: string) => {
+    console.log("onEditHandler")
     onEdit?.({ name, member_uid: uid });
     onFinishEdit?.(true);
     onFocusInput?.(true);
@@ -50,7 +59,7 @@ export const MembersListItem = memo((props: Props) => {
           }}
         />
         <ButtonIcon
-            disabled={isMe}
+          disabled={isMe}
           className="dark:text-dark-2 text-dark-4 cursor-pointer"
           icon={<DeleteIcon size={24} />}
           onClick={() => onDeleteHandler(memberName, memberUid)}

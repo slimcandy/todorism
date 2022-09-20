@@ -7,36 +7,30 @@ import {DoneIcon, PlusIcon} from "../../icons";
 import {localStorageCurrentEventObject} from "../../../common/constants";
 import {pullLocalStorage} from "../../../utils/localStorage";
 import {IMember} from "./IMember";
+import {getMembers} from "../../../api_clients/getMembers";
 
 export const MembersPage = () => {
     const {t} = useTranslation();
     const [currEvent, setCurrEvent] = useState<{
         trip_uid: string;
         member_uid: string;
-    } | null>(null);
+    }>({trip_uid: "", member_uid: ""});
     const [editingMemberName, setEditingMemberName] = useState<string>("");
-    const [editingMember, setEditingMember] = useState<{
-        name: string;
-        member_uid: string;
-    }>({
+    const [editingMember, setEditingMember] = useState<IMember>({
         name: "",
         member_uid: "",
     });
-    const [deletingMember, setDeletingMember] = useState<{
-        name: string;
-        member_uid: string;
-    }>({
+    const [deletingMember, setDeletingMember] = useState<IMember>({
         name: "",
         member_uid: "",
     });
     const [isEditing, setIsEditing] = useState<boolean>(false);
-
-    const [list, setList] = useState<Array<{ name: string; member_uid: string }>>(
-        []
-    );
+    const [isAdding, setIsAdding] = useState<boolean>(false);
+    const [list, setList] = useState<Array<IMember>>([]);
+    const [isFocusedInput, setIsFocusedInput] = useState(false);
 
     const onRemoveMemberFromList = () => {
-        if (!currEvent) return;
+        console.log("onRemoveMemberFromList");
         fetch(
             `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${deletingMember.member_uid}`,
             {method: "DELETE"}
@@ -52,10 +46,11 @@ export const MembersPage = () => {
             });
     };
 
-    function onAddMember() {
-        if (!currEvent) return;
+    function onAddMember(tripUid: string) {
+        setIsAdding(true);
+        if (editingMemberName === "") return
         fetch(
-            `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/AddMember`,
+            `https://tracking-organizer.herokuapp.com/Trip/${tripUid}/Members/AddMember`,
             {
                 method: "POST",
                 headers: {
@@ -70,47 +65,67 @@ export const MembersPage = () => {
             .then((response) => response.json())
             .then((data: IMember) => {
                 if (data) {
-                    setEditingMember({name: "", member_uid: ""})
                     setList([...list, data]);
-                    setIsEditing(false);
+                    setEditingMember({name: "", member_uid: ""});
+                    setIsAdding(false);
+                    setIsFocusedInput(false)
                 }
             })
             .catch(() => {
             });
     }
 
-    const [isFocusedInput, setIsFocusedInput] = useState(false)
-
     const onSubmitEdit = () => {
-        const newList = list.map((m) =>
-            m.member_uid === editingMember.member_uid
-                ? {...m, name: editingMemberName}
-                : m
-        );
-        setList(newList);
-        setIsEditing(false);
+        if (list.filter(member => member.member_uid === editingMember.member_uid)[0].name === editingMemberName) {
+            setEditingMember({name: "", member_uid: ""})
+            setIsEditing(false);
+            setIsFocusedInput(false)
+            return
+        }
+        fetch(
+            `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/RenameMember`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    member_uid: editingMember.member_uid,
+                    name: editingMemberName,
+                }),
+            }
+        )
+            .then((response) => response.json())
+            .then((data: IMember) => {
+                if (data) {
+                    const newList = list.map((m) =>
+                        m.member_uid === editingMember.member_uid
+                            ? {...m, name: editingMemberName}
+                            : m
+                    );
+                    setList(newList);
+                    setEditingMember({name: "", member_uid: ""})
+                    setIsEditing(false);
+                    setIsFocusedInput(false)
+                }
+            })
+            .catch(() => {
+            })
     };
 
     const getCurrEvent = async () => {
-        await pullLocalStorage(localStorageCurrentEventObject).then((res) => {
-            if (res === null) return;
-            const parsedItem: { trip_uid: string; member_uid: string } = JSON.parse(
-                res
-            ) as { trip_uid: string; member_uid: string };
-            setCurrEvent(parsedItem);
-        });
-    };
-
-    const getMembers = async () => {
-        if (currEvent === null) return;
-        const response = await fetch(
-            `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members`
-        );
-        if (response.ok) {
-            const json: [{ name: string; member_uid: string }] =
-                (await response.json()) as [{ name: string; member_uid: string }];
-            setList([...list, ...json]);
-        }
+        await pullLocalStorage(localStorageCurrentEventObject)
+            .then((res) => {
+                if (res === null) return;
+                const parsedItem: { trip_uid: string; member_uid: string } = JSON.parse(
+                    res
+                ) as { trip_uid: string; member_uid: string };
+                setCurrEvent(parsedItem);
+            })
+            .then(() => {
+            })
+            .catch(() => {
+            });
     };
 
     useEffect(() => {
@@ -118,7 +133,13 @@ export const MembersPage = () => {
     }, []);
 
     useEffect(() => {
-        void getMembers();
+        if (!currEvent.trip_uid || !currEvent.member_uid) return;
+        getMembers(currEvent.trip_uid)
+            .then((data) => {
+                setList([...data]);
+            })
+            .catch(() => {
+            });
     }, [currEvent]);
 
     useEffect(() => {
@@ -126,6 +147,7 @@ export const MembersPage = () => {
     }, [isEditing]);
 
     useEffect(() => {
+        if (!deletingMember.member_uid) return;
         onRemoveMemberFromList();
     }, [deletingMember]);
 
@@ -156,7 +178,8 @@ export const MembersPage = () => {
             <div className="sticky bottom-0 left-0 pb-6 bg-light-4 dark:bg-dark-0 w-full">
                 <div className="flex items-center justify-between mb-6 pt-2">
                     <div className="mr-6 w-full">
-                        <Input value={isEditing ? editingMember.name : ""}
+                        <Input isInputting={isEditing || isAdding}
+                               value={isEditing || isAdding ? editingMember.name : null}
                                placeholder={t("pages.members.input_placeholder")}
                                onChange={setEditingMemberName}
                                isFocused={isFocusedInput}
@@ -165,13 +188,16 @@ export const MembersPage = () => {
                     {isEditing && (
                         <ButtonCircle
                             icon={<DoneIcon size={24}/>}
-                            onClick={() => onSubmitEdit()}
+                            onClick={() =>
+                                onSubmitEdit()
+                            }
+                            disabled={editingMemberName === ""}
                         />
                     )}
                     {!isEditing && (
-                        <ButtonCircle
+                        <ButtonCircle type="submit"
                             icon={<PlusIcon size={24}/>}
-                            onClick={() => onAddMember()}
+                            onClick={() => onAddMember(currEvent.trip_uid)}
                         />
                     )}
                 </div>

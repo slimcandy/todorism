@@ -1,4 +1,4 @@
-import React, {useId} from "react";
+import React, { useId } from "react";
 import { TextAreaProps } from "./TextAreaProps";
 import { TextBodyStandard } from "../../typography";
 

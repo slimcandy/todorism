@@ -68,10 +68,10 @@ export const NewEventPage = () => {
           newEvent.title ?? "",
           newEvent.description,
           newEvent.start,
-          newEvent.end,
+          newEvent.end
         )
           .then(() => {
-            navigate("/add-members")
+            navigate("/add-members");
           })
           .catch(() => {});
       }}

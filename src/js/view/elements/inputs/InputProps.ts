@@ -10,5 +10,7 @@ export interface InputProps {
   icon?: React.ReactNode;
   isIconLeft?: boolean;
   onChange?: (value?: any) => void;
-  isFocused?: boolean
+  onEnter?: (value?: any) => void;
+  isFocused?: boolean;
+  isInputting?: boolean;
 }

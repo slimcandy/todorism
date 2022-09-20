@@ -3,7 +3,7 @@ import {classesOf} from "../../../../utils";
 import {TextBodyStandard} from "../../typography";
 import {InputProps} from "../InputProps";
 
-export const Input = ((props: InputProps) => {
+export const Input = (props: InputProps) => {
     const {
         value,
         placeholder,
@@ -15,11 +15,16 @@ export const Input = ((props: InputProps) => {
         onChange,
         type,
         isFocused,
+        isInputting,
     } = props;
 
     const id = useId();
 
     const refInput = useRef<HTMLInputElement>(null);
+
+    if (isFocused) {
+        refInput?.current?.focus();
+    }
 
     const firstValue =
         String(value) === "undefined" || String(value) === "null"
@@ -46,7 +51,7 @@ export const Input = ((props: InputProps) => {
         "focus:outline-none bg-light-2 text-black-4 dark:bg-black-2 dark:text-light-0",
         "placeholder:text-dark-4 placeholder:dark:text-dark-2",
         "disabled:placeholder:text-black-3 disabled:placeholder:opacity-20",
-        "disabled:dark:text-black-3 disabled:dark:placeholdertext-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
+        "disabled:dark:text-black-3 disabled:dark:placeholder:text-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
         "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
         "invalid:border-red-1 invalid:dark:border-red-1",
         isIconLeft && "pl-11 pr-3",
@@ -57,12 +62,8 @@ export const Input = ((props: InputProps) => {
 
     useEffect(() => {
         setLocalValue(firstValue);
-    }, [firstValue]);
-
-    useEffect(() => {
-        if (!refInput || !refInput.current) return
-        refInput.current.focus()
-    }, [isFocused])
+        onChange?.(firstValue)
+    }, [firstValue, isInputting, onChange]);
 
     return (
         <>
@@ -83,16 +84,17 @@ export const Input = ((props: InputProps) => {
             >
                 {icon && <div className={iconClasses}> {icon} </div>}
 
-                <input ref={refInput}
-                       id={id}
-                       type={type}
-                       onChange={handleOnChange}
-                       className={inputClasses}
-                       disabled={disabled}
-                       value={localValue}
-                       placeholder={placeholder}
+                <input
+                    ref={refInput}
+                    id={id}
+                    type={type}
+                    onChange={handleOnChange}
+                    className={inputClasses}
+                    disabled={disabled}
+                    value={localValue}
+                    placeholder={placeholder}
                 />
             </div>
         </>
     );
-});
+};
