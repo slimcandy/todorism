@@ -7,7 +7,7 @@ import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
 import { IMember } from "./IMember";
-import { getMembers } from "../../../api_clients/getMembers";
+import { deleteMember, getMembers } from "../../../api_clients/api_members";
 
 export const MembersPage = () => {
   const { t } = useTranslation();
@@ -30,12 +30,7 @@ export const MembersPage = () => {
   const [isFocusedInput, setIsFocusedInput] = useState(false);
 
   const onRemoveMemberFromList = () => {
-    console.log("onRemoveMemberFromList");
-    fetch(
-      `https://tracking-organizer.herokuapp.com/Trip/${currEvent.trip_uid}/Members/${deletingMember.member_uid}`,
-      { method: "DELETE" }
-    )
-      .then((response) => response.json())
+    deleteMember(currEvent.trip_uid, deletingMember.member_uid)
       .then(() => {
         const newList = list.filter(
           (m) => m.member_uid !== deletingMember.member_uid
