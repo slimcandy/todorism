@@ -1,5 +1,3 @@
-import { IMember } from "../view/components/Members/IMember";
-
 export const getMembers = async (tripUid: string) => {
   const response = await fetch(
     `https://tracking-organizer.herokuapp.com/Trip/${tripUid}/Members`
@@ -28,8 +26,8 @@ export const renameMember = async (
   tripUid: string,
   memberUid: string,
   memberName: string
-): Promise<IMember> => {
-  await fetch(
+): Promise<Response> => {
+  const res = await fetch(
     `https://tracking-organizer.herokuapp.com/Trip/${tripUid}/Members/RenameMember`,
     {
       method: "PATCH",
@@ -41,8 +39,26 @@ export const renameMember = async (
         name: memberName,
       }),
     }
-  )
-    .then((response) => response.json())
-    .then((data: IMember) => data)
-    .catch(() => {});
+  );
+  return res;
+};
+
+export const addMember = async (
+  tripUid: string,
+  memberName: string
+): Promise<Response> => {
+  const response = await fetch(
+    `https://tracking-organizer.herokuapp.com/Trip/${tripUid}/Members/AddMember`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        member_uid: null,
+        name: memberName,
+      }),
+    }
+  );
+  return response;
 };
