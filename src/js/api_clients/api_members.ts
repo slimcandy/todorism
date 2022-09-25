@@ -1,9 +1,7 @@
-import {SERVER_URL} from "../common/constants";
+import { SERVER_URL } from "../common/constants";
 
 export const getMembers = async (tripUid: string) => {
-  const response = await fetch(
-    `${SERVER_URL}/Trip/${tripUid}/Members`
-  );
+  const response = await fetch(`${SERVER_URL}/Trip/${tripUid}/Members`);
   if (response.ok) {
     const json: [{ name: string; member_uid: string }] =
       (await response.json()) as [{ name: string; member_uid: string }];
@@ -16,10 +14,9 @@ export const deleteMember = async (
   tripUid: string,
   memberUid: string
 ): Promise<void> => {
-  await fetch(
-    `${SERVER_URL}/Trip/${tripUid}/Members/${memberUid}`,
-    { method: "DELETE" }
-  )
+  await fetch(`${SERVER_URL}/Trip/${tripUid}/Members/${memberUid}`, {
+    method: "DELETE",
+  })
     .then((response) => response.json())
     .catch(() => {});
 };

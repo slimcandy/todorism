@@ -14,11 +14,14 @@ import {
   renameMember,
 } from "../../../api_clients/api_members";
 import { wrapAsyncFunction } from "../../../utils";
-import {NewTripResponse} from "../../../interfaces";
+import { NewTripResponse } from "../../../interfaces";
 
 export const MembersPage = () => {
   const { t } = useTranslation();
-  const [currEvent, setCurrEvent] = useState<NewTripResponse>({ trip_uid: "", member_uid: "" });
+  const [currEvent, setCurrEvent] = useState<NewTripResponse>({
+    trip_uid: "",
+    member_uid: "",
+  });
   const [editingMemberName, setEditingMemberName] = useState<string>("");
   const [editingMember, setEditingMember] = useState<IMember>({
     name: "",
