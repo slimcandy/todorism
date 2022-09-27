@@ -1,10 +1,10 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { EventList } from "./EventList/EventList";
-import { Event } from "./Event";
+import { IEvent } from "../../../interfaces";
 
 type Props = {
-  list: Array<Event>;
+  list: Array<IEvent>;
 };
 
 export const AllEvents = (props: Props) => {
