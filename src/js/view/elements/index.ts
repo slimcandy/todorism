@@ -5,4 +5,3 @@ export * from "./typography/index";
 export * from "./Indicator/Indicator";
 export * from "./Ellipse";
 export * from "./EllipseWithImg";
-export * from "../components/Loader/Loader";
