@@ -5,7 +5,7 @@ import { Person } from "../../../interfaces";
 import {
   pullLocalStorage,
   pushLocalStorage,
-} from "../../../utils/localStorage";
+} from "../../../utils/localStorage_old";
 
 const localStorageKey = "currentUserIdMemory";
 

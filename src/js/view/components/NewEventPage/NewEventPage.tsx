@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
-import { localStorageUsernameKey } from "../../../common/constants";
-import { pullLocalStorage } from "../../../utils/localStorage";
-import { IEvent } from "../Events/IEvent";
+import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
+import { IEvent } from "../../../interfaces";
 import {
   ButtonPrimary,
   Input,
@@ -18,14 +17,14 @@ export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const path = "/events";
-  const [userName, setUserName] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>("");
 
   const [newEvent, setNewEvent] = useState<IEvent>({
-    trip_uid: "",
+    tripUid: "",
     title: "",
     description: "",
-    start: undefined,
-    end: undefined,
+    start: null,
+    end: null,
   });
 
   const onNewTripNameChange: InputProps["onChange"] = (newName) => {
@@ -49,21 +48,8 @@ export const NewEventPage = () => {
 
   const isBtnDisabled = newEvent.title === null || newEvent.title.length === 0;
 
-  const getUserNameFromLocalStorage = () => {
-    void pullLocalStorage(localStorageUsernameKey)
-      .then((localStorageString) => {
-        if (
-          typeof localStorageString === "string" &&
-          localStorageString.length > 0
-        ) {
-          setUserName(localStorageString);
-        }
-      })
-      .catch(() => {});
-  };
-
   useEffect(() => {
-    getUserNameFromLocalStorage();
+    setUserName(getUserNameFromLocalStorage());
   }, []);
 
   return (
