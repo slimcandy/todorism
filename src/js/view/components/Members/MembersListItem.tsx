@@ -27,8 +27,8 @@ export const MembersListItem = memo((props: Props) => {
 
   const onEditHandler = (name: string, uid: string) => {
     onEdit({ name, member_uid: uid });
-    onFinishEdit?.(true);
-    onFocusInput?.(true);
+    onFinishEdit(true);
+    onFocusInput(true);
   };
 
   const onDeleteHandler = (name: string, uid: string) => {
