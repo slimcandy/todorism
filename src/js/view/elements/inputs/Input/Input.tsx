@@ -63,7 +63,7 @@ export const Input = (props: InputProps) => {
   useEffect(() => {
     setLocalValue(firstValue);
     onChange?.(firstValue);
-  }, [firstValue, isInputting, onChange]);
+  }, [firstValue, isInputting]);
 
   return (
     <>
