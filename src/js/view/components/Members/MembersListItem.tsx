@@ -32,7 +32,7 @@ export const MembersListItem = memo((props: Props) => {
   };
 
   const onDeleteHandler = (name: string, uid: string) => {
-    onDelete?.({ name, member_uid: uid });
+    onDelete({ name, member_uid: uid });
   };
 
   return (
