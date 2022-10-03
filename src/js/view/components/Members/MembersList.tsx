@@ -21,8 +21,7 @@ export const MembersList = memo((props: MembersListProps) => {
   return (
     <>
       {members.map((member) => (
-        <div className="mb-2"
-             key={member.member_uid}>
+        <div className="mb-2" key={member.member_uid}>
           <MembersListItem
             memberName={member.name}
             memberUid={member.member_uid}
