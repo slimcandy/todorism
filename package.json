@@ -38,7 +38,6 @@
   },
   "scripts": {
     "start": "PORT=8080 react-scripts start",
-    "winstart": "set PORT=8080 && react-scripts start",
     "build": "react-scripts build",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
