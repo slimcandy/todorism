@@ -33,10 +33,9 @@ export const Header = (props: HeaderProps) => {
   );
   return (
     <header
-      className="fixed top-0 left-4
-    pt-3 pr-8
-    flex justify-between w-full
-    dark:text-light-4 text-black-0"
+      className="h-header sticky top-0
+    flex justify-between items-center bg-inherit
+    dark:text-light-4 text-black-0 z-10"
     >
       {isWithLogo && <TitleH1>LOGO</TitleH1>}
       {!isWithLogo && <div> Back </div>}

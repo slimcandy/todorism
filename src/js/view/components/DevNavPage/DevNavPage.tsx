@@ -4,7 +4,7 @@ import { ButtonPrimary } from "../../elements";
 
 export function DevNavPage() {
   return (
-    <div className="dev-nav-page pt-8 h-full bg-dark-1">
+    <div className="dev-nav-page pt-8 h-full w-full">
       <h1 className="text-center " style={{ color: "#fff" }}>
         Welcome to develop navigation page
       </h1>
