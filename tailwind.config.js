@@ -4,16 +4,22 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      screens: {
-        "xs": "390px"
+      height: {
+        header: "50px",
       },
-      fontFamily: { "main": ["Manrope", "sans-serif"]},
+      padding: {
+        base: "1rem",
+      },
+      screens: {
+        xs: "390px",
+      },
+      fontFamily: { main: ["Manrope", "sans-serif"] },
       fontSize: {
-        "h1": ["1.5rem", { lineHeight: "32px" }],
-        "h2": ["1.125rem", { lineHeight: "22px" }],
-        "h3": ["1rem", { lineHeight: "22px" }],
-        "medium": ["0.875rem", { lineHeight: "18px" }],
-        "small": ["0.75rem", { lineHeight: "16px" }]
+        h1: ["1.5rem", { lineHeight: "32px" }],
+        h2: ["1.125rem", { lineHeight: "22px" }],
+        h3: ["1rem", { lineHeight: "22px" }],
+        medium: ["0.875rem", { lineHeight: "18px" }],
+        small: ["0.75rem", { lineHeight: "16px" }],
       },
       colors: {
         "dark-0": "#17181F",
@@ -58,12 +64,12 @@ module.exports = {
         "red-3": "#FF9D9D",
         "red-4": "#FFE5E5",
       },
-    }
+    },
   },
   daisyui: {
     themes: [
       {
-        "light": {
+        light: {
           primary: "#8BFFC1",
           "primary-focus": "#57EBAC", // for hover
           "primary-disabled": "#252732",
@@ -71,15 +77,15 @@ module.exports = {
           "secondary-focus": "#3E4153",
           "secondary-disabled": "#252732",
         },
-        "dark": {
+        dark: {
           primary: "#57EBAC",
           "primary-focus": "#39D996", // for hover
           "primary-disabled": "#FAFAFC",
           secondary: "#252732",
           "secondary-focus": "#3E4153",
           "secondary-disabled": "#252732",
-        }
-      }
-    ]
-  }
-}
+        },
+      },
+    ],
+  },
+};
