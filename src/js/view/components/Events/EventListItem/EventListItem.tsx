@@ -5,17 +5,17 @@ import {
   convertDateToDDMMYYYYWithDots,
   checkExpiredDate,
 } from "../../../../utils";
-import { Event } from "../Event";
+import { IEvent } from "../../../../interfaces";
 
-export const EventListItem = (props: Event) => {
-  const { tripUid, title, description, dateStart, dateEnd } = props;
-  let start;
-  let end;
-  if (dateStart) {
-    start = convertDateToDDMMYYYYWithDots(dateStart);
+export const EventListItem = (props: IEvent) => {
+  const { tripUid, title, description, start, end } = props;
+  let dateStart;
+  let dateEnd;
+  if (start) {
+    dateStart = convertDateToDDMMYYYYWithDots(start);
   }
-  if (dateEnd) {
-    end = convertDateToDDMMYYYYWithDots(dateEnd);
+  if (end) {
+    dateEnd = convertDateToDDMMYYYYWithDots(end);
   }
 
   return (
@@ -33,12 +33,14 @@ export const EventListItem = (props: Event) => {
           </TextBodySmall>
         </div>
 
-        {start && (
+        {dateStart && (
           <div>
-            <Indicator isActive={!checkExpiredDate(dateStart as string)} />
-            <TextBodySmall className="ml-1">{start || ""}</TextBodySmall>
-            {end && (
-              <TextBodySmall className="ml-1">{`- ${end || ""}`}</TextBodySmall>
+            <Indicator isActive={!checkExpiredDate(start as string)} />
+            <TextBodySmall className="ml-1">{dateStart || ""}</TextBodySmall>
+            {dateEnd && (
+              <TextBodySmall className="ml-1">{`- ${
+                dateEnd || ""
+              }`}</TextBodySmall>
             )}
           </div>
         )}

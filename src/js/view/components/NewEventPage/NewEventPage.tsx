@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
 import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
-import { IEvent } from "../Events/IEvent";
+import { IEvent } from "../../../interfaces";
 import {
   ButtonPrimary,
   Input,
@@ -20,11 +20,11 @@ export const NewEventPage = () => {
   const [userName, setUserName] = useState<string | null>("");
 
   const [newEvent, setNewEvent] = useState<IEvent>({
-    trip_uid: "",
+    tripUid: "",
     title: "",
     description: "",
-    start: undefined,
-    end: undefined,
+    start: null,
+    end: null,
   });
 
   const onNewTripNameChange: InputProps["onChange"] = (newName) => {
