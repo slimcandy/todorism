@@ -14,7 +14,7 @@ import { NoEventsPage } from "../Events/NoEvents";
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
 import EventsPage from "../Events/EventsPage";
-import { ShareLinkPage } from "../ShareLinkPage/ShareLinkPage";
+import { ShareLinkPage } from "../../pages/ShareLinkPage/ShareLinkPage";
 
 export function App() {
   const { i18n } = useTranslation();

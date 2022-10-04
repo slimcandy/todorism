@@ -16,9 +16,12 @@ export const getUserNameFromLocalStorage = (): string | null =>
   getLocalStorage<string>(localStorageUsernameKey);
 
 // EVENTS
-export const saveCurrentEventInLocalStorage = (events: ILocaleStorageEvent) => {
-  setLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject, events);
+export const saveCurrentEventInLocalStorage = (event: ILocaleStorageEvent) => {
+  setLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject, event);
 };
+
+export const getCurrentEventFromLocalStorage = (): ILocaleStorageEvent | null =>
+  getLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject);
 
 export const saveEventsInLocalStorage = (events: TLocalStorageEvents) => {
   setLocalStorage<TLocalStorageEvents>(localStorageEventsObject, events);
