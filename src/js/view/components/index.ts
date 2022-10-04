@@ -8,3 +8,4 @@ export { default as SPAremoveit } from "./SPAremoveit/SPAremoveit";
 export * from "./ThemeToggler/ThemeToggler";
 export * from "./NewEventPage/NewEventPage";
 export * from "./Loader/Loader";
+export * from "./PageWrapper/PageWrapper";

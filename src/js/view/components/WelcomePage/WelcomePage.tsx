@@ -5,7 +5,7 @@ import { Input, TextBodyLarge, TitleH1, ActionPanel } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
 import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
 import { InputProps } from "../../elements/inputs/InputProps";
-import { PageWrapper } from "../PageWrapper/PageWrapper";
+import { PageWrapper } from "..";
 
 export const WelcomePage = () => {
   const { t } = useTranslation();
