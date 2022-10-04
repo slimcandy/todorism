@@ -30,10 +30,10 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="relative bg-light-4 dark:bg-dark-0 ">
+      <div className="relative bg-light-4 dark:bg-black-0 px-base">
         <Header isWithLogo />
 
-        <main>
+        <main className="flex min-h-[calc(100vh-theme(height.header))]">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<DevNavPage />} />

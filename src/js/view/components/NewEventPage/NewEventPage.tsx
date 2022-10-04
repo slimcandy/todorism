@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
-import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
+import {
+  getUserNameFromLocalStorage,
+  saveLoadingStateInLocalStorage,
+} from "../../../utils/localStorage";
 import { IEvent } from "../../../interfaces";
 import {
-  ButtonPrimary,
   Input,
   InputDate,
   TitleH1,
   TextArea,
+  ActionPanel,
 } from "../../elements";
 import { InputProps } from "../../elements/inputs/InputProps";
+import { PageWrapper } from "../PageWrapper/PageWrapper";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
@@ -48,31 +52,35 @@ export const NewEventPage = () => {
 
   const isBtnDisabled = newEvent.title === null || newEvent.title.length === 0;
 
-  useEffect(() => {
-    setUserName(getUserNameFromLocalStorage());
-  }, []);
+  const createEvent = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    try {
+      event.preventDefault();
+      saveLoadingStateInLocalStorage(true);
 
-  return (
+      createNewEvent(
+        userName ?? "",
+        newEvent.title ?? "",
+        newEvent.description,
+        newEvent.start,
+        newEvent.end,
+        () => navigate(path)
+      )
+        .then(() => {})
+        .catch(() => {});
+    } finally {
+      saveLoadingStateInLocalStorage(false);
+    }
+  };
+
+  const pageMainContent = (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        createNewEvent(
-          userName ?? "",
-          newEvent.title ?? "",
-          newEvent.description,
-          newEvent.start,
-          newEvent.end,
-          () => navigate(path)
-        )
-          .then(() => {})
-          .catch(() => {});
-      }}
-      className="min-h-screen
-      flex flex-col h-100
-      justify-between md:justify-start
-      px-4 pt-16 xs:pt-16 pb-6 mx-auto
-      sm:w-6/12
-      w-full"
+      className="
+        flex flex-col
+        justify-between
+        w-full
+      "
     >
       <div>
         <div className="mb-6">
@@ -130,9 +138,27 @@ export const NewEventPage = () => {
           />
         </div>
       </div>
-      <ButtonPrimary type="submit" disabled={isBtnDisabled}>
-        {t("buttons.create")}
-      </ButtonPrimary>
     </form>
+  );
+
+  const pageFooter = (
+    <ActionPanel
+      primaryButtonText={t("buttons.create")}
+      primaryButtonType="submit"
+      primaryButtonDisabled={isBtnDisabled}
+      onPrimaryButtonClick={(event) => createEvent(event)}
+    />
+  );
+
+  useEffect(() => {
+    setUserName(getUserNameFromLocalStorage());
+  }, []);
+
+  return (
+    <PageWrapper
+      pageContent={pageMainContent}
+      pageFooter={pageFooter}
+      verticalTopPageContent
+    />
   );
 };
