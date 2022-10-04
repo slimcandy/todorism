@@ -15,7 +15,7 @@ export const Loader = () => {
     <>
       {!loadingState && <div />}
       {loadingState && (
-        <div className="flex justify-center items-center absolute h-full w-full bg-black-3/40 z-20">
+        <div className="flex justify-center items-center absolute top-0 bottom-0 left-0 right-0 bg-black-3/40 z-20">
           <LoaderIcon size={64} className="animate-spin" />
         </div>
       )}
