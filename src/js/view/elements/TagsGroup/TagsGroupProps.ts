@@ -9,7 +9,8 @@ export type TTagsGroupSize = keyof typeof TAGS_GROUP_SIZES;
 export interface ITagsGroupProps {
   tags: string[];
   activeTagIndex: number;
-  readonly: boolean;
-  size: TTagsGroupSize;
-  onClick: (index: number) => number;
+  onClick: (index: number) => void;
+  size?: TTagsGroupSize;
+  readonly?: boolean;
+  localizationPath?: string;
 }

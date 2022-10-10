@@ -34,7 +34,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
-    "remember_me": "Remember me"
+    "remember_me": "Remember me",
+    "done": "Done"
   },
   "tabs": {
     "common_things": "Common things",
@@ -61,5 +62,32 @@
       "description_example": "We go to the Great Waterfall through the pine forest, and have dinner on an alpine meadow with a view of the mountain peaks",
       "example": "Example"
     }
+  },
+  "list_point": {
+    "add_item": "Добавить вещь",
+    "edit_item": "Редактировать вещь",
+    "edit_form": {
+      "category": "Выберите категорию",
+      "item": "Что взять",
+      "unit": "В чем считать",
+      "count": "Сколько взять"
+    },
+    "units": {
+      "gram": "Граммы",
+      "kilogram": "Килограммы",
+      "piece": "Штуки",
+      "package": "Упаковки",
+      "liter": "Литры",
+      "milliliter": "Миллилитры"
+    },
+    "categories": {
+      "food": "Еда",
+      "equipment":  "Инвентарь",
+      "clothes": "Одежда",
+      "medicines":  "Лекарства",
+      "entertainment": "Развлечения",
+      "other": "Другое"
+    }
   }
 }
+

@@ -6,3 +6,4 @@ export * from "./Store";
 export * from "./SVGprops";
 export * from "./NewTripResponse";
 export * from "./ErrorResponse";
+export * from "./ListPoint";

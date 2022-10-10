@@ -2,6 +2,8 @@ import React from "react";
 import { ComponentStory } from "@storybook/react";
 import { TagsGroup } from "./TagsGroup";
 
+import { LIST_POINT_CATEGORIES } from "../../../interfaces";
+
 export default {
   title: "elements/tagsGroup",
   component: TagsGroup,
@@ -11,16 +13,7 @@ export default {
     },
   },
   args: {
-    tags: [
-      "еда",
-      "вода",
-      "одежда",
-      "развлечения",
-      "лекарства",
-      "другое",
-      "пятое",
-      "десятое",
-    ],
+    tags: Object.values(LIST_POINT_CATEGORIES),
   },
 };
 
@@ -30,7 +23,11 @@ const Template: ComponentStory<typeof TagsGroup> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tags: ["еда", "вода", "одежда"],
+  tags: [
+    LIST_POINT_CATEGORIES.food,
+    LIST_POINT_CATEGORIES.clothes,
+    LIST_POINT_CATEGORIES.other,
+  ],
 };
 
 export const MultipleLines = Template.bind({});
@@ -59,4 +56,9 @@ Medium.args = {
 export const Large = Template.bind({});
 Large.args = {
   size: "l",
+};
+
+export const WithLocalization = Template.bind({});
+WithLocalization.args = {
+  localizationPath: "list_point.categories",
 };

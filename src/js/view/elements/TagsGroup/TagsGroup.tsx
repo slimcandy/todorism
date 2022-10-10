@@ -1,11 +1,21 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ITagsGroupProps } from "./TagsGroupProps";
 import { classesOf } from "../../../utils";
 
 import { TagSmall, TagMedium, TagLarge } from "../tags";
 
 export const TagsGroup = (props: ITagsGroupProps) => {
-  const { tags = [], activeTagIndex, size, readonly, onClick } = props;
+  const {
+    tags = [],
+    activeTagIndex,
+    size,
+    readonly,
+    localizationPath,
+    onClick,
+  } = props;
+
+  const { t } = useTranslation();
 
   const tagComponentsClasses = classesOf(
     "text-small",
@@ -18,11 +28,16 @@ export const TagsGroup = (props: ITagsGroupProps) => {
     l: TagLarge,
   };
 
-  const TagComponent = TagComponents[size] || TagComponents.l;
+  const TagComponent = size ? TagComponents[size] : TagComponents.l;
 
   const checkActiveTag = (index: number) => index === activeTagIndex;
 
-  const handleClick = (index: number) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    event.preventDefault();
+
     const isActiveTag = checkActiveTag(index);
 
     if (!readonly && !isActiveTag) {
@@ -36,9 +51,9 @@ export const TagsGroup = (props: ITagsGroupProps) => {
         <TagComponent
           isActive={!readonly && checkActiveTag(index)}
           className={tagComponentsClasses}
-          onClick={() => handleClick(index)}
+          onClick={(event) => handleClick(event, index)}
         >
-          {tagName}
+          {localizationPath ? t(`${localizationPath}.${tagName}`) : tagName}
         </TagComponent>
       ))}
     </ul>

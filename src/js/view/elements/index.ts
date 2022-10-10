@@ -6,3 +6,7 @@ export * from "./Indicator/Indicator";
 export * from "./Ellipse";
 export * from "./EllipseWithImg";
 export * from "./ActionPanel/ActionPanel";
+export * from "./TagsGroup/TagsGroup";
+export * from "./Select/Select";
+export * from "./Counter/Counter";
+export * from "./Forms/ListPointEditForm/ListPointEditForm";
