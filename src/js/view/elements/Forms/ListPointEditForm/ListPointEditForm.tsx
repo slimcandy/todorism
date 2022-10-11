@@ -90,12 +90,13 @@ export const ListPointEditForm = (props: IListPointEditFormProps) => {
       />
 
       <Counter
+        positive
         label={t("list_point.edit_form.count")}
         value={listPoint.count}
         onChange={(value) =>
           changeItem({
             ...listPoint,
-            count: Number(value),
+            count: value,
           })
         }
       />

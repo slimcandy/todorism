@@ -49,6 +49,7 @@ export const TagsGroup = (props: ITagsGroupProps) => {
     <ul className="flex flex-wrap gap-2">
       {tags.map((tagName, index) => (
         <TagComponent
+          key={tagName}
           isActive={!readonly && checkActiveTag(index)}
           className={tagComponentsClasses}
           onClick={(event) => handleClick(event, index)}
