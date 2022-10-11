@@ -17,9 +17,6 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
 
   const isCreationMode = listPointIndex === undefined;
 
-  const apiHandler =
-    listPointType === "common" ? editCommonListPoint : editPrivateListPoint;
-
   const changeListPoints = async (
     event: ILocaleStorageEvent,
     editedListPoint: IListPoint
@@ -28,12 +25,19 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
       if (event) {
         saveLoadingStateInLocalStorage(true);
 
-        await apiHandler({
-          mode: isCreationMode ? "add" : "edit",
+        const mode: "add" | "edit" = isCreationMode ? "add" : "edit";
+        const listPointData = {
+          mode,
           tripUid: event.trip_uid,
           listPoint: editedListPoint,
           memberUid: event.member_uid,
-        });
+        };
+
+        if (listPointType === "common") {
+          await editCommonListPoint(listPointData);
+        } else if (listPointType === "private") {
+          await editPrivateListPoint(listPointData);
+        }
       }
     } finally {
       saveLoadingStateInLocalStorage(false);
@@ -44,7 +48,9 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
     <ListPointEdit
       listPoint={listPoint}
       isCreationMode={isCreationMode}
-      onClick={changeListPoints}
+      onClick={(event, editedListPoint) => {
+        void changeListPoints(event, editedListPoint);
+      }}
     />
   );
 };

@@ -1,2 +1,2 @@
-export * from "./commonListPoint";
-export * from "./privateListPoint";
+export { editCommonListPoint, commonListPointApi } from "./commonListPoint";
+export { editPrivateListPoint, privateListPointApi } from "./privateListPoint";

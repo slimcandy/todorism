@@ -34,6 +34,6 @@ EditMode.args = {
       tags: [LIST_POINT_CATEGORIES.food],
     },
     unit: LIST_POINT_UNITS.gram,
-    count: 3,
+    count: "3",
   },
 };

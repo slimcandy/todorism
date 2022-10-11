@@ -19,7 +19,7 @@ const listPoint = {
     tags: [LIST_POINT_CATEGORIES.medicines],
   },
   unit: LIST_POINT_UNITS.piece,
-  count: 3,
+  count: "3",
 };
 
 const commonEndPoints = commonListPointApi(

@@ -4,5 +4,5 @@ import { ILocaleStorageEvent } from "../../../../utils/localStorage";
 export interface IListPointEditProps {
   listPoint: IListPoint;
   isCreationMode: boolean;
-  onClick: (event: ILocaleStorageEvent, listPoint: IListPoint) => Promise<void>;
+  onClick: (event: ILocaleStorageEvent, listPoint: IListPoint) => void;
 }
