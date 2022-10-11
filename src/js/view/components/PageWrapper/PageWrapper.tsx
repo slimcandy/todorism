@@ -28,7 +28,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
 
       <div className={pageWrapperClasses}>
         <div className={pageContentClasses}>{pageContent}</div>
-        <div>{pageFooter}</div>
+        {pageFooter}
       </div>
     </>
   );
