@@ -21,7 +21,7 @@ export const Select = (props: ISelectProps) => {
         onChange={(e) => onChange(e.target.value)}
       >
         {options.map((option) => (
-          <option value={option}>
+          <option value={option} key={option}>
             {localizationPath ? t(`${localizationPath}.${option}`) : option}
           </option>
         ))}
