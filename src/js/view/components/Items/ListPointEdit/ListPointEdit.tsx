@@ -13,7 +13,7 @@ export const ListPointEdit = (props: IListPointEditProps) => {
 
   const { t } = useTranslation();
 
-  const [localListPoint, setLocalListPoint] = useState(
+  const [localListPoint, setLocalListPoint] = useState<IListPoint>(
     listPoint || getEmptyListPoint()
   );
 
