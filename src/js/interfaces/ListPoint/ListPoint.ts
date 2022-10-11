@@ -39,9 +39,10 @@ export interface IItem
 }
 
 export interface IListPoint
-  extends Omit<IListPointFromBE, "is_private" | "item"> {
+  extends Omit<IListPointFromBE, "is_private" | "item" | "count"> {
   item: IItem;
   pointUid?: string;
+  count: string;
 }
 
 export interface IListPointBinding

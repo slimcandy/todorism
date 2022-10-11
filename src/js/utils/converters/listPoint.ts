@@ -10,7 +10,7 @@ export const getEmptyListPoint = (): IListPoint => ({
     name: "",
     tags: [LIST_POINT_CATEGORIES.food],
   },
-  count: 1,
+  count: "1",
   unit: LIST_POINT_UNITS.gram,
 });
 
@@ -29,5 +29,5 @@ export const convertIListPointToIListPointFromBE = (
     photo: "",
   },
   unit: listPoint.unit,
-  count: listPoint.count,
+  count: Number(listPoint.count),
 });
