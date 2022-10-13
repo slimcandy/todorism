@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
-import {
-  getUserNameFromLocalStorage,
-  saveLoadingStateInLocalStorage,
-} from "../../../utils/localStorage";
+import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
 import { IEvent } from "../../../interfaces";
 import {
   Input,
@@ -15,6 +12,7 @@ import {
   ActionPanel,
 } from "../../elements";
 import { InputProps } from "../../elements/inputs/InputProps";
+import { useLoading } from "../../../hooks";
 import { PageWrapper } from "../PageWrapper/PageWrapper";
 
 export const NewEventPage = () => {
@@ -22,6 +20,7 @@ export const NewEventPage = () => {
   const navigate = useNavigate();
   const path = "/events";
   const [userName, setUserName] = useState<string | null>("");
+  const { setLoading } = useLoading();
 
   const [newEvent, setNewEvent] = useState<IEvent>({
     tripUid: "",
@@ -57,7 +56,7 @@ export const NewEventPage = () => {
   ) => {
     try {
       event.preventDefault();
-      saveLoadingStateInLocalStorage(true);
+      setLoading(true);
 
       createNewEvent(
         userName ?? "",
@@ -70,7 +69,7 @@ export const NewEventPage = () => {
         .then(() => {})
         .catch(() => {});
     } finally {
-      saveLoadingStateInLocalStorage(false);
+      setLoading(false);
     }
   };
 
