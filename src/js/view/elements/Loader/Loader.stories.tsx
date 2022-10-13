@@ -1,8 +1,5 @@
 import React from "react";
 import { ComponentStory } from "@storybook/react";
-
-import { saveLoadingStateInLocalStorage } from "../../../utils/localStorage";
-
 import { Loader } from "./Loader";
 
 export default {
@@ -10,8 +7,11 @@ export default {
   component: Loader,
 };
 
-saveLoadingStateInLocalStorage(true);
-
-const Template: ComponentStory<typeof Loader> = () => <Loader />;
+const Template: ComponentStory<typeof Loader> = (args) => <Loader {...args} />;
 
 export const Primary = Template.bind({});
+
+export const Small = Template.bind({});
+Small.args = {
+  size: 24,
+};

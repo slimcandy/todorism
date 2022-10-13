@@ -7,4 +7,3 @@ export { default as CurrentUser } from "./CurrentUser/CurrentUser";
 export { default as SPAremoveit } from "./SPAremoveit/SPAremoveit";
 export * from "./ThemeToggler/ThemeToggler";
 export * from "./NewEventPage/NewEventPage";
-export * from "./Loader/Loader";

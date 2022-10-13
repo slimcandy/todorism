@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
-import {
-  getUserNameFromLocalStorage,
-  saveLoadingStateInLocalStorage,
-} from "../../../utils/localStorage";
+import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
 import { IEvent } from "../../../interfaces";
 import {
   ButtonPrimary,
@@ -13,15 +10,17 @@ import {
   InputDate,
   TitleH1,
   TextArea,
+  Loader,
 } from "../../elements";
 import { InputProps } from "../../elements/inputs/InputProps";
-import { Loader } from "../Loader/Loader";
+import { useLoading } from "../../../hooks";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const path = "/events";
   const [userName, setUserName] = useState<string | null>("");
+  const { loading, setLoading } = useLoading();
 
   const [newEvent, setNewEvent] = useState<IEvent>({
     tripUid: "",
@@ -55,7 +54,7 @@ export const NewEventPage = () => {
   const createEvent = (event: React.FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
-      saveLoadingStateInLocalStorage(true);
+      setLoading(true);
 
       createNewEvent(
         userName ?? "",
@@ -68,7 +67,7 @@ export const NewEventPage = () => {
         .then(() => {})
         .catch(() => {});
     } finally {
-      saveLoadingStateInLocalStorage(false);
+      setLoading(false);
     }
   };
 
@@ -78,7 +77,7 @@ export const NewEventPage = () => {
 
   return (
     <>
-      <Loader />
+      {loading && <Loader />}
 
       <form
         onSubmit={createEvent}
