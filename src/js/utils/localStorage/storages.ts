@@ -3,7 +3,6 @@ import {
   localStorageUsernameKey,
   localStorageEventsObject,
   localStorageCurrentEventObject,
-  localStorageLoadingState,
 } from "./constants";
 import { TLocalStorageEvents, ILocaleStorageEvent } from "./types";
 
@@ -41,11 +40,3 @@ export const pushEventToLocalStorageEvents = (event: ILocaleStorageEvent) => {
   events.push(event);
   saveEventsInLocalStorage(events);
 };
-
-// LOADING STATE
-export const saveLoadingStateInLocalStorage = (state: boolean) => {
-  setLocalStorage<boolean>(localStorageLoadingState, state);
-};
-
-export const getLoadingStateFromLocalStorage = (): boolean | null =>
-  getLocalStorage<boolean>(localStorageLoadingState);
