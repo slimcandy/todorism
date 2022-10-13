@@ -3,17 +3,17 @@ import { IListPointEditApiHandler } from "./ListPointEditApiHandlerProps";
 import { IListPoint } from "../../../../interfaces";
 import { ListPointEdit } from "../ListPointEdit/ListPointEdit";
 
-import {
-  ILocaleStorageEvent,
-  saveLoadingStateInLocalStorage,
-} from "../../../../utils/localStorage";
+import { ILocaleStorageEvent } from "../../../../utils/localStorage";
 import {
   editPrivateListPoint,
   editCommonListPoint,
 } from "../../../../api_clients";
+import { useLoading } from "../../../../hooks";
 
 export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
   const { listPoint, listPointIndex, listPointType } = props;
+
+  const { setLoading } = useLoading();
 
   const isCreationMode = listPointIndex === undefined;
 
@@ -23,7 +23,7 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
   ) => {
     try {
       if (event) {
-        saveLoadingStateInLocalStorage(true);
+        setLoading(true);
 
         const mode: "add" | "edit" = isCreationMode ? "add" : "edit";
         const listPointData = {
@@ -40,7 +40,7 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
         }
       }
     } finally {
-      saveLoadingStateInLocalStorage(false);
+      setLoading(false);
     }
   };
 
