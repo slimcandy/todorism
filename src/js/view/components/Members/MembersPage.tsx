@@ -147,11 +147,11 @@ export const MembersPage = () => {
           </div>
           <div className="grid gap-y-2 grid-cols-1">
             <MembersList
-                list={list}
-                onEdit={setEditingMember}
-                onFinishEdit={setIsEditing}
-                onDelete={setDeletingMember}
-                onFocusInput={setIsFocusedInput}
+              list={list}
+              onEdit={setEditingMember}
+              onFinishEdit={setIsEditing}
+              onDelete={setDeletingMember}
+              onFocusInput={setIsFocusedInput}
             />
           </div>
         </div>

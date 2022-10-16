@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { TagMe } from "../../elements/TagMe";
 import { DeleteIcon, EditIcon } from "../../icons";
 import { ButtonIcon } from "../../elements";
-import {MemberListItemProps} from "./MemberListItemProps";
+import { MemberListItemProps } from "./MemberListItemProps";
 
 export const MembersListItem = memo((props: MemberListItemProps) => {
   const {
@@ -26,9 +26,7 @@ export const MembersListItem = memo((props: MemberListItemProps) => {
   };
 
   return (
-    <div
-      className="w-100 flex justify-between pb-1 border-b border-light-2 dark:border-black-3"
-    >
+    <div className="w-100 flex justify-between pb-1 border-b border-light-2 dark:border-black-3">
       <div className="flex items-center">
         <div>
           <span className="mr-2 dark:bg-dark-0 bg-light-4 focus:outline-none w-full">
