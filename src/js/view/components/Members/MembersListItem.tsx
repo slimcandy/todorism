@@ -2,18 +2,9 @@ import React, { memo } from "react";
 import { TagMe } from "../../elements/TagMe";
 import { DeleteIcon, EditIcon } from "../../icons";
 import { ButtonIcon } from "../../elements";
+import {MemberListItemProps} from "./MemberListItemProps";
 
-type Props = {
-  memberName: string;
-  memberUid: string;
-  isMe: boolean;
-  onEdit: (member: { name: string; member_uid: string }) => void;
-  onDelete: (member: { name: string; member_uid: string }) => void;
-  onFinishEdit: (value: boolean) => void;
-  onFocusInput: (value: boolean) => void;
-};
-
-export const MembersListItem = memo((props: Props) => {
+export const MembersListItem = memo((props: MemberListItemProps) => {
   const {
     memberName,
     memberUid,
@@ -23,7 +14,6 @@ export const MembersListItem = memo((props: Props) => {
     onFinishEdit,
     onFocusInput,
   } = props;
-  const id = React.useId();
 
   const onEditHandler = (name: string, uid: string) => {
     onEdit({ name, member_uid: uid });
@@ -37,8 +27,6 @@ export const MembersListItem = memo((props: Props) => {
 
   return (
     <div
-      id={`id-${id}`}
-      data-member-id={memberUid}
       className="w-100 flex justify-between pb-1 border-b border-light-2 dark:border-black-3"
     >
       <div className="flex items-center">
@@ -51,15 +39,13 @@ export const MembersListItem = memo((props: Props) => {
       </div>
       <div className="flex">
         <ButtonIcon
-          className="dark:text-dark-2 text-dark-4 cursor-pointer"
+          className="dark:text-dark-2 text-dark-4"
           icon={<EditIcon size={24} />}
-          onClick={() => {
-            onEditHandler(memberName, memberUid);
-          }}
+          onClick={() => onEditHandler(memberName, memberUid)}
         />
         <ButtonIcon
           disabled={isMe}
-          className="dark:text-dark-2 text-dark-4 cursor-pointer"
+          className="dark:text-dark-2 text-dark-4"
           icon={<DeleteIcon size={24} />}
           onClick={() => onDeleteHandler(memberName, memberUid)}
         />

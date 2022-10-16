@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
 import { IMember } from "./IMember";
 import { MembersListItem } from "./MembersListItem";
 
@@ -12,16 +12,11 @@ type MembersListProps = {
 
 export const MembersList = memo((props: MembersListProps) => {
   const { list, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
-  const [members, setMembers] = useState(list);
-
-  useEffect(() => {
-    setMembers(list);
-  }, [list]);
 
   return (
     <>
-      {members.map((member) => (
-        <div className="mb-2" key={member.member_uid}>
+      {list.map((member) => (
+        <div key={member.member_uid}>
           <MembersListItem
             memberName={member.name}
             memberUid={member.member_uid}

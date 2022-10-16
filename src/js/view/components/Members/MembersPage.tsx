@@ -145,13 +145,15 @@ export const MembersPage = () => {
           <div className="bg-light-4 dark:bg-dark-0 sticky top-0 z-10 w-full pb-6">
             <TitleH1>{t("pages.members.add_members")}</TitleH1>
           </div>
-          <MembersList
-            list={list}
-            onEdit={setEditingMember}
-            onFinishEdit={setIsEditing}
-            onDelete={setDeletingMember}
-            onFocusInput={setIsFocusedInput}
-          />
+          <div className="grid gap-y-2 grid-cols-1">
+            <MembersList
+                list={list}
+                onEdit={setEditingMember}
+                onFinishEdit={setIsEditing}
+                onDelete={setDeletingMember}
+                onFocusInput={setIsFocusedInput}
+            />
+          </div>
         </div>
       </div>
       <div className="sticky bottom-0 left-0 pb-6 bg-light-4 dark:bg-dark-0 w-full">
