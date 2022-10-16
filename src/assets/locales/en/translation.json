@@ -35,7 +35,8 @@
     "edit": "Edit",
     "share": "Share",
     "remember_me": "Remember me",
-    "done": "Done"
+    "done": "Done",
+    "cancel": "Отмена"
   },
   "tabs": {
     "common_things": "Common things",
@@ -87,6 +88,17 @@
       "medicines":  "Лекарства",
       "entertainment": "Развлечения",
       "other": "Другое"
+    }
+  },
+  "modals": {
+    "warning": "Это может затронуть других участников мероприятия",
+    "blocked_list_point": {
+      "title": "Вещь сейчас заблокирована!",
+      "description": "Кто-то из участников мероприятия редактирует эту вещь",
+      "primary_button_text": "Ок"
+    },
+    "remove_list_point": {
+      "title": "Точно удалить позицию \"{{listPointName}}\"?"
     }
   }
 }

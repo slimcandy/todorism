@@ -11,3 +11,4 @@ export * from "./TagsGroup/TagsGroup";
 export * from "./Select/Select";
 export * from "./Counter/Counter";
 export * from "./Forms/ListPointEditForm/ListPointEditForm";
+export * from "./modals";
