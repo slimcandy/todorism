@@ -1,14 +1,6 @@
 import React, { memo } from "react";
-import { IMember } from "./IMember";
 import { MembersListItem } from "./MembersListItem";
-
-type MembersListProps = {
-  list: Array<IMember>;
-  onEdit: (member: IMember) => void;
-  onDelete: (member: IMember) => void;
-  onFinishEdit: (value: boolean) => void;
-  onFocusInput: (value: boolean) => void;
-};
+import { MembersListProps } from "./MemberListProps";
 
 export const MembersList = memo((props: MembersListProps) => {
   const { list, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
