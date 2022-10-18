@@ -11,7 +11,7 @@ import {
 import { useLoading } from "../../../../hooks";
 
 export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
-  const { listPoint, listPointIndex, listPointType } = props;
+  const { listPoint, listPointIndex, listPointType, onFinish } = props;
 
   const { setLoading } = useLoading();
 
@@ -41,6 +41,7 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
       }
     } finally {
       setLoading(false);
+      onFinish();
     }
   };
 

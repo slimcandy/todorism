@@ -25,9 +25,9 @@ const listPoint = {
 const commonEndPoints = commonListPointApi(
   getCurrentEventFromLocalStorage()?.trip_uid || ""
 );
-const privateEndPoints = privateListPointApi(
-  getCurrentEventFromLocalStorage()?.trip_uid || ""
-);
+const privateEndPoints = privateListPointApi({
+  tripUid: getCurrentEventFromLocalStorage()?.trip_uid || "",
+});
 const mockedEndpoints = [
   commonEndPoints.addItem,
   commonEndPoints.editItem,

@@ -3,6 +3,9 @@ import {
   IListPointFromBE,
   LIST_POINT_CATEGORIES,
   LIST_POINT_UNITS,
+  IPrivateListPointFromBE,
+  ICommonListPointFromBE,
+  ICommonListPoint,
 } from "../../interfaces";
 
 export const getEmptyListPoint = (): IListPoint => ({
@@ -30,4 +33,29 @@ export const convertIListPointToIListPointFromBE = (
   },
   unit: listPoint.unit,
   count: Number(listPoint.count),
+});
+
+export const convertIPrivateListPointFromBEToIListPoint = (
+  listPoint: IPrivateListPointFromBE
+): IListPoint => ({
+  pointUid: listPoint.point_uid,
+  item: {
+    ...listPoint.point.item,
+    itemUid: listPoint.point.item.item_uid,
+  },
+  unit: listPoint.point.unit,
+  count: String(listPoint.point.count),
+});
+
+export const convertICommonListPointFromBEToIListPoint = (
+  listPoint: ICommonListPointFromBE
+): ICommonListPoint => ({
+  pointUid: listPoint.point_uid,
+  item: {
+    ...listPoint.item,
+    itemUid: listPoint.item.item_uid,
+  },
+  unit: listPoint.unit,
+  count: String(listPoint.count),
+  bindings: [],
 });

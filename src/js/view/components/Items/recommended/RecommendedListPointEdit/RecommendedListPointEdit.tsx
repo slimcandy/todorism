@@ -13,7 +13,7 @@ import {
 export const RecommendedListPointEdit = (
   props: IRecommendationListPointEditProps
 ) => {
-  const { listPoint, listPointIndex } = props;
+  const { listPoint, listPointIndex, onFinish } = props;
 
   const isCreationMode = listPointIndex === undefined;
 
@@ -30,6 +30,8 @@ export const RecommendedListPointEdit = (
           editedListPoint
         );
       }
+
+      onFinish();
     }
   };
 

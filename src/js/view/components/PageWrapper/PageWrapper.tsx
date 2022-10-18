@@ -20,7 +20,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
   );
 
   const pageContentClasses = classesOf(
-    "flex grow justify-center",
+    "flex grow justify-center bg-light-4 dark:bg-black-0",
     verticalTopPageContent && "items-start",
     !verticalTopPageContent && "items-center"
   );

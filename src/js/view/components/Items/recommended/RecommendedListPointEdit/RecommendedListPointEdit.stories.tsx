@@ -7,7 +7,7 @@ import {
 } from "../../../../../interfaces";
 
 export default {
-  title: "components/listPoint/RecommendedListPoints",
+  title: "components/listPoint/ListPointItem",
   component: RecommendedListPointEdit,
   parameters: {
     viewport: {

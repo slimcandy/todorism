@@ -4,5 +4,5 @@ export interface IListPointEditApiHandler {
   listPointType: "common" | "private";
   listPoint: IListPoint;
   listPointIndex?: number;
-  onClick: (listPoint: IListPoint, listPointIndex?: number) => void;
+  onFinish: () => void;
 }
