@@ -6,7 +6,6 @@ import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
-import { IMember } from "./IMember";
 import {
   addMember,
   deleteMember,
@@ -14,7 +13,7 @@ import {
   renameMember,
 } from "../../../api_clients/api_members";
 import { wrapAsyncFunction } from "../../../utils";
-import { NewTripResponse } from "../../../interfaces";
+import { NewTripResponse, IMember } from "../../../interfaces";
 
 export const MembersPage = () => {
   const { t } = useTranslation();

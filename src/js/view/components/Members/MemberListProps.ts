@@ -1,4 +1,4 @@
-import { IMember } from "./IMember";
+import { IMember } from "../../../interfaces";
 
 export interface MembersListProps {
   list: Array<IMember>;

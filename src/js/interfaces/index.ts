@@ -1,6 +1,7 @@
 export * from "./List";
 export * from "./Person";
 export * from "./Item";
+export * from "./IMember";
 export * from "./Store";
 export * from "./SVGprops";
 export * from "./NewTripResponse";
