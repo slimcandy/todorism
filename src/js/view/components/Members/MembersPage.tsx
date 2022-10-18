@@ -6,6 +6,8 @@ import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
+import { NewTripResponse } from "../../../interfaces";
+import { IMember } from "../../../interfaces/IMember";
 import {
   addMember,
   deleteMember,
@@ -13,7 +15,6 @@ import {
   renameMember,
 } from "../../../api_clients/api_members";
 import { wrapAsyncFunction } from "../../../utils";
-import { NewTripResponse, IMember } from "../../../interfaces";
 
 export const MembersPage = () => {
   const { t } = useTranslation();
@@ -155,7 +156,7 @@ export const MembersPage = () => {
           </div>
         </div>
       </div>
-      <div className="sticky bottom-0 left-0 pb-6 bg-light-4 dark:bg-dark-0 w-full">
+      <div className=" pb-6 bg-light-4 dark:bg-dark-0 w-full">
         <div className="flex items-center justify-between mb-6 pt-2">
           <div className="mr-6 w-full">
             <Input
