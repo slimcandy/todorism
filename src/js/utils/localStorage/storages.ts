@@ -19,7 +19,7 @@ export const saveCurrentEventInLocalStorage = (event: ILocaleStorageEvent) => {
   setLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject, event);
 };
 
-export const getCurrentEventFromLocalStorage = () =>
+export const getCurrentEventFromLocalStorage = (): ILocaleStorageEvent | null =>
   getLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject);
 
 export const saveEventsInLocalStorage = (events: TLocalStorageEvents) => {
