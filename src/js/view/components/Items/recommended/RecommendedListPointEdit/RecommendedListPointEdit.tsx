@@ -3,8 +3,6 @@ import { IRecommendationListPointEditProps } from "./RecommendedListPointEditPro
 import { IListPoint } from "../../../../../interfaces";
 import { ListPointEdit } from "../../ListPointEdit/ListPointEdit";
 
-import { ILocaleStorageEvent } from "../../../../../utils/localStorage";
-
 import {
   replaceListPointToLocalStorageRecommendedListPoints,
   pushListPointToLocalStorageRecommendedListPoints,
@@ -17,19 +15,14 @@ export const RecommendedListPointEdit = (
 
   const isCreationMode = listPointIndex === undefined;
 
-  const changeListPoints = (
-    event: ILocaleStorageEvent,
-    editedListPoint: IListPoint
-  ) => {
-    if (event) {
-      if (isCreationMode) {
-        pushListPointToLocalStorageRecommendedListPoints(editedListPoint);
-      } else {
-        replaceListPointToLocalStorageRecommendedListPoints(
-          listPointIndex,
-          editedListPoint
-        );
-      }
+  const changeListPoints = (editedListPoint: IListPoint) => {
+    if (isCreationMode) {
+      pushListPointToLocalStorageRecommendedListPoints(editedListPoint);
+    } else {
+      replaceListPointToLocalStorageRecommendedListPoints(
+        listPointIndex,
+        editedListPoint
+      );
     }
   };
 
