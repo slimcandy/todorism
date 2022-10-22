@@ -4,7 +4,6 @@ import { IListPointEditProps } from "./ListPointEditProps";
 import { IListPoint } from "../../../../interfaces";
 import { PageWrapper } from "../../PageWrapper/PageWrapper";
 import { getEmptyListPoint } from "../../../../utils";
-import { getCurrentEventFromLocalStorage } from "../../../../utils/localStorage";
 
 import { ActionPanel, TitleH1, ListPointEditForm } from "../../../elements";
 
@@ -18,8 +17,6 @@ export const ListPointEdit = (props: IListPointEditProps) => {
   );
 
   const [disabledPrimaryButton, setDisabledPrimaryButton] = useState(true);
-
-  const event = getCurrentEventFromLocalStorage();
 
   const changeLocalListPoint = (updatedListPoint: IListPoint) => {
     setLocalListPoint(updatedListPoint);
@@ -43,7 +40,7 @@ export const ListPointEdit = (props: IListPointEditProps) => {
       primaryButtonText={
         isCreationMode ? t("list_point.add_item") : t("buttons.done")
       }
-      onPrimaryButtonClick={() => event && onClick(event, localListPoint)}
+      onPrimaryButtonClick={() => onClick(localListPoint)}
       primaryButtonDisabled={disabledPrimaryButton}
     />
   );
