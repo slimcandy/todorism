@@ -10,3 +10,5 @@ export * from "./KebabIcon";
 export * from "./ShareIcon";
 export * from "./ZoomIcon";
 export * from "./LoaderIcon";
+export * from "./MembersIcon";
+export * from "./LogoutIcon";

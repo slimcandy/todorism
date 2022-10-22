@@ -81,6 +81,14 @@
       "liter": "Литры",
       "milliliter": "Миллилитры"
     },
+    "short_units": {
+      "gram": "г",
+      "kilogram": "кг",
+      "piece": "шт",
+      "package": "уп",
+      "liter": "л",
+      "milliliter": "мл"
+    },
     "categories": {
       "food": "Еда",
       "equipment":  "Инвентарь",
@@ -99,6 +107,12 @@
     },
     "remove_list_point": {
       "title": "Точно удалить позицию \"{{listPointName}}\"?"
+    },
+    "event_action": {
+      "leave": "Покинуть мероприятие",
+      "edit_event": "Редактировать мероприятия",
+      "members": "Участники мероприятие",
+      "logout": "Сменить участника"
     }
   }
 }
