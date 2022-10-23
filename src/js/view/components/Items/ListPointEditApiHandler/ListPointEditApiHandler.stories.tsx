@@ -51,6 +51,12 @@ export default {
     },
     layout: "fullscreen",
   },
+  args: {
+    accessIds: {
+      trip_uid: "b1685c01-8f84-499c-a59f-ffbec4d34bd3",
+      member_uid: "39847088-6223-44d1-9874-62e1ad1e3277",
+    },
+  },
 };
 
 const Template: ComponentStory<typeof ListPointEditApiHandler> = (args) => (

@@ -3,7 +3,6 @@ import { IListPointEditApiHandler } from "./ListPointEditApiHandlerProps";
 import { IListPoint } from "../../../../interfaces";
 import { ListPointEdit } from "../ListPointEdit/ListPointEdit";
 
-import { ILocaleStorageEvent } from "../../../../utils/localStorage";
 import {
   editPrivateListPoint,
   editCommonListPoint,
@@ -11,26 +10,26 @@ import {
 import { useLoading } from "../../../../hooks";
 
 export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
-  const { listPoint, listPointIndex, listPointType, onFinish } = props;
+  const { accessIds, listPoint, listPointIndex, listPointType, onFinish } =
+    props;
 
   const { setLoading } = useLoading();
 
   const isCreationMode = listPointIndex === undefined;
 
-  const changeListPoints = async (
-    event: ILocaleStorageEvent,
-    editedListPoint: IListPoint
-  ) => {
+  const changeListPoints = async (editedListPoint: IListPoint) => {
     try {
-      if (event) {
+      const { trip_uid, member_uid } = accessIds;
+
+      if (trip_uid && member_uid) {
         setLoading(true);
 
         const mode: "add" | "edit" = isCreationMode ? "add" : "edit";
         const listPointData = {
           mode,
-          tripUid: event.trip_uid,
+          tripUid: trip_uid,
           listPoint: editedListPoint,
-          memberUid: event.member_uid,
+          memberUid: member_uid,
         };
 
         if (listPointType === "common") {
@@ -49,8 +48,8 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
     <ListPointEdit
       listPoint={listPoint}
       isCreationMode={isCreationMode}
-      onClick={(event, editedListPoint) => {
-        void changeListPoints(event, editedListPoint);
+      onClick={(editedListPoint) => {
+        void changeListPoints(editedListPoint);
       }}
     />
   );

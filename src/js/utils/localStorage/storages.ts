@@ -40,3 +40,20 @@ export const pushEventToLocalStorageEvents = (event: ILocaleStorageEvent) => {
   events.push(event);
   saveEventsInLocalStorage(events);
 };
+
+// ACCESS
+export const getAccessIdsForEvent = (
+  tripUid: ILocaleStorageEvent["trip_uid"]
+): ILocaleStorageEvent | undefined => {
+  const events = getEventsFromLocalStorage();
+
+  return events.find((e) => e.trip_uid === tripUid);
+};
+
+export const getMemberUidForEvent = (
+  tripUid: ILocaleStorageEvent["trip_uid"]
+): ILocaleStorageEvent["member_uid"] | undefined => {
+  const event = getAccessIdsForEvent(tripUid);
+
+  return event?.member_uid;
+};
