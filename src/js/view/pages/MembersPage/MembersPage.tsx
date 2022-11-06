@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MembersList } from "./MembersList";
+import { MembersList } from "../../components/Members/MembersList";
 import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../common/constants";

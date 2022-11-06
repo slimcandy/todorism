@@ -10,7 +10,7 @@ import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
 import { NoEvents as NoEventsPage } from "../Events/NoEvents";
-import { MembersPage } from "../Members/MembersPage";
+import { MembersPage } from "../../pages/MembersPage";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
 
 import "../../../../styles/index.css";
