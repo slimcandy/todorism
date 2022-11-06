@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { MembersList } from "../../components/Members/MembersList";
 import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
-import { localStorageCurrentEventObject } from "../../../common/constants";
-import { pullLocalStorage } from "../../../utils/localStorage";
+import { localStorageCurrentEventObject } from "../../../utils/localStorage";
+import { pullLocalStorage } from "../../../utils/localStorage_old";
 import { NewTripResponse, IMember } from "../../../interfaces";
 import {
   addMember,

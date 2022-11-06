@@ -32,10 +32,10 @@ export function App() {
   return (
     <Provider store={store}>
       <div className="relative bg-light-4 dark:bg-dark-0 ">
-        <Header isWithLogo />
-
         <main>
           <BrowserRouter>
+            <Header isWithLogo />
+
             <Routes>
               <Route path="/" element={<DevNavPage />} />
               <Route path="/alex" element={<Panel />} />
