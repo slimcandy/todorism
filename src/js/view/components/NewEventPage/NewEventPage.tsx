@@ -101,7 +101,7 @@ export const NewEventPage = () => {
             <div className="mr-4">
               <InputDate
                 label={t("pages.new_event.dates")}
-                value={newEvent.start}
+                value={newEvent.start || ""}
                 onChange={onStartDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_start")}: ${t(
@@ -112,7 +112,7 @@ export const NewEventPage = () => {
             <div>
               <InputDate
                 label={t("pages.new_event.dates")}
-                value={newEvent.end}
+                value={newEvent.end || ""}
                 onChange={onEndDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_end")}: ${t(

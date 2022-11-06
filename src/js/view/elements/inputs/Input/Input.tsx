@@ -1,11 +1,11 @@
-import React, { useEffect, useId, useRef } from "react";
+import React, { useId, useRef } from "react";
 import { classesOf } from "../../../../utils";
 import { TextBodyStandard } from "../../typography";
 import { InputProps } from "../InputProps";
 
 export const Input = (props: InputProps) => {
   const {
-    value,
+    value = "",
     placeholder,
     label,
     className = "",
@@ -15,7 +15,6 @@ export const Input = (props: InputProps) => {
     onChange,
     type,
     isFocused,
-    isInputting,
   } = props;
 
   const id = useId();
@@ -26,24 +25,12 @@ export const Input = (props: InputProps) => {
     refInput?.current?.focus();
   }
 
-  const firstValue =
-    String(value) === "undefined" || String(value) === "null"
-      ? ""
-      : String(value);
-
-  const [localValue, setLocalValue] = React.useState(firstValue);
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalValue(event.target.value);
-    onChange?.(event.target.value);
-  };
-
   const iconClasses = classesOf(
     "absolute top-1/2 transform -translate-y-1/2",
     !isIconLeft && "right-4",
     isIconLeft && "left-4",
     disabled && "text-dark-4 dark:text-black-3",
-    localValue.length > 0 && "text-dark-3"
+    !!value && "text-dark-3"
   );
 
   const inputClasses = classesOf(
@@ -59,11 +46,6 @@ export const Input = (props: InputProps) => {
     !disabled &&
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
-
-  useEffect(() => {
-    setLocalValue(firstValue);
-    onChange?.(firstValue);
-  }, [firstValue, isInputting]);
 
   return (
     <>
@@ -88,10 +70,10 @@ export const Input = (props: InputProps) => {
           ref={refInput}
           id={id}
           type={type}
-          onChange={handleOnChange}
+          onChange={(e) => onChange(e.target.value)}
           className={inputClasses}
           disabled={disabled}
-          value={localValue}
+          value={value}
           placeholder={placeholder}
         />
       </div>

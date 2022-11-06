@@ -6,8 +6,7 @@ import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../common/constants";
 import { pullLocalStorage } from "../../../utils/localStorage";
-import { NewTripResponse } from "../../../interfaces";
-import { IMember } from "../../../interfaces/IMember";
+import { NewTripResponse, IMember } from "../../../interfaces";
 import {
   addMember,
   deleteMember,
@@ -17,81 +16,93 @@ import {
 
 export const MembersPage = () => {
   const { t } = useTranslation();
+
+  const editingMemberBlank: IMember = { name: "", member_uid: "" };
+
   const [currEvent, setCurrEvent] = useState<NewTripResponse>({
     trip_uid: "",
     member_uid: "",
   });
-  const [editingMemberName, setEditingMemberName] = useState<string>("");
-  const [editingMember, setEditingMember] = useState<IMember>({
-    name: "",
-    member_uid: "",
-  });
-  const [deletingMember, setDeletingMember] = useState<IMember>({
-    name: "",
-    member_uid: "",
-  });
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
+
+  const [editingMember, setEditingMember] =
+    useState<IMember>(editingMemberBlank);
+
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+
   const [list, setList] = useState<Array<IMember>>([]);
+
   const [isFocusedInput, setIsFocusedInput] = useState(false);
 
-  const onRemoveMemberFromList = () => {
-    deleteMember(currEvent.trip_uid, deletingMember.member_uid)
-      .then(() => {
-        const newList = list.filter(
-          (m) => m.member_uid !== deletingMember.member_uid
-        );
-        setList(newList);
-      })
-      .catch(() => {});
+  const clearEditingMember = () => setEditingMember(editingMemberBlank);
+
+  const onRemoveMemberFromList = (member: IMember) => {
+    try {
+      if (!member.member_uid) return;
+
+      deleteMember(currEvent.trip_uid, member.member_uid)
+        .then(() => {
+          const newList = list.filter(
+            (m) => m.member_uid !== member.member_uid
+          );
+          setList(newList);
+        })
+        .catch(() => {});
+    } finally {
+      setIsDeleting(false);
+      clearEditingMember();
+    }
   };
 
   async function onAddMember(tripUid: string) {
-    setIsAdding(true);
-    if (editingMemberName === "") return;
-    await addMember(tripUid, editingMemberName)
-      .then((response) => response.json())
-      .then((data: IMember) => {
-        if (data) {
-          setList([...list, data]);
-          setEditingMember({ name: "", member_uid: "" });
-          setIsAdding(false);
-          setIsFocusedInput(false);
-        }
-      })
-      .catch(() => {});
+    try {
+      if (!editingMember.name) return;
+
+      await addMember(tripUid, editingMember.name)
+        .then((response) => response.json())
+        .then((data: IMember) => {
+          if (data) {
+            setList([...list, data]);
+          }
+        })
+        .catch(() => {});
+    } finally {
+      clearEditingMember();
+      setIsFocusedInput(false);
+    }
   }
 
   const onSubmitEdit = async () => {
-    if (
-      list.filter((member) => member.member_uid === editingMember.member_uid)[0]
-        .name === editingMemberName
-    ) {
-      setEditingMember({ name: "", member_uid: "" });
-      setIsEditing(false);
+    try {
+      if (
+        list.find(
+          (member) =>
+            member.member_uid === editingMember.member_uid &&
+            member.name === editingMember.name
+        )
+      ) {
+        return;
+      }
+      await renameMember(
+        currEvent.trip_uid,
+        editingMember.member_uid,
+        editingMember.name
+      )
+        .then((response) => response.json())
+        .then((data: IMember) => {
+          if (data) {
+            const newList = list.map((m) =>
+              m.member_uid === editingMember.member_uid
+                ? { ...m, name: editingMember.name }
+                : m
+            );
+            setList(newList);
+          }
+        })
+        .catch(() => {});
+    } finally {
+      clearEditingMember();
       setIsFocusedInput(false);
-      return;
     }
-    await renameMember(
-      currEvent.trip_uid,
-      editingMember.member_uid,
-      editingMemberName
-    )
-      .then((response) => response.json())
-      .then((data: IMember) => {
-        if (data) {
-          const newList = list.map((m) =>
-            m.member_uid === editingMember.member_uid
-              ? { ...m, name: editingMemberName }
-              : m
-          );
-          setList(newList);
-          setEditingMember({ name: "", member_uid: "" });
-          setIsEditing(false);
-          setIsFocusedInput(false);
-        }
-      })
-      .catch(() => {});
   };
 
   const getCurrEvent = async () => {
@@ -120,15 +131,6 @@ export const MembersPage = () => {
       .catch(() => {});
   }, [currEvent]);
 
-  useEffect(() => {
-    setList(list);
-  }, [isEditing]);
-
-  useEffect(() => {
-    if (!deletingMember.member_uid) return;
-    onRemoveMemberFromList();
-  }, [deletingMember]);
-
   return (
     <div
       className="members-page
@@ -148,8 +150,12 @@ export const MembersPage = () => {
             <MembersList
               list={list}
               onEdit={setEditingMember}
-              onFinishEdit={setIsEditing}
-              onDelete={setDeletingMember}
+              onFinishEdit={() => {}}
+              onDelete={(member) => {
+                setIsDeleting(true);
+                setEditingMember(member);
+                onRemoveMemberFromList(member);
+              }}
               onFocusInput={setIsFocusedInput}
             />
           </div>
@@ -159,23 +165,23 @@ export const MembersPage = () => {
         <div className="flex items-center justify-between mb-6 pt-2">
           <div className="mr-6 w-full">
             <Input
-              isInputting={isEditing || isAdding}
-              value={isEditing || isAdding ? editingMember.name : null}
+              value={!isDeleting ? editingMember.name : ""}
               placeholder={t("pages.members.input_placeholder")}
-              onChange={setEditingMemberName}
+              onChange={(name) => {
+                setEditingMember({ ...editingMember, name });
+              }}
               isFocused={isFocusedInput}
             />
           </div>
-          {isEditing && (
+          {editingMember.member_uid && !isDeleting ? (
             <ButtonCircle
               icon={<DoneIcon size={24} />}
               onClick={() => {
                 void onSubmitEdit();
               }}
-              disabled={editingMemberName === ""}
+              disabled={!editingMember.name}
             />
-          )}
-          {!isEditing && (
+          ) : (
             <ButtonCircle
               type="submit"
               icon={<PlusIcon size={24} />}
