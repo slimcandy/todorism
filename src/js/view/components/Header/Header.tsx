@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { langLocales } from "../../../common/constants";
 import { TitleH1 } from "../../elements";
@@ -33,12 +34,16 @@ export const Header = (props: HeaderProps) => {
   );
   return (
     <header
-      className="fixed top-0 left-4
-    pt-3 pr-8
+      className="fixed top-0 left-0 z-20
+    pt-3 pb-4 px-4 bg-light-4 dark:bg-dark-0
     flex justify-between w-full
     dark:text-light-4 text-black-0"
     >
-      {isWithLogo && <TitleH1>LOGO</TitleH1>}
+      {isWithLogo && (
+        <Link to="/">
+          <TitleH1>LOGO</TitleH1>
+        </Link>
+      )}
       {!isWithLogo && <div> Back </div>}
       <div className="flex">
         <div className="mr-4">

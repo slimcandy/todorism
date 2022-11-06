@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { TextAreaProps } from "./TextAreaProps";
 import { TextBodyStandard } from "../../typography";
 
@@ -7,12 +7,13 @@ export const TextArea = (props: TextAreaProps) => {
     value,
     placeholder,
     label,
-    textareaId,
     className = "",
     disabled = false,
     onChange,
     rows,
   } = props;
+
+  const id = useId();
 
   const firstValue =
     String(value) === "undefined" || String(value) === "null"
@@ -28,14 +29,14 @@ export const TextArea = (props: TextAreaProps) => {
   return (
     <>
       {label && (
-        <label className="mb-2 block" htmlFor={textareaId}>
+        <label className="mb-2 block" htmlFor={id}>
           <TextBodyStandard className="dark:text-dark-3">
             {label}
           </TextBodyStandard>
         </label>
       )}
       <textarea
-        id={textareaId}
+        id={id}
         rows={rows}
         onChange={handleOnChange}
         disabled={disabled}

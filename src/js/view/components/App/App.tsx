@@ -9,6 +9,7 @@ import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
+import { MembersPage } from "../../pages/MembersPage";
 import { NoEventsPage } from "../Events/NoEvents";
 
 import "../../../../styles/index.css";
@@ -32,11 +33,13 @@ export function App() {
   return (
     <Provider store={store}>
       <LoadingProvider>
-        <div className="relative bg-light-4 dark:bg-dark-0 ">
+        <div className="relative bg-light-4 dark:bg-dark-0">
           <Header isWithLogo />
 
           <main>
             <BrowserRouter>
+              <Header isWithLogo />
+
               <Routes>
                 <Route path="/" element={<DevNavPage />} />
                 <Route path="/alex" element={<Panel />} />
@@ -44,6 +47,7 @@ export function App() {
                 <Route path="/welcome" element={<WelcomePage />} />
                 <Route path="/no-events" element={<NoEventsPage />} />
                 <Route path="/new-event" element={<NewEventPage />} />
+                <Route path="/add-members" element={<MembersPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/SPAremoveit" element={<SPAremoveit />} />
               </Routes>
