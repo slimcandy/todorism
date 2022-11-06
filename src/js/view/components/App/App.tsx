@@ -34,8 +34,6 @@ export function App() {
     <Provider store={store}>
       <LoadingProvider>
         <div className="relative bg-light-4 dark:bg-dark-0">
-          <Header isWithLogo />
-
           <main>
             <BrowserRouter>
               <Header isWithLogo />

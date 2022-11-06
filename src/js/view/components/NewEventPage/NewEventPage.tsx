@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { createNewEvent } from "../../../api_clients";
 import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
 import { IEvent } from "../../../interfaces";
@@ -17,8 +16,6 @@ import { useLoading } from "../../../hooks";
 
 export const NewEventPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const path = "/events";
   const [userName, setUserName] = useState<string | null>("");
   const { loading, setLoading } = useLoading();
 
@@ -58,8 +55,7 @@ export const NewEventPage = () => {
         newEvent.title ?? "",
         newEvent.description,
         newEvent.start,
-        newEvent.end,
-        () => navigate(path)
+        newEvent.end
       )
         .then(() => {})
         .catch(() => {});
