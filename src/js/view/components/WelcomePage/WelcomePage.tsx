@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Navigate } from "react-router-dom";
 import { ButtonPrimary, Input, TextBodyLarge, TitleH1 } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
+import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
 
 export const WelcomePage = () => {
   const { t } = useTranslation();
 
+  const [username, setUsername] = useState<string>("");
+  const [redirectToEvents, setRedirectToEvents] = useState<boolean>(false);
+
+  const onUsernameSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    saveUserNameInLocalStorage(username);
+    setRedirectToEvents(true);
+  };
+
   return (
-    <div
+    <form
       className="min-h-screen
       text-center flex flex-col
       justify-between md:justify-start
       px-4 pt-16 xs:pt-24 pb-6 mx-auto
       sm:w-6/12
       w-full"
+      onSubmit={onUsernameSubmit}
     >
       <div>
         <div className="mb-8 xs:mb-14 mx-auto">
@@ -34,15 +47,16 @@ export const WelcomePage = () => {
 
         <div className="mb-10 xs:mb-14">
           <Input
-            value=""
             placeholder={t("pages.welcome.whats_your_name")}
-            onChange={() => {}}
+            onChange={setUsername}
+            value={username}
           />
         </div>
       </div>
       <div className="px-7">
-        <ButtonPrimary>{t("buttons.remember_me")}</ButtonPrimary>
+        <ButtonPrimary type="submit">{t("buttons.remember_me")}</ButtonPrimary>
       </div>
-    </div>
+      {redirectToEvents && <Navigate to="/events" replace />}
+    </form>
   );
 };

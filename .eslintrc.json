@@ -22,7 +22,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "eslint-plugin-storybook"],
   "rules": {
     "jsx-a11y/label-has-associated-control": [
       "error",
@@ -50,7 +50,7 @@
       }
     ],
     "no-void": ["error", { "allowAsStatement": true }],
-    "no-console": ["off", { "allow": ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/newline-after-import": "warn",
     "@typescript-eslint/quotes": ["warn", "double"],
     "@typescript-eslint/no-empty-function": "off",
@@ -72,6 +72,15 @@
     "react/require-default-props": "off",
     "react/button-has-type": "off",
     "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*"
+        ],
+        "peerDependencies": true
+      }
+    ]
   }
 }

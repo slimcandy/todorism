@@ -9,11 +9,12 @@ import { UIKitPage } from "../UIKitPage/UIKitPage";
 import { DevNavPage } from "../DevNavPage/DevNavPage";
 import SPAremoveit from "../SPAremoveit/SPAremoveit";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
-import { NoEvents as NoEventsPage } from "../Events/NoEvents";
 import { MembersPage } from "../../pages/MembersPage";
-import { NewEventPage } from "../NewEventPage/NewEventPage";
+import { NoEventsPage } from "../Events/NoEvents";
 
 import "../../../../styles/index.css";
+import { NewEventPage } from "../NewEventPage/NewEventPage";
+import EventsPage from "../Events/EventsPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -30,11 +31,11 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="relative bg-light-4 dark:bg-dark-0">
-        <BrowserRouter>
-          <Header isWithLogo />
+      <div className="relative bg-light-4 dark:bg-dark-0 ">
+        <Header isWithLogo />
 
-          <main>
+        <main>
+          <BrowserRouter>
             <Routes>
               <Route path="/" element={<DevNavPage />} />
               <Route path="/alex" element={<Panel />} />
@@ -43,10 +44,11 @@ export function App() {
               <Route path="/no-events" element={<NoEventsPage />} />
               <Route path="/new-event" element={<NewEventPage />} />
               <Route path="/add-members" element={<MembersPage />} />
+              <Route path="/events" element={<EventsPage />} />
               <Route path="/SPAremoveit" element={<SPAremoveit />} />
             </Routes>
-          </main>
-        </BrowserRouter>
+          </BrowserRouter>
+        </main>
       </div>
     </Provider>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { classesOf } from "../../utils";
+import { classesOf } from "../../../utils";
 
 type IndicatorProps = {
   isActive?: boolean;

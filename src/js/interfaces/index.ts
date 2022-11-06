@@ -1,3 +1,4 @@
+export * from "./Event";
 export * from "./List";
 export * from "./Person";
 export * from "./Item";

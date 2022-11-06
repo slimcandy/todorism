@@ -1,17 +1,17 @@
+import { SERVER_URL } from "../common/constants";
+import { ErrorResponse } from "../interfaces";
 import {
-  localStorageCurrentEventObject,
-  localStorageTripObjects,
-  SERVER_URL,
-} from "../common/constants";
-import { ErrorResponse, NewTripResponse } from "../interfaces";
-import { pullLocalStorage, pushLocalStorage } from "../utils/localStorage";
+  saveCurrentEventInLocalStorage,
+  ILocaleStorageEvent,
+  pushEventToLocalStorageEvents,
+} from "../utils/localStorage";
 
 export const createNewEvent = async (
   username: string,
   eventName: string,
-  eventDescription: string | undefined,
-  eventStartDate: string | undefined,
-  eventEndDate: string | undefined
+  eventDescription: string | null,
+  eventStartDate: string | null,
+  eventEndDate: string | null
 ) => {
   const response = await fetch(
     `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
@@ -30,21 +30,10 @@ export const createNewEvent = async (
   );
 
   if (response.ok) {
-    const json: NewTripResponse = (await response.json()) as NewTripResponse;
-    let savedEvents: Array<NewTripResponse> = [];
+    const event = (await response.json()) as ILocaleStorageEvent;
 
-    await pullLocalStorage(localStorageTripObjects).then((str) => {
-      savedEvents = JSON.parse(str ?? "[]") as Array<NewTripResponse>;
-    });
-
-    savedEvents.push(json);
-
-    pushLocalStorage(localStorageTripObjects, JSON.stringify(savedEvents))
-      .then(() => {})
-      .catch(() => {});
-    pushLocalStorage(localStorageCurrentEventObject, JSON.stringify(json))
-      .then(() => {})
-      .catch(() => {});
+    pushEventToLocalStorageEvents(event);
+    saveCurrentEventInLocalStorage(event);
   } else {
     const errorResponse = (await response.json()) as ErrorResponse;
     let errorMessage = "";
