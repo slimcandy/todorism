@@ -15,6 +15,7 @@ import { NoEventsPage } from "../Events/NoEvents";
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
 import EventsPage from "../Events/EventsPage";
+import { LoadingProvider } from "../../../hooks";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -31,25 +32,27 @@ export function App() {
 
   return (
     <Provider store={store}>
-      <div className="relative bg-light-4 dark:bg-dark-0 ">
-        <main>
-          <BrowserRouter>
-            <Header isWithLogo />
+      <LoadingProvider>
+        <div className="relative bg-light-4 dark:bg-dark-0">
+          <main>
+            <BrowserRouter>
+              <Header isWithLogo />
 
-            <Routes>
-              <Route path="/" element={<DevNavPage />} />
-              <Route path="/alex" element={<Panel />} />
-              <Route path="/ui-kit" element={<UIKitPage />} />
-              <Route path="/welcome" element={<WelcomePage />} />
-              <Route path="/no-events" element={<NoEventsPage />} />
-              <Route path="/new-event" element={<NewEventPage />} />
-              <Route path="/add-members" element={<MembersPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/SPAremoveit" element={<SPAremoveit />} />
-            </Routes>
-          </BrowserRouter>
-        </main>
-      </div>
+              <Routes>
+                <Route path="/" element={<DevNavPage />} />
+                <Route path="/alex" element={<Panel />} />
+                <Route path="/ui-kit" element={<UIKitPage />} />
+                <Route path="/welcome" element={<WelcomePage />} />
+                <Route path="/no-events" element={<NoEventsPage />} />
+                <Route path="/new-event" element={<NewEventPage />} />
+                <Route path="/add-members" element={<MembersPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/SPAremoveit" element={<SPAremoveit />} />
+              </Routes>
+            </BrowserRouter>
+          </main>
+        </div>
+      </LoadingProvider>
     </Provider>
   );
 }
