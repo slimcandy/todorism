@@ -14,7 +14,6 @@ import {
   getMembers,
   renameMember,
 } from "../../../api_clients/api_members";
-import { wrapAsyncFunction } from "../../../utils";
 
 export const MembersPage = () => {
   const { t } = useTranslation();
@@ -170,7 +169,9 @@ export const MembersPage = () => {
           {isEditing && (
             <ButtonCircle
               icon={<DoneIcon size={24} />}
-              onClick={wrapAsyncFunction(onSubmitEdit)}
+              onClick={() => {
+                void onSubmitEdit();
+              }}
               disabled={editingMemberName === ""}
             />
           )}
@@ -178,7 +179,9 @@ export const MembersPage = () => {
             <ButtonCircle
               type="submit"
               icon={<PlusIcon size={24} />}
-              onClick={wrapAsyncFunction(() => onAddMember(currEvent.trip_uid))}
+              onClick={() => {
+                void onAddMember(currEvent.trip_uid);
+              }}
             />
           )}
         </div>
