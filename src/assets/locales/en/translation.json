@@ -34,7 +34,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
-    "remember_me": "Remember me"
+    "remember_me": "Remember me",
+    "next": "Next"
   },
   "tabs": {
     "common_things": "Common things",
@@ -60,6 +61,11 @@
       "description": "Description",
       "description_example": "We go to the Great Waterfall through the pine forest, and have dinner on an alpine meadow with a view of the mountain peaks",
       "example": "Example"
+    },
+    "members": {
+      "add_members": "Add members",
+      "edit_members": "Edit members",
+      "input_placeholder": "One more member"
     }
   }
 }

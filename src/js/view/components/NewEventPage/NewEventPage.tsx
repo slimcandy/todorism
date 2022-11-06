@@ -28,18 +28,15 @@ export const NewEventPage = () => {
   });
 
   const onNewTripNameChange: InputProps["onChange"] = (newName) => {
-    if (typeof newName === "string")
-      setNewEvent({ ...newEvent, title: newName });
+    setNewEvent({ ...newEvent, title: newName });
   };
 
   const onStartDateChange: InputProps["onChange"] = (startDate) => {
-    if (typeof startDate === "string")
-      setNewEvent({ ...newEvent, start: new Date(startDate).toISOString() });
+    setNewEvent({ ...newEvent, start: new Date(startDate).toISOString() });
   };
 
   const onEndDateChange: InputProps["onChange"] = (endDate) => {
-    if (typeof endDate === "string")
-      setNewEvent({ ...newEvent, end: new Date(endDate).toISOString() });
+    setNewEvent({ ...newEvent, end: new Date(endDate).toISOString() });
   };
 
   const onNewTripDescriptionChange = (desc: string) => {
@@ -61,10 +58,11 @@ export const NewEventPage = () => {
           newEvent.title ?? "",
           newEvent.description,
           newEvent.start,
-          newEvent.end,
-          () => navigate(path)
+          newEvent.end
         )
-          .then(() => {})
+          .then(() => {
+            navigate(path);
+          })
           .catch(() => {});
       }}
       className="min-h-screen
@@ -80,7 +78,6 @@ export const NewEventPage = () => {
         </div>
         <div className="mb-4">
           <Input
-            inputId="event-name"
             label={t("pages.new_event.event_name")}
             value={newEvent.title}
             onChange={onNewTripNameChange}
@@ -93,9 +90,8 @@ export const NewEventPage = () => {
           <div className="flex">
             <div className="mr-4">
               <InputDate
-                inputId="event-start-date"
                 label={t("pages.new_event.dates")}
-                value={newEvent.start}
+                value={newEvent.start || ""}
                 onChange={onStartDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_start")}: ${t(
@@ -105,9 +101,8 @@ export const NewEventPage = () => {
             </div>
             <div>
               <InputDate
-                inputId="event-end-date"
                 label={t("pages.new_event.dates")}
-                value={newEvent.end}
+                value={newEvent.end || ""}
                 onChange={onEndDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_end")}: ${t(
@@ -119,7 +114,6 @@ export const NewEventPage = () => {
         </div>
         <div className="mb-4">
           <TextArea
-            textareaId="event-description"
             label={t("pages.new_event.description")}
             rows={3}
             placeholder={`${t("pages.new_event.example")}, ${t(
