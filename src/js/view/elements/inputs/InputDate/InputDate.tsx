@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { classesOf } from "../../../../utils";
 import { InputProps } from "../InputProps";
 import { CalendarIcon } from "../../../icons";
@@ -9,12 +9,13 @@ export const InputDate = (props: InputProps) => {
     value,
     placeholder,
     label,
-    inputId,
     className = "",
     disabled = false,
     onChange,
     type,
   } = props;
+
+  const id = useId();
 
   const firstValue = String(value) === "undefined" ? "" : String(value);
   const [localValue, setLocalValue] = React.useState(firstValue);
@@ -38,7 +39,7 @@ export const InputDate = (props: InputProps) => {
   return (
     <>
       {label && (
-        <label className="mb-2 block" htmlFor={inputId}>
+        <label className="mb-2 block" htmlFor={id}>
           <TextBodyStandard className="dark:text-dark-3">
             {label}
           </TextBodyStandard>
@@ -62,7 +63,7 @@ export const InputDate = (props: InputProps) => {
         </div>
 
         <input
-          id={inputId}
+          id={id}
           type={type}
           onChange={handleOnChange}
           className={inputClasses}

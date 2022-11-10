@@ -11,8 +11,7 @@ export const createNewEvent = async (
   eventName: string,
   eventDescription: string | null,
   eventStartDate: string | null,
-  eventEndDate: string | null,
-  navigate?: () => void
+  eventEndDate: string | null
 ) => {
   const response = await fetch(
     `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
@@ -35,16 +34,13 @@ export const createNewEvent = async (
 
     pushEventToLocalStorageEvents(event);
     saveCurrentEventInLocalStorage(event);
-
-    if (navigate) {
-      navigate();
-    }
   } else {
     const errorResponse = (await response.json()) as ErrorResponse;
     let errorMessage = "";
     errorResponse.detail.forEach((error) => {
       errorMessage += `${error.msg}. \n`;
     });
+
     console.error(errorMessage);
     // setNewTripErrors(errorMessage);
   }

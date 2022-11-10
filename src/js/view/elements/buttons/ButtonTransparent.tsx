@@ -18,7 +18,11 @@ export const ButtonTransparent = (props: BtnProps) => {
       onClick={onClick}
     >
       {icon}
-      <TextBodyMedium className={icon ? "ml-2" : ""}>{children}</TextBodyMedium>
+      {children && (
+        <TextBodyMedium className={icon ? "ml-2" : ""}>
+          {children}
+        </TextBodyMedium>
+      )}
     </button>
   );
 };

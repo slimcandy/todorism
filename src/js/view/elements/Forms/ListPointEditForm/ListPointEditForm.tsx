@@ -63,7 +63,6 @@ export const ListPointEditForm = (props: IListPointEditFormProps) => {
       <div>
         <Input
           label={t("list_point.edit_form.item")}
-          inputId="itemName"
           value={listPoint.item.name}
           onChange={(value) =>
             changeItem({
