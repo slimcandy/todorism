@@ -34,6 +34,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
+    "cancel": "Отмена",
     "remember_me": "Remember me",
     "done": "Done",
     "next": "Next"
@@ -86,6 +87,14 @@
       "liter": "Литры",
       "milliliter": "Миллилитры"
     },
+    "short_units": {
+      "gram": "г",
+      "kilogram": "кг",
+      "piece": "шт",
+      "package": "уп",
+      "liter": "л",
+      "milliliter": "мл"
+    },
     "categories": {
       "food": "Еда",
       "equipment":  "Инвентарь",
@@ -93,6 +102,23 @@
       "medicines":  "Лекарства",
       "entertainment": "Развлечения",
       "other": "Другое"
+    }
+  },
+  "modals": {
+    "warning": "Это может затронуть других участников мероприятия",
+    "blocked_list_point": {
+      "title": "Вещь сейчас заблокирована!",
+      "description": "Кто-то из участников мероприятия редактирует эту вещь",
+      "primary_button_text": "Ок"
+    },
+    "remove_list_point": {
+      "title": "Точно удалить позицию \"{{listPointName}}\"?"
+    },
+    "event_action": {
+      "leave": "Покинуть мероприятие",
+      "edit_event": "Редактировать мероприятия",
+      "members": "Участники мероприятие",
+      "logout": "Сменить участника"
     }
   }
 }
