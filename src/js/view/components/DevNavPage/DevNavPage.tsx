@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonPrimary, TitleH1 } from "../../elements";
+import { ButtonPrimary } from "../../elements";
 
 export function DevNavPage() {
   return (
-    <div className="dev-nav-page pt-14 min-h-screen bg-light-4 dark:bg-dark-0 text-center">
-      <TitleH1>Welcome to develop navigation page</TitleH1>
+    <div className="dev-nav-page pt-8 h-full w-full">
+      <h1 className="text-center " style={{ color: "#fff" }}>
+        Welcome to develop navigation page
+      </h1>
       <nav>
         <div className="p-8 flex flex-col mx-auto">
           <div className="mb-8 mx-auto">

@@ -51,7 +51,7 @@ function EventsPage() {
     <>
       {loading && <Loader />}
 
-      <div className="px-4 pt-14 pb-6 sm:w-6/12 w-full mx-auto flex flex-col min-h-screen">
+      <div className="flex flex-col w-full">
         <TitleH1>{t("events.list.your_events")}</TitleH1>
         {!!events.length && <AllEvents list={events} />}
         {!events.length && <NoEventsPage />}
