@@ -15,7 +15,7 @@ export const EventList = (props: EventListProps) => {
   );
 
   return (
-    <div>
+    <>
       {sortedListByDayDesc.map((event) => (
         <div className="mb-2">
           <EventListItem
@@ -28,6 +28,6 @@ export const EventList = (props: EventListProps) => {
           />
         </div>
       ))}
-    </div>
+    </>
   );
 };
