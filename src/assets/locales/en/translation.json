@@ -35,6 +35,7 @@
     "edit": "Edit",
     "share": "Share",
     "remember_me": "Remember me",
+    "done": "Done",
     "next": "Next"
   },
   "tabs": {
@@ -66,6 +67,32 @@
       "add_members": "Add members",
       "edit_members": "Edit members",
       "input_placeholder": "One more member"
+    }
+  },
+  "list_point": {
+    "add_item": "Добавить вещь",
+    "edit_item": "Редактировать вещь",
+    "edit_form": {
+      "category": "Выберите категорию",
+      "item": "Что взять",
+      "unit": "В чем считать",
+      "count": "Сколько взять"
+    },
+    "units": {
+      "gram": "Граммы",
+      "kilogram": "Килограммы",
+      "piece": "Штуки",
+      "package": "Упаковки",
+      "liter": "Литры",
+      "milliliter": "Миллилитры"
+    },
+    "categories": {
+      "food": "Еда",
+      "equipment":  "Инвентарь",
+      "clothes": "Одежда",
+      "medicines":  "Лекарства",
+      "entertainment": "Развлечения",
+      "other": "Другое"
     }
   }
 }

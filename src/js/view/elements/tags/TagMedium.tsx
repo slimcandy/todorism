@@ -4,7 +4,7 @@ import { TextBodyLarge } from "../typography";
 import { TagProps } from "./TagProps";
 
 export const TagMedium = (props: TagProps) => {
-  const { children, isActive = false, className = "" } = props;
+  const { children, isActive = false, className = "", onClick } = props;
 
   const tagClasses = classesOf(
     "px-2 h-6 rounded flex align-items-center text-light-4",
@@ -14,8 +14,8 @@ export const TagMedium = (props: TagProps) => {
   );
 
   return (
-    <div className={tagClasses}>
+    <button className={tagClasses} onClick={onClick}>
       <TextBodyLarge>{children}</TextBodyLarge>
-    </div>
+    </button>
   );
 };

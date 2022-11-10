@@ -28,5 +28,6 @@ void i18n
       en: { translation: translationEN },
       ru: { translation: translationRU },
     },
-  })
-  .then();
+  });
+
+export default i18n;
