@@ -34,10 +34,9 @@ export const Header = (props: HeaderProps) => {
   );
   return (
     <header
-      className="fixed top-0 left-0 z-20
-    pt-3 pb-4 px-4 bg-light-4 dark:bg-dark-0
-    flex justify-between w-full
-    dark:text-light-4 text-black-0"
+      className="h-header sticky top-0
+    flex justify-between items-center bg-inherit
+    dark:text-light-4 text-black-0 z-10"
     >
       {isWithLogo && (
         <Link to="/">

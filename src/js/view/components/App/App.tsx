@@ -33,11 +33,11 @@ export function App() {
   return (
     <Provider store={store}>
       <LoadingProvider>
-        <div className="relative bg-light-4 dark:bg-dark-0">
-          <main>
-            <BrowserRouter>
-              <Header isWithLogo />
+        <div className="relative bg-light-4 dark:bg-black-0 px-base">
+          <BrowserRouter>
+            <Header isWithLogo />
 
+            <main className="flex min-h-[calc(100vh-theme(height.header))]">
               <Routes>
                 <Route path="/" element={<DevNavPage />} />
                 <Route path="/alex" element={<Panel />} />
@@ -49,8 +49,8 @@ export function App() {
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/SPAremoveit" element={<SPAremoveit />} />
               </Routes>
-            </BrowserRouter>
-          </main>
+            </main>
+          </BrowserRouter>
         </div>
       </LoadingProvider>
     </Provider>

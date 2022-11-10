@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MembersList } from "../../components/Members/MembersList";
-import { ButtonCircle, ButtonPrimary, Input, TitleH1 } from "../../elements";
+import { ActionPanel, ButtonCircle, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { localStorageCurrentEventObject } from "../../../utils/localStorage";
 import { pullLocalStorage } from "../../../utils/localStorage_old";
 import { NewTripResponse, IMember } from "../../../interfaces";
+import { PageWrapper } from "../../components";
 import {
   addMember,
   deleteMember,
@@ -118,50 +118,9 @@ export const MembersPage = () => {
       .catch(() => {});
   };
 
-  useEffect(() => {
-    void getCurrEvent();
-  }, []);
-
-  useEffect(() => {
-    if (!currEvent.trip_uid || !currEvent.member_uid) return;
-    getMembers(currEvent.trip_uid)
-      .then((data) => {
-        setList([...data]);
-      })
-      .catch(() => {});
-  }, [currEvent]);
-
-  return (
-    <div
-      className="members-page
-   flex flex-col min-h-screen
-    justify-between
-    px-4 pt-14
-    sm:w-6/12
-    w-full
-    mx-auto relative"
-    >
-      <div className="relative h-[calc(100vh-220px)] overflow-auto">
-        <div className="absolute top-0 left-0 w-full">
-          <div className="bg-light-4 dark:bg-dark-0 sticky top-0 z-10 w-full pb-6">
-            <TitleH1>{t("pages.members.add_members")}</TitleH1>
-          </div>
-          <div className="grid gap-y-2 grid-cols-1">
-            <MembersList
-              list={list}
-              onEdit={setEditingMember}
-              onFinishEdit={() => {}}
-              onDelete={(member) => {
-                setIsDeleting(true);
-                setEditingMember(member);
-                onRemoveMemberFromList(member);
-              }}
-              onFocusInput={setIsFocusedInput}
-            />
-          </div>
-        </div>
-      </div>
-      <div className=" pb-6 bg-light-4 dark:bg-dark-0 w-full">
+  const pageFooter = (
+    <div className="sticky bottom-0">
+      <div className="pb-6 w-full">
         <div className="flex items-center justify-between mb-6 pt-2">
           <div className="mr-6 w-full">
             <Input
@@ -191,12 +150,49 @@ export const MembersPage = () => {
             />
           )}
         </div>
-        <div className="px-7">
-          <Link to="/">
-            <ButtonPrimary>{t("buttons.next")}</ButtonPrimary>
-          </Link>
+      </div>
+
+      <ActionPanel
+        primaryButtonText={t("buttons.next")}
+        primaryButtonType="submit"
+      />
+    </div>
+  );
+
+  const pageMainContent = (
+    <div className="flex flex-col h-full w-full">
+      <div>
+        <TitleH1>{t("pages.members.add_members")}</TitleH1>
+
+        <div className="grid gap-y-2 grid-cols-1">
+          <MembersList
+            list={list}
+            onEdit={setEditingMember}
+            onFinishEdit={() => {}}
+            onDelete={(member) => {
+              setIsDeleting(true);
+              setEditingMember(member);
+              onRemoveMemberFromList(member);
+            }}
+            onFocusInput={setIsFocusedInput}
+          />
         </div>
       </div>
     </div>
   );
+
+  useEffect(() => {
+    void getCurrEvent();
+  }, []);
+
+  useEffect(() => {
+    if (!currEvent.trip_uid || !currEvent.member_uid) return;
+    getMembers(currEvent.trip_uid)
+      .then((data) => {
+        setList([...data]);
+      })
+      .catch(() => {});
+  }, [currEvent]);
+
+  return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
 };

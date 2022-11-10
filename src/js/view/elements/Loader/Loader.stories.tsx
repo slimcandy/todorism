@@ -3,7 +3,7 @@ import { ComponentStory } from "@storybook/react";
 import { Loader } from "./Loader";
 
 export default {
-  title: "components/Loader",
+  title: "elements/Loader",
   component: Loader,
 };
 
