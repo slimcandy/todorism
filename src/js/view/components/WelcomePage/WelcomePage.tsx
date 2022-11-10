@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import { Input, TextBodyLarge, TitleH1, ActionPanel } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
 import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
-import { InputProps } from "../../elements/inputs/InputProps";
 import { PageWrapper } from "..";
 
 export const WelcomePage = () => {
@@ -12,9 +11,7 @@ export const WelcomePage = () => {
 
   const [username, setUsername] = useState<string>("");
   const [redirectToEvents, setRedirectToEvents] = useState<boolean>(false);
-  const onUsernameChange: InputProps["onChange"] = (value) => {
-    if (typeof value === "string") setUsername(value);
-  };
+
   const onUsernameSubmit = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -45,9 +42,8 @@ export const WelcomePage = () => {
 
         <div className="mb-10 xs:mb-14">
           <Input
-            inputId="welcomePageId"
             placeholder={t("pages.welcome.whats_your_name")}
-            onChange={onUsernameChange}
+            onChange={setUsername}
             value={username}
           />
         </div>
