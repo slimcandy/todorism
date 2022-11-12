@@ -6,6 +6,8 @@ import { InputProps } from "../InputProps";
 export const Input = (props: InputProps) => {
   const {
     value = "",
+    readonly,
+    title,
     placeholder,
     label,
     className = "",
@@ -13,6 +15,7 @@ export const Input = (props: InputProps) => {
     icon,
     isIconLeft = false,
     onChange,
+    onClick,
     type,
     isFocused,
   } = props;
@@ -70,11 +73,14 @@ export const Input = (props: InputProps) => {
           ref={refInput}
           id={id}
           type={type}
+          onClick={() => onClick?.(value.toString())}
           onChange={(e) => onChange(e.target.value)}
           className={inputClasses}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
+          readOnly={readonly}
+          title={title}
         />
       </div>
     </>

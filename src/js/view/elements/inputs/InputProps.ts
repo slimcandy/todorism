@@ -3,6 +3,8 @@ import React, { InputHTMLAttributes } from "react";
 export interface InputProps {
   placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
   value: string | number;
+  readonly?: InputHTMLAttributes<HTMLInputElement>["readOnly"];
+  title?: InputHTMLAttributes<HTMLInputElement>["title"];
   label?: string;
   className?: string;
   disabled?: boolean;
@@ -12,4 +14,5 @@ export interface InputProps {
   onChange: (value: string) => void;
   onEnter?: (value?: any) => void;
   isFocused?: boolean;
+  onClick?: (value: string) => void;
 }

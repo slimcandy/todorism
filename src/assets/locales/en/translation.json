@@ -34,6 +34,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
+    "continue": "Continue",
     "cancel": "Отмена",
     "remember_me": "Remember me",
     "done": "Done",
@@ -63,6 +64,11 @@
       "description": "Description",
       "description_example": "We go to the Great Waterfall through the pine forest, and have dinner on an alpine meadow with a view of the mountain peaks",
       "example": "Example"
+    },
+    "share": {
+      "paragraph": "Share a link with friends",
+      "logo": "Backpack Logo",
+      "title": "Copy url address"
     },
     "members": {
       "add_members": "Add members",

@@ -47,6 +47,11 @@ export function DevNavPage() {
               </ButtonPrimary>
             </Link>
           </div>
+          <div className="mb-8 mx-auto">
+            <Link to="/share">
+              <ButtonPrimary>Поделиться ссылкой</ButtonPrimary>
+            </Link>
+          </div>
         </div>
       </nav>
     </div>

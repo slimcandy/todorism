@@ -15,6 +15,7 @@ import { NoEventsPage } from "../Events/NoEvents";
 import "../../../../styles/index.css";
 import { NewEventPage } from "../NewEventPage/NewEventPage";
 import EventsPage from "../Events/EventsPage";
+import { ShareLinkPage } from "../../pages/ShareLinkPage/ShareLinkPage";
 import { LoadingProvider } from "../../../hooks";
 
 export function App() {
@@ -43,6 +44,7 @@ export function App() {
                 <Route path="/alex" element={<Panel />} />
                 <Route path="/ui-kit" element={<UIKitPage />} />
                 <Route path="/welcome" element={<WelcomePage />} />
+                <Route path="/share" element={<ShareLinkPage />} />
                 <Route path="/no-events" element={<NoEventsPage />} />
                 <Route path="/new-event" element={<NewEventPage />} />
                 <Route path="/add-members" element={<MembersPage />} />
