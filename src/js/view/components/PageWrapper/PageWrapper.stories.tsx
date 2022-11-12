@@ -3,8 +3,6 @@ import { ComponentStory } from "@storybook/react";
 
 import { PageWrapper } from "./PageWrapper";
 
-import { saveLoadingStateInLocalStorage } from "../../../utils/localStorage";
-
 export default {
   title: "components/PageWrapper",
   component: PageWrapper,
@@ -13,8 +11,6 @@ export default {
     primaryButtonText: "Готово",
   },
 };
-
-saveLoadingStateInLocalStorage(false);
 
 const pageContent = <div>PAGE CONTENT</div>;
 const pageFooter = <div>FOOTER CONTENT</div>;

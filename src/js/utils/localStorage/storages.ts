@@ -3,7 +3,6 @@ import {
   localStorageUsernameKey,
   localStorageEventsObject,
   localStorageCurrentEventObject,
-  localStorageLoadingState,
 } from "./constants";
 import { TLocalStorageEvents, ILocaleStorageEvent } from "./types";
 
@@ -20,7 +19,7 @@ export const saveCurrentEventInLocalStorage = (event: ILocaleStorageEvent) => {
   setLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject, event);
 };
 
-export const getCurrentEventFromLocalStorage = (): ILocaleStorageEvent | null =>
+export const getCurrentEventFromLocalStorage = () =>
   getLocalStorage<ILocaleStorageEvent>(localStorageCurrentEventObject);
 
 export const saveEventsInLocalStorage = (events: TLocalStorageEvents) => {
@@ -42,10 +41,19 @@ export const pushEventToLocalStorageEvents = (event: ILocaleStorageEvent) => {
   saveEventsInLocalStorage(events);
 };
 
-// LOADING STATE
-export const saveLoadingStateInLocalStorage = (state: boolean) => {
-  setLocalStorage<boolean>(localStorageLoadingState, state);
+// ACCESS
+export const getAccessIdsForEvent = (
+  tripUid: ILocaleStorageEvent["trip_uid"]
+): ILocaleStorageEvent | undefined => {
+  const events = getEventsFromLocalStorage();
+
+  return events.find((e) => e.trip_uid === tripUid);
 };
 
-export const getLoadingStateFromLocalStorage = (): boolean | null =>
-  getLocalStorage<boolean>(localStorageLoadingState);
+export const getMemberUidForEvent = (
+  tripUid: ILocaleStorageEvent["trip_uid"]
+): ILocaleStorageEvent["member_uid"] | undefined => {
+  const event = getAccessIdsForEvent(tripUid);
+
+  return event?.member_uid;
+};

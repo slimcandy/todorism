@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { langLocales } from "../../../common/constants";
 import { TitleH1 } from "../../elements";
@@ -37,7 +38,11 @@ export const Header = (props: HeaderProps) => {
     flex justify-between items-center bg-inherit
     dark:text-light-4 text-black-0 z-10"
     >
-      {isWithLogo && <TitleH1>LOGO</TitleH1>}
+      {isWithLogo && (
+        <Link to="/">
+          <TitleH1>LOGO</TitleH1>
+        </Link>
+      )}
       {!isWithLogo && <div> Back </div>}
       <div className="flex">
         <div className="mr-4">

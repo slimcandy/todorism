@@ -59,11 +59,11 @@ export const ShareLinkPage = () => {
         <Input
           title={t("pages.share.title")}
           className="cursor-copy select-all"
-          inputId="user-name-2"
           value={url}
           icon={<CopyIcon size={20} />}
           readonly
           onClick={shareUrl}
+          onChange={() => {}}
         />
       </div>
     </div>

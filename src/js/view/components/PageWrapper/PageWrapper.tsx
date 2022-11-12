@@ -1,7 +1,8 @@
 import React from "react";
 import { IPageWrapperProps } from "./PageWrapperProps";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "../../elements";
 import { classesOf } from "../../../utils";
+import { useLoading } from "../../../hooks";
 
 export const PageWrapper = (props: IPageWrapperProps) => {
   const {
@@ -10,6 +11,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
     className = "",
     verticalTopPageContent = false,
   } = props;
+
+  const { loading } = useLoading();
 
   const pageWrapperClasses = classesOf(
     "flex flex-col items-stretch w-full",
@@ -24,11 +27,11 @@ export const PageWrapper = (props: IPageWrapperProps) => {
 
   return (
     <>
-      <Loader />
+      {loading && <Loader />}
 
       <div className={pageWrapperClasses}>
         <div className={pageContentClasses}>{pageContent}</div>
-        <div>{pageFooter}</div>
+        {pageFooter}
       </div>
     </>
   );

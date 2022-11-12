@@ -14,6 +14,8 @@ import {
   MinusIcon,
   ShareIcon,
   KebabIcon,
+  MembersIcon,
+  LogoutIcon,
 } from "./index";
 
 export default {
@@ -43,3 +45,5 @@ export const Loader = getComponent(LoaderIcon).bind({});
 export const Minus = getComponent(MinusIcon).bind({});
 export const Share = getComponent(ShareIcon).bind({});
 export const Kebab = getComponent(KebabIcon).bind({});
+export const Members = getComponent(MembersIcon).bind({});
+export const Logout = getComponent(LogoutIcon).bind({});

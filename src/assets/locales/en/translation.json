@@ -34,8 +34,11 @@
     "delete": "Delete",
     "edit": "Edit",
     "share": "Share",
+    "continue": "Continue",
+    "cancel": "Отмена",
     "remember_me": "Remember me",
-    "continue": "Continue"
+    "done": "Done",
+    "next": "Next"
   },
   "tabs": {
     "common_things": "Common things",
@@ -66,6 +69,62 @@
       "paragraph": "Share a link with friends",
       "logo": "Backpack Logo",
       "title": "Copy url address"
+    },
+    "members": {
+      "add_members": "Add members",
+      "edit_members": "Edit members",
+      "input_placeholder": "One more member"
+    }
+  },
+  "list_point": {
+    "add_item": "Добавить вещь",
+    "edit_item": "Редактировать вещь",
+    "edit_form": {
+      "category": "Выберите категорию",
+      "item": "Что взять",
+      "unit": "В чем считать",
+      "count": "Сколько взять"
+    },
+    "units": {
+      "gram": "Граммы",
+      "kilogram": "Килограммы",
+      "piece": "Штуки",
+      "package": "Упаковки",
+      "liter": "Литры",
+      "milliliter": "Миллилитры"
+    },
+    "short_units": {
+      "gram": "г",
+      "kilogram": "кг",
+      "piece": "шт",
+      "package": "уп",
+      "liter": "л",
+      "milliliter": "мл"
+    },
+    "categories": {
+      "food": "Еда",
+      "equipment":  "Инвентарь",
+      "clothes": "Одежда",
+      "medicines":  "Лекарства",
+      "entertainment": "Развлечения",
+      "other": "Другое"
+    }
+  },
+  "modals": {
+    "warning": "Это может затронуть других участников мероприятия",
+    "blocked_list_point": {
+      "title": "Вещь сейчас заблокирована!",
+      "description": "Кто-то из участников мероприятия редактирует эту вещь",
+      "primary_button_text": "Ок"
+    },
+    "remove_list_point": {
+      "title": "Точно удалить позицию \"{{listPointName}}\"?"
+    },
+    "event_action": {
+      "leave": "Покинуть мероприятие",
+      "edit_event": "Редактировать мероприятия",
+      "members": "Участники мероприятие",
+      "logout": "Сменить участника"
     }
   }
 }

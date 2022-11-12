@@ -3,22 +3,20 @@ import { useTranslation } from "react-i18next";
 import { SERVER_URL } from "../../../common/constants";
 import { IEvent, IEventFromBE, INewTripResponse } from "../../../interfaces";
 import { convertIEventFromBEToIEvent } from "../../../utils/converters";
-import {
-  getEventsIdsFromLocalStorage,
-  saveLoadingStateInLocalStorage,
-} from "../../../utils/localStorage";
-import { TitleH1 } from "../../elements";
+import { getEventsIdsFromLocalStorage } from "../../../utils/localStorage";
+import { TitleH1, Loader } from "../../elements";
 import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
-import { Loader } from "../Loader/Loader";
+import { useLoading } from "../../../hooks";
 
 function EventsPage() {
   const { t } = useTranslation();
   const [events, setEvents] = useState<IEvent[]>([]);
+  const { loading, setLoading } = useLoading();
 
   const getAllTrips = async (tripUids: INewTripResponse["trip_uid"][]) => {
     try {
-      saveLoadingStateInLocalStorage(true);
+      setLoading(true);
 
       const response = await fetch(`${SERVER_URL}/Trip/All?`, {
         method: "POST",
@@ -35,7 +33,7 @@ function EventsPage() {
         setEvents(json);
       }
     } finally {
-      saveLoadingStateInLocalStorage(false);
+      setLoading(false);
     }
   };
 
@@ -51,7 +49,7 @@ function EventsPage() {
 
   return (
     <>
-      <Loader />
+      {loading && <Loader />}
 
       <div className="flex flex-col w-full">
         <TitleH1>{t("events.list.your_events")}</TitleH1>
