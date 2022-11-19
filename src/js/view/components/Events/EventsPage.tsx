@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SERVER_URL } from "../../../common/constants";
-import { IEvent, IEventFromBE, INewTripResponse } from "../../../interfaces";
+import { IEvent, IEventFromBE } from "../../../interfaces";
 import { convertIEventFromBEToIEvent } from "../../../utils/converters";
-import { getEventsIdsFromLocalStorage } from "../../../utils/localStorage";
+import { getAccessEventsUidsFromLocalStorage } from "../../../utils/localStorage";
 import { TitleH1, Loader } from "../../elements";
 import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
@@ -14,7 +14,7 @@ function EventsPage() {
   const [events, setEvents] = useState<IEvent[]>([]);
   const { loading, setLoading } = useLoading();
 
-  const getAllTrips = async (tripUids: INewTripResponse["trip_uid"][]) => {
+  const getAllTrips = async (eventUids: string[]) => {
     try {
       setLoading(true);
 
@@ -23,7 +23,7 @@ function EventsPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(tripUids),
+        body: JSON.stringify(eventUids),
       });
 
       if (response.ok) {
@@ -38,10 +38,10 @@ function EventsPage() {
   };
 
   useEffect(() => {
-    const eventsIds = getEventsIdsFromLocalStorage();
+    const eventsUids = getAccessEventsUidsFromLocalStorage();
 
-    if (eventsIds.length > 0) {
-      getAllTrips(eventsIds)
+    if (eventsUids.length > 0) {
+      getAllTrips(eventsUids)
         .then()
         .catch(() => {});
     }

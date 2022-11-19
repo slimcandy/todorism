@@ -1,8 +1,7 @@
-import { IListPoint } from "../../../../interfaces";
-import { ILocaleStorageEvent } from "../../../../utils/localStorage";
+import { IAccessIds, IListPoint } from "../../../../interfaces";
 
 export interface IListPointEditApiHandler {
-  accessIds: ILocaleStorageEvent;
+  accessIds: IAccessIds;
   listPointType: "common" | "private";
   listPoint: IListPoint;
   listPointIndex?: number;

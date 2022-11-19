@@ -10,7 +10,8 @@ import {
   commonListPointApi,
   privateListPointApi,
 } from "../../../../api_clients";
-import { getCurrentEventFromLocalStorage } from "../../../../utils/localStorage";
+
+const fakedEventUid = "baf152f2-96db-449f-8b40-a817864e3723";
 
 const listPoint = {
   pointUid: "baf152f2-96db-449f-8b40-a817864e372e",
@@ -22,12 +23,8 @@ const listPoint = {
   count: "3",
 };
 
-const commonEndPoints = commonListPointApi(
-  getCurrentEventFromLocalStorage()?.trip_uid || ""
-);
-const privateEndPoints = privateListPointApi(
-  getCurrentEventFromLocalStorage()?.trip_uid || ""
-);
+const commonEndPoints = commonListPointApi(fakedEventUid);
+const privateEndPoints = privateListPointApi(fakedEventUid);
 const mockedEndpoints = [
   commonEndPoints.addItem,
   commonEndPoints.editItem,
@@ -53,8 +50,8 @@ export default {
   },
   args: {
     accessIds: {
-      trip_uid: "b1685c01-8f84-499c-a59f-ffbec4d34bd3",
-      member_uid: "39847088-6223-44d1-9874-62e1ad1e3277",
+      eventUid: "b1685c01-8f84-499c-a59f-ffbec4d34bd3",
+      memberUid: "39847088-6223-44d1-9874-62e1ad1e3277",
     },
   },
 };

@@ -8,3 +8,4 @@ export * from "./SVGprops";
 export * from "./NewTripResponse";
 export * from "./ErrorResponse";
 export * from "./ListPoint";
+export * from "./accessIds";
