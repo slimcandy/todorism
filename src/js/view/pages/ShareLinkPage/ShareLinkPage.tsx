@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Input, TextBodyStandard, TitleH1, ActionPanel } from "../../elements";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { PageWrapper } from "../../components";
-import { getCurrentEventFromLocalStorage } from "../../../utils/localStorage";
 
 import BackPackLogo from "./images/backpack.png";
 import BackPackLogo_2x from "./images/backpack_2x.png";
@@ -11,11 +10,10 @@ import BackPackLogo_2x from "./images/backpack_2x.png";
 export const ShareLinkPage = () => {
   const { t } = useTranslation();
 
-  const currentEvent = getCurrentEventFromLocalStorage();
-
-  const url = currentEvent
-    ? `${window.location.origin}/event?trip_uid=${currentEvent?.trip_uid}`
-    : "";
+  // const url = currentEvent
+  //   ? `${window.location.origin}/event?trip_uid=${currentEvent?.trip_uid}`
+  //   : "";
+  const url = "";
 
   const shareUrl = () => {
     if (

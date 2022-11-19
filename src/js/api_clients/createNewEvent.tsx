@@ -1,10 +1,7 @@
 import { SERVER_URL } from "../common/constants";
-import { ErrorResponse } from "../interfaces";
-import {
-  saveCurrentEventInLocalStorage,
-  ILocaleStorageEvent,
-  pushEventToLocalStorageEvents,
-} from "../utils/localStorage";
+import { ErrorResponse, IAccessIdsFromBE } from "../interfaces";
+import { pushAccessIdsInLocalStorage } from "../utils/localStorage";
+import { convertIAccessIdsFromBEToIAccessIds } from "../utils";
 
 export const createNewEvent = async (
   username: string,
@@ -30,10 +27,10 @@ export const createNewEvent = async (
   );
 
   if (response.ok) {
-    const event = (await response.json()) as ILocaleStorageEvent;
+    const accessIds = (await response.json()) as IAccessIdsFromBE;
 
-    pushEventToLocalStorageEvents(event);
-    saveCurrentEventInLocalStorage(event);
+    pushAccessIdsInLocalStorage(convertIAccessIdsFromBEToIAccessIds(accessIds));
+    // saveCurrentEventInLocalStorage(event);
   } else {
     const errorResponse = (await response.json()) as ErrorResponse;
     let errorMessage = "";

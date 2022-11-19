@@ -18,24 +18,19 @@ export const ListPointEditApiHandler = (props: IListPointEditApiHandler) => {
 
   const changeListPoints = async (editedListPoint: IListPoint) => {
     try {
-      const { trip_uid, member_uid } = accessIds;
+      setLoading(true);
 
-      if (trip_uid && member_uid) {
-        setLoading(true);
+      const mode: "add" | "edit" = isCreationMode ? "add" : "edit";
+      const listPointData = {
+        ...accessIds,
+        mode,
+        listPoint: editedListPoint,
+      };
 
-        const mode: "add" | "edit" = isCreationMode ? "add" : "edit";
-        const listPointData = {
-          mode,
-          tripUid: trip_uid,
-          listPoint: editedListPoint,
-          memberUid: member_uid,
-        };
-
-        if (listPointType === "common") {
-          await editCommonListPoint(listPointData);
-        } else if (listPointType === "private") {
-          await editPrivateListPoint(listPointData);
-        }
+      if (listPointType === "common") {
+        await editCommonListPoint(listPointData);
+      } else if (listPointType === "private") {
+        await editPrivateListPoint(listPointData);
       }
     } finally {
       setLoading(false);
