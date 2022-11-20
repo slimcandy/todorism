@@ -20,7 +20,7 @@ export const NewEventPage = () => {
   const { setLoading } = useLoading();
 
   const [newEvent, setNewEvent] = useState<IEvent>({
-    tripUid: "",
+    eventUid: "",
     title: "",
     description: "",
     start: null,

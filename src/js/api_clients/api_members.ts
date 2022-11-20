@@ -1,7 +1,7 @@
 import { SERVER_URL } from "../common/constants";
 
-export const getMembers = async (tripUid: string) => {
-  const response = await fetch(`${SERVER_URL}/Trip/${tripUid}/Members`);
+export const getMembers = async (eventUid: string) => {
+  const response = await fetch(`${SERVER_URL}/Trip/${eventUid}/Members`);
   if (response.ok) {
     const json: [{ name: string; member_uid: string }] =
       (await response.json()) as [{ name: string; member_uid: string }];
@@ -11,10 +11,10 @@ export const getMembers = async (tripUid: string) => {
 };
 
 export const deleteMember = async (
-  tripUid: string,
+  eventUid: string,
   memberUid: string
 ): Promise<void> => {
-  await fetch(`${SERVER_URL}/Trip/${tripUid}/Members/${memberUid}`, {
+  await fetch(`${SERVER_URL}/Trip/${eventUid}/Members/${memberUid}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -22,12 +22,12 @@ export const deleteMember = async (
 };
 
 export const renameMember = async (
-  tripUid: string,
+  eventUid: string,
   memberUid: string,
   memberName: string
 ): Promise<Response> => {
   const res = await fetch(
-    `${SERVER_URL}/Trip/${tripUid}/Members/RenameMember`,
+    `${SERVER_URL}/Trip/${eventUid}/Members/RenameMember`,
     {
       method: "PATCH",
       headers: {
@@ -43,11 +43,11 @@ export const renameMember = async (
 };
 
 export const addMember = async (
-  tripUid: string,
+  eventUid: string,
   memberName: string
 ): Promise<Response> => {
   const response = await fetch(
-    `${SERVER_URL}/Trip/${tripUid}/Members/AddMember`,
+    `${SERVER_URL}/Trip/${eventUid}/Members/AddMember`,
     {
       method: "POST",
       headers: {
