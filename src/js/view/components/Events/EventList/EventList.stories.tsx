@@ -16,28 +16,28 @@ export const Primary = Template.bind({});
 Primary.args = {
   list: [
     {
-      tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      eventUid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       title: "Днюха в Солотче",
       description: "string",
       start: "2022-06-29T16:56:27.761Z",
       end: "2022-06-29T16:56:27.761Z",
     },
     {
-      tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
+      eventUid: "3fa85f64-5717-4562-b3fc-2c963f66afa3",
       title: "Поход на байдарках",
       description: "",
       start: "2022-07-19T16:56:27.761Z",
       end: "2022-07-29T16:56:27.761Z",
     },
     {
-      tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+      eventUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
       title: "Карелия",
       description: "",
       start: "",
       end: "",
     },
     {
-      tripUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+      eventUid: "3fa85f64-5717-4562-b3fc-2c963f66afa5",
       title: "Вылазка на великах в Зеленогорск",
       description: "",
       start: "2022-09-09T16:56:27.761Z",

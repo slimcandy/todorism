@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import { MembersList } from "../../components/Members/MembersList";
 import { ActionPanel, ButtonCircle, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
-import { localStorageCurrentEventObject } from "../../../utils/localStorage";
-import { pullLocalStorage } from "../../../utils/localStorage_old";
-import { NewTripResponse, IMember } from "../../../interfaces";
+import { IMember } from "../../../interfaces";
 import { PageWrapper } from "../../components";
 import {
   addMember,
@@ -19,10 +18,7 @@ export const MembersPage = () => {
 
   const editingMemberBlank: IMember = { name: "", member_uid: "" };
 
-  const [currEvent, setCurrEvent] = useState<NewTripResponse>({
-    trip_uid: "",
-    member_uid: "",
-  });
+  const { eventUid = "" } = useParams();
 
   const [editingMember, setEditingMember] =
     useState<IMember>(editingMemberBlank);
@@ -39,7 +35,7 @@ export const MembersPage = () => {
     try {
       if (!member.member_uid) return;
 
-      deleteMember(currEvent.trip_uid, member.member_uid)
+      deleteMember(eventUid, member.member_uid)
         .then(() => {
           const newList = list.filter(
             (m) => m.member_uid !== member.member_uid
@@ -53,11 +49,11 @@ export const MembersPage = () => {
     }
   };
 
-  async function onAddMember(tripUid: string) {
+  async function onAddMember() {
     try {
       if (!editingMember.name) return;
 
-      await addMember(tripUid, editingMember.name)
+      await addMember(eventUid, editingMember.name)
         .then((response) => response.json())
         .then((data: IMember) => {
           if (data) {
@@ -82,11 +78,7 @@ export const MembersPage = () => {
       ) {
         return;
       }
-      await renameMember(
-        currEvent.trip_uid,
-        editingMember.member_uid,
-        editingMember.name
-      )
+      await renameMember(eventUid, editingMember.member_uid, editingMember.name)
         .then((response) => response.json())
         .then((data: IMember) => {
           if (data) {
@@ -103,19 +95,6 @@ export const MembersPage = () => {
       clearEditingMember();
       setIsFocusedInput(false);
     }
-  };
-
-  const getCurrEvent = async () => {
-    await pullLocalStorage(localStorageCurrentEventObject)
-      .then((res) => {
-        if (res === null) return;
-        const parsedItem: { trip_uid: string; member_uid: string } = JSON.parse(
-          res
-        ) as { trip_uid: string; member_uid: string };
-        setCurrEvent(parsedItem);
-      })
-      .then(() => {})
-      .catch(() => {});
   };
 
   const pageFooter = (
@@ -145,7 +124,7 @@ export const MembersPage = () => {
               type="submit"
               icon={<PlusIcon size={24} />}
               onClick={() => {
-                void onAddMember(currEvent.trip_uid);
+                void onAddMember();
               }}
             />
           )}
@@ -182,17 +161,14 @@ export const MembersPage = () => {
   );
 
   useEffect(() => {
-    void getCurrEvent();
-  }, []);
-
-  useEffect(() => {
-    if (!currEvent.trip_uid || !currEvent.member_uid) return;
-    getMembers(currEvent.trip_uid)
-      .then((data) => {
-        setList([...data]);
-      })
-      .catch(() => {});
-  }, [currEvent]);
+    if (eventUid) {
+      getMembers(eventUid)
+        .then((data) => {
+          setList([...data]);
+        })
+        .catch(() => {});
+    }
+  }, [eventUid]);
 
   return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
 };

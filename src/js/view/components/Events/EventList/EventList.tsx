@@ -19,8 +19,8 @@ export const EventList = (props: EventListProps) => {
       {sortedListByDayDesc.map((event) => (
         <div className="mb-2">
           <EventListItem
-            tripUid={event.tripUid}
-            key={event.tripUid}
+            eventUid={event.eventUid}
+            key={event.eventUid}
             title={event.title}
             description={event.description}
             start={event.start}

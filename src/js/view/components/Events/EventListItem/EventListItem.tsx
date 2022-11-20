@@ -8,7 +8,7 @@ import {
 import { IEvent } from "../../../../interfaces";
 
 export const EventListItem = (props: IEvent) => {
-  const { tripUid, title, description, start, end } = props;
+  const { eventUid, title, description, start, end } = props;
   let dateStart;
   let dateEnd;
   if (start) {
@@ -20,7 +20,7 @@ export const EventListItem = (props: IEvent) => {
 
   return (
     <div
-      id={tripUid}
+      id={eventUid}
       className="flex w-full items-center justify-content-between
   h-fit border-b border-light-2 dark:border-black-3 pb-3
   cursor-pointer"

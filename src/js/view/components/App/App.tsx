@@ -47,7 +47,10 @@ export function App() {
                 <Route path="/share" element={<ShareLinkPage />} />
                 <Route path="/no-events" element={<NoEventsPage />} />
                 <Route path="/new-event" element={<NewEventPage />} />
-                <Route path="/add-members" element={<MembersPage />} />
+                <Route
+                  path="/:eventUid/add-members"
+                  element={<MembersPage />}
+                />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/SPAremoveit" element={<SPAremoveit />} />
               </Routes>

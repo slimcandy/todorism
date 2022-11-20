@@ -1,8 +1,3 @@
-export interface INewTripResponse {
-  trip_uid: string;
-  member_uid: string;
-}
-
 export interface IEventFromBE {
   trip_uid: string;
   title: string;
@@ -12,5 +7,5 @@ export interface IEventFromBE {
 }
 
 export interface IEvent extends Omit<IEventFromBE, "trip_uid"> {
-  tripUid: string;
+  eventUid: string;
 }

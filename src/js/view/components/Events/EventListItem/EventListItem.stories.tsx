@@ -8,7 +8,7 @@ export default {
   component: EventListItem,
   args: {
     title: "Поход на байдарках",
-    tripUid: "uid",
+    eventUid: "uid",
   },
 };
 

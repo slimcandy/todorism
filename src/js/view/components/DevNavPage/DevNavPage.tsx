@@ -36,7 +36,7 @@ export function DevNavPage() {
             </Link>
           </div>
           <div className="mb-8 mx-auto">
-            <Link to="/add-members">
+            <Link to="/daca3162-c6a4-473a-a26f-021e98d7592f/add-members">
               <ButtonPrimary>Add Members Page</ButtonPrimary>
             </Link>
           </div>
