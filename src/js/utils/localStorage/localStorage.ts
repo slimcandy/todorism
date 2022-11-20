@@ -17,3 +17,7 @@ export const setLocalStorage = <T>(key: string, data: T) => {
     localStorage[key] = JSON.stringify(data);
   }
 };
+
+export const deleteLocalStorage = (key: string) => {
+  window?.localStorage.removeItem(key);
+};

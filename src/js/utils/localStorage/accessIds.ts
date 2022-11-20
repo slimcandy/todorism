@@ -27,3 +27,14 @@ export const pushAccessIdsInLocalStorage = (accessIds: IAccessIds) => {
 
 export const getEventAccessIds = (eventUid: string): IAccessIds | undefined =>
   getAccessIdsListFromLocalStorage()[eventUid];
+
+export const deleteEventMemberUidFromLocalStorage = (eventUid: string) => {
+  const accessIds = getAccessIdsListFromLocalStorage()[eventUid];
+
+  if (accessIds) {
+    pushAccessIdsInLocalStorage({
+      ...accessIds,
+      memberUid: "",
+    });
+  }
+};
