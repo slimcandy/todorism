@@ -5,10 +5,34 @@ import { convertIListPointToIListPointFromBE } from "../../utils";
 
 const endPoint = (eventUid: string) => `${SERVER_URL}/PrivateList/${eventUid}`;
 
-export const privateListPointApi = (eventUid: string, pointUid?: string) => ({
+export const privateListPointApi = ({
+  eventUid,
+  pointUid,
+  memberUid,
+}: {
+  eventUid: string;
+  pointUid?: string;
+  memberUid?: string;
+}) => ({
   addItem: `${endPoint(eventUid)}/AddItem`,
   editItem: `${endPoint(eventUid)}/EditItem/${pointUid || ""}`,
+  getItems: `${endPoint(eventUid)}/GetItems/${memberUid || ""}`,
+  removeItem: `${endPoint(eventUid)}/DeleteItem`,
 });
+
+export const getPrivateListPoints = ({
+  eventUid,
+  memberUid,
+}: {
+  eventUid: string;
+  memberUid: string;
+}) =>
+  fetch(privateListPointApi({ eventUid, memberUid }).getItems, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
 export const editPrivateListPoint = ({
   mode,
@@ -20,11 +44,14 @@ export const editPrivateListPoint = ({
   eventUid: string;
   memberUid?: string;
   listPoint: IListPoint;
-}) =>
-  fetch(
-    privateListPointApi(eventUid)[mode === "add" ? "addItem" : "editItem"],
+}) => {
+  const privateMethod = mode === "add" ? "addItem" : "editItem";
+  return fetch(
+    privateListPointApi({ eventUid, pointUid: listPoint.pointUid })[
+      privateMethod
+    ],
     {
-      method: "POST",
+      method: mode === "add" ? "POST" : "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -34,3 +61,24 @@ export const editPrivateListPoint = ({
       }),
     }
   );
+};
+
+export const removePrivateListPoint = ({
+  eventUid,
+  memberUid,
+  pointUid,
+}: {
+  eventUid: string;
+  memberUid: string;
+  pointUid: string;
+}) =>
+  fetch(privateListPointApi({ eventUid }).removeItem, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      point_uid: pointUid,
+      member_uid: memberUid,
+    }),
+  });

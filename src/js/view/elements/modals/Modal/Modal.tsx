@@ -1,7 +1,7 @@
 import React, { KeyboardEvent, MouseEvent } from "react";
 
 import { IModalProps } from "./ModalProps";
-import { BtnIcon } from "../../buttons/BtnIcon/BtnIcon";
+import { BtnIcon } from "../../buttons";
 import { CloseIcon } from "../../../icons";
 import { ModalTitle } from "./ModalTitle/ModalTitle";
 import { ModalDescription } from "./ModalDescription/ModalDescription";
@@ -33,7 +33,7 @@ export const Modal = (props: IModalProps) => {
       onClick={(e) => handleShowing(e, false)}
       onKeyDown={(e) => handleKeyPress(e)}
     >
-      <div className="flex flex-col w-full relative bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl">
+      <div className="flex flex-col w-full fixed bottom-0 bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl">
         <BtnIcon
           icon={<CloseIcon size={24} />}
           onClick={(e) => handleShowing(e, false)}

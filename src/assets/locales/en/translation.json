@@ -1,6 +1,7 @@
 {
   "language": "English",
   "me": "Me",
+  "hide": "Скрыть",
   "events": {
     "list": {
       "your_events": "Your events",
@@ -74,11 +75,19 @@
       "add_members": "Add members",
       "edit_members": "Edit members",
       "input_placeholder": "One more member"
+    },
+    "recommended": {
+      "title": "Рекомендуемые личные вещи",
+      "description": "Создайте список, которые вы рекомендуете взять с собой участникам мероприятия."
     }
   },
   "list_point": {
     "add_item": "Добавить вещь",
     "edit_item": "Редактировать вещь",
+    "empty_list": {
+      "title": "Тут пока ничего нет",
+      "action": "Добавьте первую вещь"
+    },
     "edit_form": {
       "category": "Выберите категорию",
       "item": "Что взять",
@@ -110,6 +119,14 @@
       "other": "Другое"
     }
   },
+  "event_card": {
+    "list_point_types": {
+        "recommended": "Рекомендованный список",
+        "private": "Личные вещи",
+        "common": "Общие вещи",
+        "taken": "Взять с собой"
+    }
+  },
   "modals": {
     "warning": "Это может затронуть других участников мероприятия",
     "blocked_list_point": {
@@ -122,8 +139,8 @@
     },
     "event_action": {
       "leave": "Покинуть мероприятие",
-      "edit_event": "Редактировать мероприятия",
-      "members": "Участники мероприятие",
+      "edit_event": "Редактировать мероприятие",
+      "members": "Участники мероприятия",
       "logout": "Сменить участника"
     }
   }

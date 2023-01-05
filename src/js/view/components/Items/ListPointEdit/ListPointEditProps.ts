@@ -1,7 +1,7 @@
-import { IListPoint } from "../../../../interfaces";
+import { ICommonListPoint, IListPoint } from "../../../../interfaces";
 
 export interface IListPointEditProps {
-  listPoint: IListPoint;
+  listPoint: IListPoint | ICommonListPoint;
   isCreationMode: boolean;
   onClick: (listPoint: IListPoint) => void;
 }
