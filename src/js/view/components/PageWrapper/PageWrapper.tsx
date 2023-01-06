@@ -15,12 +15,12 @@ export const PageWrapper = (props: IPageWrapperProps) => {
   const { loading } = useLoading();
 
   const pageWrapperClasses = classesOf(
-    "flex flex-col items-stretch w-full",
+    "flex flex-col grow items-stretch w-full",
     className
   );
 
   const pageContentClasses = classesOf(
-    "flex grow justify-center",
+    "flex grow justify-center bg-light-4 dark:bg-black-0 overflow-y-auto",
     verticalTopPageContent && "items-start",
     !verticalTopPageContent && "items-center"
   );

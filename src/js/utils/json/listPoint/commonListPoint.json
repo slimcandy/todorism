@@ -1,0 +1,68 @@
+{
+  "commonListPointsFromBE": [
+    {
+      "point_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "item": {
+        "item_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "Вода",
+        "tags": [
+          "food"
+        ]
+      },
+      "count": 5,
+      "unit": "liter",
+      "bindings": [
+        {
+          "member": {
+            "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "name": "Иван",
+            "is_author": true
+          },
+          "count": 2
+        },
+        {
+          "member": {
+            "member_uid": "45625f64-5717-4562-b3fc-2c9b3fc65717",
+            "name": "Петр",
+            "is_author": false
+          },
+          "count": 2
+        },
+        {
+          "member": {
+            "member_uid": "b3fc5f64-5717-4562-b3fc-2c9b3fc65717",
+            "name": "Евгений",
+            "is_author": false
+          },
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "commonListPointBindingsFromBE": [
+    {
+      "member": {
+        "member_uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "Иван",
+        "is_author": true
+      },
+      "count": 2
+    },
+    {
+      "member": {
+        "member_uid": "45625f64-5717-4562-b3fc-2c9b3fc65717",
+        "name": "Петр",
+        "is_author": false
+      },
+      "count": 2
+    },
+    {
+      "member": {
+        "member_uid": "b3fc5f64-5717-4562-b3fc-2c9b3fc65717",
+        "name": "Евгений",
+        "is_author": false
+      },
+      "count": 1
+    }
+  ]
+}

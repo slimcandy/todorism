@@ -1,8 +1,5 @@
-import {
-  getLocalStorage,
-  setLocalStorage,
-} from "../../../../utils/localStorage";
-import { IListPoint } from "../../../../interfaces";
+import { getLocalStorage, setLocalStorage } from "../../../utils/localStorage";
+import { IListPoint } from "../../../interfaces";
 
 export type TLocalStorageListPoints = Array<IListPoint>;
 

@@ -17,7 +17,6 @@ export interface IListPointFromBE {
   unit: keyof typeof LIST_POINT_UNITS;
   count: number;
   is_private: boolean;
-  point_uid?: string;
 }
 
 export interface IListPointBindingFromBE {
@@ -39,17 +38,21 @@ export interface IItem
 }
 
 export interface IListPoint
-  extends Omit<IListPointFromBE, "is_private" | "item" | "count"> {
+  extends Omit<
+    IListPointFromBE,
+    "is_private" | "item" | "count" | "point_uid"
+  > {
   item: IItem;
   pointUid?: string;
   count: string;
 }
 
 export interface IListPointBinding
-  extends Omit<IListPointBindingFromBE, "member"> {
+  extends Omit<IListPointBindingFromBE, "member" | "count"> {
   member: {
     memberUid: string;
     name: string;
     isAuthor: boolean;
   };
+  count: string;
 }
