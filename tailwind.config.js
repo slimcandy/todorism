@@ -64,6 +64,19 @@ module.exports = {
         "red-3": "#FF9D9D",
         "red-4": "#FFE5E5",
       },
+      keyframes: {
+        "box-shadow-inset-pulse": {
+          "0%": {
+            "box-shadow": "0 0 0 10px black-0 inset",
+          },
+          "50%": {
+            "box-shadow": "0 0 0 3px black-0 inset",
+          },
+          "100%": {
+            "box-shadow": "0 0 0 4px black-0 inset",
+          },
+        },
+      },
     },
   },
   daisyui: {
