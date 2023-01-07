@@ -2,6 +2,9 @@
   "language": "English",
   "me": "Me",
   "hide": "Скрыть",
+  "members": "Участники",
+  "error": "Что пошло не так, попробуйте перезагрузить страницу",
+  "welcome": "Добро пожаловать",
   "events": {
     "list": {
       "your_events": "Your events",
@@ -72,6 +75,7 @@
       "title": "Copy url address"
     },
     "members": {
+      "who_are_you": "Кто вы?",
       "add_members": "Add members",
       "edit_members": "Edit members",
       "input_placeholder": "One more member"
