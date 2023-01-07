@@ -33,7 +33,13 @@ export const Modal = (props: IModalProps) => {
       onClick={(e) => handleShowing(e, false)}
       onKeyDown={(e) => handleKeyPress(e)}
     >
-      <div className="flex flex-col w-full fixed bottom-0 bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl">
+      <div
+        role="button"
+        tabIndex={0}
+        className="flex flex-col w-full fixed bottom-0 bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl"
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => handleKeyPress(e)}
+      >
         <BtnIcon
           icon={<CloseIcon size={24} />}
           onClick={(e) => handleShowing(e, false)}

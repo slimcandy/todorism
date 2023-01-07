@@ -198,6 +198,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     setModalContent(
       <ListPointActionModal
         listPointName={listPoint.item.name}
+        showDeletionWarningMessage
         onEditClick={() => {
           void checkListPointAvailability({
             listPoint,
