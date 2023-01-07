@@ -13,7 +13,15 @@ module.exports = {
       screens: {
         xs: "390px",
       },
-      fontFamily: { main: ["Manrope", "sans-serif"] },
+      fontFamily: {
+        extralight: ["Manrope-ExtraLight", "sans-serif"],
+        light: ["Manrope-Light", "sans-serif"],
+        normal: ["Manrope", "sans-serif"],
+        medium: ["Manrope-Medium", "sans-serif"],
+        semibold: ["Manrope-SemiBold", "sans-serif"],
+        bold: ["Manrope-Bold", "sans-serif"],
+        extrabold: ["Manrope-ExtraBold", "sans-serif"],
+      },
       fontSize: {
         h1: ["1.5rem", { lineHeight: "32px" }],
         h2: ["1.125rem", { lineHeight: "22px" }],
@@ -63,6 +71,19 @@ module.exports = {
         "red-2": "#FF7575",
         "red-3": "#FF9D9D",
         "red-4": "#FFE5E5",
+      },
+      keyframes: {
+        "box-shadow-inset-pulse": {
+          "0%": {
+            "box-shadow": "0 0 0 10px black-0 inset",
+          },
+          "50%": {
+            "box-shadow": "0 0 0 3px black-0 inset",
+          },
+          "100%": {
+            "box-shadow": "0 0 0 4px black-0 inset",
+          },
+        },
       },
     },
   },

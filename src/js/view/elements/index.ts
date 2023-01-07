@@ -13,3 +13,4 @@ export * from "./Counter/Counter";
 export * from "./Forms/ListPointEditForm/ListPointEditForm";
 export * from "./modals";
 export * from "./TagMe";
+export * from "./MembersListItem/MembersListItem";
