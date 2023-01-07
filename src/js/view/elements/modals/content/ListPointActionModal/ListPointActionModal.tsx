@@ -41,7 +41,7 @@ export const ListPointActionModal = (props: IListPointActionModal) => {
       {!showRemoveListPointModal && (
         <div className="flex flex-col items-start">
           {listPointActions.map((listPointAction) => (
-            <ModalListItem {...listPointAction} />
+            <ModalListItem key={listPointAction.title} {...listPointAction} />
           ))}
         </div>
       )}
