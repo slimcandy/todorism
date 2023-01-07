@@ -19,21 +19,21 @@ export const Modal = (props: IModalProps) => {
     e.stopPropagation();
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.code === "Escape") {
-      handleShowing(e, false);
-    }
-  };
-
   return (
     <div
       className="flex justify-center items-end absolute top-0 bottom-0 left-0 right-0 bg-black-3/40 z-10 cursor-default"
       role="button"
       tabIndex={0}
       onClick={(e) => handleShowing(e, false)}
-      onKeyDown={(e) => handleKeyPress(e)}
+      onKeyDown={() => {}}
     >
-      <div className="flex flex-col w-full fixed bottom-0 bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl">
+      <div
+        role="button"
+        tabIndex={0}
+        className="flex flex-col w-full fixed bottom-0 bg-black-0 p-6 gap-y-6 text-center border-none rounded-t-3xl"
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={() => {}}
+      >
         <BtnIcon
           icon={<CloseIcon size={24} />}
           onClick={(e) => handleShowing(e, false)}

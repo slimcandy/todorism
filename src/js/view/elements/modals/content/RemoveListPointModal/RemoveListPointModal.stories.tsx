@@ -17,3 +17,8 @@ const Template: ComponentStory<typeof RemoveListPointModal> = (args) => (
 );
 
 export const Primary = Template.bind({});
+
+export const WithDeletionWarningMessage = Template.bind({});
+WithDeletionWarningMessage.args = {
+  showDeletionWarningMessage: true,
+};

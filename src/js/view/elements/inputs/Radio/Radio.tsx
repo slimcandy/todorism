@@ -3,7 +3,7 @@ import { IRadioProps } from "./RadioProps";
 import { classesOf } from "../../../../utils";
 
 export const Radio = (props: IRadioProps) => {
-  const { name, value, onClick } = props;
+  const { name, value, onChange } = props;
 
   const radioClasses = classesOf(
     "radio radio-primary border-dark-2 transition-[background_box-shadow_0.2s_ease-in-out]",
@@ -16,7 +16,7 @@ export const Radio = (props: IRadioProps) => {
       name={name}
       className={radioClasses}
       checked={value}
-      onClick={onClick}
+      onChange={onChange}
     />
   );
 };

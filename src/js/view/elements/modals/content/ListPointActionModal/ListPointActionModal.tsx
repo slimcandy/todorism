@@ -7,7 +7,12 @@ import { EditIcon, DeleteIcon } from "../../../../icons";
 import { RemoveListPointModal } from "../RemoveListPointModal/RemoveListPointModal";
 
 export const ListPointActionModal = (props: IListPointActionModal) => {
-  const { listPointName, onEditClick, onRemoveClick } = props;
+  const {
+    listPointName,
+    showDeletionWarningMessage = false,
+    onEditClick,
+    onRemoveClick,
+  } = props;
 
   const { t } = useTranslation();
 
@@ -36,7 +41,7 @@ export const ListPointActionModal = (props: IListPointActionModal) => {
       {!showRemoveListPointModal && (
         <div className="flex flex-col items-start">
           {listPointActions.map((listPointAction) => (
-            <ModalListItem {...listPointAction} />
+            <ModalListItem key={listPointAction.title} {...listPointAction} />
           ))}
         </div>
       )}
@@ -44,6 +49,7 @@ export const ListPointActionModal = (props: IListPointActionModal) => {
       {showRemoveListPointModal && (
         <RemoveListPointModal
           listPointName={listPointName}
+          showDeletionWarningMessage={showDeletionWarningMessage}
           onRemoveClick={onRemoveClick}
           onCancelClick={() => {
             setShowRemoveListPointModal(false);

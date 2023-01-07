@@ -1,7 +1,7 @@
-import { IListPoint } from "../../../../../interfaces";
-
-export interface IListPointActionModal {
-  listPointName: IListPoint["item"]["name"];
-  onShareClick: () => void;
+export interface IEventActionModal {
+  onShareEvent: () => void;
+  onLeaveEvent: () => void;
+  onEditEvent: () => void;
+  onEditMembers: () => void;
   onLogoutClick: () => void;
 }

@@ -120,7 +120,7 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
     </div>
   );
 
-  const content = () => (
+  const content = (
     <div className="flex grow relative">
       <div className={outerBlockClasses}>
         {listPointCount}
@@ -135,8 +135,8 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
     </div>
   );
 
-  const outerContent = () => (
-    <div className={`collapse ${showOuterContent() ? "collapse-open" : ""}`}>
+  const outerContent = showOuterContent() ? (
+    <div className="collapse collapse-open">
       <div className="collapse-content flex flex-col justify-center gap-y-3 px-0 duration-200">
         <div className="flex justify-between pt-1">
           <TextBodyStandard>Разобрано</TextBodyStandard>
@@ -147,7 +147,7 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
 
         <ul className="flex flex-col gap-y-3">
           {listPoint.bindings.map((binding) => (
-            <li className="flex justify-between">
+            <li className="flex justify-between" key={binding.member.name}>
               <div className="flex items-center gap-x-2">
                 <TextBodyLarge className="font-semibold text-light-4">
                   {binding.member.name}
@@ -173,14 +173,16 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
         </ButtonTransparent>
       </div>
     </div>
+  ) : (
+    <div />
   );
 
   return (
     <ListPointItem
       listPointName={listPoint.item.name}
       grayTitle={bindingProgress >= Number(listPoint.count)}
-      content={content()}
-      outerContent={outerContent()}
+      content={content}
+      outerContent={outerContent}
       onClickTitle={changeOuterContentCollapseStatus}
     />
   );

@@ -23,7 +23,7 @@ export const WhoAreYou = (props: IWhoAreYouProps) => {
     <Radio
       name={member.name}
       value={selectedMember?.member_uid === member.member_uid}
-      onClick={() => setSelectedMember(member)}
+      onChange={() => setSelectedMember(member)}
     />
   );
 
@@ -43,6 +43,7 @@ export const WhoAreYou = (props: IWhoAreYouProps) => {
         {members.length > 0 ? (
           members.map((member) => (
             <MembersListItem
+              key={member.member_uid}
               name={member.name}
               actionContent={radioButton(member)}
             />

@@ -12,5 +12,6 @@ const Template: ComponentStory<typeof Radio> = (args) => <Radio {...args} />;
 
 export const Checked = Template.bind({});
 Checked.args = {
+  name: "radio",
   value: true,
 };
