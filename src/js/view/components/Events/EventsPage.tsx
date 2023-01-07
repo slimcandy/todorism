@@ -1,18 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../../../common/constants";
 import { IEvent, IEventFromBE } from "../../../interfaces";
-import { convertIEventFromBEToIEvent } from "../../../utils/converters";
-import { getAccessEventsUidsFromLocalStorage } from "../../../utils/localStorage";
-import { TitleH1, Loader } from "../../elements";
+import { convertIEventFromBEToIEvent } from "../../../utils";
+import {
+  getAccessEventsUidsFromLocalStorage,
+  saveCurrentEventInLocalStorage,
+} from "../../../utils/localStorage";
+import { TitleH1, Loader, ButtonCircle } from "../../elements";
 import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
 import { useLoading } from "../../../hooks";
+import { PlusIcon } from "../../icons";
 
-function EventsPage() {
+export const EventsPage = () => {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
+
   const [events, setEvents] = useState<IEvent[]>([]);
   const { loading, setLoading } = useLoading();
+
+  const navigateToEvent = (eventUid: string) => navigate(`/event/${eventUid}`);
+  const navigateToCreateEvent = () => {
+    window.localStorage.removeItem("currentEvent");
+    navigate("event");
+  };
+
+  const goToEvent = (eventUid: string) => {
+    const selectedEvent = events.find((e) => e.eventUid === eventUid);
+
+    if (selectedEvent) {
+      saveCurrentEventInLocalStorage(selectedEvent);
+      navigateToEvent(eventUid);
+    }
+  };
 
   const getAllTrips = async (eventUids: string[]) => {
     try {
@@ -53,11 +76,21 @@ function EventsPage() {
 
       <div className="flex flex-col w-full">
         <TitleH1>{t("events.list.your_events")}</TitleH1>
-        {!!events.length && <AllEvents list={events} />}
-        {!events.length && <NoEventsPage />}
+
+        {!loading && events.length === 0 ? (
+          <NoEventsPage />
+        ) : (
+          <>
+            <AllEvents list={events} onClick={goToEvent} />
+
+            <ButtonCircle
+              className="fixed right-4 bottom-4"
+              icon={<PlusIcon size={24} />}
+              onClick={navigateToCreateEvent}
+            />
+          </>
+        )}
       </div>
     </>
   );
-}
-
-export default EventsPage;
+};

@@ -3,7 +3,8 @@ import { MembersListItem } from "./MembersListItem";
 import { MembersListProps } from "./MemberListProps";
 
 export const MembersList = memo((props: MembersListProps) => {
-  const { list, onEdit, onDelete, onFinishEdit, onFocusInput } = props;
+  const { accessIds, list, onEdit, onDelete, onFinishEdit, onFocusInput } =
+    props;
 
   return (
     <>
@@ -12,7 +13,7 @@ export const MembersList = memo((props: MembersListProps) => {
           <MembersListItem
             memberName={member.name}
             memberUid={member.member_uid}
-            isMe={member.member_uid === list[0].member_uid}
+            isMe={member.member_uid === accessIds.memberUid}
             onEdit={onEdit}
             onFinishEdit={onFinishEdit}
             onFocusInput={onFocusInput}

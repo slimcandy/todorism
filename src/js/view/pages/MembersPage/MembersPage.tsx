@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { MembersList } from "../../components/Members/MembersList";
 import { ActionPanel, ButtonCircle, Input, TitleH1 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
@@ -12,13 +12,22 @@ import {
   getMembers,
   renameMember,
 } from "../../../api_clients/api_members";
+import { getEventAccessIds } from "../../../utils/localStorage";
 
 export const MembersPage = () => {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+
+  const status = searchParams.get("status");
+
   const editingMemberBlank: IMember = { name: "", member_uid: "" };
 
   const { eventUid = "" } = useParams();
+
+  const accessIds = eventUid ? getEventAccessIds(eventUid) : undefined;
 
   const [editingMember, setEditingMember] =
     useState<IMember>(editingMemberBlank);
@@ -132,19 +141,31 @@ export const MembersPage = () => {
       </div>
 
       <ActionPanel
-        primaryButtonText={t("buttons.next")}
+        primaryButtonText={t(`buttons.${status === "new" ? "next" : "done"}`)}
         primaryButtonType="submit"
+        onPrimaryButtonClick={() => {
+          if (status === "new") {
+            navigate(`/event/${eventUid}/recommended`);
+          } else {
+            navigate(-1);
+          }
+        }}
       />
     </div>
   );
 
-  const pageMainContent = (
+  const pageMainContent = accessIds && (
     <div className="flex flex-col h-full w-full">
       <div>
-        <TitleH1>{t("pages.members.add_members")}</TitleH1>
+        <TitleH1>
+          {t(
+            `pages.members.${status === "new" ? "add_members" : "edit_members"}`
+          )}
+        </TitleH1>
 
         <div className="grid gap-y-2 grid-cols-1">
           <MembersList
+            accessIds={accessIds}
             list={list}
             onEdit={setEditingMember}
             onFinishEdit={() => {}}

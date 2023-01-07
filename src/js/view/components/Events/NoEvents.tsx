@@ -27,7 +27,7 @@ export const NoEventsPage = () => {
     <ActionPanel
       primaryButtonText={t("events.create_new_event.create_btn")}
       primaryButtonType="submit"
-      onPrimaryButtonClick={() => navigate("/new-event")}
+      onPrimaryButtonClick={() => navigate("event")}
     />
   );
 

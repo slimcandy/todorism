@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input, TextBodyLarge, TitleH1, ActionPanel } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
 import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
@@ -9,8 +9,10 @@ import { PageWrapper } from "..";
 export const WelcomePage = () => {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState<string>("");
-  const [redirectToEvents, setRedirectToEvents] = useState<boolean>(false);
+  // const [redirectToEvents, setRedirectToEvents] = useState<boolean>(false);
 
   const onUsernameSubmit = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -18,7 +20,7 @@ export const WelcomePage = () => {
     event.preventDefault();
 
     saveUserNameInLocalStorage(username);
-    setRedirectToEvents(true);
+    navigate(0);
   };
 
   const pageMainContent = (
@@ -48,8 +50,6 @@ export const WelcomePage = () => {
           />
         </div>
       </div>
-
-      {redirectToEvents && <Navigate to="/events" replace />}
     </form>
   );
 

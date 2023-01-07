@@ -1,6 +1,7 @@
-import { IMember } from "../../../interfaces";
+import { IAccessIds, IMember } from "../../../interfaces";
 
 export interface MembersListProps {
+  accessIds: IAccessIds;
   list: Array<IMember>;
   onEdit: (member: IMember) => void;
   onDelete: (member: IMember) => void;
