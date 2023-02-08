@@ -3,7 +3,7 @@ import { classesOf } from "../../../../utils";
 import { TextBodyStandard } from "../../typography";
 import { InputProps } from "../InputProps";
 
-export const Input = (props: InputProps) => {
+export function Input(props: InputProps) {
   const {
     value = "",
     readonly,
@@ -21,7 +21,6 @@ export const Input = (props: InputProps) => {
   } = props;
 
   const id = useId();
-
   const refInput = useRef<HTMLInputElement>(null);
 
   if (isFocused) {
@@ -50,6 +49,14 @@ export const Input = (props: InputProps) => {
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
+  function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+    onChange?.(event.target.value);
+  }
+  function handleInputClick(event: React.MouseEvent<HTMLInputElement>) {
+    event.stopPropagation();
+    onClick?.(value.toString());
+  }
+
   return (
     <>
       {label && (
@@ -73,9 +80,9 @@ export const Input = (props: InputProps) => {
           ref={refInput}
           id={id}
           type={type}
-          onClick={() => onClick?.(value.toString())}
-          onChange={(e) => onChange(e.target.value)}
-          className={inputClasses}
+          onChange={handleOnChange}
+          onClick={handleInputClick}
+          className={`${inputClasses} ${className}`}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
@@ -85,4 +92,4 @@ export const Input = (props: InputProps) => {
       </div>
     </>
   );
-};
+}
