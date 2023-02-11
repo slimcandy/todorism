@@ -14,9 +14,9 @@ const link = window.location.href;
 export function ShareLinkPage() {
   const { t } = useTranslation();
   const [successMessageShown, setSuccessMessageShown] = useState(false);
-  const [failMessageShown, setFailMessageShown] = React.useState(false);
+  const [failMessageShown, setFailMessageShown] = useState(false);
 
-  const handleShareButtonClick = useCallback(
+  const handleCopyButtonClick = useCallback(
     (url: string = window.location.href) => {
       copyUrl(url)
         .then(() => {
@@ -61,7 +61,7 @@ export function ShareLinkPage() {
           value={link}
           icon={<CopyIcon size={20} />}
           readonly
-          onClick={handleShareButtonClick}
+          onClick={handleCopyButtonClick}
           onChange={emptyFunction}
         />
         <div

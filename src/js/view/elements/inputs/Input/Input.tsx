@@ -50,7 +50,7 @@ export function Input(props: InputProps) {
   );
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-    onChange?.(event.target.value);
+    onChange(event.target.value);
   }
   function handleInputClick(event: React.MouseEvent<HTMLInputElement>) {
     event.stopPropagation();
@@ -82,7 +82,7 @@ export function Input(props: InputProps) {
           type={type}
           onChange={handleOnChange}
           onClick={handleInputClick}
-          className={`${inputClasses} ${className}`}
+          className={inputClasses}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
