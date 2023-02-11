@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SERVER_URL } from "../../../common/constants";
 import { IEvent, IEventFromBE } from "../../../interfaces";
@@ -14,28 +14,31 @@ function EventsPage() {
   const [events, setEvents] = useState<IEvent[]>([]);
   const { loading, setLoading } = useLoading();
 
-  const getAllTrips = async (eventUids: string[]) => {
-    try {
-      setLoading(true);
+  const getAllTrips = useCallback(
+    async (eventUids: string[]) => {
+      try {
+        setLoading(true);
 
-      const response = await fetch(`${SERVER_URL}/Trip/All?`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(eventUids),
-      });
+        const response = await fetch(`${SERVER_URL}/Trip/All?`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(eventUids),
+        });
 
-      if (response.ok) {
-        const json = ((await response.json()) as IEventFromBE[]).map((e) =>
-          convertIEventFromBEToIEvent(e)
-        );
-        setEvents(json);
+        if (response.ok) {
+          const json = ((await response.json()) as IEventFromBE[]).map((e) =>
+            convertIEventFromBEToIEvent(e)
+          );
+          setEvents(json);
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [setLoading]
+  );
 
   useEffect(() => {
     const eventsUids = getAccessEventsUidsFromLocalStorage();
@@ -45,7 +48,7 @@ function EventsPage() {
         .then()
         .catch(() => {});
     }
-  }, []);
+  }, [getAllTrips]);
 
   return (
     <>

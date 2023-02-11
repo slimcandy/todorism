@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TakenListPointItem } from "../TakenListPointItem/TakenListPointItem";
 import { ListPointsWrapper } from "../../ListPointsWrapper/ListPointsWrapper";
 import { convertITakenListPointFromBEToITakenListPoint } from "../../../../../utils";
@@ -20,7 +20,7 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
 
   const { setLoading } = useLoading();
 
-  const getListPoints = async () => {
+  const getListPoints = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -35,7 +35,7 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [accessIds, setLoading]);
 
   const onChangeIsTakenStatus = async (listPoint: ITakenListPoint) => {
     setLoading(true);
@@ -63,7 +63,7 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
     if (listPoints.length === 0) {
       void getListPoints();
     }
-  }, []);
+  }, [getListPoints, listPoints.length]);
 
   return (
     <ListPointsWrapper

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CommonListPointItem } from "../CommonListPointItem/CommonListPointItem";
 import { ListPointsWrapper } from "../../ListPointsWrapper/ListPointsWrapper";
@@ -81,7 +81,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     navigate(listPoint.pointUid ? `item/${listPoint.pointUid}` : "item");
   };
 
-  const getListPoints = async () => {
+  const getListPoints = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -98,7 +98,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [accessIds.eventUid, setLoading]);
 
   const removeListPoint = async (listPoint: IListPoint) => {
     try {
@@ -277,7 +277,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     if (listPoints.length === 0) {
       void getListPoints();
     }
-  }, [listPoints.length]);
+  }, [getListPoints, listPoints.length]);
 
   return (
     <>
