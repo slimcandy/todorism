@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Input, TextBodyStandard, TitleH1, ActionPanel } from "../../elements";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { PageWrapper } from "../../components";
-import { classesOf, shareOrCopyUrl } from "../../../utils";
+import { classesOf, copyUrl } from "../../../utils";
 
 import BackPackLogo from "./images/backpack.png";
 import BackPackLogo_2x from "./images/backpack_2x.png";
@@ -18,7 +18,7 @@ export function ShareLinkPage() {
 
   const handleShareButtonClick = useCallback(
     (url: string = window.location.href) => {
-      shareOrCopyUrl(url)
+      copyUrl(url)
         .then(() => {
           setSuccessMessageShown(true);
           setTimeout(() => {
@@ -55,6 +55,15 @@ export function ShareLinkPage() {
       </div>
 
       <div className="mb-10 xs:mb-14">
+        <Input
+          title={t("pages.share.title")}
+          className="cursor-copy select-all"
+          value={link}
+          icon={<CopyIcon size={20} />}
+          readonly
+          onClick={handleShareButtonClick}
+          onChange={emptyFunction}
+        />
         <div
           className={classesOf(
             "alert shadow-lg my-2",
@@ -69,17 +78,8 @@ export function ShareLinkPage() {
             !failMessageShown && "hidden"
           )}
         >
-          Sorry, could not copy link. Please copy manually.
+          Sorry, could not copy link. Please copy it manually.
         </div>
-        <Input
-          title={t("pages.share.title")}
-          className="cursor-copy select-all"
-          value={link}
-          icon={<CopyIcon size={20} />}
-          readonly
-          onClick={handleShareButtonClick}
-          onChange={emptyFunction}
-        />
       </div>
     </div>
   );

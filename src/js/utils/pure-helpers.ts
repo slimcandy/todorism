@@ -24,18 +24,9 @@ export const throttle = (fn: (...args: IArguments[]) => void, wait = 300) => {
 };
 
 /**
- * Copy or share a url
+ * Copy a url
  * @param url string
  */
-export async function shareOrCopyUrl(url: string) {
-  if (
-    window.navigator.canShare &&
-    window.navigator.canShare({
-      url,
-    })
-  ) {
-    return await window.navigator.share({ url });
-  } else {
-    return await navigator.clipboard.writeText(url);
-  }
+export function copyUrl(url: string): Promise<void> {
+  return navigator.clipboard.writeText(url);
 }
