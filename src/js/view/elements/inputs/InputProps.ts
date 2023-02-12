@@ -7,6 +7,7 @@ export interface InputProps {
   title?: InputHTMLAttributes<HTMLInputElement>["title"];
   label?: string;
   className?: string;
+  inputClassName?: string;
   disabled?: boolean;
   type?: "date" | "email" | "number" | "time";
   icon?: React.ReactNode;

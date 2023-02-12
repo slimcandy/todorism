@@ -11,7 +11,7 @@ import BackPackLogo_2x from "./images/backpack_2x.png";
 function emptyFunction() {}
 const link = window.location.href;
 
-export function ShareLinkPage() {
+export const ShareLinkPage = () => {
   const { t } = useTranslation();
   const [successMessageShown, setSuccessMessageShown] = useState(false);
   const [failMessageShown, setFailMessageShown] = useState(false);
@@ -57,7 +57,7 @@ export function ShareLinkPage() {
       <div className="mb-10 xs:mb-14">
         <Input
           title={t("pages.share.title")}
-          className="cursor-copy select-all"
+          inputClassName="cursor-copy select-all"
           value={link}
           icon={<CopyIcon size={20} />}
           readonly
@@ -87,4 +87,4 @@ export function ShareLinkPage() {
   const pageFooter = <ActionPanel primaryButtonText={t("buttons.continue")} />;
 
   return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
-}
+};

@@ -11,6 +11,7 @@ export function Input(props: InputProps) {
     placeholder,
     label,
     className = "",
+    inputClassName = "",
     disabled = false,
     icon,
     isIconLeft = false,
@@ -82,7 +83,7 @@ export function Input(props: InputProps) {
           type={type}
           onChange={handleOnChange}
           onClick={handleInputClick}
-          className={inputClasses}
+          className={`${inputClasses} ${inputClassName}`}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
