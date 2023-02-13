@@ -1,4 +1,4 @@
-import React, { useId, useRef } from "react";
+import React, { memo, useId, useRef } from "react";
 import { classesOf } from "../../../../utils";
 import { TextBodyStandard } from "../../typography";
 import { InputProps } from "../InputProps";
@@ -94,3 +94,5 @@ export function Input(props: InputProps) {
     </>
   );
 }
+
+export const MemoInput = memo(Input);

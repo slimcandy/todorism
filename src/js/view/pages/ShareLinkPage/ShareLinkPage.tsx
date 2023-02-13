@@ -1,6 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Input, TextBodyStandard, TitleH1, ActionPanel } from "../../elements";
+import {
+  MemoInput as Input,
+  TextBodyStandard,
+  TitleH1,
+  ActionPanel,
+} from "../../elements";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { PageWrapper } from "../../components";
 import { classesOf, copyUrl } from "../../../utils";
@@ -54,7 +59,7 @@ export const ShareLinkPage = () => {
         <TextBodyStandard>{t("pages.share.paragraph")}</TextBodyStandard>
       </div>
 
-      <div className="mb-10 xs:mb-14">
+      <div className="mb-10 xs:mb-14 relative">
         <Input
           title={t("pages.share.title")}
           inputClassName="cursor-copy select-all"
@@ -66,7 +71,7 @@ export const ShareLinkPage = () => {
         />
         <div
           className={classesOf(
-            "alert shadow-lg my-2",
+            "alert shadow-lg my-2 absolute",
             !successMessageShown && "hidden"
           )}
         >
@@ -74,7 +79,7 @@ export const ShareLinkPage = () => {
         </div>
         <div
           className={classesOf(
-            "alert-warning shadow-lg my-2",
+            "alert-warning shadow-lg my-2 absolute",
             !failMessageShown && "hidden"
           )}
         >
