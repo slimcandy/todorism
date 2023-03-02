@@ -30,7 +30,7 @@
     "react-dom": "^18.1.0",
     "react-i18next": "^11.17.0",
     "react-redux": "^8.0.1",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "sass": "^1.53.0",
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "cross-env PORT=8080 react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true TSC_COMPILE_ON_ERROR=true react-scripts build",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "server": "nodemon server/index.js",

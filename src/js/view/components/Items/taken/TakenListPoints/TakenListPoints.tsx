@@ -37,16 +37,21 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
     }
   };
 
-  const onChangeIsTakenStatus = async (listPoint: ITakenListPoint) => {
-    setLoading(true);
-    await changeIsTakenStatus({
-      ...accessIds,
-      isTaken: listPoint.isTaken,
-      pointUid: listPoint.pointUid,
-    });
+  const onChangeIsTakenStatus = (listPoint: ITakenListPoint) => {
+    const index = listPoints.findIndex(
+      (lp) => lp.pointUid === listPoint.pointUid
+    );
 
-    await getListPoints();
-    setLoading(false);
+    if (index !== -1) {
+      void changeIsTakenStatus({
+        ...accessIds,
+        isTaken: listPoint.isTaken,
+        pointUid: listPoint.pointUid,
+      });
+
+      listPoints[index].isTaken = !listPoints[index].isTaken;
+      setListPoints([...listPoints]);
+    }
   };
 
   const listPointItem = (listPoint: ITakenListPoint) => (
@@ -70,6 +75,7 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
       listPoints={listPoints}
       listPointItem={listPointItem}
       customActionPanel={<div />}
+      disableCategoryAddButton
     />
   );
 };

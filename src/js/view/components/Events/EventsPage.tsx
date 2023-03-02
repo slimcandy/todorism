@@ -13,6 +13,7 @@ import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
 import { useLoading } from "../../../hooks";
 import { PlusIcon } from "../../icons";
+import { createEventPageUrl, eventPageUrl } from "../../../../router/constants";
 
 export const EventsPage = () => {
   const { t } = useTranslation();
@@ -22,10 +23,9 @@ export const EventsPage = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
   const { loading, setLoading } = useLoading();
 
-  const navigateToEvent = (eventUid: string) => navigate(`/event/${eventUid}`);
   const navigateToCreateEvent = () => {
     window.localStorage.removeItem("currentEvent");
-    navigate("event");
+    navigate(createEventPageUrl());
   };
 
   const goToEvent = (eventUid: string) => {
@@ -33,7 +33,7 @@ export const EventsPage = () => {
 
     if (selectedEvent) {
       saveCurrentEventInLocalStorage(selectedEvent);
-      navigateToEvent(eventUid);
+      navigate(eventPageUrl({ eventUid }));
     }
   };
 
@@ -83,14 +83,17 @@ export const EventsPage = () => {
           <>
             <AllEvents list={events} onClick={goToEvent} />
 
-            <ButtonCircle
-              className="fixed right-4 bottom-4"
-              icon={<PlusIcon size={24} />}
-              onClick={navigateToCreateEvent}
-            />
+            <div className="flex items-end justify-end h-full sticky bottom-4">
+              <ButtonCircle
+                icon={<PlusIcon size={24} />}
+                onClick={navigateToCreateEvent}
+              />
+            </div>
           </>
         )}
       </div>
     </>
   );
 };
+
+export default EventsPage;

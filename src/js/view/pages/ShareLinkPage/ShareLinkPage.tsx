@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Input, TextBodyStandard, TitleH1, ActionPanel } from "../../elements";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Input,
+  TextBodyStandard,
+  TitleH1,
+  ActionPanel,
+  Loader,
+} from "../../elements";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { PageWrapper } from "../../components";
-import { getCurrentEventFromLocalStorage } from "../../../utils/localStorage";
 import { createRecommendedPrivateList } from "../../../api_clients";
 import {
   getRecommendedListPointsFromLocalStorage,
@@ -15,19 +20,21 @@ import BackPackLogo from "./images/backpack.png";
 import BackPackLogo_2x from "./images/backpack_2x.png";
 import { useLoading } from "../../../hooks";
 import { convertIListPointToIListPointFromBE } from "../../../utils";
+import { TProvidedEvent } from "../../../../router/types";
+import { IEvent } from "../../../interfaces";
 
 export const ShareLinkPage = () => {
+  const routeData = useLoaderData() as TProvidedEvent;
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
-
   const { setLoading } = useLoading();
 
-  const status = searchParams.get("status");
+  const [event, setEvent] = useState<IEvent>();
 
-  const event = getCurrentEventFromLocalStorage();
+  const isNewEvent = event?.isNewEvent || false;
 
   const eventCardPath = event ? `/event/${event.eventUid}` : "";
 
@@ -56,16 +63,14 @@ export const ShareLinkPage = () => {
     try {
       setLoading(true);
 
-      if (status === "new") {
-        if (event) {
-          await createRecommendedPrivateList(
-            event.eventUid,
-            getRecommendedListPointsFromLocalStorage().map((l) =>
-              convertIListPointToIListPointFromBE(l)
-            )
-          );
-          saveRecommendedListPointsInLocalStorage([]);
-        }
+      if (isNewEvent && event) {
+        await createRecommendedPrivateList(
+          event.eventUid,
+          getRecommendedListPointsFromLocalStorage().map((l) =>
+            convertIListPointToIListPointFromBE(l)
+          )
+        );
+        saveRecommendedListPointsInLocalStorage([]);
 
         navigate(eventCardPath);
       } else {
@@ -88,7 +93,7 @@ export const ShareLinkPage = () => {
       </div>
 
       <div className="mb-6">
-        {status === "new" ? (
+        {isNewEvent ? (
           <TitleH1>Ура! Мероприятие успешно создано!</TitleH1>
         ) : (
           <TitleH1>{event?.title}</TitleH1>
@@ -115,12 +120,29 @@ export const ShareLinkPage = () => {
 
   const pageFooter = (
     <ActionPanel
-      primaryButtonText={t(`buttons.${status === "new" ? "continue" : "done"}`)}
+      primaryButtonText={t(`buttons.${isNewEvent ? "continue" : "done"}`)}
       onPrimaryButtonClick={() => {
         void addRecommendedListPoints();
       }}
     />
   );
 
-  return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
+  useEffect(() => {
+    if (routeData) {
+      void routeData.data.then((d) => {
+        setEvent(d.event);
+      });
+    }
+  }, [routeData]);
+
+  return (
+    <React.Suspense fallback={<Loader />}>
+      <Await
+        resolve={routeData?.data}
+        errorElement={<p>Error share page loading</p>}
+      >
+        <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />
+      </Await>
+    </React.Suspense>
+  );
 };

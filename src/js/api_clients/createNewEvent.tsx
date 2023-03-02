@@ -4,7 +4,10 @@ import {
   pushAccessIdsInLocalStorage,
 } from "../utils/localStorage";
 import { IEvent, IAccessIdsFromBE, IAccessIds } from "../interfaces";
-import { convertIAccessIdsFromBEToIAccessIds } from "../utils";
+import {
+  convertIAccessIdsFromBEToIAccessIds,
+  convertIEventToIEventFromBE,
+} from "../utils";
 
 export const editEvent = async ({
   username,
@@ -25,16 +28,22 @@ export const editEvent = async ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(event),
+        body: JSON.stringify(convertIEventToIEventFromBE(event)),
       }
     );
 
     if (response.ok) {
       const result = (await response.json()) as IAccessIdsFromBE;
-      accessIds = convertIAccessIdsFromBEToIAccessIds(result);
 
-      pushAccessIdsInLocalStorage(accessIds);
-      saveCurrentEventInLocalStorage(event);
+      if (result) {
+        accessIds = convertIAccessIdsFromBEToIAccessIds(result);
+        pushAccessIdsInLocalStorage(accessIds);
+      }
+
+      saveCurrentEventInLocalStorage({
+        ...event,
+        ...(event.isNewEvent ? { eventUid: accessIds?.eventUid } : {}),
+      });
     }
 
     return accessIds;

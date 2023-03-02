@@ -30,6 +30,10 @@ import {
 } from "../../../../elements";
 import { ICommonListPointsProps } from "./CommonListPointsProps";
 import { saveCurrentListPointInLocalStorage } from "../../../../../utils/localStorage";
+import {
+  eventCreateListPointPageUrl,
+  eventEditListPointPageUrl,
+} from "../../../../../../router/constants";
 
 export const CommonListPoints = (props: ICommonListPointsProps) => {
   const { accessIds } = props;
@@ -43,9 +47,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
   const [selectedListPoint, setSelectedListPoint] =
     useState<ICommonListPoint>();
 
-  const [loadingListPointIndex, setLoadingListPointIndex] = useState<
-    number | undefined
-  >(undefined);
+  const [loadingPointUid, setLoadingPointUid] = useState<string>("");
 
   const [modalContent, setModalContent] = useState<JSX.Element>();
 
@@ -76,9 +78,28 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     }
   };
 
+  const getEmptyListPointWithCurrentCategory = (category: string) => {
+    const emptyListPoint = getEmptyListPoint();
+
+    return {
+      ...emptyListPoint,
+      item: {
+        ...emptyListPoint.item,
+        tags: [category],
+      },
+    };
+  };
+
   const goToListPointEditPage = (listPoint: IListPoint) => {
     saveCurrentListPointInLocalStorage(listPoint);
-    navigate(listPoint.pointUid ? `item/${listPoint.pointUid}` : "item");
+    navigate(
+      listPoint.pointUid
+        ? eventEditListPointPageUrl({
+            eventUid: accessIds.eventUid,
+            listPointUid: listPoint.pointUid,
+          })
+        : eventCreateListPointPageUrl({ eventUid: accessIds.eventUid })
+    );
   };
 
   const getListPoints = async () => {
@@ -118,24 +139,26 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
 
   const updateListPointMemberBindings = async ({
     listPoint,
-    index,
   }: {
     listPoint: ICommonListPoint;
-    index: number;
   }) => {
     try {
-      setLoadingListPointIndex(index);
+      setLoadingPointUid(listPoint.pointUid);
 
       const response = await getMemberBindings({
         eventUid: accessIds.eventUid,
         pointUid: listPoint.pointUid,
       });
 
+      const index = listPoints.findIndex(
+        (lp) => lp.pointUid === listPoint.pointUid
+      );
+
       listPoints[index].bindings = (
         (await response.json()) as IListPointBindingFromBE[]
       ).map((b) => convertIListPointBindingFromBEtoIListPointBinding(b));
     } finally {
-      setLoadingListPointIndex(undefined);
+      setLoadingPointUid("");
     }
   };
 
@@ -252,12 +275,12 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     });
   };
 
-  const listPointItem = (listPoint: ICommonListPoint, index: number) => (
+  const listPointItem = (listPoint: ICommonListPoint) => (
     <CommonListPointItem
       listPoint={listPoint}
       key={listPoint.pointUid}
       memberUid={accessIds.memberUid}
-      loading={index === loadingListPointIndex}
+      loading={loadingPointUid === listPoint.pointUid}
       onBindListPoint={() => {
         void checkListPointAvailability({
           listPoint,
@@ -268,7 +291,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
         void showActionListPointModal(listPoint);
       }}
       onClickTitle={() => {
-        void updateListPointMemberBindings({ listPoint, index });
+        void updateListPointMemberBindings({ listPoint });
       }}
     />
   );
@@ -284,7 +307,14 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
       <ListPointsWrapper
         listPoints={listPoints}
         listPointItem={listPointItem}
-        onCreateListPoint={() => goToListPointEditPage(getEmptyListPoint())}
+        onCreateListPoint={(category) => {
+          let emptyListPoint;
+
+          if (category) {
+            emptyListPoint = getEmptyListPointWithCurrentCategory(category);
+          }
+          goToListPointEditPage(emptyListPoint || getEmptyListPoint());
+        }}
       />
 
       {modalContent && <Modal onShow={closeModal} content={modalContent} />}

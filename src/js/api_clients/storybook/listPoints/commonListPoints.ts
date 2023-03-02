@@ -7,13 +7,13 @@ import {
   IListPointBindingFromBE,
 } from "../../../interfaces";
 import { commonListPointApi } from "../../listPoint";
-import { accessIds } from "../../../utils/json/accessIds/accessIds.json";
+// import { accessIds } from "../../../utils/json/accessIds/accessIds.json";
 
 const status = 200;
 const delay = 700;
 
 const commonEndPoints = commonListPointApi({
-  eventUid: accessIds.eventUid,
+  eventUid: "",
   pointUid: ":pointUid",
 });
 

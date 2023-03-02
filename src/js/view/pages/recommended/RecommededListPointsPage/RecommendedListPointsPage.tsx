@@ -17,6 +17,11 @@ import {
 import { ListPointsWrapper } from "../../../components/Items/ListPointsWrapper/ListPointsWrapper";
 import { getEmptyListPoint } from "../../../../utils";
 import { PrivateListPointItem } from "../../../components/Items/private/PrivateListPointItem/PrivateListPointItem";
+import {
+  eventCreateRecommendedListPointPageUrl,
+  eventEditRecommendedListPointPageUrl,
+  shareEventPageUrl,
+} from "../../../../../router/constants";
 
 export const RecommendedListPointsPage = () => {
   const { t } = useTranslation();
@@ -31,11 +36,17 @@ export const RecommendedListPointsPage = () => {
 
   const [modalContent, setModalContent] = useState<JSX.Element>();
 
-  const sharePageLink = `/event/${eventUid}/share?status=new`;
+  const goToListPointEditPage = (listPoint: IListPoint) => {
+    const index = listPoints.findIndex(
+      (lp) => lp.item.name === listPoint.item.name
+    );
 
-  const goToListPointEditPage = (listPoint: IListPoint, index?: number) => {
     saveCurrentListPointInLocalStorage(listPoint);
-    navigate(index ? `item/${index}` : "item");
+    navigate(
+      index !== -1
+        ? eventEditRecommendedListPointPageUrl({ eventUid, index })
+        : eventCreateRecommendedListPointPageUrl({ eventUid })
+    );
   };
 
   const updateListPoints = () => {
@@ -61,9 +72,11 @@ export const RecommendedListPointsPage = () => {
     );
 
   const title = (
-    <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col">
       <TitleH1>{t("pages.recommended.title")}</TitleH1>
-      <TextBodyStandard>{t("pages.recommended.description")}</TextBodyStandard>
+      <TextBodyStandard className="my-3">
+        {t("pages.recommended.description")}
+      </TextBodyStandard>
     </div>
   );
 
@@ -73,17 +86,20 @@ export const RecommendedListPointsPage = () => {
       primaryButtonText={t("list_point.add_item")}
       onPrimaryButtonClick={() => goToListPointEditPage(getEmptyListPoint())}
       secondaryButtonText={`> ${t("buttons.next")}`}
-      onSecondaryButtonClick={() => navigate(sharePageLink)}
+      onSecondaryButtonClick={() => navigate(shareEventPageUrl({ eventUid }))}
     />
   );
 
-  const listPointItem = (listPoint: IListPoint, index = 0) => (
+  const listPointItem = (listPoint: IListPoint) => (
     <PrivateListPointItem
       key={listPoint.item.name}
       listPoint={listPoint}
-      onEdit={() => goToListPointEditPage(listPoint, index)}
+      onEdit={() => goToListPointEditPage(listPoint)}
       onRemove={() =>
-        addRemoveListPointModalContent(index, listPoint.item.name)
+        addRemoveListPointModalContent(
+          listPoints.findIndex((lp) => lp.item.name === listPoint.item.name),
+          listPoint.item.name
+        )
       }
     />
   );

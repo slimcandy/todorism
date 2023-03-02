@@ -11,7 +11,7 @@ module.exports = {
         base: "1rem",
       },
       screens: {
-        xs: "390px",
+        xs: "400px",
       },
       fontFamily: {
         extralight: ["Manrope-ExtraLight", "sans-serif"],
