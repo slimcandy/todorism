@@ -15,6 +15,10 @@ import { IListPoint, IPrivateListPointFromBE } from "../../../../../interfaces";
 import { Modal, RemoveListPointModal } from "../../../../elements";
 import { IPrivateListPointsProps } from "./PrivateListPointsProps";
 import { saveCurrentListPointInLocalStorage } from "../../../../../utils/localStorage";
+import {
+  eventCreateListPointPageUrl,
+  eventEditListPointPageUrl,
+} from "../../../../../../router/constants";
 
 export const PrivateListPoints = (props: IPrivateListPointsProps) => {
   const { accessIds } = props;
@@ -29,7 +33,16 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
 
   const goToListPointEditPage = (listPoint: IListPoint) => {
     saveCurrentListPointInLocalStorage(listPoint);
-    navigate(listPoint?.pointUid ? `item/${listPoint.pointUid}` : "item");
+    navigate(
+      listPoint.pointUid
+        ? eventEditListPointPageUrl({
+            eventUid: accessIds.eventUid,
+            listPointUid: listPoint.pointUid,
+          })
+        : eventCreateListPointPageUrl({
+            eventUid: accessIds.eventUid,
+          })
+    );
   };
 
   const getListPoints = async () => {
@@ -80,14 +93,18 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
       />
     );
 
-  const listPointItem = (listPoint: IListPoint) => (
-    <PrivateListPointItem
-      listPoint={listPoint}
-      key={listPoint.pointUid}
-      onEdit={() => goToListPointEditPage(listPoint)}
-      onRemove={() => showRemoveListPointModal(listPoint)}
-    />
-  );
+  const listPointItem = (index: number) => {
+    const listPoint = listPoints[index];
+
+    return (
+      <PrivateListPointItem
+        listPoint={listPoint}
+        key={listPoint.pointUid}
+        onEdit={() => goToListPointEditPage(listPoint)}
+        onRemove={() => showRemoveListPointModal(listPoint)}
+      />
+    );
+  };
 
   useEffect(() => {
     if (listPoints.length === 0) {

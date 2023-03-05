@@ -5,6 +5,7 @@ import { Input, TextBodyLarge, TitleH1, ActionPanel } from "../../elements";
 import tentImg from "../../../../assets/images/tent.png";
 import { saveUserNameInLocalStorage } from "../../../utils/localStorage";
 import { PageWrapper } from "..";
+import { homePageUrl } from "../../../../router/constants";
 
 export const WelcomePage = () => {
   const { t } = useTranslation();
@@ -12,7 +13,6 @@ export const WelcomePage = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState<string>("");
-  // const [redirectToEvents, setRedirectToEvents] = useState<boolean>(false);
 
   const onUsernameSubmit = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -20,7 +20,7 @@ export const WelcomePage = () => {
     event.preventDefault();
 
     saveUserNameInLocalStorage(username);
-    navigate(0);
+    navigate(homePageUrl());
   };
 
   const pageMainContent = (

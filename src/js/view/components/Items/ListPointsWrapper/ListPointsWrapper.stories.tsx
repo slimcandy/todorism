@@ -16,7 +16,8 @@ export default {
   component: ListPointsWrapper,
 };
 
-const list = Array(40).fill(privateListPoint);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const list: IListPoint[] = Array(40).fill(privateListPoint);
 
 const Template: ComponentStory<typeof ListPointsWrapper> = (args) => (
   <ListPointsWrapper {...args} />
@@ -25,9 +26,7 @@ const Template: ComponentStory<typeof ListPointsWrapper> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   listPoints: list,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  listPointItem: (listPoint: IListPoint) => <div>{listPoint.item.name}</div>,
+  listPointItem: (index: number) => <div>{list[index].item.name}</div>,
 };
 
 export const Empty = Template.bind({});

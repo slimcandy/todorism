@@ -6,7 +6,7 @@ export const urlApiSet = `${urlApi}v1/set-`;
 export const localStorageUsernameKey = "nickname";
 export const localStorageTripIdKey = "trip_ids";
 export const SERVER_URL =
-  process.env.REACT_APP_SERVER || "https://web-production-f80b.up.railway.app";
+  process.env.REACT_APP_SERVER || "https://tracking-organizer.herokuapp.com";
 
 // Elements
 export const langLocales = [

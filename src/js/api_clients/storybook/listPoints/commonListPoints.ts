@@ -1,13 +1,13 @@
 import {
   commonListPointBindingsFromBE,
   commonListPointsFromBE,
+  accessIds,
 } from "../../../utils";
 import {
   ICommonListPointFromBE,
   IListPointBindingFromBE,
 } from "../../../interfaces";
 import { commonListPointApi } from "../../listPoint";
-import { accessIds } from "../../../utils/json/accessIds/accessIds.json";
 
 const status = 200;
 const delay = 700;

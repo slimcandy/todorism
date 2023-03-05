@@ -18,7 +18,7 @@ const LoadingContext = createContext<ILoadingContext>({
 });
 
 export const LoadingProvider = ({ children }: { children: JSX.Element }) => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const value = useMemo(
     () => ({
       loading,

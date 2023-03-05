@@ -8,6 +8,7 @@ import {
 } from "../../../../../api_clients";
 import { useLoading } from "../../../../../hooks";
 import {
+  IListPoint,
   ITakenListPoint,
   ITakenListPointFromBE,
 } from "../../../../../interfaces";
@@ -18,6 +19,8 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
 
   const [listPoints, setListPoints] = useState<ITakenListPoint[]>([]);
 
+  const [items, setItems] = useState<IListPoint[]>([]);
+
   const { setLoading } = useLoading();
 
   const getListPoints = async () => {
@@ -25,39 +28,56 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
       setLoading(true);
 
       const response = await getTakenListPoints(accessIds);
-      const listPointsFromBE = (
-        (await response.json()) as ITakenListPointFromBE[]
-      ).map((listPoint) =>
-        convertITakenListPointFromBEToITakenListPoint(listPoint)
+      const takenListPointsFromBE: ITakenListPoint[] = [];
+      const listPointsFromBE: IListPoint[] = [];
+
+      ((await response.json()) as ITakenListPointFromBE[]).forEach(
+        (listPoint) => {
+          const convertedListPoint =
+            convertITakenListPointFromBEToITakenListPoint(listPoint);
+
+          takenListPointsFromBE.push(convertedListPoint);
+          listPointsFromBE.push(convertedListPoint.point);
+        }
       );
 
-      setListPoints(listPointsFromBE);
+      setListPoints(takenListPointsFromBE);
+      setItems(listPointsFromBE);
     } finally {
       setLoading(false);
     }
   };
 
-  const onChangeIsTakenStatus = async (listPoint: ITakenListPoint) => {
-    setLoading(true);
-    await changeIsTakenStatus({
-      ...accessIds,
-      isTaken: listPoint.isTaken,
-      pointUid: listPoint.pointUid,
-    });
+  const onChangeIsTakenStatus = (listPoint: ITakenListPoint) => {
+    const index = listPoints.findIndex(
+      (lp) => lp.pointUid === listPoint.pointUid
+    );
 
-    await getListPoints();
-    setLoading(false);
+    if (index !== -1) {
+      void changeIsTakenStatus({
+        ...accessIds,
+        isTaken: listPoint.isTaken,
+        pointUid: listPoint.pointUid,
+      });
+
+      listPoints[index].isTaken = !listPoints[index].isTaken;
+      setListPoints([...listPoints]);
+    }
   };
 
-  const listPointItem = (listPoint: ITakenListPoint) => (
-    <TakenListPointItem
-      listPoint={listPoint}
-      key={listPoint.pointUid}
-      onCheck={() => {
-        void onChangeIsTakenStatus(listPoint);
-      }}
-    />
-  );
+  const listPointItem = (index: number) => {
+    const listPoint = listPoints[index];
+
+    return (
+      <TakenListPointItem
+        listPoint={listPoint}
+        key={listPoint.pointUid}
+        onCheck={() => {
+          void onChangeIsTakenStatus(listPoint);
+        }}
+      />
+    );
+  };
 
   useEffect(() => {
     if (listPoints.length === 0) {
@@ -67,9 +87,10 @@ export const TakenListPoints = (props: ITakenListPointsProps) => {
 
   return (
     <ListPointsWrapper
-      listPoints={listPoints}
+      listPoints={items}
       listPointItem={listPointItem}
       customActionPanel={<div />}
+      disableCategoryAddButton
     />
   );
 };

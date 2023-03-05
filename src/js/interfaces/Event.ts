@@ -8,4 +8,5 @@ export interface IEventFromBE {
 
 export interface IEvent extends Omit<IEventFromBE, "trip_uid"> {
   eventUid: string;
+  isNewEvent?: boolean;
 }

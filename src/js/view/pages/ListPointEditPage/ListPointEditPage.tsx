@@ -1,7 +1,6 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import {
-  getEventAccessIds,
   getCurrentListPointFromLocalStorage,
   deleteCurrentListPointFromLocalStorage,
   getListPointTypeFromLocalStorage,
@@ -14,16 +13,18 @@ import {
 } from "../../../api_clients";
 import { useLoading } from "../../../hooks";
 
-import { ICommonListPoint, IListPoint } from "../../../interfaces";
+import { IAccessIds, ICommonListPoint, IListPoint } from "../../../interfaces";
+import { TProvidedEvent } from "../../../../router/types";
+import { Loader } from "../../elements";
 
 export const ListPointEditPage = () => {
-  const { setLoading } = useLoading();
+  const routeData = useLoaderData() as TProvidedEvent;
 
-  const { eventUid } = useParams();
+  const { setLoading } = useLoading();
 
   const navigate = useNavigate();
 
-  const accessIds = (eventUid && getEventAccessIds(eventUid)) || undefined;
+  const [accessIds, setAccessIds] = useState<IAccessIds>();
 
   const listPointType = getListPointTypeFromLocalStorage();
 
@@ -60,15 +61,30 @@ export const ListPointEditPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (routeData) {
+      void routeData.data.then((d) => {
+        setAccessIds(d.accessIds);
+      });
+    }
+  }, [routeData]);
+
   return (
-    listPoint && (
-      <ListPointEdit
-        listPoint={listPoint}
-        isCreationMode={isCreationMode}
-        onClick={(editedListPoint) => {
-          void changeListPoint(editedListPoint);
-        }}
-      />
-    )
+    <React.Suspense fallback={<Loader />}>
+      <Await
+        resolve={routeData?.data}
+        errorElement={<p>Error list point edit page loading</p>}
+      >
+        {listPoint && (
+          <ListPointEdit
+            listPoint={listPoint}
+            isCreationMode={isCreationMode}
+            onClick={(editedListPoint) => {
+              void changeListPoint(editedListPoint);
+            }}
+          />
+        )}
+      </Await>
+    </React.Suspense>
   );
 };

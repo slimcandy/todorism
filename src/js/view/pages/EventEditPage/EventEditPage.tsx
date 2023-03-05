@@ -1,66 +1,84 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { createNewEvent } from "../../../api_clients";
-import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
-import { IEvent } from "../../../interfaces";
+import { useNavigate, useLoaderData, Await } from "react-router-dom";
+import { editEvent } from "../../../api_clients";
 import {
+  Loader,
   Input,
   InputDate,
   TitleH1,
   TextArea,
   ActionPanel,
 } from "../../elements";
+import { getUserNameFromLocalStorage } from "../../../utils/localStorage";
+import { IEvent } from "../../../interfaces";
 import { InputProps } from "../../elements/inputs/InputProps";
 import { useLoading } from "../../../hooks";
-import { PageWrapper } from "../PageWrapper/PageWrapper";
+import { PageWrapper } from "../../components";
+import { TProvidedEvent } from "../../../../router/types";
+import { eventMembersPageUrl } from "../../../../router/constants";
+import { convertDateToYYYYMMDDWithDash } from "../../../utils";
 
-export const NewEventPage = () => {
+export const EventEditPage = () => {
+  const routeData = useLoaderData() as TProvidedEvent;
+
   const { t } = useTranslation();
-  const [userName, setUserName] = useState<string | null>("");
+
   const { setLoading } = useLoading();
 
-  const [newEvent, setNewEvent] = useState<IEvent>({
+  const navigate = useNavigate();
+
+  const username = getUserNameFromLocalStorage() || "Default user";
+
+  const [event, setEvent] = useState<IEvent>({
     eventUid: "",
     title: "",
     description: "",
     start: null,
     end: null,
+    isNewEvent: true,
   });
 
   const onNewTripNameChange: InputProps["onChange"] = (newName) => {
-    setNewEvent({ ...newEvent, title: newName });
+    setEvent({ ...event, title: newName });
   };
 
   const onStartDateChange: InputProps["onChange"] = (startDate) => {
-    setNewEvent({ ...newEvent, start: new Date(startDate).toISOString() });
+    setEvent({
+      ...event,
+      start: new Date(startDate).toISOString(),
+    });
   };
 
   const onEndDateChange: InputProps["onChange"] = (endDate) => {
-    setNewEvent({ ...newEvent, end: new Date(endDate).toISOString() });
+    setEvent({ ...event, end: new Date(endDate).toISOString() });
   };
 
   const onNewTripDescriptionChange = (desc: string) => {
-    setNewEvent({ ...newEvent, description: desc });
+    setEvent({ ...event, description: desc });
   };
 
-  const isBtnDisabled = newEvent.title === null || newEvent.title.length === 0;
+  const isBtnDisabled = event.title === null || event.title.length === 0;
 
-  const createEvent = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  const onEditEvent = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     try {
-      event.preventDefault();
+      e.preventDefault();
       setLoading(true);
 
-      createNewEvent(
-        userName ?? "",
-        newEvent.title ?? "",
-        newEvent.description,
-        newEvent.start,
-        newEvent.end
-      )
-        .then(() => {})
-        .catch(() => {});
+      const accessIds = await editEvent({
+        username,
+        event,
+      });
+
+      if (!accessIds) {
+        navigate(-1);
+      } else {
+        navigate(eventMembersPageUrl({ eventUid: accessIds.eventUid }));
+      }
+    } catch (error) {
+      console.error("event edit error", error);
     } finally {
       setLoading(false);
     }
@@ -76,12 +94,14 @@ export const NewEventPage = () => {
     >
       <div>
         <div className="mb-6">
-          <TitleH1>{t("pages.new_event.title")}</TitleH1>
+          <TitleH1>
+            {t(`pages.new_event.${event.eventUid ? "edit_title" : "title"}`)}
+          </TitleH1>
         </div>
         <div className="mb-4">
           <Input
             label={t("pages.new_event.event_name")}
-            value={newEvent.title}
+            value={event.title}
             onChange={onNewTripNameChange}
             placeholder={`${t("pages.new_event.example")}, ${t(
               "pages.new_event.event_name_example"
@@ -93,7 +113,9 @@ export const NewEventPage = () => {
             <div className="mr-4">
               <InputDate
                 label={t("pages.new_event.dates")}
-                value={newEvent.start || ""}
+                value={
+                  event.start ? convertDateToYYYYMMDDWithDash(event.start) : ""
+                }
                 onChange={onStartDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_start")}: ${t(
@@ -104,7 +126,9 @@ export const NewEventPage = () => {
             <div>
               <InputDate
                 label={t("pages.new_event.dates")}
-                value={newEvent.end || ""}
+                value={
+                  event.end ? convertDateToYYYYMMDDWithDash(event.end) : ""
+                }
                 onChange={onEndDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_end")}: ${t(
@@ -122,7 +146,7 @@ export const NewEventPage = () => {
               "pages.new_event.description_example"
             )}`}
             onChange={onNewTripDescriptionChange}
-            value={newEvent.description}
+            value={event.description}
           />
         </div>
       </div>
@@ -131,22 +155,35 @@ export const NewEventPage = () => {
 
   const pageFooter = (
     <ActionPanel
-      primaryButtonText={t("buttons.create")}
+      primaryButtonText={t(`buttons.${event.eventUid ? "done" : "create"}`)}
       primaryButtonType="submit"
       primaryButtonDisabled={isBtnDisabled}
-      onPrimaryButtonClick={(event) => createEvent(event)}
+      onPrimaryButtonClick={(e) => {
+        void onEditEvent(e);
+      }}
     />
   );
 
   useEffect(() => {
-    setUserName(getUserNameFromLocalStorage());
-  }, []);
+    if (routeData) {
+      void routeData.data.then((d) => {
+        setEvent(d.event);
+      });
+    }
+  }, [routeData]);
 
   return (
-    <PageWrapper
-      pageContent={pageMainContent}
-      pageFooter={pageFooter}
-      verticalTopPageContent
-    />
+    <React.Suspense fallback={<Loader />}>
+      <Await
+        resolve={routeData?.data}
+        errorElement={<p>Error event edit page loading</p>}
+      >
+        <PageWrapper
+          pageContent={pageMainContent}
+          pageFooter={pageFooter}
+          verticalTopPageContent
+        />
+      </Await>
+    </React.Suspense>
   );
 };
