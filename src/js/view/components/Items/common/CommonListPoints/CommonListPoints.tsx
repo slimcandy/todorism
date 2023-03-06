@@ -120,7 +120,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     } finally {
       setLoading(false);
     }
-  }, [accessIds.eventUid, setLoading]);
+  }, [accessIds, setLoading]);
 
   const removeListPoint = async (listPoint: IListPoint) => {
     try {

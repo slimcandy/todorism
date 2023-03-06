@@ -50,21 +50,24 @@ export const ShareLinkPage = () => {
 
   const [failMessageShown, setFailMessageShown] = useState(false);
 
-  const handleCopyButtonClick = useCallback((url: string = link) => {
-    copyUrl(url)
-      .then(() => {
-        setSuccessMessageShown(true);
-        setTimeout(() => {
-          setSuccessMessageShown(false);
-        }, 1000 * 2);
-      })
-      .catch(() => {
-        setFailMessageShown(true);
-        setTimeout(() => {
-          setFailMessageShown(false);
-        }, 1000 * 2);
-      });
-  }, []);
+  const handleCopyButtonClick = useCallback(
+    (url: string = link) => {
+      copyUrl(url)
+        .then(() => {
+          setSuccessMessageShown(true);
+          setTimeout(() => {
+            setSuccessMessageShown(false);
+          }, 1000 * 2);
+        })
+        .catch(() => {
+          setFailMessageShown(true);
+          setTimeout(() => {
+            setFailMessageShown(false);
+          }, 1000 * 2);
+        });
+    },
+    [link]
+  );
 
   const addRecommendedListPoints = async () => {
     try {

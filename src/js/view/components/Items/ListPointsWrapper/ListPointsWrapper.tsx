@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   TGroupedListPoints,
@@ -86,7 +86,7 @@ export const ListPointsWrapper = (props: IListPointsWrapperProps) => {
     }
   };
 
-  const initializeGroupedListPoints = (list: IListPoint[]) => {
+  const initializeGroupedListPoints = useCallback((list: IListPoint[]) => {
     let grouped: TGroupedListPoints = {};
     list.forEach((listPoint, index: number) => {
       grouped = updateGroupedListPoints({
@@ -99,7 +99,7 @@ export const ListPointsWrapper = (props: IListPointsWrapperProps) => {
     });
     setGroupedListPoints(grouped);
     setGroupedListPointsAfterFilter(grouped);
-  };
+  }, []);
 
   const noContent = (
     <div className="flex flex-col h-full items-center justify-center gap-y-6">
@@ -170,7 +170,7 @@ export const ListPointsWrapper = (props: IListPointsWrapperProps) => {
     if (listPoints.length > 0) {
       initializeGroupedListPoints(listPoints);
     }
-  }, [listPoints]);
+  }, [initializeGroupedListPoints, listPoints]);
 
   return (
     <PageWrapper
