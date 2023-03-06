@@ -22,3 +22,12 @@ export const throttle = (fn: (...args: IArguments[]) => void, wait = 300) => {
     }
   };
 };
+
+/**
+ * Copy a url
+ * @param url string
+ */
+export function copyUrl(url: string): Promise<void> {
+  const { navigator } = window;
+  return navigator.clipboard.writeText(url);
+}
