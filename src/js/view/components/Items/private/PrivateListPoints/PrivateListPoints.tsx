@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PrivateListPointItem } from "../PrivateListPointItem/PrivateListPointItem";
 import { ListPointsWrapper } from "../../ListPointsWrapper/ListPointsWrapper";
@@ -45,7 +45,7 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
     );
   };
 
-  const getListPoints = async () => {
+  const getListPoints = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -60,7 +60,7 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [accessIds, setLoading]);
 
   const removeListPoint = async (listPoint: IListPoint) => {
     try {
@@ -110,7 +110,7 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
     if (listPoints.length === 0) {
       void getListPoints();
     }
-  }, [listPoints.length]);
+  }, [getListPoints, listPoints.length]);
 
   return (
     <>

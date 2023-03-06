@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import {
-  Input,
+  MemoInput as Input,
   TextBodyStandard,
   TitleH1,
   ActionPanel,
@@ -19,9 +19,15 @@ import {
 import BackPackLogo from "./images/backpack.png";
 import BackPackLogo_2x from "./images/backpack_2x.png";
 import { useLoading } from "../../../hooks";
-import { convertIListPointToIListPointFromBE } from "../../../utils";
+import {
+  convertIListPointToIListPointFromBE,
+  classesOf,
+  copyUrl,
+} from "../../../utils";
 import { TProvidedEvent } from "../../../../router/types";
 import { IEvent } from "../../../interfaces";
+
+function emptyFunction() {}
 
 export const ShareLinkPage = () => {
   const routeData = useLoaderData() as TProvidedEvent;
@@ -38,26 +44,27 @@ export const ShareLinkPage = () => {
 
   const eventCardPath = event ? `/event/${event.eventUid}` : "";
 
-  const url = `${window.location.origin}${eventCardPath}`;
+  const link = `${window.location.origin}${eventCardPath}`;
 
-  const shareUrl = () => {
-    if (
-      window.navigator.canShare &&
-      window.navigator.canShare({
-        url,
+  const [successMessageShown, setSuccessMessageShown] = useState(false);
+
+  const [failMessageShown, setFailMessageShown] = useState(false);
+
+  const handleCopyButtonClick = useCallback((url: string = link) => {
+    copyUrl(url)
+      .then(() => {
+        setSuccessMessageShown(true);
+        setTimeout(() => {
+          setSuccessMessageShown(false);
+        }, 1000 * 2);
       })
-    ) {
-      window.navigator
-        .share({ url })
-        .then(() => {})
-        .catch(() => {});
-    } else {
-      navigator.clipboard
-        .writeText(url)
-        .then(() => {})
-        .catch(() => {});
-    }
-  };
+      .catch(() => {
+        setFailMessageShown(true);
+        setTimeout(() => {
+          setFailMessageShown(false);
+        }, 1000 * 2);
+      });
+  }, []);
 
   const addRecommendedListPoints = async () => {
     try {
@@ -104,16 +111,32 @@ export const ShareLinkPage = () => {
         <TextBodyStandard>{t("pages.share.paragraph")}</TextBodyStandard>
       </div>
 
-      <div className="mb-10 xs:mb-14">
+      <div className="mb-10 xs:mb-14 relative">
         <Input
           title={t("pages.share.title")}
-          className="cursor-copy select-all"
-          value={url}
+          inputClassName="cursor-copy select-all"
+          value={link}
           icon={<CopyIcon size={20} />}
           readonly
-          onClick={shareUrl}
-          onChange={() => {}}
+          onClick={handleCopyButtonClick}
+          onChange={emptyFunction}
         />
+        <div
+          className={classesOf(
+            "alert shadow-lg my-2 absolute",
+            !successMessageShown && "hidden"
+          )}
+        >
+          Link is copied
+        </div>
+        <div
+          className={classesOf(
+            "alert-warning shadow-lg my-2 absolute",
+            !failMessageShown && "hidden"
+          )}
+        >
+          Sorry, could not copy link. Please copy it manually.
+        </div>
       </div>
     </div>
   );
