@@ -25,12 +25,21 @@ export const commonListPointApi = ({
   }`,
 });
 
-export const getCommonListPoints = ({ eventUid }: { eventUid: string }) =>
+export const getCommonListPoints = ({
+  eventUid,
+  memberUid,
+}: {
+  eventUid: string;
+  memberUid: string;
+}) =>
   fetch(commonListPointApi({ eventUid }).getItems, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      member_uid: memberUid,
+    }),
   });
 
 export const editCommonListPoint = ({
@@ -52,7 +61,7 @@ export const editCommonListPoint = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...convertIListPointToIListPointFromBE(listPoint),
+        point: convertIListPointToIListPointFromBE(listPoint),
         member_uid: memberUid,
       }),
     }

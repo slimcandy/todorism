@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ActionPanel, EllipseWithImg, TitleH1 } from "../../elements";
 import fireImg from "../../../../assets/images/fire.png";
 import { PageWrapper } from "../PageWrapper/PageWrapper";
+import { createEventPageUrl } from "../../../../router/constants";
 
 export const NoEventsPage = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ export const NoEventsPage = () => {
     <ActionPanel
       primaryButtonText={t("events.create_new_event.create_btn")}
       primaryButtonType="submit"
-      onPrimaryButtonClick={() => navigate("/new-event")}
+      onPrimaryButtonClick={() => navigate(createEventPageUrl())}
     />
   );
 

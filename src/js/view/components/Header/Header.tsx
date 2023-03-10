@@ -2,9 +2,9 @@ import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { langLocales } from "../../../common/constants";
-import { TitleH1 } from "../../elements";
 import { GearIcon } from "../../icons";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
+import { Logo } from "../../icons/Logo";
 
 type HeaderProps = {
   isWithLogo?: boolean;
@@ -40,7 +40,7 @@ export const Header = (props: HeaderProps) => {
     >
       {isWithLogo && (
         <Link to="/">
-          <TitleH1>LOGO</TitleH1>
+          <Logo />
         </Link>
       )}
       {!isWithLogo && <div> Back </div>}

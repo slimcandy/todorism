@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import { MembersList } from "../../components/Members/MembersList";
-import { ActionPanel, ButtonCircle, Input, TitleH1 } from "../../elements";
-import { DoneIcon, PlusIcon } from "../../icons";
-import { IMember } from "../../../interfaces";
-import { PageWrapper } from "../../components";
 import {
-  addMember,
-  deleteMember,
-  getMembers,
-  renameMember,
-} from "../../../api_clients/api_members";
+  ActionPanel,
+  ButtonCircle,
+  Input,
+  Loader,
+  TitleH1,
+} from "../../elements";
+import { DoneIcon, PlusIcon } from "../../icons";
+import { IAccessIds, IEvent, IMember } from "../../../interfaces";
+import { PageWrapper } from "../../components";
+import { addMember, deleteMember, renameMember } from "../../../api_clients";
+import { TEventWelcomePage } from "../../../../router/types";
+import { eventRecommendedListPointsPageUrl } from "../../../../router/constants";
 
 export const MembersPage = () => {
+  const routeData = useLoaderData() as TEventWelcomePage;
+
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
+
+  const [event, setEvent] = useState<IEvent>();
+
+  const [eventUid, setEventUid] = useState<string>("");
+
+  const [accessIds, setAccessIds] = useState<IAccessIds>();
 
   const editingMemberBlank: IMember = { name: "", member_uid: "" };
 
-  const { eventUid = "" } = useParams();
+  const isNewEvent = event?.isNewEvent;
 
   const [editingMember, setEditingMember] =
     useState<IMember>(editingMemberBlank);
@@ -132,19 +145,29 @@ export const MembersPage = () => {
       </div>
 
       <ActionPanel
-        primaryButtonText={t("buttons.next")}
+        primaryButtonText={t(`buttons.${isNewEvent ? "next" : "done"}`)}
         primaryButtonType="submit"
+        onPrimaryButtonClick={() => {
+          if (isNewEvent && eventUid) {
+            navigate(eventRecommendedListPointsPageUrl({ eventUid }));
+          } else {
+            navigate(-1);
+          }
+        }}
       />
     </div>
   );
 
-  const pageMainContent = (
+  const pageMainContent = accessIds && (
     <div className="flex flex-col h-full w-full">
       <div>
-        <TitleH1>{t("pages.members.add_members")}</TitleH1>
+        <TitleH1>
+          {t(`pages.members.${isNewEvent ? "add_members" : "edit_members"}`)}
+        </TitleH1>
 
         <div className="grid gap-y-2 grid-cols-1">
           <MembersList
+            accessIds={accessIds}
             list={list}
             onEdit={setEditingMember}
             onFinishEdit={() => {}}
@@ -161,14 +184,24 @@ export const MembersPage = () => {
   );
 
   useEffect(() => {
-    if (eventUid) {
-      getMembers(eventUid)
-        .then((data) => {
-          setList([...data]);
-        })
-        .catch(() => {});
+    if (routeData) {
+      void routeData.data.then((d) => {
+        setEvent(d.event);
+        setEventUid(d.event.eventUid);
+        setAccessIds(d.accessIds);
+        setList(d.members);
+      });
     }
-  }, [eventUid]);
+  }, [routeData]);
 
-  return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
+  return (
+    <React.Suspense fallback={<Loader />}>
+      <Await
+        resolve={routeData?.data}
+        errorElement={<p>Error members page loading</p>}
+      >
+        <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />
+      </Await>
+    </React.Suspense>
+  );
 };

@@ -17,13 +17,6 @@ export const InputDate = (props: InputProps) => {
 
   const id = useId();
 
-  const firstValue = String(value) === "undefined" ? "" : String(value);
-  const [localValue, setLocalValue] = React.useState(firstValue);
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalValue(event.target.value);
-    onChange?.(event.target.value);
-  };
-
   const inputClasses = classesOf(
     "input w-full h-11",
     "focus:outline-none bg-light-2 text-black-4 dark:bg-black-2 dark:text-light-0",
@@ -65,10 +58,10 @@ export const InputDate = (props: InputProps) => {
         <input
           id={id}
           type={type}
-          onChange={handleOnChange}
+          onChange={(e) => onChange(e.target.value)}
           className={inputClasses}
           disabled={disabled}
-          value={localValue}
+          value={value}
           placeholder={placeholder}
         />
       </div>

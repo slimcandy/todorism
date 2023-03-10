@@ -4,10 +4,11 @@ import { EventListItem } from "../EventListItem/EventListItem";
 
 type EventListProps = {
   list: Array<IEvent>;
+  onClick: (value: string) => void;
 };
 
 export const EventList = (props: EventListProps) => {
-  const { list } = props;
+  const { list, onClick } = props;
 
   const sortedListByDayDesc = list.sort(
     (a, b) =>
@@ -17,7 +18,12 @@ export const EventList = (props: EventListProps) => {
   return (
     <>
       {sortedListByDayDesc.map((event) => (
-        <div className="mb-2">
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+        <div
+          className="mb-2"
+          key={event.eventUid}
+          onClick={() => onClick(event.eventUid)}
+        >
           <EventListItem
             eventUid={event.eventUid}
             key={event.eventUid}

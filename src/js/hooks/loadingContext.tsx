@@ -13,7 +13,7 @@ interface ILoadingContext {
 }
 
 const LoadingContext = createContext<ILoadingContext>({
-  loading: false,
+  loading: true,
   setLoading: () => false,
 });
 

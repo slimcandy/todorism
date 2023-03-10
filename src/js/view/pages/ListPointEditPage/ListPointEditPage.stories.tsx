@@ -8,7 +8,10 @@ import {
   IListPoint,
   IPrivateListPointFromBE,
 } from "../../../interfaces";
-import { commonListPointApi, privateListPointApi } from "../../../api_clients";
+import {
+  mockedPrivateListPointsApi,
+  mockedCommonListPointsApi,
+} from "../../../api_clients";
 import {
   accessIds,
   privateListPointsFromBE,
@@ -33,50 +36,6 @@ const privateListPoint = convertIPrivateListPointFromBEToIListPoint(
 );
 
 const emptyListPoint = getEmptyListPoint();
-
-const privateEndPoints = privateListPointApi({
-  ...accessIds,
-  pointUid: ":pointUid",
-});
-
-const commonEndPoints = commonListPointApi({
-  eventUid: accessIds.eventUid,
-  pointUid: ":pointUid",
-});
-
-const mockedPrivateApi = {
-  addItem: {
-    url: privateEndPoints.addItem,
-    method: "POST",
-    status: 200,
-    response: [],
-    delay: 700,
-  },
-  editItem: {
-    url: privateEndPoints.editItem,
-    method: "PUT",
-    status: 200,
-    response: [],
-    delay: 700,
-  },
-};
-
-const mockedCommonApi = {
-  addItem: {
-    url: commonEndPoints.addItem,
-    method: "POST",
-    status: 200,
-    response: [],
-    delay: 700,
-  },
-  editItem: {
-    url: commonEndPoints.editItem,
-    method: "POST",
-    status: 200,
-    response: [],
-    delay: 700,
-  },
-};
 
 const initialLocalStorageState = ({
   type,
@@ -113,7 +72,7 @@ CreatePrimaryListPoint.loaders = [
     initialLocalStorageState({ type: "private", listPoint: emptyListPoint }),
 ];
 CreatePrimaryListPoint.parameters = {
-  mockData: Object.values(mockedPrivateApi),
+  mockData: Object.values(mockedPrivateListPointsApi),
 };
 
 export const CreateCommonListPoint = Template.bind({});
@@ -121,7 +80,7 @@ CreateCommonListPoint.loaders = [
   () => initialLocalStorageState({ type: "common", listPoint: emptyListPoint }),
 ];
 CreateCommonListPoint.parameters = {
-  mockData: Object.values(mockedCommonApi),
+  mockData: Object.values(mockedCommonListPointsApi),
 };
 
 export const EditPrivateListPoint = Template.bind({});
@@ -130,7 +89,7 @@ EditPrivateListPoint.loaders = [
     initialLocalStorageState({ type: "private", listPoint: privateListPoint }),
 ];
 EditPrivateListPoint.parameters = {
-  mockData: Object.values(mockedPrivateApi),
+  mockData: Object.values(mockedPrivateListPointsApi),
 };
 
 export const EditCommonListPoint = Template.bind({});
@@ -139,5 +98,5 @@ EditCommonListPoint.loaders = [
     initialLocalStorageState({ type: "common", listPoint: commonListPoint }),
 ];
 EditCommonListPoint.parameters = {
-  mockData: Object.values(mockedCommonApi),
+  mockData: Object.values(mockedCommonListPointsApi),
 };

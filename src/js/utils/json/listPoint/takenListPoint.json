@@ -73,6 +73,31 @@
           "item_uid":"424f3c70-7b08-4bdf-89a8-067021110b2e"
         }
       }
+    },
+    {
+      "point_uid":"ff5c61e4-c355-4a8a-8b81-72a1757fe9bd",
+      "member_uid":"cbf1075c-5385-49e0-b390-5fb4ae8d6b95",
+      "count":2,
+      "is_taken":false,
+      "point":{
+        "item_uid":"e788948e-e883-424e-a919-a8b26f7b11e0",
+        "trip_uid":"9b60a4e6-f146-4e84-9942-3c039a95a914",
+        "unit":"piece",
+        "count":2,
+        "is_private":false,
+        "item":{
+          "name":"Палатка",
+          "estimated_price":0,
+          "weight":0,
+          "volume":0,
+          "photo":"",
+          "tags":[
+            "equipment"
+          ],
+          "is_presaved":true,
+          "item_uid":"e788948e-e883-424e-a919-a8b26f7b11e0"
+        }
+      }
     }
   ],
   "takenListPointFromBE": [

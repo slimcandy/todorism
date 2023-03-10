@@ -3,6 +3,9 @@ import dayjs from "dayjs";
 export const convertDateToDDMMYYYYWithDots = (date: Date | string) =>
   dayjs(date).format("DD.MM.YYYY");
 
+export const convertDateToYYYYMMDDWithDash = (date: Date | string) =>
+  dayjs(date).format("YYYY-MM-DD");
+
 export const getDateIntervalWithDots = (
   start: Date | string = "",
   end: Date | string = ""

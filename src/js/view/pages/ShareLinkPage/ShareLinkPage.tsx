@@ -1,28 +1,57 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import {
   MemoInput as Input,
   TextBodyStandard,
   TitleH1,
   ActionPanel,
+  Loader,
 } from "../../elements";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { PageWrapper } from "../../components";
-import { classesOf, copyUrl } from "../../../utils";
+import { createRecommendedPrivateList } from "../../../api_clients";
+import {
+  getRecommendedListPointsFromLocalStorage,
+  saveRecommendedListPointsInLocalStorage,
+} from "../recommended/storages";
 
 import BackPackLogo from "./images/backpack.png";
 import BackPackLogo_2x from "./images/backpack_2x.png";
+import { useLoading } from "../../../hooks";
+import {
+  convertIListPointToIListPointFromBE,
+  classesOf,
+  copyUrl,
+} from "../../../utils";
+import { TProvidedEvent } from "../../../../router/types";
+import { IEvent } from "../../../interfaces";
 
 function emptyFunction() {}
-const link = window.location.href;
 
 export const ShareLinkPage = () => {
+  const routeData = useLoaderData() as TProvidedEvent;
+
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
+
+  const { setLoading } = useLoading();
+
+  const [event, setEvent] = useState<IEvent>();
+
+  const isNewEvent = event?.isNewEvent || false;
+
+  const eventCardPath = event ? `/event/${event.eventUid}` : "";
+
+  const link = `${window.location.origin}${eventCardPath}`;
+
   const [successMessageShown, setSuccessMessageShown] = useState(false);
+
   const [failMessageShown, setFailMessageShown] = useState(false);
 
   const handleCopyButtonClick = useCallback(
-    (url: string = window.location.href) => {
+    (url: string = link) => {
       copyUrl(url)
         .then(() => {
           setSuccessMessageShown(true);
@@ -37,8 +66,30 @@ export const ShareLinkPage = () => {
           }, 1000 * 2);
         });
     },
-    []
+    [link]
   );
+
+  const addRecommendedListPoints = async () => {
+    try {
+      setLoading(true);
+
+      if (isNewEvent && event) {
+        await createRecommendedPrivateList(
+          event.eventUid,
+          getRecommendedListPointsFromLocalStorage().map((l) =>
+            convertIListPointToIListPointFromBE(l)
+          )
+        );
+        saveRecommendedListPointsInLocalStorage([]);
+
+        navigate(eventCardPath);
+      } else {
+        navigate(-1);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const pageMainContent = (
     <div className="text-center flex flex-col w-full">
@@ -52,7 +103,11 @@ export const ShareLinkPage = () => {
       </div>
 
       <div className="mb-6">
-        <TitleH1>Ура! Мероприятие успешно создано!</TitleH1>
+        {isNewEvent ? (
+          <TitleH1>Ура! Мероприятие успешно создано!</TitleH1>
+        ) : (
+          <TitleH1>{event?.title}</TitleH1>
+        )}
       </div>
 
       <div className="mb-6">
@@ -89,7 +144,31 @@ export const ShareLinkPage = () => {
     </div>
   );
 
-  const pageFooter = <ActionPanel primaryButtonText={t("buttons.continue")} />;
+  const pageFooter = (
+    <ActionPanel
+      primaryButtonText={t(`buttons.${isNewEvent ? "continue" : "done"}`)}
+      onPrimaryButtonClick={() => {
+        void addRecommendedListPoints();
+      }}
+    />
+  );
 
-  return <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />;
+  useEffect(() => {
+    if (routeData) {
+      void routeData.data.then((d) => {
+        setEvent(d.event);
+      });
+    }
+  }, [routeData]);
+
+  return (
+    <React.Suspense fallback={<Loader />}>
+      <Await
+        resolve={routeData?.data}
+        errorElement={<p>Error share page loading</p>}
+      >
+        <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />
+      </Await>
+    </React.Suspense>
+  );
 };
