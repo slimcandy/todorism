@@ -49,7 +49,7 @@ export const Header = () => {
   return (
     <header
       className="h-header sticky top-0
-    flex justify-between items-center bg-inherit
+    flex justify-between items-center gap-x-2 bg-inherit
     dark:text-light-4 text-black-0 z-10"
     >
       {routeData?.parentPathName ? (
@@ -65,7 +65,11 @@ export const Header = () => {
         </Link>
       )}
 
-      {userName && <TagSmall isActive>{userName}</TagSmall>}
+      {userName && (
+        <TagSmall isActive className="overflow-hidden whitespace-nowrap">
+          {userName}
+        </TagSmall>
+      )}
     </header>
   );
 };
