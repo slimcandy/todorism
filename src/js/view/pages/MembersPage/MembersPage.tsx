@@ -111,37 +111,35 @@ export const MembersPage = () => {
   };
 
   const pageFooter = (
-    <div className="sticky bottom-0">
-      <div className="pb-6 w-full">
-        <div className="flex items-center justify-between mb-6 pt-2">
-          <div className="mr-6 w-full">
-            <Input
-              value={!isDeleting ? editingMember.name : ""}
-              placeholder={t("pages.members.input_placeholder")}
-              onChange={(name) => {
-                setEditingMember({ ...editingMember, name });
-              }}
-              isFocused={isFocusedInput}
-            />
-          </div>
-          {editingMember.member_uid && !isDeleting ? (
-            <ButtonCircle
-              icon={<DoneIcon size={24} />}
-              onClick={() => {
-                void onSubmitEdit();
-              }}
-              disabled={!editingMember.name}
-            />
-          ) : (
-            <ButtonCircle
-              type="submit"
-              icon={<PlusIcon size={24} />}
-              onClick={() => {
-                void onAddMember();
-              }}
-            />
-          )}
+    <div className="flex flex-col sticky bottom-0 bg-light-4 dark:bg-black-0">
+      <div className="flex items-center justify-between py-2">
+        <div className="mr-6 w-full">
+          <Input
+            value={!isDeleting ? editingMember.name : ""}
+            placeholder={t("pages.members.input_placeholder")}
+            onChange={(name) => {
+              setEditingMember({ ...editingMember, name });
+            }}
+            isFocused={isFocusedInput}
+          />
         </div>
+        {editingMember.member_uid && !isDeleting ? (
+          <ButtonCircle
+            icon={<DoneIcon size={24} />}
+            onClick={() => {
+              void onSubmitEdit();
+            }}
+            disabled={!editingMember.name}
+          />
+        ) : (
+          <ButtonCircle
+            type="submit"
+            icon={<PlusIcon size={24} />}
+            onClick={() => {
+              void onAddMember();
+            }}
+          />
+        )}
       </div>
 
       <ActionPanel
