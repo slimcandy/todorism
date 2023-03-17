@@ -101,7 +101,8 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
             eventUid: accessIds.eventUid,
             listPointUid: listPoint.pointUid,
           })
-        : eventCreateListPointPageUrl({ eventUid: accessIds.eventUid })
+        : eventCreateListPointPageUrl({ eventUid: accessIds.eventUid }),
+      { state: { listPointType: "common", listPointUid: listPoint.pointUid } }
     );
   };
 
@@ -190,7 +191,7 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
       });
 
       if (status === 201) {
-        void cb(listPoint);
+        await cb(listPoint);
       } else {
         showBlockedListPointModal();
       }
@@ -280,24 +281,26 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
     const listPoint = listPoints[index];
 
     return (
-      <CommonListPointItem
-        listPoint={listPoint}
-        key={listPoint.pointUid}
-        memberUid={accessIds.memberUid}
-        loading={loadingPointUid === listPoint.pointUid}
-        onBindListPoint={() => {
-          void checkListPointAvailability({
-            listPoint,
-            cb: showBindModal,
-          });
-        }}
-        onShowListPointSettings={() => {
-          void showActionListPointModal(listPoint);
-        }}
-        onClickTitle={() => {
-          void updateListPointMemberBindings({ listPoint });
-        }}
-      />
+      listPoint && (
+        <CommonListPointItem
+          listPoint={listPoint}
+          key={listPoint.pointUid}
+          memberUid={accessIds.memberUid}
+          loading={loadingPointUid === listPoint.pointUid}
+          onBindListPoint={() => {
+            void checkListPointAvailability({
+              listPoint,
+              cb: showBindModal,
+            });
+          }}
+          onShowListPointSettings={() => {
+            void showActionListPointModal(listPoint);
+          }}
+          onClickTitle={() => {
+            void updateListPointMemberBindings({ listPoint });
+          }}
+        />
+      )
     );
   };
 

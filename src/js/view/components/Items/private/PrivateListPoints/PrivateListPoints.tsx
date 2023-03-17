@@ -41,7 +41,8 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
           })
         : eventCreateListPointPageUrl({
             eventUid: accessIds.eventUid,
-          })
+          }),
+      { state: { listPointType: "private", listPointUid: listPoint.pointUid } }
     );
   };
 
@@ -97,12 +98,14 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
     const listPoint = listPoints[index];
 
     return (
-      <PrivateListPointItem
-        listPoint={listPoint}
-        key={listPoint.pointUid}
-        onEdit={() => goToListPointEditPage(listPoint)}
-        onRemove={() => showRemoveListPointModal(listPoint)}
-      />
+      listPoint && (
+        <PrivateListPointItem
+          listPoint={listPoint}
+          key={listPoint.pointUid}
+          onEdit={() => goToListPointEditPage(listPoint)}
+          onRemove={() => showRemoveListPointModal(listPoint)}
+        />
+      )
     );
   };
 
