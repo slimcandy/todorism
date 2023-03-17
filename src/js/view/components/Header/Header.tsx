@@ -49,7 +49,7 @@ export const Header = () => {
   return (
     <header
       className="h-header sticky top-0
-    flex justify-between items-center gap-x-2 bg-inherit
+    flex justify-between items-center gap-x-2 bg-light-4 dark:bg-black-0
     dark:text-light-4 text-black-0 z-10"
     >
       {routeData?.parentPathName ? (
