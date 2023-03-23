@@ -1,4 +1,4 @@
-import { IAccessIds, IMember } from "../../../interfaces";
+import { IAccessIds, IMember } from "../../../../interfaces";
 
 export interface MembersListProps {
   accessIds: IAccessIds;

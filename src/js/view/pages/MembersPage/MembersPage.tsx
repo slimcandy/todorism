@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Await, useLoaderData, useNavigate } from "react-router-dom";
-import { MembersList } from "../../components/Members/MembersList";
+import { MembersEditList, PageWrapper } from "../../components";
 import {
   ActionPanel,
   ButtonCircle,
@@ -11,7 +11,6 @@ import {
 } from "../../elements";
 import { DoneIcon, PlusIcon } from "../../icons";
 import { IAccessIds, IEvent, IMember } from "../../../interfaces";
-import { PageWrapper } from "../../components";
 import { addMember, deleteMember, renameMember } from "../../../api_clients";
 import { TEventWelcomePage } from "../../../../router/types";
 import { eventRecommendedListPointsPageUrl } from "../../../../router/constants";
@@ -163,8 +162,8 @@ export const MembersPage = () => {
           {t(`pages.members.${isNewEvent ? "add_members" : "edit_members"}`)}
         </TitleH1>
 
-        <div className="grid gap-y-2 grid-cols-1">
-          <MembersList
+        <div>
+          <MembersEditList
             accessIds={accessIds}
             list={list}
             onEdit={setEditingMember}
