@@ -5,6 +5,17 @@
   "members": "Участники",
   "error": "Что пошло не так, попробуйте перезагрузить страницу",
   "welcome": "Добро пожаловать",
+  "headerRoutes": {
+    "goBack": "Назад",
+    "eventEditListPointPage": {
+      "private" : "Личные вещи",
+      "common" : "Общие вещи"
+    },
+    "eventsPage": "Ваши мероприятия",
+    "recommendedListPointsPage": "Рекомендуемые вещи",
+    "eventMembersPage": "Добавьте участников",
+    "editEventPage": "Редактировать мероприятие"
+  },
   "events": {
     "list": {
       "your_events": "Your events",

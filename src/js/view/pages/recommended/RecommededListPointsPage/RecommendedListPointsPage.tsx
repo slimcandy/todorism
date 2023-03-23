@@ -45,7 +45,8 @@ export const RecommendedListPointsPage = () => {
     navigate(
       index !== -1
         ? eventEditRecommendedListPointPageUrl({ eventUid, index })
-        : eventCreateRecommendedListPointPageUrl({ eventUid })
+        : eventCreateRecommendedListPointPageUrl({ eventUid }),
+      { state: { listPointIndex: index } }
     );
   };
 
@@ -94,17 +95,21 @@ export const RecommendedListPointsPage = () => {
     const listPoint = listPoints[index];
 
     return (
-      <PrivateListPointItem
-        key={listPoint.item.name}
-        listPoint={listPoint}
-        onEdit={() => goToListPointEditPage(listPoint)}
-        onRemove={() =>
-          addRemoveListPointModalContent(
-            listPoints.findIndex((lp) => lp.item.name === listPoint.item.name),
-            listPoint.item.name
-          )
-        }
-      />
+      listPoint && (
+        <PrivateListPointItem
+          key={listPoint.item.name}
+          listPoint={listPoint}
+          onEdit={() => goToListPointEditPage(listPoint)}
+          onRemove={() =>
+            addRemoveListPointModalContent(
+              listPoints.findIndex(
+                (lp) => lp.item.name === listPoint.item.name
+              ),
+              listPoint.item.name
+            )
+          }
+        />
+      )
     );
   };
 
