@@ -1,4 +1,4 @@
-export interface MemberListItemProps {
+export interface MemberEditListItemProps {
   memberName: string;
   memberUid: string;
   isMe: boolean;

@@ -56,6 +56,10 @@ export const EventWelcomePage = () => {
     />
   );
 
+  const membersListItemContent = (member: IMember) => (
+    <div className="flex grow justify-end ml-2">{radioButton(member)}</div>
+  );
+
   const pageMainContent = (
     <div className="w-full">
       <div className="flex flex-col gap-y-6">
@@ -71,11 +75,9 @@ export const EventWelcomePage = () => {
       <div>
         {members.length > 0
           ? members.map((member) => (
-              <MembersListItem
-                key={member.member_uid}
-                name={member.name}
-                actionContent={radioButton(member)}
-              />
+              <MembersListItem key={member.member_uid} name={member.name}>
+                {membersListItemContent(member)}
+              </MembersListItem>
             ))
           : !loading && <div>{t("error")}</div>}
       </div>
