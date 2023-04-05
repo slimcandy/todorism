@@ -1,5 +1,10 @@
 import dayjs from "dayjs";
 
+export const getToday = () => dayjs().toString();
+
+export const convertDateToISO8601 = (date: Date | string) =>
+  dayjs(date).format("YYYY-MM-DDTHH:mm:ss[Z]");
+
 export const convertDateToDDMMYYYYWithDots = (date: Date | string) =>
   dayjs(date).format("DD.MM.YYYY");
 
