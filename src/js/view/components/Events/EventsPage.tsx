@@ -1,51 +1,102 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../../../common/constants";
-import { IEvent, IEventFromBE, INewTripResponse } from "../../../interfaces";
-import { convertIEventFromBEToIEvent } from "../../../utils/converters";
-import { getEventsIdsFromLocalStorage } from "../../../utils/localStorage";
-import { TitleH1 } from "../../elements";
+import { IEvent, IEventFromBE } from "../../../interfaces";
+import { convertIEventFromBEToIEvent } from "../../../utils";
+import {
+  getAccessEventsUidsFromLocalStorage,
+  saveCurrentEventInLocalStorage,
+} from "../../../utils/localStorage";
+import { TitleH1, Loader, ButtonCircle } from "../../elements";
 import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
+import { useLoading } from "../../../hooks";
+import { PlusIcon } from "../../icons";
+import { createEventPageUrl, eventPageUrl } from "../../../../router/constants";
 
-function EventsPage() {
+export const EventsPage = () => {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
+
   const [events, setEvents] = useState<IEvent[]>([]);
+  const { loading, setLoading } = useLoading();
 
-  const getAllTrips = async (tripUids: INewTripResponse["trip_uid"][]) => {
-    const response = await fetch(`${SERVER_URL}/Trip/All?`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(tripUids),
-    });
+  const navigateToCreateEvent = () => {
+    window.localStorage.removeItem("currentEvent");
+    navigate(createEventPageUrl());
+  };
 
-    if (response.ok) {
-      const json = ((await response.json()) as IEventFromBE[]).map((e) =>
-        convertIEventFromBEToIEvent(e)
-      );
-      setEvents(json);
+  const goToEvent = (eventUid: string) => {
+    const selectedEvent = events.find((e) => e.eventUid === eventUid);
+
+    if (selectedEvent) {
+      saveCurrentEventInLocalStorage(selectedEvent);
+      navigate(eventPageUrl({ eventUid }));
     }
   };
 
-  useEffect(() => {
-    const eventsIds = getEventsIdsFromLocalStorage();
+  const getAllTrips = useCallback(
+    async (eventUids: string[]) => {
+      try {
+        setLoading(true);
 
-    if (eventsIds.length > 0) {
-      getAllTrips(eventsIds)
+        const response = await fetch(`${SERVER_URL}/Trip/All?`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(eventUids),
+        });
+
+        if (response.ok) {
+          const json = ((await response.json()) as IEventFromBE[]).map((e) =>
+            convertIEventFromBEToIEvent(e)
+          );
+          setEvents(json);
+        }
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setLoading]
+  );
+
+  useEffect(() => {
+    const eventsUids = getAccessEventsUidsFromLocalStorage();
+
+    if (eventsUids.length > 0) {
+      getAllTrips(eventsUids)
         .then()
         .catch(() => {});
     }
-  }, []);
+  }, [getAllTrips]);
 
   return (
-    <div className="px-4 pt-14 pb-6 sm:w-6/12 w-full mx-auto flex flex-col min-h-screen">
-      <TitleH1>{t("events.list.your_events")}</TitleH1>
-      {!!events.length && <AllEvents list={events} />}
-      {!events.length && <NoEventsPage />}
-    </div>
+    <>
+      {loading && <Loader />}
+
+      <div className="flex flex-col w-full">
+        <TitleH1>{t("events.list.your_events")}</TitleH1>
+
+        {!loading && events.length === 0 ? (
+          <NoEventsPage />
+        ) : (
+          <>
+            <AllEvents list={events} onClick={goToEvent} />
+
+            <div className="flex items-end justify-end h-full sticky bottom-4">
+              <ButtonCircle
+                icon={<PlusIcon size={24} />}
+                onClick={navigateToCreateEvent}
+              />
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
-}
+};
 
 export default EventsPage;

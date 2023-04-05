@@ -1,51 +1,54 @@
 import { SERVER_URL } from "../common/constants";
-import { ErrorResponse } from "../interfaces";
 import {
   saveCurrentEventInLocalStorage,
-  ILocaleStorageEvent,
-  pushEventToLocalStorageEvents,
+  pushAccessIdsInLocalStorage,
 } from "../utils/localStorage";
+import { IEvent, IAccessIdsFromBE, IAccessIds } from "../interfaces";
+import {
+  convertIAccessIdsFromBEToIAccessIds,
+  convertIEventToIEventFromBE,
+} from "../utils";
 
-export const createNewEvent = async (
-  username: string,
-  eventName: string,
-  eventDescription: string | null,
-  eventStartDate: string | null,
-  eventEndDate: string | null,
-  navigate?: () => void
-) => {
-  const response = await fetch(
-    `${SERVER_URL}/Trip/CreateTrip?author_name=${username}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: eventName,
-        description: eventDescription,
-        start: eventStartDate,
-        end: eventEndDate,
-      }),
+export const editEvent = async ({
+  username,
+  event,
+}: {
+  username: string;
+  event: IEvent;
+}) => {
+  try {
+    let accessIds: IAccessIds | null = null;
+    const { eventUid = "" } = event;
+    const createTripPath = `CreateTrip?author_name=${username}`;
+    const editTripPath = `${eventUid}/EditTrip`;
+    const response = await fetch(
+      `${SERVER_URL}/Trip/${eventUid ? editTripPath : createTripPath}`,
+      {
+        method: eventUid ? "PATCH" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(convertIEventToIEventFromBE(event)),
+      }
+    );
+
+    if (response.ok) {
+      const result = (await response.json()) as IAccessIdsFromBE;
+
+      if (result) {
+        accessIds = convertIAccessIdsFromBEToIAccessIds(result);
+        pushAccessIdsInLocalStorage(accessIds);
+      }
+
+      saveCurrentEventInLocalStorage({
+        ...event,
+        ...(event.isNewEvent ? { eventUid: accessIds?.eventUid } : {}),
+      });
     }
-  );
 
-  if (response.ok) {
-    const event = (await response.json()) as ILocaleStorageEvent;
-
-    pushEventToLocalStorageEvents(event);
-    saveCurrentEventInLocalStorage(event);
-
-    if (navigate) {
-      navigate();
-    }
-  } else {
-    const errorResponse = (await response.json()) as ErrorResponse;
-    let errorMessage = "";
-    errorResponse.detail.forEach((error) => {
-      errorMessage += `${error.msg}. \n`;
-    });
-    console.error(errorMessage);
-    // setNewTripErrors(errorMessage);
+    return accessIds;
+  } catch (e) {
+    console.error(e);
+    return null;
   }
 };

@@ -1,8 +1,10 @@
-export type TLocalStorage = { [key: string]: string };
-export type TLocalStorageParsedData = string | object | null;
-export type TLocalStorageEvents = Array<ILocaleStorageEvent>;
+import { ICommonListPoint, IListPoint, IAccessIds } from "../../interfaces";
+import { LIST_POINT_TYPES } from "../../common/constants";
 
-export interface ILocaleStorageEvent {
-  trip_uid: string;
-  member_uid: string;
-}
+export type TLocalStorage = { [key: string]: string };
+export type TLocalStorageListPoint = IListPoint | ICommonListPoint;
+export type TLocalStorageListPointTypes = keyof typeof LIST_POINT_TYPES;
+
+export type TLocalStorageAccessIdsList = {
+  [key: string]: IAccessIds;
+};

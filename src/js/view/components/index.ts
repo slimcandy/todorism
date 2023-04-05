@@ -5,5 +5,7 @@ export { default as PeopleForm } from "./PeopleForm/PeopleForm";
 export { default as PeopleList } from "./PeopleList/PeopleList";
 export { default as CurrentUser } from "./CurrentUser/CurrentUser";
 export { default as SPAremoveit } from "./SPAremoveit/SPAremoveit";
+export * from "./Members";
 export * from "./ThemeToggler/ThemeToggler";
-export * from "./NewEventPage/NewEventPage";
+export * from "./PageWrapper/PageWrapper";
+export * from "./Events";

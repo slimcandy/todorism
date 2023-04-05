@@ -21,3 +21,10 @@ export const langLocales = [
     lang: "en",
   },
 ];
+
+export enum LIST_POINT_TYPES {
+  "recommended" = "recommended",
+  "private" = "private",
+  "common" = "common",
+  "taken" = "taken",
+}

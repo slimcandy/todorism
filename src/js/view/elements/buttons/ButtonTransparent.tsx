@@ -3,7 +3,7 @@ import { TextBodyMedium } from "../typography";
 import { BtnProps } from "./BtnProps";
 
 export const ButtonTransparent = (props: BtnProps) => {
-  const { children, icon, type, disabled, className = "" } = props;
+  const { children, icon, type, disabled, className = "", onClick } = props;
 
   return (
     <button
@@ -15,9 +15,14 @@ export const ButtonTransparent = (props: BtnProps) => {
       normal-case ${className}`}
       type={type}
       disabled={disabled}
+      onClick={onClick}
     >
       {icon}
-      <TextBodyMedium className={icon ? "ml-2" : ""}>{children}</TextBodyMedium>
+      {children && (
+        <TextBodyMedium className={icon ? "ml-2" : ""}>
+          {children}
+        </TextBodyMedium>
+      )}
     </button>
   );
 };

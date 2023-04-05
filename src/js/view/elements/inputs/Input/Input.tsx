@@ -1,40 +1,39 @@
-import React from "react";
+import React, { memo, useId, useRef } from "react";
 import { classesOf } from "../../../../utils";
-import { InputProps } from "../InputProps";
 import { TextBodyStandard } from "../../typography";
+import { InputProps } from "../InputProps";
 
-export const Input = (props: InputProps) => {
+export function Input(props: InputProps) {
   const {
-    value,
+    value = "",
+    readonly,
+    title,
     placeholder,
     label,
-    inputId,
     className = "",
+    inputClassName = "",
     disabled = false,
     icon,
     isIconLeft = false,
     onChange,
+    onClick,
     type,
+    isFocused,
   } = props;
 
-  const firstValue =
-    String(value) === "undefined" || String(value) === "null"
-      ? ""
-      : String(value);
+  const id = useId();
+  const refInput = useRef<HTMLInputElement>(null);
 
-  const [localValue, setLocalValue] = React.useState(firstValue);
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalValue(event.target.value);
-    onChange?.(event.target.value);
-  };
+  if (isFocused) {
+    refInput?.current?.focus();
+  }
 
   const iconClasses = classesOf(
     "absolute top-1/2 transform -translate-y-1/2",
     !isIconLeft && "right-4",
     isIconLeft && "left-4",
     disabled && "text-dark-4 dark:text-black-3",
-    localValue.length > 0 && "text-dark-3"
+    !!value && "text-dark-3"
   );
 
   const inputClasses = classesOf(
@@ -42,7 +41,7 @@ export const Input = (props: InputProps) => {
     "focus:outline-none bg-light-2 text-black-4 dark:bg-black-2 dark:text-light-0",
     "placeholder:text-dark-4 placeholder:dark:text-dark-2",
     "disabled:placeholder:text-black-3 disabled:placeholder:opacity-20",
-    "disabled:dark:text-black-3 disabled:dark:placeholdertext-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
+    "disabled:dark:text-black-3 disabled:dark:placeholder:text-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
     "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
     "invalid:border-red-1 invalid:dark:border-red-1",
     isIconLeft && "pl-11 pr-3",
@@ -51,10 +50,18 @@ export const Input = (props: InputProps) => {
       "hover:placeholder:text-dark-3 hover:dark:placeholder:text-dark-3 hover:text-dark-3"
   );
 
+  function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+    onChange(event.target.value);
+  }
+  function handleInputClick(event: React.MouseEvent<HTMLInputElement>) {
+    event.stopPropagation();
+    onClick?.(value.toString());
+  }
+
   return (
     <>
       {label && (
-        <label className="mb-2 block" htmlFor={inputId}>
+        <label className="mb-2 block" htmlFor={id}>
           <TextBodyStandard className="dark:text-dark-3">
             {label}
           </TextBodyStandard>
@@ -71,15 +78,21 @@ export const Input = (props: InputProps) => {
         {icon && <div className={iconClasses}> {icon} </div>}
 
         <input
-          id={inputId}
+          ref={refInput}
+          id={id}
           type={type}
           onChange={handleOnChange}
-          className={inputClasses}
+          onClick={handleInputClick}
+          className={`${inputClasses} ${inputClassName}`}
           disabled={disabled}
-          value={localValue}
+          value={value}
           placeholder={placeholder}
+          readOnly={readonly}
+          title={title}
         />
       </div>
     </>
   );
-};
+}
+
+export const MemoInput = memo(Input);

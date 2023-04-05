@@ -1,63 +1,75 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { langLocales } from "../../../common/constants";
-import { TitleH1 } from "../../elements";
-import { GearIcon } from "../../icons";
-import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
+import { Logo } from "../../icons/Logo";
+import {
+  getCurrentEventFromLocalStorage,
+  getEventAccessIds,
+  getUserNameFromLocalStorage,
+} from "../../../utils/localStorage";
 
-type HeaderProps = {
-  isWithLogo?: boolean;
-};
+import { getRoutesDataForHeader } from "./utils";
+import { TagSmall, TextBodyMedium } from "../../elements";
+import { IHeaderRoute, IRouteState } from "./types";
+import { ArrowIcon } from "../../icons";
 
-export const Header = (props: HeaderProps) => {
-  const { isWithLogo } = props;
+export const Header = () => {
+  const location = useLocation();
 
-  const { i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const cLanguage = useCallback(
-    async (language: string) => {
-      await i18n.changeLanguage(language).then();
-    },
-    [i18n]
-  );
+  const [userName, setUserName] = useState<string>();
 
-  const onLangChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      if (e.target.value) {
-        void cLanguage(e.target.value);
-      } else {
-        void cLanguage("ru");
-      }
-    },
-    [cLanguage]
-  );
+  const [routeData, setRouteData] = useState<IHeaderRoute>();
+
+  const initName = () => {
+    const name = getUserNameFromLocalStorage();
+
+    if (name) {
+      setUserName(name);
+    }
+  };
+
+  useEffect(() => {
+    const event = getCurrentEventFromLocalStorage();
+    const accessIds = getEventAccessIds(event?.eventUid || "");
+
+    initName();
+
+    const routesData = getRoutesDataForHeader({
+      eventUid: event?.eventUid || "",
+      isNewEvent: event?.isNewEvent || false,
+      memberUid: accessIds?.memberUid,
+      state: (location.state || {}) as IRouteState,
+    });
+
+    setRouteData(routesData[location.pathname]);
+  }, [location]);
+
   return (
     <header
-      className="fixed top-0 left-4
-    pt-3 pr-8
-    flex justify-between w-full
-    dark:text-light-4 text-black-0"
+      className="h-header sticky top-0
+    flex justify-between items-center gap-x-2 bg-light-4 dark:bg-black-0
+    dark:text-light-4 text-black-0 z-10"
     >
-      {isWithLogo && <TitleH1>LOGO</TitleH1>}
-      {!isWithLogo && <div> Back </div>}
-      <div className="flex">
-        <div className="mr-4">
-          <select
-            className="select w-full select-xs w-full max-w-xs dark:bg-black-4"
-            onChange={(e) => onLangChange(e)}
-          >
-            {langLocales.map((opt) => (
-              <option key={opt.id} value={opt.lang}>
-                {opt.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mr-4">
-          <ThemeToggler />
-        </div>
-        <GearIcon size={24} />
-      </div>
+      {routeData?.parentPathName ? (
+        <Link to={routeData.parentPathName}>
+          <TextBodyMedium className="flex gap-x-2 items-center text-dark-3">
+            <ArrowIcon size={16} direction="left" />
+            {t(`headerRoutes.${routeData.parentLocalePath}`)}
+          </TextBodyMedium>
+        </Link>
+      ) : (
+        <Link to="/">
+          <Logo />
+        </Link>
+      )}
+
+      {userName && (
+        <TagSmall isActive className="overflow-hidden whitespace-nowrap">
+          {userName}
+        </TagSmall>
+      )}
     </header>
   );
 };

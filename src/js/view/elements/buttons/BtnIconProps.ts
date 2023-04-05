@@ -5,4 +5,5 @@ export interface BtnIconProps {
   type?: BtnType;
   disabled?: boolean;
   className?: string;
+  onClick?: () => void;
 }
