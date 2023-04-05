@@ -13,7 +13,7 @@ export const commonListPointApi = ({
   pointUid?: string;
 }) => ({
   addItem: `${endPoint(eventUid)}/AddItem`,
-  editItem: `${endPoint(eventUid)}/EditItem`,
+  editItem: `${endPoint(eventUid)}/EditItem/${pointUid || ""}`,
   getItems: `${endPoint(eventUid)}/GetList`,
   deleteItem: `${endPoint(eventUid)}/DeleteItem`,
   lockItem: `${endPoint(eventUid)}/Lock`,
@@ -54,7 +54,9 @@ export const editCommonListPoint = ({
   listPoint: IListPoint;
 }) =>
   fetch(
-    commonListPointApi({ eventUid })[mode === "add" ? "addItem" : "editItem"],
+    commonListPointApi({ eventUid, pointUid: listPoint.pointUid })[
+      mode === "add" ? "addItem" : "editItem"
+    ],
     {
       method: "POST",
       headers: {

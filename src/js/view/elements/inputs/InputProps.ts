@@ -12,6 +12,7 @@ export interface InputProps {
   type?: "date" | "email" | "number" | "time";
   icon?: React.ReactNode;
   isIconLeft?: boolean;
+  min?: string;
   onChange: (value: string) => void;
   onEnter?: (value?: any) => void;
   isFocused?: boolean;
