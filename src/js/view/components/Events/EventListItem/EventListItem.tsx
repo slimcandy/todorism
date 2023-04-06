@@ -19,12 +19,7 @@ export const EventListItem = (props: IEvent) => {
   }
 
   return (
-    <div
-      id={eventUid}
-      className="flex w-full items-center justify-content-between
-  h-fit border-b border-light-2 dark:border-black-3 pb-3
-  cursor-pointer"
-    >
+    <div id={eventUid} className="flex items-center px-2 py-4 cursor-pointer">
       <div className="mr-3 w-full">
         <div className="mb-3">
           <TitleH3 className="mb-1">{title}</TitleH3>
