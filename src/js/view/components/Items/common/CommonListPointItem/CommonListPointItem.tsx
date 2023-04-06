@@ -78,14 +78,14 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
   }: {
     count: ICommonListPoint["count"];
   }) => (
-    <TagSmall className="w-max">{`${count} ${t(
+    <TagSmall isButton={false} className="w-max">{`${count} ${t(
       `list_point.short_units.${listPoint.unit}`
     )}`}</TagSmall>
   );
 
   const listPointBindingProgress = (
     <div className="flex items-center gap-x-1 w-max">
-      <TagSmall className="w-max">{`${bindingProgress} ${t(
+      <TagSmall isButton={false} className="w-max">{`${bindingProgress} ${t(
         `list_point.short_units.${listPoint.unit}`
       )}`}</TagSmall>
 
@@ -181,6 +181,7 @@ export const CommonListPointItem = (props: ICommonListPointItemProps) => {
     <ListPointItem
       listPointName={listPoint.item.name}
       grayTitle={bindingProgress >= Number(listPoint.count)}
+      isButton
       content={content}
       outerContent={outerContent}
       onClickTitle={changeOuterContentCollapseStatus}

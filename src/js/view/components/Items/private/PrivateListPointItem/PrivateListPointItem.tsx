@@ -11,7 +11,7 @@ export const PrivateListPointItem = (props: IPrivateListPointItemProps) => {
   const { t } = useTranslation();
 
   const listPointCount = () => (
-    <TagSmall className="w-max">{`${listPoint.count} ${t(
+    <TagSmall isButton={false} className="w-max">{`${listPoint.count} ${t(
       `list_point.short_units.${listPoint.unit}`
     )}`}</TagSmall>
   );

@@ -10,9 +10,9 @@ export const TakenListPointItem = (props: TakenListPointItemProps) => {
   const { t } = useTranslation();
 
   const listPointCount = () => (
-    <TagSmall className="w-max cursor-default">{`${listPoint.count} ${t(
-      `list_point.short_units.${listPoint.point.unit}`
-    )}`}</TagSmall>
+    <TagSmall isButton={false} className="w-max cursor-default">{`${
+      listPoint.count
+    } ${t(`list_point.short_units.${listPoint.point.unit}`)}`}</TagSmall>
   );
 
   const actionButtons = () => (
