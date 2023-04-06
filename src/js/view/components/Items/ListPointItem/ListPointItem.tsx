@@ -14,8 +14,8 @@ export const ListPointItem = (props: IListPointItemProps) => {
   );
 
   return (
-    <div className="flex flex-col w-full border-b border-black-3">
-      <div className="flex items-center py-4 gap-x-4">
+    <div className="flex flex-col w-full zebra-list-item">
+      <div className="flex items-center px-2 py-4 gap-x-4">
         <div
           role="button"
           tabIndex={0}
