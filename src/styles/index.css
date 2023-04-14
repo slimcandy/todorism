@@ -8,4 +8,9 @@
     .modified-list-item {
         @apply even:bg-black-1 odd:bg-black-0;
     }
+
+    .fixed-block {
+        @apply fixed min-w-[320px] max-w-[1024px]
+               mx-auto inset-x-0;
+    }
 }

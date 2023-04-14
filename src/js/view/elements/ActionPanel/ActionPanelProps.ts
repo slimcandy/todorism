@@ -7,7 +7,6 @@ enum ButtonType {
 }
 
 export interface IContentWrapperProps {
-  sticky?: boolean;
   primaryButtonText: string;
   primaryButtonIcon?: React.ReactNode;
   primaryButtonType?: keyof typeof ButtonType;

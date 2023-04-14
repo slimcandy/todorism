@@ -16,7 +16,6 @@ export default {
     },
   },
   args: {
-    sticky: true,
     primaryButtonText: "Готово",
   },
 };
@@ -30,10 +29,10 @@ const Template: ComponentStory<typeof ActionPanel> = (args) => (
 
 export const Primary = Template.bind({});
 
-export const NoSticky = Template.bind({});
-NoSticky.args = {
-  sticky: false,
-};
+// export const NoSticky = Template.bind({});
+// NoSticky.args = {
+//   sticky: false,
+// };
 
 export const WithDisabledPrimaryButton = Template.bind({});
 WithDisabledPrimaryButton.args = {

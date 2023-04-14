@@ -86,7 +86,7 @@ export const EventsPage = () => {
           <>
             <AllEvents list={events} onClick={goToEvent} />
 
-            <div className="flex items-end justify-end h-full sticky bottom-4">
+            <div className="fixed-block flex justify-end px-base bottom-4">
               <ButtonCircle
                 icon={<PlusIcon size={24} />}
                 onClick={navigateToCreateEvent}

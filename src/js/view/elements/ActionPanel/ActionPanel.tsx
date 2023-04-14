@@ -5,7 +5,6 @@ import { IContentWrapperProps } from "./ActionPanelProps";
 
 export const ActionPanel = (props: IContentWrapperProps) => {
   const {
-    sticky,
     primaryButtonText,
     primaryButtonIcon,
     primaryButtonType = "button",
@@ -17,8 +16,7 @@ export const ActionPanel = (props: IContentWrapperProps) => {
   } = props;
 
   const classes = classesOf(
-    "flex flex-col items-center py-base px-7 bg-light-4 dark:bg-black-0",
-    sticky && "sticky bottom-0"
+    "fixed-block flex flex-col bottom-0 items-center py-base px-7 bg-light-4 dark:bg-black-0"
   );
 
   return (

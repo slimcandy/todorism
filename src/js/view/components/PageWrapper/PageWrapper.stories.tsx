@@ -7,7 +7,6 @@ export default {
   title: "components/PageWrapper",
   component: PageWrapper,
   args: {
-    sticky: true,
     primaryButtonText: "Готово",
   },
 };

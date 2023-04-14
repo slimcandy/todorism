@@ -160,7 +160,6 @@ export const ListPointsWrapper = (props: IListPointsWrapperProps) => {
 
   const pageFooter = (
     <ActionPanel
-      sticky
       primaryButtonText={t("list_point.add_item")}
       onPrimaryButtonClick={() => onCreateListPoint?.()}
     />

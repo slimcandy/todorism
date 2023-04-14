@@ -86,7 +86,6 @@ export const EventWelcomePage = () => {
 
   const pageFooter = (
     <ActionPanel
-      sticky
       primaryButtonText={t("buttons.done")}
       primaryButtonDisabled={!selectedMember}
       onPrimaryButtonClick={() => {

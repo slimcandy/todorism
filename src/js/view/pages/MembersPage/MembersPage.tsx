@@ -110,8 +110,13 @@ export const MembersPage = () => {
   };
 
   const pageFooter = (
-    <div className="flex flex-col sticky bottom-0 bg-light-4 dark:bg-black-0">
-      <div className="flex items-center justify-between py-2">
+    <>
+      <div
+        className="
+        fixed-block flex bottom-[80px] items-center justify-between py-2
+        bg-light-4 dark:bg-black-0 px-base
+       "
+      >
         <div className="mr-6 w-full">
           <Input
             value={!isDeleting ? editingMember.name : ""}
@@ -152,7 +157,7 @@ export const MembersPage = () => {
           }
         }}
       />
-    </div>
+    </>
   );
 
   const pageMainContent = accessIds && (
@@ -197,7 +202,11 @@ export const MembersPage = () => {
         resolve={routeData?.data}
         errorElement={<p>Error members page loading</p>}
       >
-        <PageWrapper pageContent={pageMainContent} pageFooter={pageFooter} />
+        <PageWrapper
+          pageContent={pageMainContent}
+          pageFooter={pageFooter}
+          className="pb-[160px]"
+        />
       </Await>
     </React.Suspense>
   );

@@ -48,9 +48,10 @@ export const Header = () => {
 
   return (
     <header
-      className="h-header sticky top-0
-    flex justify-between items-center gap-x-2 bg-light-4 dark:bg-black-0
-    dark:text-light-4 text-black-0 z-10"
+      className="
+        h-header fixed-block flex justify-between items-center gap-x-2 px-base
+        inset-y-0 dark:text-light-4 text-black-0 z-10 bg-light-4 dark:bg-black-0
+      "
     >
       {routeData?.parentPathName ? (
         <Link to={routeData.parentPathName}>

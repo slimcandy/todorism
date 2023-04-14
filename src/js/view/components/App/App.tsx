@@ -22,13 +22,15 @@ export function App() {
   }, [cLanguage]);
 
   return (
-    <div className="relative bg-light-4 dark:bg-black-0 px-base min-h-[-webkit-fill-available]">
-      <div className="min-w-[320px] max-w-[1024px] m-auto">
+    <div className="bg-light-4 dark:bg-black-0">
+      <div
+        className="
+          flex min-w-[320px] max-w-[1024px]
+          m-auto px-base min-h-screen pt-[theme(height.header)]
+        "
+      >
         <Header />
-
-        <main className="flex min-h-[calc(100vh-theme(height.header))]">
-          <Outlet />
-        </main>
+        <Outlet />
       </div>
     </div>
   );
