@@ -16,6 +16,10 @@ import {
   KebabIcon,
   MembersIcon,
   LogoutIcon,
+  BurgerIcon,
+  FolderIcon,
+  ChatIcon,
+  ChatQuestionIcon,
 } from "./index";
 
 export default {
@@ -47,3 +51,7 @@ export const Share = getComponent(ShareIcon).bind({});
 export const Kebab = getComponent(KebabIcon).bind({});
 export const Members = getComponent(MembersIcon).bind({});
 export const Logout = getComponent(LogoutIcon).bind({});
+export const Burger = getComponent(BurgerIcon).bind({});
+export const Folder = getComponent(FolderIcon).bind({});
+export const Chat = getComponent(ChatIcon).bind({});
+export const ChatQuestion = getComponent(ChatQuestionIcon).bind({});
