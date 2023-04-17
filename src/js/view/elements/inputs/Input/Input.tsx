@@ -42,7 +42,7 @@ export function Input(props: InputProps) {
     "placeholder:text-dark-4 placeholder:dark:text-dark-2",
     "disabled:placeholder:text-black-3 disabled:placeholder:opacity-20",
     "disabled:dark:text-black-3 disabled:dark:placeholder:text-black-3 disabled:dark:bg-black-2 disabled:text-dark-4 disabled:bg-light-2 disabled:border-none",
-    "focus:dark:placeholder:text-light-0 focus:placeholder:text-black-4",
+    "focus:placeholder:opacity-0",
     "invalid:border-red-1 invalid:dark:border-red-1",
     isIconLeft && "pl-11 pr-3",
     !isIconLeft && type !== "date" && "pr-11 pl-3",
