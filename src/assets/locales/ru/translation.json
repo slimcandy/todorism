@@ -54,7 +54,11 @@
     "cancel": "Отмена",
     "remember_me": "Запомнить меня",
     "done": "Готово",
-    "next": "Далее"
+    "next": "Далее",
+    "settings": "Настройки",
+    "favorite_items": "Сохраненные списки вещей",
+    "feedback_form": "Форма обратной связи",
+    "faq": "FAQ"
   },
   "tabs": {
     "common_things": "Общие вещи",

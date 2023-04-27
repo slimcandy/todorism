@@ -24,9 +24,11 @@ export function App() {
   }, [cLanguage]);
 
   useEffect(() => {
-    // drop context for modals
-    modalContext.setContent(undefined);
-  }, [location, modalContext]);
+    if (modalContext.content) {
+      // drop context for modals
+      modalContext.setContent(undefined);
+    }
+  }, [location]);
 
   return (
     <div className="relative bg-light-4 dark:bg-black-0 px-base min-h-[-webkit-fill-available]">

@@ -13,3 +13,7 @@ export * from "./ZoomIcon";
 export * from "./LoaderIcon";
 export * from "./MembersIcon";
 export * from "./LogoutIcon";
+export * from "./BurgerIcon";
+export * from "./ChatIcon";
+export * from "./ChatQuestionIcon";
+export * from "./FolderIcon";
