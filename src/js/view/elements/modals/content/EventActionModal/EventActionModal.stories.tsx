@@ -10,7 +10,7 @@ export default {
 };
 
 const Template: ComponentStory<typeof EventActionModal> = (args) => (
-  <Modal onShow={() => {}} content={<EventActionModal {...args} />} />
+  <Modal onClose={() => {}} content={<EventActionModal {...args} />} />
 );
 
 export const Primary = Template.bind({});

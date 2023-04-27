@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { saveCurrentListPointInLocalStorage } from "../../../../utils/localStorage";
 import {
   ActionPanel,
-  Modal,
   RemoveListPointModal,
   TextBodyStandard,
   TitleH1,
@@ -22,6 +21,7 @@ import {
   eventEditRecommendedListPointPageUrl,
   shareEventPageUrl,
 } from "../../../../../router/constants";
+import { useModal } from "../../../../hooks";
 
 export const RecommendedListPointsPage = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const RecommendedListPointsPage = () => {
     getRecommendedListPointsFromLocalStorage()
   );
 
-  const [modalContent, setModalContent] = useState<JSX.Element>();
+  const modalContext = useModal();
 
   const goToListPointEditPage = (listPoint: IListPoint) => {
     const index = listPoints.findIndex(
@@ -50,6 +50,10 @@ export const RecommendedListPointsPage = () => {
     );
   };
 
+  const closeModal = () => {
+    modalContext.setContent(undefined);
+  };
+
   const updateListPoints = () => {
     setListPoints(getRecommendedListPointsFromLocalStorage());
   };
@@ -57,20 +61,23 @@ export const RecommendedListPointsPage = () => {
   const removeListPoint = (listPointIndex: number) => {
     deleteListPointFromLocalStorageRecommendedListPoints(listPointIndex);
     updateListPoints();
-    setModalContent(undefined);
+    closeModal();
   };
 
   const addRemoveListPointModalContent = (
     listPointIndex: number,
     listPointName: string
   ) =>
-    setModalContent(
-      <RemoveListPointModal
-        listPointName={listPointName}
-        onRemoveClick={() => removeListPoint(listPointIndex)}
-        onCancelClick={() => {}}
-      />
-    );
+    modalContext.setContent({
+      content: (
+        <RemoveListPointModal
+          listPointName={listPointName}
+          onRemoveClick={() => removeListPoint(listPointIndex)}
+          onCancelClick={closeModal}
+        />
+      ),
+      onClose: closeModal,
+    });
 
   const title = (
     <div className="flex flex-col">
@@ -114,20 +121,11 @@ export const RecommendedListPointsPage = () => {
   };
 
   return (
-    <>
-      <ListPointsWrapper
-        listPoints={listPoints}
-        listPointItem={listPointItem}
-        title={title}
-        customActionPanel={footer}
-      />
-
-      {modalContent && (
-        <Modal
-          onShow={() => setModalContent(undefined)}
-          content={modalContent}
-        />
-      )}
-    </>
+    <ListPointsWrapper
+      listPoints={listPoints}
+      listPointItem={listPointItem}
+      title={title}
+      customActionPanel={footer}
+    />
   );
 };

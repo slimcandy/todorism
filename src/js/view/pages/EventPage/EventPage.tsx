@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLoaderData, Await } from "react-router-dom";
-import {
-  BtnIcon,
-  EventActionModal,
-  Loader,
-  Modal,
-  TitleH1,
-} from "../../elements";
+import { BtnIcon, EventActionModal, Loader, TitleH1 } from "../../elements";
 import { KebabIcon } from "../../icons";
 import { EventListPointsTabs } from "../../components";
 import { IAccessIds, IEvent } from "../../../interfaces";
@@ -18,13 +12,14 @@ import {
   eventWelcomePageUrl,
 } from "../../../../router/constants";
 import { saveCurrentEventInLocalStorage } from "../../../utils/localStorage";
+import { useModal } from "../../../hooks";
 
 export const EventPage = () => {
   const routeData = useLoaderData() as TProvidedEvent;
 
   const navigate = useNavigate();
 
-  const [modalContent, setModalContent] = useState<JSX.Element>();
+  const modalContext = useModal();
 
   const [event, setEvent] = useState<IEvent>();
 
@@ -34,15 +29,18 @@ export const EventPage = () => {
     const eventUid = event?.eventUid;
 
     if (eventUid) {
-      setModalContent(
-        <EventActionModal
-          onShareEvent={() => navigate(shareEventPageUrl({ eventUid }))}
-          onEditEvent={() => navigate(editEventPageUrl({ eventUid }))}
-          onEditMembers={() => navigate(eventMembersPageUrl({ eventUid }))}
-          onLeaveEvent={() => {}}
-          onLogoutClick={() => navigate(eventWelcomePageUrl({ eventUid }))}
-        />
-      );
+      modalContext.setContent({
+        content: (
+          <EventActionModal
+            onShareEvent={() => navigate(shareEventPageUrl({ eventUid }))}
+            onEditEvent={() => navigate(editEventPageUrl({ eventUid }))}
+            onEditMembers={() => navigate(eventMembersPageUrl({ eventUid }))}
+            onLeaveEvent={() => {}}
+            onLogoutClick={() => navigate(eventWelcomePageUrl({ eventUid }))}
+          />
+        ),
+        onClose: () => modalContext.setContent(undefined),
+      });
     }
   };
 
@@ -81,13 +79,6 @@ export const EventPage = () => {
           </div>
 
           {accessIds && <EventListPointsTabs accessIds={accessIds} />}
-
-          {modalContent && (
-            <Modal
-              onShow={() => setModalContent(undefined)}
-              content={modalContent}
-            />
-          )}
         </div>
       </Await>
     </React.Suspense>
