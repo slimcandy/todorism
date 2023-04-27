@@ -20,7 +20,7 @@ export const EventList = (props: EventListProps) => {
       {sortedListByDayDesc.map((event) => (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
         <div
-          className="mb-2"
+          className="zebra-list-item"
           key={event.eventUid}
           onClick={() => onClick(event.eventUid)}
         >

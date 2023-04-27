@@ -13,6 +13,7 @@ export const InputDate = (props: InputProps) => {
     disabled = false,
     onChange,
     type,
+    min,
   } = props;
 
   const id = useId();
@@ -63,6 +64,7 @@ export const InputDate = (props: InputProps) => {
           disabled={disabled}
           value={value}
           placeholder={placeholder}
+          min={min}
         />
       </div>
     </>

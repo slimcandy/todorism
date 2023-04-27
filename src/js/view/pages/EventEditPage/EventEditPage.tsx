@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLoaderData, Await } from "react-router-dom";
+import dayjs from "dayjs";
 import { editEvent } from "../../../api_clients";
 import {
   Loader,
@@ -17,7 +18,7 @@ import { useLoading } from "../../../hooks";
 import { PageWrapper } from "../../components";
 import { TProvidedEvent } from "../../../../router/types";
 import { eventMembersPageUrl } from "../../../../router/constants";
-import { convertDateToYYYYMMDDWithDash } from "../../../utils";
+import { convertDateToYYYYMMDDWithDash, getToday } from "../../../utils";
 
 export const EventEditPage = () => {
   const routeData = useLoaderData() as TProvidedEvent;
@@ -30,35 +31,43 @@ export const EventEditPage = () => {
 
   const username = getUserNameFromLocalStorage() || "Default user";
 
+  const today = getToday();
+
   const [event, setEvent] = useState<IEvent>({
     eventUid: "",
     title: "",
     description: "",
-    start: null,
-    end: null,
+    start: today,
+    end: today,
     isNewEvent: true,
   });
+
+  const [isValidDates, setIsValidDatesFlag] = useState<boolean>(true);
 
   const onNewTripNameChange: InputProps["onChange"] = (newName) => {
     setEvent({ ...event, title: newName });
   };
 
   const onStartDateChange: InputProps["onChange"] = (startDate) => {
+    setIsValidDatesFlag(dayjs(startDate).isValid());
     setEvent({
       ...event,
-      start: new Date(startDate).toISOString(),
+      start: startDate,
+      end: dayjs(event.end).isBefore(startDate) ? startDate : event.end,
     });
   };
 
   const onEndDateChange: InputProps["onChange"] = (endDate) => {
-    setEvent({ ...event, end: new Date(endDate).toISOString() });
+    setIsValidDatesFlag(dayjs(endDate).isValid());
+    setEvent({ ...event, end: endDate });
   };
 
   const onNewTripDescriptionChange = (desc: string) => {
     setEvent({ ...event, description: desc });
   };
 
-  const isBtnDisabled = event.title === null || event.title.length === 0;
+  const isBtnDisabled =
+    event.title === null || event.title.length === 0 || !isValidDates;
 
   const onEditEvent = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -129,6 +138,7 @@ export const EventEditPage = () => {
                 value={
                   event.end ? convertDateToYYYYMMDDWithDash(event.end) : ""
                 }
+                min={convertDateToYYYYMMDDWithDash(event.start || "")}
                 onChange={onEndDateChange}
                 type="date"
                 placeholder={`${t("pages.new_event.date_end")}: ${t(

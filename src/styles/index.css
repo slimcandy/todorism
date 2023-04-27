@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @layer utilities {
-    .modified-list-item {
+    .zebra-list-item {
         @apply even:bg-black-1 odd:bg-black-0;
     }
 }

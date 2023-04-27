@@ -93,11 +93,11 @@
       "who_are_you": "Кто вы?",
       "add_members": "Add members",
       "edit_members": "Edit members",
-      "input_placeholder": "One more member"
+      "input_placeholder": "Новый участник"
     },
     "recommended": {
       "title": "Рекомендуемые личные вещи",
-      "description": "Создайте список, которые вы рекомендуете взять с собой участникам мероприятия."
+      "description": "Создайте список, который вы рекомендуете взять с собой участникам мероприятия."
     }
   },
   "list_point": {
