@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "../../icons/Logo";
 import {
@@ -13,11 +13,14 @@ import { BtnIcon, MenuModal, TagSmall, TextBodyMedium } from "../../elements";
 import { IHeaderRoute, IRouteState } from "./types";
 import { ArrowIcon, BurgerIcon } from "../../icons";
 import { useModal } from "../../../hooks";
+import { faqPageUrl } from "../../../../router/constants";
 
 export const Header = () => {
   const location = useLocation();
 
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const [userName, setUserName] = useState<string>();
 
@@ -40,7 +43,7 @@ export const Header = () => {
           onSettingsClick={() => {}}
           onFavoriteItemsClick={() => {}}
           onFeedbackClick={() => {}}
-          onQuestionsClick={() => {}}
+          onQuestionsClick={() => navigate(faqPageUrl())}
         />
       ),
       onClose: () => modalContext.setContent(undefined),

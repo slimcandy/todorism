@@ -15,3 +15,4 @@ export * from "./modals";
 export * from "./TagMe";
 export * from "./MembersListItem/MembersListItem";
 export * from "./EventTitle/EventTitle";
+export * from "./Accordion/Accordion"

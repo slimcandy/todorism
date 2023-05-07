@@ -2,6 +2,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   plugins: [require("daisyui")],
   darkMode: "class",
+  important: true,
   theme: {
     extend: {
       height: {

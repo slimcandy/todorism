@@ -52,3 +52,6 @@ export const eventEditRecommendedListPointPageUrl = ({
   eventUid: string;
   index: number;
 }) => `${eventRecommendedListPointsPageUrl({ eventUid })}/item/${index}`;
+
+export const faqPageUrl = () => "/help";
+
