@@ -11,20 +11,26 @@ export const FaqPage = () => {
   const getContent = (content: IFaqContent) => {
     const path = `${localePath}.content`;
     return (
-      <Accordion title={t(`${path}.${content.id}.title`)}>
+      <Accordion title={t(`${path}.${content.id}.title`)} key={content.id}>
         <div>
-          {content.values.map((v) =>
-            v.type === "text" ? (
-              <>
-                <TextBodyStandard>
-                  {t(`${path}.${content.id}.values.${v.value}`)}
-                </TextBodyStandard>
-                <br />
-              </>
-            ) : (
-              <img className="my-2" src={v.value} alt={v.value} />
-            )
-          )}
+          {content.values.map((v) => (
+            <div key={v.value}>
+              {v.type === "text" ? (
+                <>
+                  <TextBodyStandard>
+                    {t(`${path}.${content.id}.values.${v.value}`)}
+                  </TextBodyStandard>
+                  <br />
+                </>
+              ) : (
+                <img
+                  className="my-2 max-w-[500px]"
+                  src={v.value}
+                  alt={v.value}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </Accordion>
     );
