@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { IListPointActionModal } from "./ListPointActionModalProps";
 import { ModalListItem } from "../../Modal/ModalListItem/ModalListItem";
 import { IModalListItemProps } from "../../Modal/ModalListItem/ModalListItemProps";
-import { EditIcon, DeleteIcon } from "../../../../icons";
-import { RemoveListPointModal } from "../RemoveListPointModal/RemoveListPointModal";
+import { DeleteIcon, EditIcon } from "../../../../icons";
+import { RemoveListItemModal } from "../RemoveListItemModal/RemoveListItemModal";
 
 export const ListPointActionModal = (props: IListPointActionModal) => {
   const {
@@ -47,9 +47,11 @@ export const ListPointActionModal = (props: IListPointActionModal) => {
       )}
 
       {showRemoveListPointModal && (
-        <RemoveListPointModal
-          listPointName={listPointName}
-          showDeletionWarningMessage={showDeletionWarningMessage}
+        <RemoveListItemModal
+          title={t("modals.remove_list_point.title", { listPointName })}
+          description={
+            showDeletionWarningMessage ? t("modals.warning") : undefined
+          }
           onRemoveClick={onRemoveClick}
           onCancelClick={() => {
             setShowRemoveListPointModal(false);

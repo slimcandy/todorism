@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { saveCurrentListPointInLocalStorage } from "../../../../utils/localStorage";
 import {
   ActionPanel,
-  RemoveListPointModal,
+  RemoveListItemModal,
   TextBodyStandard,
   TitleH1,
 } from "../../../elements";
@@ -70,8 +70,8 @@ export const RecommendedListPointsPage = () => {
   ) =>
     modalContext.setContent({
       content: (
-        <RemoveListPointModal
-          listPointName={listPointName}
+        <RemoveListItemModal
+          title={t("modals.remove_list_point.title", { listPointName })}
           onRemoveClick={() => removeListPoint(listPointIndex)}
           onCancelClick={closeModal}
         />

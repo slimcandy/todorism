@@ -1,11 +1,13 @@
 import React from "react";
 import { ComponentStory } from "@storybook/react";
 
+import { withRouter } from "storybook-addon-react-router-v6";
 import { EventListItem } from "./EventListItem";
 
 export default {
   title: "components/EventListItem",
   component: EventListItem,
+  decorators: [withRouter],
   args: {
     title: "Поход на байдарках",
     eventUid: "uid",

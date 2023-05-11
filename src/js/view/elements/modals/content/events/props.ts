@@ -1,4 +1,4 @@
-export interface IEventActionModal {
+export interface IEventsActionModals {
   onShareEvent: () => void;
   onLeaveEvent: () => void;
   onEditEvent: () => void;

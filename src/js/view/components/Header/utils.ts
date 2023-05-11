@@ -1,30 +1,32 @@
 import {
   createEventPageUrl,
-  eventPageUrl,
-  homePageUrl,
-  eventMembersPageUrl,
-  eventCreateListPointPageUrl,
-  eventEditListPointPageUrl,
-  eventWelcomePageUrl,
   editEventPageUrl,
-  shareEventPageUrl,
-  eventRecommendedListPointsPageUrl,
+  eventCreateListPointPageUrl,
   eventCreateRecommendedListPointPageUrl,
+  eventEditListPointPageUrl,
   eventEditRecommendedListPointPageUrl,
+  eventMembersPageUrl,
+  eventPageUrl,
+  eventRecommendedListPointsPageUrl,
+  eventWelcomePageUrl,
+  homePageUrl,
+  shareEventPageUrl,
 } from "../../../../router/constants";
 import { IHeaderRoute, IRouteState } from "./types";
 
-export const getRoutesDataForHeader = ({
-  eventUid = "",
-  memberUid,
-  isNewEvent,
-  state,
-}: {
+interface IRoutesParentDataArgs {
   eventUid?: string;
   memberUid?: string;
   isNewEvent: boolean;
   state: IRouteState;
-}): { [key: string]: IHeaderRoute } => ({
+}
+
+export const getRoutesParentData = ({
+  eventUid = "",
+  memberUid,
+  isNewEvent,
+  state,
+}: IRoutesParentDataArgs): { [key: string]: IHeaderRoute } => ({
   // создание мероприятия
   [createEventPageUrl()]: {
     parentPathName: homePageUrl(),
@@ -91,3 +93,14 @@ export const getRoutesDataForHeader = ({
     parentLocalePath: "recommendedListPointsPage",
   },
 });
+
+export const getRouteParentData = (
+  payload: IRoutesParentDataArgs & { pathName: string }
+): IHeaderRoute => {
+  if (payload.state.fromEventsListModal) {
+    return {
+      parentLocalePath: homePageUrl(),
+    };
+  }
+  return getRoutesParentData(payload)[payload.pathName];
+};

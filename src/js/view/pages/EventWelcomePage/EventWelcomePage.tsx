@@ -5,12 +5,12 @@ import { IAccessIds, IEvent, IMember } from "../../../interfaces";
 import { PageWrapper } from "../../components";
 import {
   ActionPanel,
-  TitleH1,
-  Radio,
-  MembersListItem,
-  TextBodyLarge,
   EventTitle,
   Loader,
+  MembersListItem,
+  Radio,
+  TextBodyLarge,
+  TitleH1,
 } from "../../elements";
 import {
   pushAccessIdsInLocalStorage,
@@ -92,9 +92,14 @@ export const EventWelcomePage = () => {
       onPrimaryButtonClick={() => {
         if (selectedMember) {
           onChangeMember(selectedMember);
-          navigate(eventPageUrl({ eventUid }), {
-            replace: true,
-          });
+
+          if (accessIds?.memberUid) {
+            navigate(-1);
+          } else {
+            navigate(eventPageUrl({ eventUid }), {
+              replace: true,
+            });
+          }
         }
       }}
     />

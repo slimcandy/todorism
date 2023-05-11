@@ -1,19 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SERVER_URL } from "../../../common/constants";
-import { IEvent, IEventFromBE } from "../../../interfaces";
-import { convertIEventFromBEToIEvent } from "../../../utils";
+import { IEvent } from "../../../interfaces";
 import {
   getAccessEventsUidsFromLocalStorage,
   saveCurrentEventInLocalStorage,
 } from "../../../utils/localStorage";
-import { TitleH1, Loader, ButtonCircle } from "../../elements";
+import { ButtonCircle, Loader, TitleH1 } from "../../elements";
 import { AllEvents } from "./AllEvents";
 import { NoEventsPage } from "./NoEvents";
 import { useLoading } from "../../../hooks";
 import { PlusIcon } from "../../icons";
 import { createEventPageUrl, eventPageUrl } from "../../../../router/constants";
+import { deleteEvent, getEvents } from "../../../api_clients";
 
 export const EventsPage = () => {
   const { t } = useTranslation();
@@ -37,25 +36,31 @@ export const EventsPage = () => {
     }
   };
 
-  const getAllTrips = useCallback(
-    async (eventUids: string[]) => {
+  const getAllTrips = useCallback(async () => {
+    try {
+      const eventsUids = getAccessEventsUidsFromLocalStorage();
+
+      setLoading(true);
+
+      if (eventsUids.length > 0) {
+        const list = await getEvents({ eventsUids });
+
+        if (list) {
+          setEvents(list);
+        }
+      }
+    } finally {
+      setLoading(false);
+    }
+  }, [setLoading]);
+
+  const onDeleteEvent = useCallback(
+    async (eventUid: string) => {
       try {
         setLoading(true);
 
-        const response = await fetch(`${SERVER_URL}/Trip/All?`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(eventUids),
-        });
-
-        if (response.ok) {
-          const json = ((await response.json()) as IEventFromBE[]).map((e) =>
-            convertIEventFromBEToIEvent(e)
-          );
-          setEvents(json);
-        }
+        await deleteEvent({ eventUid });
+        await getAllTrips();
       } finally {
         setLoading(false);
       }
@@ -64,13 +69,9 @@ export const EventsPage = () => {
   );
 
   useEffect(() => {
-    const eventsUids = getAccessEventsUidsFromLocalStorage();
-
-    if (eventsUids.length > 0) {
-      getAllTrips(eventsUids)
-        .then()
-        .catch(() => {});
-    }
+    getAllTrips()
+      .then()
+      .catch(() => {});
   }, [getAllTrips]);
 
   return (
@@ -84,7 +85,13 @@ export const EventsPage = () => {
           <NoEventsPage />
         ) : (
           <>
-            <AllEvents list={events} onClick={goToEvent} />
+            <AllEvents
+              list={events}
+              onClick={goToEvent}
+              onDeleteEvent={(eventUid) => {
+                void onDeleteEvent(eventUid);
+              }}
+            />
 
             <div className="flex items-end justify-end h-full sticky bottom-4">
               <ButtonCircle
