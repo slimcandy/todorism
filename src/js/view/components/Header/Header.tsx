@@ -8,7 +8,7 @@ import {
   getUserNameFromLocalStorage,
 } from "../../../utils/localStorage";
 
-import { getRoutesDataForHeader } from "./utils";
+import { getRouteParentData } from "./utils";
 import { BtnIcon, MenuModal, TagSmall, TextBodyMedium } from "../../elements";
 import { IHeaderRoute, IRouteState } from "./types";
 import { ArrowIcon, BurgerIcon } from "../../icons";
@@ -55,15 +55,15 @@ export const Header = () => {
     const accessIds = getEventAccessIds(event?.eventUid || "");
 
     initName();
-
-    const routesData = getRoutesDataForHeader({
+    const parentData = getRouteParentData({
       eventUid: event?.eventUid || "",
       isNewEvent: event?.isNewEvent || false,
       memberUid: accessIds?.memberUid,
       state: (location.state || {}) as IRouteState,
+      pathName: location.pathname,
     });
 
-    setRouteData(routesData[location.pathname]);
+    setRouteData(parentData);
   }, [location]);
 
   return (

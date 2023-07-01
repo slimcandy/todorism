@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { PrivateListPointItem } from "../PrivateListPointItem/PrivateListPointItem";
 import { ListPointsWrapper } from "../../ListPointsWrapper/ListPointsWrapper";
 import {
-  getEmptyListPoint,
   convertIPrivateListPointFromBEToIListPoint,
+  getEmptyListPoint,
 } from "../../../../../utils";
 import {
   getPrivateListPoints,
@@ -12,7 +13,7 @@ import {
 } from "../../../../../api_clients";
 import { useLoading, useModal } from "../../../../../hooks";
 import { IListPoint, IPrivateListPointFromBE } from "../../../../../interfaces";
-import { RemoveListPointModal } from "../../../../elements";
+import { RemoveListItemModal } from "../../../../elements";
 import { IPrivateListPointsProps } from "./PrivateListPointsProps";
 import { saveCurrentListPointInLocalStorage } from "../../../../../utils/localStorage";
 import {
@@ -22,6 +23,8 @@ import {
 
 export const PrivateListPoints = (props: IPrivateListPointsProps) => {
   const { accessIds } = props;
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -87,8 +90,10 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
   const showRemoveListPointModal = (listPoint: IListPoint) =>
     modalContext.setContent({
       content: (
-        <RemoveListPointModal
-          listPointName={listPoint.item.name}
+        <RemoveListItemModal
+          title={t("modals.remove_list_point.title", {
+            listPointName: listPoint.item.name,
+          })}
           onRemoveClick={() => {
             closeModal();
             void removeListPoint(listPoint);

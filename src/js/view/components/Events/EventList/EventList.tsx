@@ -1,14 +1,9 @@
 import React from "react";
-import { IEvent } from "../../../../interfaces";
 import { EventListItem } from "../EventListItem/EventListItem";
+import { IEventListProps } from "./EventListProps";
 
-type EventListProps = {
-  list: Array<IEvent>;
-  onClick: (value: string) => void;
-};
-
-export const EventList = (props: EventListProps) => {
-  const { list, onClick } = props;
+export const EventList = (props: IEventListProps) => {
+  const { list, onClick, onDeleteEvent } = props;
 
   const sortedListByDayDesc = list.sort(
     (a, b) =>
@@ -31,6 +26,7 @@ export const EventList = (props: EventListProps) => {
             description={event.description}
             start={event.start}
             end={event.end}
+            onDeleteEvent={onDeleteEvent}
           />
         </div>
       ))}

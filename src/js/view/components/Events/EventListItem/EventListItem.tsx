@@ -1,14 +1,31 @@
 import React from "react";
-import { Indicator, TextBodySmall, TitleH3 } from "../../../elements";
+import { useNavigate } from "react-router-dom";
+import {
+  BtnIcon,
+  EventsListActionModal,
+  Indicator,
+  TextBodySmall,
+  TitleH3,
+} from "../../../elements";
 import { KebabIcon } from "../../../icons";
 import {
-  convertDateToDDMMYYYYWithDots,
   checkExpiredDate,
+  convertDateToDDMMYYYYWithDots,
 } from "../../../../utils";
-import { IEvent } from "../../../../interfaces";
+import {
+  editEventPageUrl,
+  eventMembersPageUrl,
+  eventWelcomePageUrl,
+  shareEventPageUrl,
+} from "../../../../../router/constants";
+import { useModal } from "../../../../hooks";
+import { IEventListItemProps } from "./EventListItemProps";
 
-export const EventListItem = (props: IEvent) => {
-  const { eventUid, title, description, start, end } = props;
+export const EventListItem = (props: IEventListItemProps) => {
+  const { eventUid, title, description, start, end, onDeleteEvent } = props;
+  const navigate = useNavigate();
+  const modalContext = useModal();
+
   let dateStart;
   let dateEnd;
   if (start) {
@@ -17,6 +34,46 @@ export const EventListItem = (props: IEvent) => {
   if (end) {
     dateEnd = convertDateToDDMMYYYYWithDots(end);
   }
+
+  const closeModal = () => {
+    modalContext.setContent(undefined);
+  };
+
+  const deleteEvent = () => {
+    onDeleteEvent(eventUid);
+    closeModal();
+  };
+
+  const onButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+
+    const state = { fromEventsListModal: true };
+
+    modalContext.setContent({
+      content: (
+        <EventsListActionModal
+          eventTitle={title}
+          onShareEvent={() =>
+            navigate(shareEventPageUrl({ eventUid }), { state })
+          }
+          onEditEvent={() =>
+            navigate(editEventPageUrl({ eventUid }), { state })
+          }
+          onEditMembers={() =>
+            navigate(eventMembersPageUrl({ eventUid }), { state })
+          }
+          onLeaveEvent={() => {}}
+          onLogoutClick={() =>
+            navigate(eventWelcomePageUrl({ eventUid }), { state })
+          }
+          onDeleteEvent={() => deleteEvent()}
+        />
+      ),
+      onClose: closeModal,
+    });
+  };
 
   return (
     <div id={eventUid} className="flex items-center px-2 py-4 cursor-pointer">
@@ -41,9 +98,10 @@ export const EventListItem = (props: IEvent) => {
         )}
       </div>
 
-      <KebabIcon
-        size={16}
-        className="cursor-pointer dark:text-dark-2 text-dark-4"
+      <BtnIcon
+        icon={<KebabIcon size={16} />}
+        className="btn-sm"
+        onClick={(e) => onButtonClick(e)}
       />
     </div>
   );

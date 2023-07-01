@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory } from "@storybook/react";
 
 import { EventActionModal } from "./EventActionModal";
-import { Modal } from "../../Modal/Modal";
+import { Modal } from "../../../Modal/Modal";
 
 export default {
   title: "elements/Modal/content/EventActionModal",

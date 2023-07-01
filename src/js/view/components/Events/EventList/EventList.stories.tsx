@@ -1,11 +1,13 @@
 import React from "react";
 import { ComponentStory } from "@storybook/react";
 
+import { withRouter } from "storybook-addon-react-router-v6";
 import { EventList } from "./EventList";
 
 export default {
   title: "components/EventList",
   component: EventList,
+  decorators: [withRouter],
 };
 
 const Template: ComponentStory<typeof EventList> = (args) => (

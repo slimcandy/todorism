@@ -2,12 +2,13 @@ import { createBrowserRouter, defer, redirect } from "react-router-dom";
 import React from "react";
 import { EventsPage } from "../js/view/components/Events/EventsPage";
 import {
+  deleteCurrentEventFromLocalStorage,
   getEventAccessIds,
   getUserNameFromLocalStorage,
   saveListPointTypeInLocalStorage,
 } from "../js/utils/localStorage";
 import { WelcomePage } from "../js/view/components/WelcomePage/WelcomePage";
-import { EventWelcomePage, EventEditPage, FaqPage } from "../js/view/pages";
+import { EventEditPage, EventWelcomePage, FaqPage } from "../js/view/pages";
 import { EventPage } from "../js/view/pages/EventPage/EventPage";
 import { ListPointEditPage } from "../js/view/pages/ListPointEditPage/ListPointEditPage";
 import { MembersPage } from "../js/view/pages/MembersPage";
@@ -63,6 +64,7 @@ export const router = createBrowserRouter([
             return redirect(welcomePageUrl());
           }
           saveListPointTypeInLocalStorage("common");
+          deleteCurrentEventFromLocalStorage();
           return null;
         },
       },
