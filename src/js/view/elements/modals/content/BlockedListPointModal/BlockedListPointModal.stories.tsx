@@ -10,7 +10,7 @@ export default {
 };
 
 const Template: ComponentStory<typeof BlockedListPointModal> = (args) => (
-  <Modal onShow={() => {}} content={<BlockedListPointModal {...args} />} />
+  <Modal onClose={() => {}} content={<BlockedListPointModal {...args} />} />
 );
 
 export const Primary = Template.bind({});

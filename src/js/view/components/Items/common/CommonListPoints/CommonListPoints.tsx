@@ -15,7 +15,7 @@ import {
   deleteCommonListPoint,
   unlockCommonListPoint,
 } from "../../../../../api_clients";
-import { useLoading } from "../../../../../hooks";
+import { useLoading, useModal } from "../../../../../hooks";
 import {
   ICommonListPoint,
   ICommonListPointFromBE,
@@ -24,7 +24,6 @@ import {
   LIST_POINT_CATEGORIES,
 } from "../../../../../interfaces";
 import {
-  Modal,
   BlockedListPointModal,
   BindListPointModal,
   ListPointActionModal,
@@ -43,6 +42,8 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
 
   const { setLoading } = useLoading();
 
+  const modalContext = useModal();
+
   const [listPoints, setListPoints] = useState<ICommonListPoint[]>([]);
 
   const [selectedListPoint, setSelectedListPoint] =
@@ -50,24 +51,8 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
 
   const [loadingPointUid, setLoadingPointUid] = useState<string>("");
 
-  const [modalContent, setModalContent] = useState<JSX.Element>();
-
-  const showModal = ({
-    listPoint,
-    content,
-  }: {
-    listPoint?: ICommonListPoint;
-    content: JSX.Element;
-  }) => {
-    setModalContent(content);
-
-    if (listPoint) {
-      setSelectedListPoint(listPoint);
-    }
-  };
-
   const closeModal = () => {
-    setModalContent(undefined);
+    modalContext.setContent(undefined);
 
     if (selectedListPoint) {
       void unlockCommonListPoint({
@@ -76,6 +61,20 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
       });
 
       setSelectedListPoint(undefined);
+    }
+  };
+
+  const showModal = ({
+    listPoint,
+    content,
+  }: {
+    listPoint?: ICommonListPoint;
+    content: JSX.Element;
+  }) => {
+    modalContext.setContent({ content, onClose: closeModal });
+
+    if (listPoint) {
+      setSelectedListPoint(listPoint);
     }
   };
 
@@ -311,20 +310,16 @@ export const CommonListPoints = (props: ICommonListPointsProps) => {
   }, [getListPoints, listPoints.length]);
 
   return (
-    <>
-      <ListPointsWrapper
-        listPoints={listPoints}
-        listPointItem={listPointItem}
-        onCreateListPoint={(category) => {
-          goToListPointEditPage(
-            category
-              ? getEmptyListPointWithCurrentCategory(category)
-              : getEmptyListPoint()
-          );
-        }}
-      />
-
-      {modalContent && <Modal onShow={closeModal} content={modalContent} />}
-    </>
+    <ListPointsWrapper
+      listPoints={listPoints}
+      listPointItem={listPointItem}
+      onCreateListPoint={(category) => {
+        goToListPointEditPage(
+          category
+            ? getEmptyListPointWithCurrentCategory(category)
+            : getEmptyListPoint()
+        );
+      }}
+    />
   );
 };

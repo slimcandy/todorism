@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "../../icons/Logo";
 import {
@@ -9,18 +9,24 @@ import {
 } from "../../../utils/localStorage";
 
 import { getRoutesDataForHeader } from "./utils";
-import { TagSmall, TextBodyMedium } from "../../elements";
+import { BtnIcon, MenuModal, TagSmall, TextBodyMedium } from "../../elements";
 import { IHeaderRoute, IRouteState } from "./types";
-import { ArrowIcon } from "../../icons";
+import { ArrowIcon, BurgerIcon } from "../../icons";
+import { useModal } from "../../../hooks";
+import { faqPageUrl } from "../../../../router/constants";
 
 export const Header = () => {
   const location = useLocation();
 
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   const [userName, setUserName] = useState<string>();
 
   const [routeData, setRouteData] = useState<IHeaderRoute>();
+
+  const modalContext = useModal();
 
   const initName = () => {
     const name = getUserNameFromLocalStorage();
@@ -28,6 +34,20 @@ export const Header = () => {
     if (name) {
       setUserName(name);
     }
+  };
+
+  const showMenuModal = () => {
+    modalContext.setContent({
+      content: (
+        <MenuModal
+          onSettingsClick={() => {}}
+          onFavoriteItemsClick={() => {}}
+          onFeedbackClick={() => {}}
+          onQuestionsClick={() => navigate(faqPageUrl())}
+        />
+      ),
+      onClose: () => modalContext.setContent(undefined),
+    });
   };
 
   useEffect(() => {
@@ -48,19 +68,21 @@ export const Header = () => {
 
   return (
     <header
-      className="h-header sticky top-0
-    flex justify-between items-center gap-x-2 bg-light-4 dark:bg-black-0
-    dark:text-light-4 text-black-0 z-10"
+      className="
+        h-header sticky top-0
+        flex items-center gap-x-4 bg-light-4 dark:bg-black-0
+        dark:text-light-4 text-black-0 z-10
+      "
     >
       {routeData?.parentPathName ? (
-        <Link to={routeData.parentPathName}>
+        <Link to={routeData.parentPathName} className="flex grow">
           <TextBodyMedium className="flex gap-x-2 items-center text-dark-3">
             <ArrowIcon size={16} direction="left" />
             {t(`headerRoutes.${routeData.parentLocalePath}`)}
           </TextBodyMedium>
         </Link>
       ) : (
-        <Link to="/">
+        <Link to="/" className="flex grow">
           <Logo />
         </Link>
       )}
@@ -70,6 +92,12 @@ export const Header = () => {
           {userName}
         </TagSmall>
       )}
+
+      <BtnIcon
+        icon={<BurgerIcon size={24} />}
+        className="btn-sm"
+        onClick={showMenuModal}
+      />
     </header>
   );
 };

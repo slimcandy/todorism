@@ -8,7 +8,12 @@ export const ModalListItem = (props: IModalListItemProps) => {
   const { title, icon, disabled = false, onClick } = props;
 
   return (
-    <ButtonTransparent icon={icon} disabled={disabled} onClick={onClick}>
+    <ButtonTransparent
+      className="px-0"
+      icon={icon}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {title}
     </ButtonTransparent>
   );

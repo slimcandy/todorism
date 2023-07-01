@@ -8,13 +8,15 @@ export const ArrowIcon = (props: SVGprops) => {
     color = "currentColor",
     fill = "none",
     direction = "up",
+    className,
   } = props;
 
   const arrowClasses = classesOf(
     "origin-center",
     direction === "down" && "rotate-180",
     direction === "right" && "rotate-90",
-    direction === "left" && "-rotate-90"
+    direction === "left" && "-rotate-90",
+    className
   );
 
   return (

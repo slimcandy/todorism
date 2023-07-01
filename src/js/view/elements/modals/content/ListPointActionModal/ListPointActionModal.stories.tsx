@@ -13,7 +13,7 @@ export default {
 };
 
 const Template: ComponentStory<typeof ListPointActionModal> = (args) => (
-  <Modal onShow={() => {}} content={<ListPointActionModal {...args} />} />
+  <Modal onClose={() => {}} content={<ListPointActionModal {...args} />} />
 );
 
 export const Primary = Template.bind({});

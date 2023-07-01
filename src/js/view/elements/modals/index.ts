@@ -4,3 +4,4 @@ export * from "./content/RemoveListPointModal/RemoveListPointModal";
 export * from "./content/BindListPointModal/BindListPointModal";
 export * from "./content/ListPointActionModal/ListPointActionModal";
 export * from "./content/EventActionModal/EventActionModal";
+export * from "./content/MenuModal/MenuModal";

@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
 import "./i18n";
-import { LoadingProvider } from "./js/hooks";
+import { LoadingProvider, ModalProvider } from "./js/hooks";
 import { router } from "./router";
 
 const root = ReactDOM.createRoot(
@@ -12,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LoadingProvider>
-      <RouterProvider router={router} />
+      <ModalProvider>
+        <RouterProvider router={router} />
+      </ModalProvider>
     </LoadingProvider>
   </React.StrictMode>
 );

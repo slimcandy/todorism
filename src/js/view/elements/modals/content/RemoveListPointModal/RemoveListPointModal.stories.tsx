@@ -13,7 +13,7 @@ export default {
 };
 
 const Template: ComponentStory<typeof RemoveListPointModal> = (args) => (
-  <Modal onShow={() => {}} content={<RemoveListPointModal {...args} />} />
+  <Modal onClose={() => {}} content={<RemoveListPointModal {...args} />} />
 );
 
 export const Primary = Template.bind({});

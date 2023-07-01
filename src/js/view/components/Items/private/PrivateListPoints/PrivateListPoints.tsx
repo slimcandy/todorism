@@ -10,9 +10,9 @@ import {
   getPrivateListPoints,
   removePrivateListPoint,
 } from "../../../../../api_clients";
-import { useLoading } from "../../../../../hooks";
+import { useLoading, useModal } from "../../../../../hooks";
 import { IListPoint, IPrivateListPointFromBE } from "../../../../../interfaces";
-import { Modal, RemoveListPointModal } from "../../../../elements";
+import { RemoveListPointModal } from "../../../../elements";
 import { IPrivateListPointsProps } from "./PrivateListPointsProps";
 import { saveCurrentListPointInLocalStorage } from "../../../../../utils/localStorage";
 import {
@@ -29,7 +29,7 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
 
   const { setLoading } = useLoading();
 
-  const [modalContent, setModalContent] = useState<JSX.Element>();
+  const modalContext = useModal();
 
   const goToListPointEditPage = (listPoint: IListPoint) => {
     saveCurrentListPointInLocalStorage(listPoint);
@@ -80,19 +80,24 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
     }
   };
 
+  const closeModal = () => {
+    modalContext.setContent(undefined);
+  };
+
   const showRemoveListPointModal = (listPoint: IListPoint) =>
-    setModalContent(
-      <RemoveListPointModal
-        listPointName={listPoint.item.name}
-        onRemoveClick={() => {
-          setModalContent(undefined);
-          void removeListPoint(listPoint);
-        }}
-        onCancelClick={() => {
-          setModalContent(undefined);
-        }}
-      />
-    );
+    modalContext.setContent({
+      content: (
+        <RemoveListPointModal
+          listPointName={listPoint.item.name}
+          onRemoveClick={() => {
+            closeModal();
+            void removeListPoint(listPoint);
+          }}
+          onCancelClick={closeModal}
+        />
+      ),
+      onClose: closeModal,
+    });
 
   const listPointItem = (index: number) => {
     const listPoint = listPoints[index];
@@ -116,19 +121,10 @@ export const PrivateListPoints = (props: IPrivateListPointsProps) => {
   }, [getListPoints, listPoints.length]);
 
   return (
-    <>
-      <ListPointsWrapper
-        listPoints={listPoints}
-        listPointItem={listPointItem}
-        onCreateListPoint={() => goToListPointEditPage(getEmptyListPoint())}
-      />
-
-      {modalContent && (
-        <Modal
-          onShow={() => setModalContent(undefined)}
-          content={modalContent}
-        />
-      )}
-    </>
+    <ListPointsWrapper
+      listPoints={listPoints}
+      listPointItem={listPointItem}
+      onCreateListPoint={() => goToListPointEditPage(getEmptyListPoint())}
+    />
   );
 };

@@ -25,7 +25,7 @@ export default {
 };
 
 const Template: ComponentStory<typeof BindListPointModal> = (args) => (
-  <Modal onShow={() => {}} content={<BindListPointModal {...args} />} />
+  <Modal onClose={() => {}} content={<BindListPointModal {...args} />} />
 );
 
 export const Primary = Template.bind({});

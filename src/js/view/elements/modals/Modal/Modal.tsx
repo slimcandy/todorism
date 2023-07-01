@@ -7,15 +7,14 @@ import { ModalTitle } from "./ModalTitle/ModalTitle";
 import { ModalDescription } from "./ModalDescription/ModalDescription";
 
 export const Modal = (props: IModalProps) => {
-  const { title, description, content, onShow } = props;
+  const { title, description, content, onClose } = props;
 
-  const handleShowing = (
+  const closeModal = (
     e:
       | KeyboardEvent<HTMLDivElement>
-      | MouseEvent<HTMLButtonElement | HTMLDivElement>,
-    show: boolean
+      | MouseEvent<HTMLButtonElement | HTMLDivElement>
   ) => {
-    onShow(show);
+    onClose();
     e.stopPropagation();
   };
 
@@ -24,7 +23,7 @@ export const Modal = (props: IModalProps) => {
       className="flex justify-center items-end absolute top-0 bottom-0 left-0 right-0 bg-black-3/40 z-10 cursor-default"
       role="button"
       tabIndex={0}
-      onClick={(e) => handleShowing(e, false)}
+      onClick={(e) => closeModal(e)}
       onKeyDown={() => {}}
     >
       <div
@@ -36,7 +35,7 @@ export const Modal = (props: IModalProps) => {
       >
         <BtnIcon
           icon={<CloseIcon size={24} />}
-          onClick={(e) => handleShowing(e, false)}
+          onClick={(e) => closeModal(e)}
           className="btn-sm absolute right-2 top-2"
         />
 
